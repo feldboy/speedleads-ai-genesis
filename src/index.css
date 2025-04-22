@@ -1,0 +1,125 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 60 30% 96%; /* Light cream background */
+    --foreground: 135 20% 25%; /* Dark green text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 135 20% 25%;
+
+    --popover: 60 30% 96%;
+    --popover-foreground: 135 20% 25%;
+
+    --primary: 135 30% 40%; /* Main green color */
+    --primary-foreground: 60 30% 96%;
+
+    --secondary: 30 25% 70%; /* Light brown */
+    --secondary-foreground: 135 20% 25%;
+
+    --muted: 110 15% 90%;
+    --muted-foreground: 135 10% 40%;
+
+    --accent: 20 40% 77%; /* Peachy flower accent */
+    --accent-foreground: 135 20% 25%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 30% 96%;
+
+    --border: 110 20% 85%;
+    --input: 110 20% 85%;
+    --ring: 135 30% 40%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 135 20% 20%;
+    --foreground: 60 30% 96%;
+
+    --card: 135 20% 20%;
+    --card-foreground: 60 30% 96%;
+
+    --popover: 135 20% 20%;
+    --popover-foreground: 60 30% 96%;
+
+    --primary: 135 30% 50%;
+    --primary-foreground: 135 20% 15%;
+
+    --secondary: 30 15% 30%;
+    --secondary-foreground: 60 30% 96%;
+
+    --muted: 135 15% 30%;
+    --muted-foreground: 135 10% 70%;
+
+    --accent: 20 30% 45%;
+    --accent-foreground: 60 30% 96%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 30% 96%;
+
+    --border: 135 15% 30%;
+    --input: 135 15% 30%;
+    --ring: 135 30% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    direction: rtl;
+    font-family: 'Open Sans', 'Heebo', sans-serif;
+  }
+
+  body {
+    @apply bg-background text-foreground font-open-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heebo font-medium;
+  }
+}
+
+/* Custom utility classes */
+@layer components {
+  .garden-card {
+    @apply bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg;
+  }
+  
+  .garden-button {
+    @apply px-6 py-2 rounded-md bg-garden-medium-green text-white font-medium transition-all hover:bg-garden-dark-green focus:ring-2 focus:ring-garden-dark-green focus:ring-opacity-50;
+  }
+  
+  .garden-link {
+    @apply text-garden-dark-green hover:text-garden-medium-green underline transition-colors;
+  }
+  
+  .garden-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .garden-section {
+    @apply py-12 md:py-16;
+  }
+  
+  .garden-heading {
+    @apply text-garden-dark-green font-heebo font-bold;
+  }
+}
