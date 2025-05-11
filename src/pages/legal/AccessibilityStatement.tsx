@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useEffect } from 'react';
 import Header from '@/components/layout/Header';
@@ -44,8 +43,8 @@ const AccessibilityStatement = () => {
             </p>
             <ul className="list-disc list-inside my-4">
               <li>
-                <strong>תפריט נגישות:</strong> תפריט מיוחד המאפשר התאמות שונות כגון שינוי גודל הטקסט,
-                ניגודיות גבוהה והשבתת אנימציות.
+                <strong>ווידג'ט נגישות Sienna:</strong> האתר משתמש בווידג'ט נגישות מתקדם המוצג בצד המסך ומאפשר התאמות שונות כגון שינוי גודל הטקסט,
+                ניגודיות גבוהה, עצירת אנימציות, ומגוון תכונות נגישות נוספות. ניתן לפתוח את הווידג'ט בכל עמוד באתר.
               </li>
               <li>
                 <strong>תאימות לקורא מסך:</strong> האתר שלנו תומך בתוכנות קריאת מסך כמו NVDA, JAWS ו-VoiceOver.
@@ -63,6 +62,24 @@ const AccessibilityStatement = () => {
                 <strong>גודל טקסט מתכוונן:</strong> המשתמשים יכולים להגדיל את גודל הטקסט באתר ללא אובדן תוכן או פונקציונליות.
               </li>
             </ul>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-bold mb-4">שימוש בווידג'ט הנגישות</h2>
+            <p>
+              ווידג'ט הנגישות Sienna נמצא בצד המסך ומאפשר לכם:
+            </p>
+            <ul className="list-disc list-inside my-4">
+              <li>להגדיל או להקטין את גודל הטקסט באתר</li>
+              <li>להפעיל מצב ניגודיות גבוהה</li>
+              <li>להשבית אנימציות</li>
+              <li>לשנות את גופן האתר לגופן קריא יותר</li>
+              <li>להוסיף הדגשה לקישורים וכותרות</li>
+              <li>ועוד תכונות נגישות נוספות</li>
+            </ul>
+            <p>
+              אנו ממליצים לנסות את התכונות השונות ולמצוא את ההגדרות המתאימות ביותר לצרכיכם.
+            </p>
           </section>
 
           <section className="mb-8">
@@ -111,7 +128,7 @@ const AccessibilityStatement = () => {
 
           <section>
             <p className="mt-8 text-sm text-gray-600">
-              תאריך עדכון אחרון: 11 במאי, 2025
+              תאריך עדכון אחרון: 15 במאי, 2024
             </p>
           </section>
         </div>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
@@ -20,6 +19,11 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setMobileMenuOpen(false);
+  };
+
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 ${
@@ -30,7 +34,12 @@ const Header = () => {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <div className="flex items-center">
-          <a href="#" className="flex items-center">
+          <a href="/" className="flex items-center">
+            <img 
+              src="/speedleads-logo.png" 
+              alt="SpeedLeads.AI Logo" 
+              className="h-7 mr-5" 
+            />
             <span className="text-white text-2xl font-bold">
               Speed<span className="text-tech-blue">Leads</span>.AI
             </span>
@@ -39,14 +48,38 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-0 space-x-reverse space-x-8 rtl:space-x-reverse">
-          <a href="#services" className="text-white hover:text-tech-blue transition-colors">השירותים שלנו</a>
-          <a href="#advantages" className="text-white hover:text-tech-blue transition-colors">היתרונות</a>
-          <a href="#clients" className="text-white hover:text-tech-blue transition-colors">לקוחות</a>
-          <a href="#faq" className="text-white hover:text-tech-blue transition-colors">שאלות נפוצות</a>
+          <Button 
+            variant="link" 
+            className="text-white hover:text-tech-blue transition-colors p-0"
+            onClick={() => scrollToSection('services')}
+          >
+            השירותים שלנו
+          </Button>
+          <Button 
+            variant="link" 
+            className="text-white hover:text-tech-blue transition-colors p-0"
+            onClick={() => scrollToSection('advantages')}
+          >
+            היתרונות
+          </Button>
+          <Button 
+            variant="link" 
+            className="text-white hover:text-tech-blue transition-colors p-0"
+            onClick={() => scrollToSection('clients')}
+          >
+            לקוחות
+          </Button>
+          <Button 
+            variant="link" 
+            className="text-white hover:text-tech-blue transition-colors p-0"
+            onClick={() => scrollToSection('faq')}
+          >
+            שאלות נפוצות
+          </Button>
           <Button 
             id="header_contact_button"
             className="bg-transparent border border-tech-blue text-tech-blue hover:bg-tech-blue hover:text-dark"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => scrollToSection('contact')}
           >
             צור קשר
           </Button>
@@ -69,41 +102,38 @@ const Header = () => {
       {mobileMenuOpen && (
         <nav className="md:hidden bg-dark bg-opacity-95 py-5 px-4">
           <div className="flex flex-col space-y-4">
-            <a 
-              href="#services" 
-              className="text-white hover:text-tech-blue transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
+            <Button 
+              variant="link" 
+              className="text-white hover:text-tech-blue transition-colors p-0 justify-start"
+              onClick={() => scrollToSection('services')}
             >
               השירותים שלנו
-            </a>
-            <a 
-              href="#advantages" 
-              className="text-white hover:text-tech-blue transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
+            </Button>
+            <Button 
+              variant="link" 
+              className="text-white hover:text-tech-blue transition-colors p-0 justify-start"
+              onClick={() => scrollToSection('advantages')}
             >
               היתרונות
-            </a>
-            <a 
-              href="#clients" 
-              className="text-white hover:text-tech-blue transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
+            </Button>
+            <Button 
+              variant="link" 
+              className="text-white hover:text-tech-blue transition-colors p-0 justify-start"
+              onClick={() => scrollToSection('clients')}
             >
               לקוחות
-            </a>
-            <a 
-              href="#faq" 
-              className="text-white hover:text-tech-blue transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
+            </Button>
+            <Button 
+              variant="link" 
+              className="text-white hover:text-tech-blue transition-colors p-0 justify-start"
+              onClick={() => scrollToSection('faq')}
             >
               שאלות נפוצות
-            </a>
+            </Button>
             <Button 
               id="header_mobile_contact_button"
               className="bg-transparent border border-tech-blue text-tech-blue hover:bg-tech-blue hover:text-dark w-full"
-              onClick={() => {
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                setMobileMenuOpen(false);
-              }}
+              onClick={() => scrollToSection('contact')}
             >
               צור קשר
             </Button>

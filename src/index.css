@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
@@ -117,6 +116,11 @@
   animation: none !important;
   transition: none !important;
   transform: none !important;
+}
+
+/* Sienna Accessibility Widget Styles */
+.__sienna-widget {
+  z-index: 45 !important; /* Position between header (z-50) and WhatsApp button (z-40) */
 }
 
 /* Additional Animation Keyframes */
