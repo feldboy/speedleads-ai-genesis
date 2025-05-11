@@ -1,10 +1,7 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
-
 const HeroSection = () => {
-  return (
-    <section className="relative min-h-screen flex items-center bg-hero-pattern bg-cover bg-center bg-fixed overflow-hidden">
+  return <section className="relative min-h-screen flex items-center bg-hero-pattern bg-cover bg-center bg-fixed overflow-hidden">
       {/* Animated Particles */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-tech-blue rounded-full opacity-10 filter blur-3xl animate-pulse-slow"></div>
@@ -26,21 +23,14 @@ const HeroSection = () => {
               שנועדו להזניק את העסק שלך קדימה.
             </p>
             <div className="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse rtl:space-x-reverse animate-fade-in animate-delay-300">
-              <Button 
-                id="hero_cta_button"
-                size="lg"
-                className="bg-tech-blue hover:bg-tech-blue/80 text-dark font-bold"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              >
+              <Button id="hero_cta_button" size="lg" className="bg-tech-blue hover:bg-tech-blue/80 text-dark font-bold" onClick={() => document.getElementById('contact')?.scrollIntoView({
+              behavior: 'smooth'
+            })}>
                 בואו נדבר על הפרויקט שלכם
               </Button>
-              <Button 
-                id="hero_services_button"
-                size="lg"
-                variant="outline" 
-                className="border-white text-white hover:bg-white/10"
-                onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-              >
+              <Button id="hero_services_button" size="lg" variant="outline" onClick={() => document.getElementById('services')?.scrollIntoView({
+              behavior: 'smooth'
+            })} className="border-white hover:bg-white/10 text-slate-50">
                 גלו את השירותים שלנו
               </Button>
             </div>
@@ -69,8 +59,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
