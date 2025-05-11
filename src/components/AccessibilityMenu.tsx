@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { TextPlus, TextMinus, Eye, X, SunMoon, AnimationOff } from 'lucide-react';
+import { PlusSquare, MinusSquare, Eye, X, SunMoon, FileX } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 
@@ -113,7 +113,7 @@ const AccessibilityMenu: React.FC<AccessibilityMenuProps> = ({ isOpen, onClose }
                 onClick={decreaseFontSize}
                 disabled={fontSize <= 70}
               >
-                <TextMinus className="h-5 w-5" />
+                <MinusSquare className="h-5 w-5" />
                 <span className="mr-2">הקטן טקסט</span>
               </Button>
               
@@ -125,7 +125,7 @@ const AccessibilityMenu: React.FC<AccessibilityMenuProps> = ({ isOpen, onClose }
                 onClick={increaseFontSize}
                 disabled={fontSize >= 150}
               >
-                <TextPlus className="h-5 w-5" />
+                <PlusSquare className="h-5 w-5" />
                 <span className="mr-2">הגדל טקסט</span>
               </Button>
             </div>
@@ -152,7 +152,7 @@ const AccessibilityMenu: React.FC<AccessibilityMenuProps> = ({ isOpen, onClose }
               className="w-full"
               onClick={toggleAnimations}
             >
-              <AnimationOff className="h-5 w-5 mr-2" />
+              <FileX className="h-5 w-5 mr-2" />
               {disableAnimations ? "הפעל אנימציות" : "השבת אנימציות"}
             </Button>
           </div>
