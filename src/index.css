@@ -121,6 +121,27 @@
 /* Sienna Accessibility Widget Styles */
 .__sienna-widget {
   z-index: 45 !important; /* Position between header (z-50) and WhatsApp button (z-40) */
+  position: fixed !important; 
+  bottom: 6px !important;
+  right: 24px !important;
+}
+
+/* Responsive adjustments for floating buttons */
+@media (max-width: 640px) {
+  .__sienna-widget {
+    bottom: 6px !important;
+    right: 16px !important;
+  }
+  
+  #whatsapp_floating_button {
+    bottom: 64px !important;
+    right: 16px !important;
+  }
+  
+  #chatbot_option_button {
+    bottom: 124px !important;
+    right: 16px !important;
+  }
 }
 
 /* Additional Animation Keyframes */

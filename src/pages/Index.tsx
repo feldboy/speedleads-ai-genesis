@@ -90,7 +90,7 @@ const Index = () => {
         target="_blank"
         rel="noopener noreferrer"
         id="whatsapp_floating_button"
-        className="fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#20BD5C] text-white rounded-full p-4 shadow-lg z-40 transition-all duration-300 hover:scale-110"
+        className="fixed bottom-16 right-6 bg-[#25D366] hover:bg-[#20BD5C] text-white rounded-full p-4 shadow-lg z-40 transition-all duration-300 hover:scale-110"
         onClick={() => hasConsent && trackEvent('click_whatsapp', {})}
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-labelledby="whatsappTitle">
