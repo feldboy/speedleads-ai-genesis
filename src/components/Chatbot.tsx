@@ -168,7 +168,7 @@ const Chatbot = () => {
       {/* Chatbot toggle button */}
       <button
         id="chatbot_option_button"
-        className="fixed bottom-36 right-6 bg-tech-blue hover:bg-tech-blue/80 text-dark rounded-full p-4 shadow-lg z-50 transition-all duration-300"
+        className="fixed bottom-6 left-6 bg-tech-blue hover:bg-tech-blue/80 text-dark rounded-full p-4 shadow-lg z-50 transition-all duration-300"
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? (
@@ -183,7 +183,7 @@ const Chatbot = () => {
       </button>
 
       {/* Chatbot window */}
-      <div className={`fixed bottom-48 right-6 w-80 md:w-96 bg-white rounded-lg shadow-lg z-50 transition-transform duration-300 ease-in-out transform ${isOpen ? 'scale-100' : 'scale-0'} origin-bottom-right`}>
+      <div className={`fixed bottom-20 left-6 w-80 md:w-96 bg-white rounded-lg shadow-lg z-50 transition-transform duration-300 ease-in-out transform ${isOpen ? 'scale-100' : 'scale-0'} origin-bottom-left`}>
         {/* Chat header */}
         <div className="bg-dark text-white p-4 rounded-t-lg flex justify-between items-center">
           <div className="flex items-center space-x-2 space-x-reverse rtl:space-x-reverse">
