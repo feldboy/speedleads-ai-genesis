@@ -30,7 +30,7 @@ const HeroSection = () => {
               </Button>
               <Button id="hero_services_button" size="lg" variant="outline" onClick={() => document.getElementById('services')?.scrollIntoView({
               behavior: 'smooth'
-            })} className="border-white hover:bg-white/10 font-thin text-zinc-950">
+            })} className="border-white hover:bg-white/10 text-zinc-200 font-semibold rounded-none">
                 גלו את השירותים שלנו
               </Button>
             </div>
