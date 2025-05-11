@@ -1,0 +1,327 @@
+
+import React, { useState, useEffect, useRef } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from "@/components/ui/use-toast";
+
+interface Message {
+  id: string;
+  text: string;
+  sender: 'bot' | 'user';
+  options?: string[];
+}
+
+interface LeadData {
+  name: string;
+  email: string;
+  company?: string;
+  interest?: string;
+}
+
+const Chatbot = () => {
+  const { toast } = useToast();
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [userInput, setUserInput] = useState('');
+  const [showForm, setShowForm] = useState(false);
+  const [leadData, setLeadData] = useState<LeadData>({
+    name: '',
+    email: '',
+    company: '',
+    interest: '',
+  });
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Initialize chat with welcome message
+  useEffect(() => {
+    const initialMessage: Message = {
+      id: 'welcome',
+      text: 'היי! 👋 אני הבוט החכם של SpeedLeads.AI. איך אני יכול לעזור לך היום?',
+      sender: 'bot',
+      options: [
+        'ספר לי על בניית אתרים',
+        'אני מעוניין באוטומציות',
+        'אני רוצה הצעת מחיר',
+        'שאלה אחרת'
+      ]
+    };
+    setMessages([initialMessage]);
+  }, []);
+
+  // Scroll to bottom on new message
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  const handleSendMessage = (text: string = userInput) => {
+    if (!text.trim()) return;
+
+    // Add user message
+    const newUserMessage: Message = {
+      id: `user-${Date.now()}`,
+      text,
+      sender: 'user'
+    };
+    
+    setMessages(prev => [...prev, newUserMessage]);
+    setUserInput('');
+
+    // Simulate bot response based on user input
+    setTimeout(() => {
+      let botResponse: Message;
+
+      // Handle predefined options
+      if (text === 'ספר לי על בניית אתרים') {
+        botResponse = {
+          id: `bot-${Date.now()}`,
+          text: 'מעולה! אנחנו מתמחים בבניית אתרי תדמית, חנויות אונליין ודפי נחיתה מבוססי AI. האתרים שלנו לא רק נראים מדהים, אלא גם מותאמים למנועי חיפוש וממירים. האם יש סוג אתר ספציפי שמעניין אותך?',
+          sender: 'bot',
+          options: ['אתר תדמית', 'חנות אונליין', 'דף נחיתה', 'אני רוצה הצעת מחיר']
+        };
+      } else if (text === 'אני מעוניין באוטומציות') {
+        botResponse = {
+          id: `bot-${Date.now()}`,
+          text: 'נהדר! אנחנו מפתחים אוטומציות חכמות שיכולות לחסוך לך זמן, כסף ומשאבים. האוטומציות שלנו מותאמות לצרכים הספציפיים של העסק שלך. האם תרצה לספר לנו קצת על התהליכים שהיית רוצה לייעל?',
+          sender: 'bot',
+          options: ['תהליכי שיווק', 'תהליכי מכירות', 'תהליכים תפעוליים', 'אני רוצה הצעת מחיר']
+        };
+      } else if (text === 'אני רוצה הצעת מחיר' || text.includes('הצעת מחיר')) {
+        botResponse = {
+          id: `bot-${Date.now()}`,
+          text: 'בשמחה! כדי שאוכל להכין לך הצעה ראשונית או לקשר אותך למומחה שלנו, אשמח לכמה פרטים.',
+          sender: 'bot'
+        };
+        setShowForm(true);
+      } else {
+        botResponse = {
+          id: `bot-${Date.now()}`,
+          text: 'זו שאלה מצוינת! כדי לתת לך את המענה המדויק ביותר, אמליץ לך להשאיר פרטים ואחד המומחים שלנו יחזור אליך.',
+          sender: 'bot'
+        };
+        setShowForm(true);
+      }
+
+      setMessages(prev => [...prev, botResponse]);
+    }, 750);
+  };
+
+  const handleOptionClick = (option: string) => {
+    handleSendMessage(option);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserInput(e.target.value);
+  };
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setLeadData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Add form data as user message
+    const formMessage: Message = {
+      id: `user-form-${Date.now()}`,
+      text: `שם: ${leadData.name}, אימייל: ${leadData.email}${leadData.company ? `, חברה: ${leadData.company}` : ''}${leadData.interest ? `, תחום עניין: ${leadData.interest}` : ''}`,
+      sender: 'user'
+    };
+    
+    setMessages(prev => [...prev, formMessage]);
+    setShowForm(false);
+    
+    // Add thank you message from bot
+    setTimeout(() => {
+      const thankYouMessage: Message = {
+        id: `bot-thanks-${Date.now()}`,
+        text: `מצוין, ${leadData.name}. קיבלתי את כל הפרטים. מומחה שלנו ייצור איתך קשר בהקדם. בינתיים, האם יש עוד משהו שאוכל לעזור בו?`,
+        sender: 'bot',
+        options: ['לא, תודה!', 'כן, יש לי עוד שאלה']
+      };
+      setMessages(prev => [...prev, thankYouMessage]);
+      
+      // Save lead data (in a real app, this would be sent to a server)
+      console.log('Lead data collected:', leadData);
+      
+      toast({
+        title: "תודה!",
+        description: "פרטיך נשמרו. נציג יצור איתך קשר בקרוב.",
+      });
+      
+      // Reset form
+      setLeadData({
+        name: '',
+        email: '',
+        company: '',
+        interest: ''
+      });
+    }, 750);
+  };
+
+  return (
+    <>
+      {/* Chatbot toggle button */}
+      <button
+        id="chatbot_option_button"
+        className="fixed bottom-6 left-6 bg-tech-blue hover:bg-tech-blue/80 text-dark rounded-full p-4 shadow-lg z-50 transition-all duration-300"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? (
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        ) : (
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+        )}
+      </button>
+
+      {/* Chatbot window */}
+      <div className={`fixed bottom-20 left-6 w-80 md:w-96 bg-white rounded-lg shadow-lg z-50 transition-transform duration-300 ease-in-out transform ${isOpen ? 'scale-100' : 'scale-0'} origin-bottom-left`}>
+        {/* Chat header */}
+        <div className="bg-dark text-white p-4 rounded-t-lg flex justify-between items-center">
+          <div className="flex items-center space-x-2 space-x-reverse rtl:space-x-reverse">
+            <div className="w-8 h-8 rounded-full bg-tech-blue flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="font-bold">SpeedLeads.AI</h3>
+              <p className="text-xs text-gray-300">מומחה וירטואלי</p>
+            </div>
+          </div>
+          <button
+            onClick={() => setIsOpen(false)}
+            className="text-gray-300 hover:text-white focus:outline-none"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        
+        {/* Chat messages */}
+        <div className="p-4 h-96 overflow-y-auto" dir="rtl">
+          {messages.map((message) => (
+            <div 
+              key={message.id} 
+              className={`mb-4 ${message.sender === 'bot' ? 'text-right' : 'text-left'}`}
+            >
+              <div 
+                className={`inline-block rounded-lg p-3 ${
+                  message.sender === 'bot' 
+                    ? 'bg-gray-100 text-dark' 
+                    : 'bg-tech-blue text-dark ml-auto'
+                }`}
+              >
+                {message.text}
+              </div>
+              
+              {message.options && (
+                <div className="mt-2 flex flex-wrap gap-2 justify-end">
+                  {message.options.map((option, index) => (
+                    <button
+                      key={index}
+                      id={`chatbot_option_${option.replace(/\s+/g, '_').toLowerCase()}`}
+                      onClick={() => handleOptionClick(option)}
+                      className="bg-gray-200 text-dark text-sm rounded-full px-3 py-1 hover:bg-gray-300 transition-colors"
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+          <div ref={messagesEndRef} />
+        </div>
+        
+        {/* Lead form */}
+        {showForm ? (
+          <form onSubmit={handleFormSubmit} className="p-4 border-t border-gray-200">
+            <div className="mb-3">
+              <Input
+                type="text"
+                name="name"
+                value={leadData.name}
+                onChange={handleFormChange}
+                placeholder="השם שלך"
+                required
+                className="w-full"
+              />
+            </div>
+            <div className="mb-3">
+              <Input
+                type="email"
+                name="email"
+                value={leadData.email}
+                onChange={handleFormChange}
+                placeholder="האימייל שלך"
+                required
+                className="w-full"
+              />
+            </div>
+            <div className="mb-3">
+              <Input
+                type="text"
+                name="company"
+                value={leadData.company}
+                onChange={handleFormChange}
+                placeholder="שם החברה (אופציונלי)"
+                className="w-full"
+              />
+            </div>
+            <div className="mb-3">
+              <Input
+                type="text"
+                name="interest"
+                value={leadData.interest}
+                onChange={handleFormChange}
+                placeholder="תחום עניין (אופציונלי)"
+                className="w-full"
+              />
+            </div>
+            <Button 
+              id="chatbot_submit_lead_details_button"
+              type="submit" 
+              className="w-full bg-tech-blue hover:bg-tech-blue/80 text-dark"
+            >
+              שלח פרטים
+            </Button>
+          </form>
+        ) : (
+          <div className="p-4 border-t border-gray-200">
+            <div className="flex gap-2">
+              <Input
+                type="text"
+                value={userInput}
+                onChange={handleInputChange}
+                placeholder="הקלד הודעה..."
+                className="w-full"
+                onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+              />
+              <Button
+                id="chatbot_send_message_button"
+                onClick={() => handleSendMessage()}
+                className="bg-tech-blue hover:bg-tech-blue/80 text-dark px-4"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+              </Button>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
+  );
+};
+
+export default Chatbot;
