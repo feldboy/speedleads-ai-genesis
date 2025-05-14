@@ -52,20 +52,28 @@ const FaqSection = () => {
     <section id="faq" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">שאלות נפוצות</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-gold to-tech-blue mx-auto mb-8"></div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">שאלות נפוצות</h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-gold to-tech-blue mx-auto mb-8" />
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
             כאן תוכלו למצוא מענה לשאלות הנפוצות ביותר. לא מצאתם את מה שחיפשתם? צרו איתנו קשר!
           </p>
         </div>
         
         <div className="max-w-3xl mx-auto">
-          {faqs.map((faq) => (
-            <div key={faq.id} className="border-b border-gray-200 py-4 last:border-b-0">
+          {faqs.map((faq, index) => (
+            <div 
+              key={faq.id} 
+              className="border-b border-gray-200 py-4 last:border-b-0" 
+              data-aos="fade-up" 
+              data-aos-delay={index * 100}
+            >
               <button
+                type="button"
                 id={`faq_question_toggle_${faq.id}`}
                 className="w-full flex justify-between items-center text-right focus:outline-none"
                 onClick={() => toggleFaq(faq.id)}
+                aria-expanded={openFaq === faq.id}
+                aria-controls={`faq_answer_${faq.id}`}
               >
                 <span className="text-xl font-medium text-dark">{faq.question}</span>
                 <svg 
@@ -73,12 +81,17 @@ const FaqSection = () => {
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
+                  <title>Toggle FAQ</title>
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               {openFaq === faq.id && (
-                <div className="mt-4 text-gray-600 pr-6 animate-fade-in">
+                <div 
+                  id={`faq_answer_${faq.id}`} 
+                  className="mt-4 text-gray-600 pr-6 animate-fade-in" // Keeping existing fade-in for accordion open
+                > 
                   {faq.answer}
                 </div>
               )}
@@ -86,7 +99,7 @@ const FaqSection = () => {
           ))}
         </div>
         
-        <div className="text-center mt-12">
+        <div className="text-center mt-12" data-aos="fade-up">
           <p className="text-lg text-gray-600 mb-6">עדיין יש לכם שאלות?</p>
           <Button 
             id="faq_contact_button"

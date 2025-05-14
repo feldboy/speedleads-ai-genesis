@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, type ChangeEvent, type FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -110,11 +110,11 @@ const Chatbot = () => {
     handleSendMessage(option);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
   };
 
-  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFormChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setLeadData(prev => ({
       ...prev,
@@ -122,7 +122,7 @@ const Chatbot = () => {
     }));
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
     
     // Add form data as user message
@@ -167,16 +167,21 @@ const Chatbot = () => {
     <>
       {/* Chatbot toggle button */}
       <button
+        type="button"
         id="chatbot_option_button"
-        className="fixed bottom-6 left-6 bg-tech-blue hover:bg-tech-blue/80 text-dark rounded-full p-4 shadow-lg z-50 transition-all duration-300"
+        className="fixed bottom-20 right-6 bg-tech-blue hover:bg-tech-blue/80 text-dark rounded-full p-4 shadow-lg z-50 transition-all duration-300"
         onClick={() => setIsOpen(!isOpen)}
+        aria-label={isOpen ? "Close Chatbot" : "Open Chatbot"}
+        aria-expanded={isOpen}
       >
         {isOpen ? (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <title>Close Chatbot</title>
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <title>Open Chatbot</title>
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
           </svg>
         )}
@@ -188,7 +193,8 @@ const Chatbot = () => {
         <div className="bg-dark text-white p-4 rounded-t-lg flex justify-between items-center">
           <div className="flex items-center space-x-2 space-x-reverse rtl:space-x-reverse">
             <div className="w-8 h-8 rounded-full bg-tech-blue flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <title>Chatbot Icon</title>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </div>
@@ -198,10 +204,13 @@ const Chatbot = () => {
             </div>
           </div>
           <button
+            type="button"
             onClick={() => setIsOpen(false)}
             className="text-gray-300 hover:text-white focus:outline-none"
+            aria-label="Close Chat Window"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <title>Close Chat Window</title>
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -226,9 +235,10 @@ const Chatbot = () => {
               
               {message.options && (
                 <div className="mt-2 flex flex-wrap gap-2 justify-end">
-                  {message.options.map((option, index) => (
+                  {message.options.map((option) => (
                     <button
-                      key={index}
+                      type="button"
+                      key={option}
                       id={`chatbot_option_${option.replace(/\s+/g, '_').toLowerCase()}`}
                       onClick={() => handleOptionClick(option)}
                       className="bg-gray-200 text-dark text-sm rounded-full px-3 py-1 hover:bg-gray-300 transition-colors"
@@ -311,8 +321,10 @@ const Chatbot = () => {
                 id="chatbot_send_message_button"
                 onClick={() => handleSendMessage()}
                 className="bg-tech-blue hover:bg-tech-blue/80 text-dark px-4"
+                aria-label="Send Message"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <title>Send Message</title>
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                 </svg>
               </Button>
