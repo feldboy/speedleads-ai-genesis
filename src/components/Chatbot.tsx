@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef, type ChangeEvent, type FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -165,11 +164,11 @@ const Chatbot = () => {
 
   return (
     <>
-      {/* Chatbot toggle button */}
+      {/* Improved Chatbot toggle button */}
       <button
         type="button"
         id="chatbot_option_button"
-        className="fixed bottom-20 right-6 bg-tech-blue hover:bg-tech-blue/80 text-dark rounded-full p-4 shadow-lg z-50 transition-all duration-300"
+        className="fixed bottom-20 right-6 bg-tech-blue hover:bg-tech-blue/80 text-dark rounded-full p-4 shadow-lg z-50 transition-all duration-300 hover:scale-110 hover:shadow-xl"
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? "Close Chatbot" : "Open Chatbot"}
         aria-expanded={isOpen}
