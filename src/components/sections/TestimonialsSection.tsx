@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { ExternalLink } from 'lucide-react';
 
 interface Testimonial {
   id: string;
@@ -9,21 +8,9 @@ interface Testimonial {
   role: string;
   company: string;
   image: string;
-  websiteUrl?: string;
-  isRealClient?: boolean;
 }
 
 const testimonials: Testimonial[] = [
-  {
-    id: "testimonial_niv",
-    quote: "הצוות של SpeedLeads.AI יצר עבורי אתר מדהים שמייצג בצורה מושלמת את העבודה שלי כצלם. האתר לא רק נראה מקצועי ויפהפה, אלא גם קל לניהול וגרם לעלייה משמעותית בפניות מלקוחות חדשים. ממליץ בחום!",
-    author: "ניב ראובני",
-    role: "צלם מקצועי",
-    company: "ניב ראובני צילום",
-    image: "/lovable-uploads/0ee6da06-a47c-4b8a-899c-789c40366299.png",
-    websiteUrl: "https://nivreuveni.com/",
-    isRealClient: true
-  },
   {
     id: "testimonial_1",
     quote: "הצוות של SpeedLeads.AI הפך את החזון שלנו למציאות דיגיטלית מדהימה. האתר החדש לא רק נראה מדהים, אלא גם הביא לעלייה של 45% בלידים בחודש הראשון!",
@@ -62,61 +49,36 @@ const TestimonialsSection = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div 
               key={testimonial.id} 
               id={testimonial.id}
-              className="bg-gray-800 rounded-lg p-8 relative transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-lg group h-full flex flex-col"
+              className="bg-gray-800 rounded-lg p-8 relative transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-lg group" // Added group for hover effect on line
               data-aos="fade-up" 
               data-aos-delay={index * 100}
             >
-              {testimonial.isRealClient && (
-                <div className="absolute top-4 right-4 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-                  לקוח אמיתי
-                </div>
-              )}
-              
               <div className="mb-6">
                 <svg className="w-10 h-10 text-tech-blue opacity-30" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <title>Quote Icon</title>
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
               </div>
-              
-              <p className="text-gray-300 mb-6 flex-grow text-sm leading-relaxed">{testimonial.quote}</p>
-              
-              <div className="flex items-center justify-between mt-auto">
-                <div className="flex items-center">
-                  <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-600 mr-4 flex-shrink-0">
-                    <img 
-                      src={testimonial.image} 
-                      alt={testimonial.author}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-sm">{testimonial.author}</h4>
-                    <p className="text-xs text-gray-400">{testimonial.role}</p>
-                    <p className="text-xs text-gray-400">{testimonial.company}</p>
-                  </div>
+              <p className="text-gray-300 mb-6 flex-grow">{testimonial.quote}</p> {/* Added flex-grow for consistent height */}
+              <div className="flex items-center">
+                <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-600 mr-4 flex-shrink-0">
+                  <img 
+                    src={testimonial.image} 
+                    alt={testimonial.author}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                
-                {testimonial.websiteUrl && (
-                  <a
-                    href={testimonial.websiteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-tech-blue hover:text-tech-blue/80 transition-colors p-2 hover:bg-gray-700 rounded-full"
-                    aria-label={`בקר באתר של ${testimonial.author}`}
-                    title="בקר באתר"
-                  >
-                    <ExternalLink className="h-4 w-4" />
-                  </a>
-                )}
+                <div>
+                  <h4 className="font-semibold">{testimonial.author}</h4>
+                  <p className="text-sm text-gray-400">{testimonial.role}, {testimonial.company}</p>
+                </div>
               </div>
-              
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-tech-blue to-gold transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-tech-blue to-gold transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" /> {/* Changed origin, made self-closing */}
             </div>
           ))}
         </div>
@@ -130,7 +92,7 @@ const TestimonialsSection = () => {
             קרא עוד המלצות
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 rtl:mr-0 rtl:ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <title>Read More Arrow</title>
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /> {/* Note: This arrow points left, might need d="M9 5l7 7-7 7" for right arrow in LTR context */}
             </svg>
           </button>
         </div>
