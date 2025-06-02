@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface Testimonial {
@@ -40,7 +39,7 @@ const testimonials: Testimonial[] = [
 const TestimonialsSection = () => {
   return (
     <section id="clients" className="py-20 bg-gradient-to-b from-dark to-gray-900 text-white">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">מה הלקוחות שלנו אומרים</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-gold to-tech-blue mx-auto mb-8" />

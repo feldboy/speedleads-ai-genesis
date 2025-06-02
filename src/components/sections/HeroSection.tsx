@@ -8,7 +8,7 @@ const HeroSection = () => {
         <div className="absolute top-3/4 left-3/4 w-96 h-96 bg-gold rounded-full opacity-5 filter blur-3xl animate-pulse-slow" />
       </div>
       
-      <div className="container mx-auto px-4 py-20 z-10">
+      <div className="container mx-auto py-20 z-10">
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 text-center md:text-right mb-10 md:mb-0">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4" data-aos="fade-up">

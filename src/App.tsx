@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -51,8 +50,7 @@ const App = () => {
     AOS.init({
       duration: 800,    // Animation duration
       once: false,       // Whether animation should happen only once - while scrolling down
-      mirror: true,      // Whether elements should animate out while scrolling past them
-      disable: 'mobile'  // Disable animations on mobile devices (typically < 768px)
+      mirror: true       // Whether elements should animate out while scrolling past them
     });
   }, []);
 

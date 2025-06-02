@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -16,13 +19,18 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: 'smooth'
-    });
-    setMobileMenuOpen(false);
+    if (location.pathname !== "/") {
+      navigate(`/#${id}`);
+      setMobileMenuOpen(false);
+    } else {
+      document.getElementById(id)?.scrollIntoView({
+        behavior: 'smooth'
+      });
+      setMobileMenuOpen(false);
+    }
   };
   return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 ${isScrolled ? 'bg-dark bg-opacity-95 shadow-md py-2' : 'bg-transparent'}`}>
-      <div className="container mx-auto px-4 flex justify-between items-center">
+      <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <a href="/" className="flex items-center">
             <img src="/speedleads-logo.png" alt="SpeedLeads.AI Logo" className="h-7 mr-5" />

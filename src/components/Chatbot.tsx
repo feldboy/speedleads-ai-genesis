@@ -168,7 +168,8 @@ const Chatbot = () => {
       <button
         type="button"
         id="chatbot_option_button"
-        className="fixed bottom-20 right-6 bg-tech-blue hover:bg-tech-blue/80 text-dark rounded-full p-4 shadow-lg z-50 transition-all duration-300 hover:scale-110 hover:shadow-xl"
+        className="fixed bottom-20 right-10 md:bottom-20 md:right-10 sm:bottom-16 sm:right-4 bg-tech-blue hover:bg-tech-blue/80 text-dark rounded-full p-4 md:p-4 sm:p-3 shadow-xl z-50 transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-fade-in border border-white/30"
+        style={{ boxShadow: '0 8px 32px 0 rgba(59, 130, 246, 0.18)' }}
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? "Close Chatbot" : "Open Chatbot"}
         aria-expanded={isOpen}
@@ -187,7 +188,7 @@ const Chatbot = () => {
       </button>
 
       {/* Chatbot window */}
-      <div className={`fixed bottom-20 left-6 w-80 md:w-96 bg-white rounded-lg shadow-lg z-50 transition-transform duration-300 ease-in-out transform ${isOpen ? 'scale-100' : 'scale-0'} origin-bottom-left`}>
+      <div className={`fixed bottom-32 right-10 md:bottom-32 md:right-10 sm:bottom-28 sm:right-4 w-80 md:w-96 sm:w-[95vw] bg-white rounded-lg shadow-2xl z-50 transition-transform duration-300 ease-in-out transform ${isOpen ? 'scale-100 animate-fade-in' : 'scale-0'} origin-bottom-right border border-white/30`} style={{ boxShadow: '0 8px 32px 0 rgba(59, 130, 246, 0.18)' }}>
         {/* Chat header */}
         <div className="bg-dark text-white p-4 rounded-t-lg flex justify-between items-center">
           <div className="flex items-center space-x-2 space-x-reverse rtl:space-x-reverse">
