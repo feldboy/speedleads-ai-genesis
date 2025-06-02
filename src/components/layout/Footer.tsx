@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -80,10 +81,10 @@ const Footer = () => {
             © {new Date().getFullYear()} SpeedLeads.AI. כל הזכויות שמורות.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
-            <a href="#" id="footer_link_privacy_policy" className="text-gray-400 hover:text-tech-blue transition-colors">מדיניות פרטיות</a>
-            <a href="#" id="footer_link_terms" className="text-gray-400 hover:text-tech-blue transition-colors">תקנון אתר</a>
-            <a href="#" id="footer_link_accessibility" className="text-gray-400 hover:text-tech-blue transition-colors">הצהרת נגישות</a>
-            <a href="#" id="footer_link_cookies" className="text-gray-400 hover:text-tech-blue transition-colors">מדיניות עוגיות</a>
+            <Link to="/privacy" id="footer_link_privacy_policy" className="text-gray-400 hover:text-tech-blue transition-colors">מדיניות פרטיות</Link>
+            <Link to="/terms" id="footer_link_terms" className="text-gray-400 hover:text-tech-blue transition-colors">תקנון אתר</Link>
+            <Link to="/accessibility" id="footer_link_accessibility" className="text-gray-400 hover:text-tech-blue transition-colors">הצהרת נגישות</Link>
+            <Link to="/cookies" id="footer_link_cookies" className="text-gray-400 hover:text-tech-blue transition-colors">מדיניות עוגיות</Link>
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,6 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
@@ -60,6 +62,7 @@ const App = () => {
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           {/* Main public routes */}
           <Route path="/" element={<Index />} />
