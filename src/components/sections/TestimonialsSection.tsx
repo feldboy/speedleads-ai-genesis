@@ -10,28 +10,9 @@ interface Testimonial {
   company: string;
   image: string;
   website?: string;
-  isRealClient?: boolean;
 }
 
 const testimonials: Testimonial[] = [
-  {
-    id: "testimonial_niv",
-    quote: "SpeedLeads.AI בנתה עבורי אתר מקצועי ומדהים שממש הגדיל את הנוכחות הדיגיטלית שלי. הצוות מקצועי, מהיר ותמיד זמין לעזרה. ממליץ בחום לכל מי שרוצה אתר איכותי!",
-    author: "ניב ראובני",
-    role: "מומחה דיגיטל",
-    company: "ניב ראובני",
-    image: "/lovable-uploads/2e4fae97-83ec-48d9-8a2a-f2ce997f9785.png",
-    website: "https://nivreuveni.com/",
-    isRealClient: true
-  },
-  {
-    id: "testimonial_1",
-    quote: "הצוות של SpeedLeads.AI הפך את החזון שלנו למציאות דיגיטלית מדהימה. האתר החדש לא רק נראה מדהים, אלא גם הביא לעלייה של 45% בלידים בחודש הראשון!",
-    author: "רמי לוי",
-    role: "מנכ\"ל",
-    company: "לוי טכנולוגיות",
-    image: "/placeholder.svg"
-  },
   {
     id: "testimonial_2",
     quote: "האוטומציות שהוטמעו בעסק שלנו חסכו לנו שעות עבודה יקרות ושיפרו את חווית הלקוח באופן משמעותי. אני ממליץ בחום על SpeedLeads.AI לכל עסק שרוצה לצמוח.",
@@ -39,6 +20,15 @@ const testimonials: Testimonial[] = [
     role: "סמנכ\"ל שיווק",
     company: "מרקט פרו",
     image: "/placeholder.svg"
+  },
+  {
+    id: "testimonial_niv",
+    quote: "SpeedLeads.AI בנתה עבורי אתר מקצועי ומדהים שממש הגדיל את הנוכחות הדיגיטלית שלי. הצוות מקצועי, מהיר ותמיד זמין לעזרה. ממליץ בחום לכל מי שרוצה אתר איכותי!",
+    author: "ניב ראובני",
+    role: "מרצה",
+    company: "ניב ראובני",
+    image: "/lovable-uploads/2e4fae97-83ec-48d9-8a2a-f2ce997f9785.png",
+    website: "https://nivreuveni.com/"
   },
   {
     id: "testimonial_3",
@@ -71,12 +61,6 @@ const TestimonialsSection = () => {
               data-aos="fade-up" 
               data-aos-delay={index * 100}
             >
-              {testimonial.isRealClient && (
-                <div className="absolute top-4 right-4 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-                  לקוח אמיתי
-                </div>
-              )}
-              
               <div className="mb-6">
                 <svg className="w-10 h-10 text-tech-blue opacity-30" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <title>Quote Icon</title>
