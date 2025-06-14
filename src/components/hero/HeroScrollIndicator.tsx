@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { heroVariants } from './heroAnimationVariants';
 
 const HeroScrollIndicator = ({ controls }: { controls: any }) => (
-  {/* Phase 7: Scroll indicator appears last in the sequence */}
   <motion.div
     className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
     variants={heroVariants.scrollIndicator}
@@ -22,7 +21,7 @@ const HeroScrollIndicator = ({ controls }: { controls: any }) => (
         transition={{ 
           duration: 2, 
           repeat: Infinity,
-          delay: 2.2  // Start scrolling animation after everything is assembled
+          delay: 2.2
         }}
       />
     </div>

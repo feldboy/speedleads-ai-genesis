@@ -15,7 +15,6 @@ const HeroCodeSection: React.FC<{ controls: any }> = ({ controls }) => {
   }, []);
 
   return (
-    {/* Phase 5: Code section with "assembly" effect */}
     <motion.div
       className="lg:w-1/2"
       variants={heroVariants.code}
@@ -42,7 +41,6 @@ const HeroCodeSection: React.FC<{ controls: any }> = ({ controls }) => {
           </motion.div>
         )}
         
-        {/* Phase 6: Decorative elements assembling around code */}
         <FloatingDecoration
           className="absolute -top-4 -right-4 w-20 h-20 bg-gold/30 rounded-full blur-xl"
           styleOpacity={0.3}
