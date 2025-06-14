@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
-import { motion, useAnimation, AnimatePresence } from 'framer-motion';
+
+import React, { useEffect, useState } from 'react';
+import { motion, useAnimation } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import EnhancedParticles from '@/components/effects/EnhancedParticles';
 import FluidBackground from '@/components/effects/FluidBackground';
@@ -15,167 +16,190 @@ const aiTexts = [
   "חדשנות טכנולוגית"
 ];
 
-// Animation Variants
-const heroVariants = {
-  hidden: { opacity: 0 },
-  visible: { 
-    opacity: 1,
-    transition: { staggerChildren: 0.14, when: "beforeChildren" }
-  }
-};
-
-const bgVariants = {
-  hidden: { opacity: 0 },
-  visible: { 
-    opacity: 1, 
-    transition: { duration: 0.5, ease: "easeOut" as const } 
-  }
-};
-
-const headlineVariants = {
-  hidden: { opacity: 0, x: -70, scale: 0.92 },
-  visible: { 
-    opacity: 1, 
-    x: 0, 
-    scale: 1, 
-    transition: { 
-      duration: 0.7, 
-      ease: [0.22, 1, 0.36, 1] as any // casting to any to satisfy FM typing
-    }
-  }
-};
-
-const subHeadlineVariants = {
-  hidden: { opacity: 0, x: 70 },
-  visible: { 
-    opacity: 1, 
-    x: 0, 
-    transition: { duration: 0.55, ease: "easeOut" as const }
-  }
-};
-
-const ctaVariants = {
-  hidden: { opacity: 0, y: 40, scale: 0.8 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    scale: 1, 
-    transition: { type: "spring" as const, bounce: 0.32, duration: 0.57 }
-  }
-};
-
-const codeVariants = {
-  hidden: { opacity: 0, y: 80, scale: 0.93 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    scale: 1, 
-    transition: { duration: 0.9, type: "spring" as const, bounce: 0.25 }
-  }
-};
-
-const decorVariants = {
-  hidden: { opacity: 0, scale: 0.7 },
-  visible: { 
-    opacity: 0.7, 
-    scale: 1, 
-    transition: { duration: 0.6, type: "spring" as const, bounce: 0.1 }
-  }
-};
-
-const scrollIndicatorVariants = {
-  hidden: { opacity: 0, y: 22 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.65 }
+// Animation Variants (with delay magic numbers for sequencing)
+const variants = {
+  hero: {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { when: "beforeChildren" } }
+  },
+  background: {
+    hidden: { opacity: 0 },
+    visible: (delayIdx: number = 0) => ({
+      opacity: 1,
+      transition: { duration: 0.4, delay: 0.10 * delayIdx, ease: "easeOut" as const }
+    })
+  },
+  headline: {
+    hidden: { opacity: 0, x: -70, scale: 0.92 },
+    visible: (delayIdx: number = 0) => ({
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: { duration: 0.7, delay: 0.13 * delayIdx, ease: [0.22, 1, 0.36, 1] as any }
+    })
+  },
+  subHeadline: {
+    hidden: { opacity: 0, x: 70 },
+    visible: (delayIdx: number = 0) => ({
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.5, delay: 0.13 * delayIdx, ease: "easeOut" as const }
+    })
+  },
+  cta: {
+    hidden: { opacity: 0, y: 40, scale: 0.8 },
+    visible: (delayIdx: number = 0) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { type: "spring" as const, bounce: 0.32, duration: 0.57, delay: 0.13 * delayIdx }
+    })
+  },
+  code: {
+    hidden: { opacity: 0, y: 80, scale: 0.93 },
+    visible: (delayIdx: number = 0) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.8, type: "spring" as const, bounce: 0.25, delay: 0.18 * delayIdx }
+    })
+  },
+  decor: {
+    hidden: { opacity: 0, scale: 0.7 },
+    visible: (delayIdx: number = 0, styleOpacity = 0.7) => ({
+      opacity: styleOpacity,
+      scale: 1,
+      transition: { duration: 0.6, type: "spring" as const, bounce: 0.1, delay: 0.25 + 0.12 * delayIdx }
+    })
+  },
+  scrollIndicator: {
+    hidden: { opacity: 0, y: 22 },
+    visible: (delayIdx: number = 0) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.65, delay: 0.45 + 0.12 * delayIdx }
+    })
   }
 };
 
 const HeroSection = () => {
   const reducedMotion = useReducedMotion();
-
-  // Framer Motion animation controls for sequencing
   const controls = useAnimation();
 
+  // States to trigger TypewriterText and AnimatedCode
+  const [showTypewriter, setShowTypewriter] = useState(false);
+  const [showCode, setShowCode] = useState(false);
+
+  // Animation sequencing (coordinated manually)
   useEffect(() => {
     if (reducedMotion) {
       controls.set("visible");
+      setShowTypewriter(true);
+      setShowCode(true);
       return;
     }
-    // Replay assemble animation on mount
     controls.set("hidden");
     controls.start("visible");
+    // Trigger typewriter about 850ms (headline full duration) after mount
+    const typewriterTimeout = setTimeout(() => setShowTypewriter(true), 850);
+    // Trigger code area animation a bit later for "assemble" feel,
+    // and then inner code animation after that
+    const codeTimeout = setTimeout(() => setShowCode(true), 1200); // after buttons
+  
+    return () => {
+      clearTimeout(typewriterTimeout);
+      clearTimeout(codeTimeout);
+    };
   }, [controls, reducedMotion]);
 
   return (
     <motion.section
       initial={reducedMotion ? false : "hidden"}
       animate={controls}
-      variants={heroVariants}
+      variants={variants.hero}
       className="relative min-h-screen flex items-center bg-gradient-to-br from-dark via-gray-900 to-dark overflow-hidden"
     >
-      {/* Animated Gradient/Particles Background */}
-      <motion.div variants={bgVariants}>
+      {/* Animated Fluid Background */}
+      <motion.div
+        className="absolute inset-0"
+        initial="hidden"
+        animate="visible"
+        custom={0}
+        variants={variants.background}
+      >
         <FluidBackground />
         <EnhancedParticles />
       </motion.div>
 
-      {/* Additional Animated Background Elements */}
-      <div className="absolute inset-0 z-0">
+      {/* Additional Animated Background Elements (coordinated by variants for entrance) */}
+      <motion.div className="absolute inset-0 z-0">
         <motion.div
-          variants={decorVariants}
-          className="absolute top-1/4 left-1/4 w-64 h-64 bg-tech-blue rounded-full opacity-10 filter blur-3xl"
-          animate={{
+          variants={variants.decor}
+          custom={0}
+          initial="hidden"
+          animate="visible"
+          style={{ opacity: 0.10 }}
+          className="absolute top-1/4 left-1/4 w-64 h-64 bg-tech-blue rounded-full filter blur-3xl"
+          transition={{
+            duration: 12, // still animated permanently after reveal
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          // Floating effect (after in)
+          whileInView={{
             scale: [1, 1.2, 1],
             rotate: [0, 180, 360],
             x: [0, 50, 0],
             y: [0, -30, 0]
           }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
         />
         <motion.div
-          variants={decorVariants}
-          className="absolute top-3/4 left-3/4 w-96 h-96 bg-gold rounded-full opacity-5 filter blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            rotate: [360, 180, 0],
-            x: [0, -40, 0],
-            y: [0, 20, 0]
-          }}
+          variants={variants.decor}
+          custom={1}
+          initial="hidden"
+          animate="visible"
+          style={{ opacity: 0.05 }}
+          className="absolute top-3/4 left-3/4 w-96 h-96 bg-gold rounded-full filter blur-3xl"
           transition={{
             duration: 15,
             repeat: Infinity,
             ease: "easeInOut"
           }}
-        />
-        {/* Morphing Shapes */}
-        <motion.div
-          variants={decorVariants}
-          className="absolute top-1/3 right-1/4 w-32 h-32 border-2 border-tech-blue/20"
-          animate={{
-            borderRadius: ["0%", "50%", "0%"],
-            rotate: [0, 180, 360],
-            scale: [1, 1.1, 1]
+          whileInView={{
+            scale: [1, 1.3, 1],
+            rotate: [360, 180, 0],
+            x: [0, -40, 0],
+            y: [0, 20, 0]
           }}
+        />
+        <motion.div
+          variants={variants.decor}
+          custom={2}
+          initial="hidden"
+          animate="visible"
+          className="absolute top-1/3 right-1/4 w-32 h-32 border-2 border-tech-blue/20"
           transition={{
             duration: 8,
             repeat: Infinity,
             ease: "easeInOut"
           }}
+          whileInView={{
+            borderRadius: ["0%", "50%", "0%"],
+            rotate: [0, 180, 360],
+            scale: [1, 1.1, 1]
+          }}
         />
-      </div>
+      </motion.div>
 
       <div className="container mx-auto py-20 z-10">
         <div className="flex flex-col lg:flex-row items-center">
           {/* Left Column: Headline, Subheadline, CTAs */}
           <div className="lg:w-1/2 text-center lg:text-right mb-10 lg:mb-0">
             <motion.h1
-              variants={headlineVariants}
+              variants={variants.headline}
+              initial="hidden"
+              animate="visible"
+              custom={0}
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4"
             >
               <motion.span
@@ -193,10 +217,13 @@ const HeroSection = () => {
               <br />
               <span className="gradient-text">העתיד של</span>
               <br />
-              <TypewriterText
-                texts={aiTexts}
-                className="gradient-text"
-              />
+              {/* Typewriter appears after H1 assembled */}
+              {showTypewriter && (
+                <TypewriterText
+                  texts={aiTexts}
+                  className="gradient-text"
+                />
+              )}
               <br />
               <motion.span
                 className="text-white"
@@ -209,7 +236,10 @@ const HeroSection = () => {
             </motion.h1>
 
             <motion.p
-              variants={subHeadlineVariants}
+              variants={variants.subHeadline}
+              initial="hidden"
+              animate="visible"
+              custom={1}
               className="text-xl text-gray-300 mb-8"
             >
               פתרונות AI מתקדמים לבניית אתרים, אוטומציות עסקיות ואינטגרציות חכמות –
@@ -218,7 +248,10 @@ const HeroSection = () => {
 
             {/* CTA Buttons */}
             <motion.div
-              variants={ctaVariants}
+              variants={variants.cta}
+              initial="hidden"
+              animate="visible"
+              custom={2}
               className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse rtl:space-x-reverse"
             >
               <MagneticButton>
@@ -246,50 +279,73 @@ const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* Right Column: Animated Code Box */}
+          {/* Right Column: Animated Code Box (appears after a slight delay) */}
           <motion.div
             className="lg:w-1/2"
-            variants={codeVariants}
+            variants={variants.code}
+            initial="hidden"
+            animate="visible"
+            custom={3}
           >
             <div className="relative">
-              <motion.div
-                className="relative z-10"
-                animate={{
-                  y: [0, -10, 0],
-                  rotateY: [0, 5, 0]
-                }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <AnimatedCode />
-              </motion.div>
+              {/* The code animation is only triggered after code block animates in */}
+              {showCode && (
+                <motion.div
+                  className="relative z-10"
+                  animate={{
+                    y: [0, -10, 0],
+                    rotateY: [0, 5, 0]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <AnimatedCode />
+                </motion.div>
+              )}
 
               {/* Enhanced floating decorative elements */}
               <motion.div
                 className="absolute -top-4 -right-4 w-20 h-20 bg-gold/30 rounded-full blur-xl"
-                variants={decorVariants}
-                animate={{
+                variants={variants.decor}
+                custom={3}
+                initial="hidden"
+                animate="visible"
+                style={{ opacity: 0.3 }}
+                transition={{
+                  duration: 3, repeat: Infinity
+                }}
+                whileInView={{
                   scale: [1, 1.2, 1],
                   opacity: [0.3, 0.6, 0.3],
                   rotate: [0, 180, 360]
                 }}
-                transition={{ duration: 3, repeat: Infinity }}
               />
 
               <motion.div
                 className="absolute -bottom-4 -left-4 w-16 h-16 bg-tech-blue/20 rounded-full blur-xl"
-                variants={decorVariants}
-                animate={{
+                variants={variants.decor}
+                custom={4}
+                initial="hidden"
+                animate="visible"
+                style={{ opacity: 0.2 }}
+                transition={{
+                  duration: 2.5, repeat: Infinity, delay: 0.5
+                }}
+                whileInView={{
                   scale: [1, 1.3, 1],
                   opacity: [0.2, 0.5, 0.2],
                   rotate: [360, 180, 0]
                 }}
-                transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
               />
 
               <motion.div
                 className="absolute top-1/3 right-1/4 w-8 h-8 bg-gradient-to-r from-gold to-tech-blue rounded-full"
-                variants={decorVariants}
-                animate={{
+                variants={variants.decor}
+                custom={5}
+                initial="hidden"
+                animate="visible"
+                style={{ opacity: 1 }}
+                transition={{ duration: 4, repeat: Infinity }}
+                whileInView={{
                   rotate: 360,
                   scale: [1, 1.5, 1],
                   boxShadow: [
@@ -298,17 +354,19 @@ const HeroSection = () => {
                     "0 0 20px rgba(0,246,255,0.5)"
                   ]
                 }}
-                transition={{ duration: 4, repeat: Infinity }}
               />
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Enhanced scroll indicator */}
+      {/* Enhanced scroll indicator (shows last) */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        variants={scrollIndicatorVariants}
+        variants={variants.scrollIndicator}
+        initial="hidden"
+        animate="visible"
+        custom={6}
       >
         <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center relative overflow-hidden">
           <motion.div
@@ -326,3 +384,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
