@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -24,60 +23,60 @@ const variants = {
   },
   background: {
     hidden: { opacity: 0 },
-    visible: (delayIdx: number = 0) => ({
+    visible: (custom: { delayIdx?: number } = {}) => ({
       opacity: 1,
-      transition: { duration: 0.4, delay: 0.10 * delayIdx, ease: "easeOut" as const }
+      transition: { duration: 0.4, delay: 0.10 * (custom.delayIdx ?? 0), ease: "easeOut" as const }
     })
   },
   headline: {
     hidden: { opacity: 0, x: -70, scale: 0.92 },
-    visible: (delayIdx: number = 0) => ({
+    visible: (custom: { delayIdx?: number } = {}) => ({
       opacity: 1,
       x: 0,
       scale: 1,
-      transition: { duration: 0.7, delay: 0.13 * delayIdx, ease: [0.22, 1, 0.36, 1] as any }
+      transition: { duration: 0.7, delay: 0.13 * (custom.delayIdx ?? 0), ease: [0.22, 1, 0.36, 1] as any }
     })
   },
   subHeadline: {
     hidden: { opacity: 0, x: 70 },
-    visible: (delayIdx: number = 0) => ({
+    visible: (custom: { delayIdx?: number } = {}) => ({
       opacity: 1,
       x: 0,
-      transition: { duration: 0.5, delay: 0.13 * delayIdx, ease: "easeOut" as const }
+      transition: { duration: 0.5, delay: 0.13 * (custom.delayIdx ?? 0), ease: "easeOut" as const }
     })
   },
   cta: {
     hidden: { opacity: 0, y: 40, scale: 0.8 },
-    visible: (delayIdx: number = 0) => ({
+    visible: (custom: { delayIdx?: number } = {}) => ({
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { type: "spring" as const, bounce: 0.32, duration: 0.57, delay: 0.13 * delayIdx }
+      transition: { type: "spring" as const, bounce: 0.32, duration: 0.57, delay: 0.13 * (custom.delayIdx ?? 0) }
     })
   },
   code: {
     hidden: { opacity: 0, y: 80, scale: 0.93 },
-    visible: (delayIdx: number = 0) => ({
+    visible: (custom: { delayIdx?: number } = {}) => ({
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { duration: 0.8, type: "spring" as const, bounce: 0.25, delay: 0.18 * delayIdx }
+      transition: { duration: 0.8, type: "spring" as const, bounce: 0.25, delay: 0.18 * (custom.delayIdx ?? 0) }
     })
   },
   decor: {
     hidden: { opacity: 0, scale: 0.7 },
-    visible: (delayIdx: number = 0, styleOpacity = 0.7) => ({
-      opacity: styleOpacity,
+    visible: (custom: { delayIdx?: number; styleOpacity?: number } = {}) => ({
+      opacity: custom.styleOpacity ?? 0.7,
       scale: 1,
-      transition: { duration: 0.6, type: "spring" as const, bounce: 0.1, delay: 0.25 + 0.12 * delayIdx }
+      transition: { duration: 0.6, type: "spring" as const, bounce: 0.1, delay: 0.25 + 0.12 * (custom.delayIdx ?? 0) }
     })
   },
   scrollIndicator: {
     hidden: { opacity: 0, y: 22 },
-    visible: (delayIdx: number = 0) => ({
+    visible: (custom: { delayIdx?: number } = {}) => ({
       opacity: 1,
       y: 0,
-      transition: { duration: 0.65, delay: 0.45 + 0.12 * delayIdx }
+      transition: { duration: 0.65, delay: 0.45 + 0.12 * (custom.delayIdx ?? 0) }
     })
   }
 };
@@ -124,7 +123,7 @@ const HeroSection = () => {
         className="absolute inset-0"
         initial="hidden"
         animate="visible"
-        custom={0}
+        custom={{ delayIdx: 0 }}
         variants={variants.background}
       >
         <FluidBackground />
@@ -135,10 +134,9 @@ const HeroSection = () => {
       <motion.div className="absolute inset-0 z-0">
         <motion.div
           variants={variants.decor}
-          custom={0}
+          custom={{ delayIdx: 0, styleOpacity: 0.10 }}
           initial="hidden"
           animate="visible"
-          style={{ opacity: 0.10 }}
           className="absolute top-1/4 left-1/4 w-64 h-64 bg-tech-blue rounded-full filter blur-3xl"
           transition={{
             duration: 12, // still animated permanently after reveal
@@ -155,10 +153,9 @@ const HeroSection = () => {
         />
         <motion.div
           variants={variants.decor}
-          custom={1}
+          custom={{ delayIdx: 1, styleOpacity: 0.05 }}
           initial="hidden"
           animate="visible"
-          style={{ opacity: 0.05 }}
           className="absolute top-3/4 left-3/4 w-96 h-96 bg-gold rounded-full filter blur-3xl"
           transition={{
             duration: 15,
@@ -174,7 +171,7 @@ const HeroSection = () => {
         />
         <motion.div
           variants={variants.decor}
-          custom={2}
+          custom={{ delayIdx: 2 }}
           initial="hidden"
           animate="visible"
           className="absolute top-1/3 right-1/4 w-32 h-32 border-2 border-tech-blue/20"
@@ -199,7 +196,7 @@ const HeroSection = () => {
               variants={variants.headline}
               initial="hidden"
               animate="visible"
-              custom={0}
+              custom={{ delayIdx: 0 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4"
             >
               <motion.span
@@ -239,7 +236,7 @@ const HeroSection = () => {
               variants={variants.subHeadline}
               initial="hidden"
               animate="visible"
-              custom={1}
+              custom={{ delayIdx: 1 }}
               className="text-xl text-gray-300 mb-8"
             >
               פתרונות AI מתקדמים לבניית אתרים, אוטומציות עסקיות ואינטגרציות חכמות –
@@ -251,7 +248,7 @@ const HeroSection = () => {
               variants={variants.cta}
               initial="hidden"
               animate="visible"
-              custom={2}
+              custom={{ delayIdx: 2 }}
               className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse rtl:space-x-reverse"
             >
               <MagneticButton>
@@ -285,7 +282,7 @@ const HeroSection = () => {
             variants={variants.code}
             initial="hidden"
             animate="visible"
-            custom={3}
+            custom={{ delayIdx: 3 }}
           >
             <div className="relative">
               {/* The code animation is only triggered after code block animates in */}
@@ -306,10 +303,9 @@ const HeroSection = () => {
               <motion.div
                 className="absolute -top-4 -right-4 w-20 h-20 bg-gold/30 rounded-full blur-xl"
                 variants={variants.decor}
-                custom={3}
+                custom={{ delayIdx: 3, styleOpacity: 0.3 }}
                 initial="hidden"
                 animate="visible"
-                style={{ opacity: 0.3 }}
                 transition={{
                   duration: 3, repeat: Infinity
                 }}
@@ -323,10 +319,9 @@ const HeroSection = () => {
               <motion.div
                 className="absolute -bottom-4 -left-4 w-16 h-16 bg-tech-blue/20 rounded-full blur-xl"
                 variants={variants.decor}
-                custom={4}
+                custom={{ delayIdx: 4, styleOpacity: 0.2 }}
                 initial="hidden"
                 animate="visible"
-                style={{ opacity: 0.2 }}
                 transition={{
                   duration: 2.5, repeat: Infinity, delay: 0.5
                 }}
@@ -340,10 +335,9 @@ const HeroSection = () => {
               <motion.div
                 className="absolute top-1/3 right-1/4 w-8 h-8 bg-gradient-to-r from-gold to-tech-blue rounded-full"
                 variants={variants.decor}
-                custom={5}
+                custom={{ delayIdx: 5, styleOpacity: 1 }}
                 initial="hidden"
                 animate="visible"
-                style={{ opacity: 1 }}
                 transition={{ duration: 4, repeat: Infinity }}
                 whileInView={{
                   rotate: 360,
@@ -366,7 +360,7 @@ const HeroSection = () => {
         variants={variants.scrollIndicator}
         initial="hidden"
         animate="visible"
-        custom={6}
+        custom={{ delayIdx: 6 }}
       >
         <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center relative overflow-hidden">
           <motion.div
@@ -384,4 +378,3 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
-
