@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
@@ -127,6 +126,20 @@
   
   .text-glow {
     text-shadow: 0 0 20px currentColor;
+  }
+  
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+  
+  .carousel-nav-button {
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+  
+  .carousel-nav-button:hover {
+    backdrop-filter: blur(15px);
+    transform: scale(1.05);
   }
 }
 

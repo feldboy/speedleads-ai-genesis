@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -13,6 +12,7 @@ import CookieConsent from '@/components/CookieConsent';
 import FloatingAI from '@/components/effects/FloatingAI';
 import AnimatedStats from '@/components/effects/AnimatedStats';
 import ProjectShowcase from '@/components/effects/ProjectShowcase';
+import ServiceCarousel from '@/components/sections/ServiceCarousel';
 import { initializeAnalytics, trackEvent } from '@/lib/analytics';
 
 const Index = () => {
@@ -98,7 +98,7 @@ const Index = () => {
           </div>
         </section>
 
-        <ServicesSection />
+        <ServiceCarousel />
 
         {/* Responsive Video Section */}
         <VideoSection />
