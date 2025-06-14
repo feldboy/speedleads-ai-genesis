@@ -18,6 +18,7 @@ const HeroSection = () => {
       return;
     }
     controls.set("hidden");
+    // Start animation in sequence as soon as component mounts
     controls.start("visible");
   }, [controls, reducedMotion]);
 
@@ -27,17 +28,16 @@ const HeroSection = () => {
       animate={controls}
       variants={heroVariants.hero}
       className="relative min-h-screen flex items-center bg-gradient-to-br from-dark via-gray-900 to-dark overflow-hidden"
+      id="hero"
     >
-      <HeroBackground />
-
+      <HeroBackground controls={controls} />
       <div className="container mx-auto py-20 z-10">
         <div className="flex flex-col lg:flex-row items-center">
-          <HeroContent />
-          <HeroCodeSection />
+          <HeroContent controls={controls} />
+          <HeroCodeSection controls={controls} />
         </div>
       </div>
-
-      <HeroScrollIndicator />
+      <HeroScrollIndicator controls={controls} />
     </motion.section>
   );
 };

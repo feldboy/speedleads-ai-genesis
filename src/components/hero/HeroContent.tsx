@@ -13,11 +13,12 @@ const aiTexts = [
   "חדשנות טכנולוגית"
 ];
 
-const HeroContent: React.FC = () => {
+const HeroContent: React.FC<{ controls: any }> = ({ controls }) => {
   const [showTypewriter, setShowTypewriter] = useState(false);
 
+  // Only show typewriter after main headline animates in (for best sequencing)
   useEffect(() => {
-    const timeout = setTimeout(() => setShowTypewriter(true), 850);
+    const timeout = setTimeout(() => setShowTypewriter(true), 1000);
     return () => clearTimeout(timeout);
   }, []);
 
@@ -26,7 +27,7 @@ const HeroContent: React.FC = () => {
       <motion.h1
         variants={heroVariants.headline}
         initial="hidden"
-        animate="visible"
+        animate={controls}
         custom={{ delayIdx: 0 }}
         className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4"
       >
@@ -61,23 +62,21 @@ const HeroContent: React.FC = () => {
           כבר כאן
         </motion.span>
       </motion.h1>
-
       <motion.p
         variants={heroVariants.subHeadline}
         initial="hidden"
-        animate="visible"
-        custom={{ delayIdx: 1 }}
+        animate={controls}
+        custom={{ delayIdx: 0 }}
         className="text-xl text-gray-300 mb-8"
       >
         פתרונות AI מתקדמים לבניית אתרים, אוטומציות עסקיות ואינטגרציות חכמות –
         שנועדו להזניק את העסק שלך קדימה.
       </motion.p>
-
       <motion.div
         variants={heroVariants.cta}
         initial="hidden"
-        animate="visible"
-        custom={{ delayIdx: 2 }}
+        animate={controls}
+        custom={{ delayIdx: 0 }}
         className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse rtl:space-x-reverse"
       >
         <MagneticButton>

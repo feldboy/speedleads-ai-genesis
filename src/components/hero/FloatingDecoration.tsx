@@ -12,6 +12,7 @@ export interface FloatingDecorationProps {
   whileInView?: any;
   initial?: "hidden" | "visible";
   animate?: "hidden" | "visible";
+  useControls?: any;
 }
 
 const FloatingDecoration: React.FC<FloatingDecorationProps> = ({
@@ -19,19 +20,14 @@ const FloatingDecoration: React.FC<FloatingDecorationProps> = ({
   styleOpacity,
   delayIdx,
   children,
-  transition,
-  whileInView,
-  initial = "hidden",
-  animate = "visible",
+  useControls,
 }) => (
   <motion.div
     className={className}
     variants={heroVariants.decor}
+    initial="hidden"
+    animate={useControls}
     custom={{ delayIdx, styleOpacity }}
-    initial={initial}
-    animate={animate}
-    transition={transition}
-    whileInView={whileInView}
   >
     {children}
   </motion.div>
