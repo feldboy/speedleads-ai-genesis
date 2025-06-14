@@ -9,7 +9,7 @@ const HeroScrollIndicator = ({ controls }: { controls: any }) => (
     variants={heroVariants.scrollIndicator}
     initial="hidden"
     animate={controls}
-    custom={{ delayIdx: 6 }}
+    custom={{ delayIdx: 11 }} // Phase 7: Scroll indicator (last element)
   >
     <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center relative overflow-hidden">
       <motion.div
