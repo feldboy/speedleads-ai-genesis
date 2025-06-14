@@ -9,7 +9,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import * as THREE from 'three';
 
 // iPhone 3D Model Component
-const iPhone: React.FC<{ rotation?: [number, number, number]; [key: string]: any }> = ({ rotation = [0, 0, 0], ...props }) => {
+const IPhone: React.FC<{ rotation?: [number, number, number]; [key: string]: any }> = ({ rotation = [0, 0, 0], ...props }) => {
   const meshRef = useRef<THREE.Group>(null);
   
   useFrame((state) => {
@@ -126,7 +126,7 @@ const ProductScene: React.FC<{ product: 'iphone' | 'macbook' }> = ({ product }) 
         <pointLight position={[-10, -10, -10]} intensity={0.5} />
         
         {product === 'iphone' ? (
-          <iPhone position={[0, 0, 0]} scale={1.5} />
+          <IPhone position={[0, 0, 0]} scale={1.5} />
         ) : (
           <MacBook position={[0, -0.5, 0]} scale={0.8} />
         )}
