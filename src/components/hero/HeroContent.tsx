@@ -13,6 +13,8 @@ const aiTexts = [
   "חדשנות טכנולוגית"
 ];
 
+const subHeadlineText = "פתרונות AI מתקדמים לבניית אתרים, אוטומציות עסקיות ואינטגרציות חכמות – שנועדו להזניק את העסק שלך קדימה.";
+
 const HeroContent: React.FC<{ controls: any }> = ({ controls }) => {
   const [showTypewriter, setShowTypewriter] = useState(false);
 
@@ -71,8 +73,15 @@ const HeroContent: React.FC<{ controls: any }> = ({ controls }) => {
         custom={{ delayIdx: 4 }} // Phase 3: Sub-headline animation
         className="text-xl text-gray-300 mb-8"
       >
-        פתרונות AI מתקדמים לבניית אתרים, אוטומציות עסקיות ואינטגרציות חכמות –
-        שנועדו להזניק את העסק שלך קדימה.
+        {subHeadlineText.split(' ').map((word, index) => (
+          <motion.span
+            key={`${word}-${index}`}
+            variants={heroVariants.word}
+            className="inline-block mr-1.5"
+          >
+            {word}
+          </motion.span>
+        ))}
       </motion.p>
       <div
         className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse rtl:space-x-reverse"

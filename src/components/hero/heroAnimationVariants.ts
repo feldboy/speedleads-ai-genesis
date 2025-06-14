@@ -1,4 +1,3 @@
-
 import { Variants } from "framer-motion";
 
 // A consistent delay function for a clean, staggered animation sequence.
@@ -35,16 +34,26 @@ export const heroVariants: { [key: string]: Variants } = {
     })
   },
   subHeadline: {
-    hidden: { opacity: 0, x: 80 },
+    hidden: { opacity: 0 },
     visible: (custom?: { delayIdx?: number }) => ({
       opacity: 1,
-      x: 0,
       transition: {
-        duration: 0.6,
-        delay: getDelay(custom),
-        ease: "easeOut"
+        delayChildren: getDelay(custom),
+        staggerChildren: 0.05,
       }
     })
+  },
+  word: {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
   },
   cta: {
     hidden: { opacity: 0, y: 50, scale: 0.8 },
