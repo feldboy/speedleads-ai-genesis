@@ -1,140 +1,126 @@
 
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import React from "react";
+import { Button } from "@/components/ui/button";
+
+// Placeholder images (replace with your own if you want)
+// Laptop: Unsplash photo-1488590528505-98d2b5aba04b
+// Phone: Unsplash photo-1531297484001-80022131f5a1
 
 const ServiceCards = () => {
   return (
-    <section id="services" className="py-20 bg-white">
-      <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">השירותים שלנו</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-gold to-tech-blue mx-auto mb-8" />
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-            בחרו את האופציה המתאימה לכם - פיתוח מלא על ידינו או כלים לעבודה עצמאית
+    <section id="services" className="py-16 bg-white">
+      <div className="container mx-auto px-2">
+        <div className="text-center mb-14">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">
+            השירותים שלנו
+          </h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-gold to-tech-blue mx-auto mb-6" />
+          <p
+            className="text-lg text-gray-600 max-w-2xl mx-auto"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            בחרו את הדרך שהכי מתאימה לכם לבניית הנוכחות הדיגיטלית: פיתוח מלא שלנו, או בעבודה עצמאית בליווי והכוונה.
           </p>
         </div>
-        
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-          {/* Build for me Card - Light Theme */}
-          <Card className="relative overflow-hidden h-96 md:h-[500px] border-0 shadow-xl group hover:shadow-2xl transition-all duration-300">
-            <CardContent className="p-0 h-full relative">
-              {/* Background Image */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center"
-                style={{
-                  backgroundImage: "url(https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?w=800&h=600&fit=crop)"
-                }}
-              />
-              
-              {/* Light Overlay */}
-              <div className="absolute inset-0 bg-white/85" />
-              
-              {/* Content */}
-              <div className="relative z-10 h-full flex flex-col justify-between p-8">
-                <div className="text-center">
-                  <div className="mb-6">
-                    <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-tech-blue to-blue-500 rounded-full flex items-center justify-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                  </div>
-                  
-                  <h3 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">
-                    בנה עבורי
-                  </h3>
-                  
-                  <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                    הצוות המקצועי שלנו ייקח אחריות מלאה על הפרויקט שלכם - מהרעיון הראשוני ועד להשקה. 
-                    פיתוח מותאם אישית עם ליווי צמוד לאורך כל הדרך.
-                  </p>
-                  
-                  <ul className="text-right text-gray-600 space-y-2 mb-8">
-                    <li className="flex items-center justify-end">
-                      <span>פיתוח מותאם אישית</span>
-                      <div className="w-2 h-2 bg-tech-blue rounded-full mr-3"></div>
-                    </li>
-                    <li className="flex items-center justify-end">
-                      <span>ליווי מקצועי מלא</span>
-                      <div className="w-2 h-2 bg-tech-blue rounded-full mr-3"></div>
-                    </li>
-                    <li className="flex items-center justify-end">
-                      <span>תמיכה לאחר השקה</span>
-                      <div className="w-2 h-2 bg-tech-blue rounded-full mr-3"></div>
-                    </li>
-                  </ul>
-                </div>
-                
-                <Button 
-                  id="service_build_for_me"
-                  className="w-full bg-gradient-to-r from-tech-blue to-blue-500 hover:from-blue-500 hover:to-tech-blue text-white font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
-                >
-                  בואו נתחיל בפרויקט
-                </Button>
+        {/* Split layout */}
+        <div className="relative flex flex-col md:flex-row items-stretch justify-center max-w-3xl mx-auto gap-6 md:gap-0">
+          {/* Left Card */}
+          <div
+            className="flex-1 bg-white rounded-2xl shadow-xl border border-gray-100 flex flex-col px-7 py-10 md:py-14 md:px-10 relative overflow-hidden z-10"
+            data-aos="fade-left"
+          >
+            <div className="flex flex-col items-center h-full">
+              <div className="w-20 h-20 rounded-full overflow-hidden mb-4 border-2 border-tech-blue shadow-sm">
+                <img
+                  src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=300&h=300&fit=crop"
+                  alt="שולחן עבודה עם לפטופ"
+                  className="object-cover object-center w-full h-full"
+                  loading="lazy"
+                />
               </div>
-            </CardContent>
-          </Card>
-
-          {/* Do it yourself Card - Dark Theme */}
-          <Card className="relative overflow-hidden h-96 md:h-[500px] border-0 shadow-xl group hover:shadow-2xl transition-all duration-300">
-            <CardContent className="p-0 h-full relative">
-              {/* Background Image */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center"
-                style={{
-                  backgroundImage: "url(https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop)"
-                }}
-              />
-              
-              {/* Dark Overlay */}
-              <div className="absolute inset-0 bg-gray-900/85" />
-              
-              {/* Content */}
-              <div className="relative z-10 h-full flex flex-col justify-between p-8">
-                <div className="text-center">
-                  <div className="mb-6">
-                    <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-gold to-yellow-500 rounded-full flex items-center justify-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                      </svg>
-                    </div>
-                  </div>
-                  
-                  <h3 className="text-2xl md:text-3xl font-bold mb-4 text-white">
-                    עשה זאת בעצמך
-                  </h3>
-                  
-                  <p className="text-lg text-gray-300 leading-relaxed mb-6">
-                    קבלו גישה לכלים המתקדמים שלנו ופלטפורמות בנייה אינטואיטיביות. 
-                    צרו בעצמכם פתרונות דיגיטליים מתקדמים עם הכוונה וליווי מרחוק.
-                  </p>
-                  
-                  <ul className="text-right text-gray-300 space-y-2 mb-8">
-                    <li className="flex items-center justify-end">
-                      <span>פלטפורמות עצמאיות</span>
-                      <div className="w-2 h-2 bg-gold rounded-full mr-3"></div>
-                    </li>
-                    <li className="flex items-center justify-end">
-                      <span>כלים מתקדמים</span>
-                      <div className="w-2 h-2 bg-gold rounded-full mr-3"></div>
-                    </li>
-                    <li className="flex items-center justify-end">
-                      <span>הכוונה מרחוק</span>
-                      <div className="w-2 h-2 bg-gold rounded-full mr-3"></div>
-                    </li>
-                  </ul>
-                </div>
-                
-                <Button 
-                  id="service_diy"
-                  className="w-full bg-gradient-to-r from-gold to-yellow-500 hover:from-yellow-500 hover:to-gold text-white font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
-                >
-                  גישה לכלים
-                </Button>
+              <h3 className="text-xl md:text-2xl font-bold text-dark mb-3 text-center">
+                בנה עבורי
+              </h3>
+              <p className="text-gray-600 text-base md:text-lg text-center mb-6">
+                פיתוח מלא על ידי הצוות שלנו, עם ליווי אישי <br className="hidden md:block" />
+                כל הדרך עד ההשקה והצלחת הפרויקט.
+              </p>
+              <ul className="space-y-2 text-sm md:text-base text-gray-700 mb-8 text-right w-full max-w-xs mx-auto pr-2">
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-tech-blue rounded-full" />
+                  פיתוח מותאם אישית
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-tech-blue rounded-full" />
+                  ליווי מקצועי לאורך כל הדרך
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-tech-blue rounded-full" />
+                  תמיכה ושירות לאחר ההשקה
+                </li>
+              </ul>
+              <Button
+                id="service_build_for_me"
+                className="w-full bg-tech-blue hover:bg-gold hover:text-dark text-white font-semibold py-3 rounded-lg transition-all duration-200 mt-auto"
+                style={{ fontSize: "1.13rem" }}
+              >
+                בואו נתחיל בפרויקט
+              </Button>
+            </div>
+          </div>
+          {/* Center 'או' element */}
+          <div className="flex items-center justify-center z-20">
+            <div className="md:absolute md:top-1/2 md:left-1/2 md:-translate-y-1/2 md:-translate-x-1/2 flex items-center justify-center">
+              <span className="rounded-full bg-white shadow-md border border-gray-200 text-dark text-lg font-bold px-7 py-4 md:py-2 md:px-4 md:text-lg flex items-center select-none" aria-hidden="true">
+                או
+              </span>
+            </div>
+          </div>
+          {/* Right Card */}
+          <div
+            className="flex-1 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 rounded-2xl shadow-xl border border-gray-100 flex flex-col px-7 py-10 md:py-14 md:px-10 relative overflow-hidden z-10"
+            data-aos="fade-right"
+          >
+            <div className="flex flex-col items-center h-full">
+              <div className="w-20 h-20 rounded-full overflow-hidden mb-4 border-2 border-gold shadow-sm">
+                <img
+                  src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=300&h=300&fit=crop"
+                  alt="סמארטפון"
+                  className="object-cover object-center w-full h-full"
+                  loading="lazy"
+                />
               </div>
-            </CardContent>
-          </Card>
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-3 text-center">
+                עשה זאת בעצמך
+              </h3>
+              <p className="text-gray-200 text-base md:text-lg text-center mb-6">
+                קבלו גישה לכל הפלטפורמות והכלים שפותחו על ידינו.<br className="hidden md:block" />
+                צרו בעצמכם פתרונות דיגיטליים בליווי מרחוק.
+              </p>
+              <ul className="space-y-2 text-sm md:text-base text-gray-100 mb-8 text-right w-full max-w-xs mx-auto pr-2">
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-gold rounded-full" />
+                  פלטפורמות מתקדמות
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-gold rounded-full" />
+                  כלים וטיפים מקצועיים
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-gold rounded-full" />
+                  הכוונה אישית אונליין
+                </li>
+              </ul>
+              <Button
+                id="service_diy"
+                className="w-full bg-gold hover:bg-tech-blue hover:text-dark text-white font-semibold py-3 rounded-lg transition-all duration-200 mt-auto"
+                style={{ fontSize: "1.13rem" }}
+              >
+                גישה לכלים
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
