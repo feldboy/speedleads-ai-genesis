@@ -1,15 +1,28 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Bot, Sparkles } from 'lucide-react';
-import Chatbot from '@/components/Chatbot'; // Import Chatbot
+import Chatbot from '@/components/Chatbot';
 
 const FloatingAI = () => {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
 
   const toggleChatbot = () => {
+    console.log('FloatingAI: toggleChatbot called. Current isChatbotOpen state:', isChatbotOpen, 'Will be set to:', !isChatbotOpen);
     setIsChatbotOpen(prev => !prev);
   };
+
+  // Close chatbot on Escape key press
+  useEffect(() => {
+    const handleEscKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isChatbotOpen) {
+        setIsChatbotOpen(false);
+      }
+    };
+    document.addEventListener('keydown', handleEscKey);
+    return () => {
+      document.removeEventListener('keydown', handleEscKey);
+    };
+  }, [isChatbotOpen]);
 
   return (
     <>
@@ -28,8 +41,16 @@ const FloatingAI = () => {
             className="bg-gradient-to-br from-tech-blue to-blue-600 rounded-full p-4 shadow-2xl cursor-pointer"
             whileHover={{ scale: 1.1, boxShadow: "0 20px 40px rgba(0, 246, 255, 0.3)" }}
             whileTap={{ scale: 0.95 }}
-            onClick={toggleChatbot} // Toggle chatbot on click
+            onClick={toggleChatbot}
             aria-label="פתח צ'אטבוט"
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault(); // Prevent page scroll on spacebar
+                toggleChatbot();
+              }
+            }}
           >
             <Bot className="w-8 h-8 text-white" />
             
@@ -66,7 +87,7 @@ const FloatingAI = () => {
         </motion.div>
         
         {/* Tooltip */}
-        {!isChatbotOpen && ( // Only show tooltip if chatbot is closed
+        {!isChatbotOpen && (
           <motion.div
             className="absolute bottom-full mb-4 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-3 text-sm text-gray-800 whitespace-nowrap"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -81,12 +102,9 @@ const FloatingAI = () => {
         )}
       </motion.div>
 
-      {/* Render Chatbot conditionally */}
-      {/* The Chatbot itself will manage its open animation based on the isOpen prop */}
       <Chatbot isOpen={isChatbotOpen} onClose={() => setIsChatbotOpen(false)} />
     </>
   );
 };
 
 export default FloatingAI;
-

@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef, type ChangeEvent, type FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -39,29 +38,37 @@ const Chatbot: React.FC<ChatbotProps> = ({ isOpen, onClose }) => {
 
   // Initialize chat with welcome message
   useEffect(() => {
-    const initialMessage: Message = {
-      id: 'welcome',
-      text: 'היי! 👋 אני הבוט החכם של SpeedLeads.AI. איך אני יכול לעזור לך היום?',
-      sender: 'bot',
-      options: [
-        'ספר לי על בניית אתרים',
-        'אני מעוניין באוטומציות',
-        'אני רוצה הצעת מחיר',
-        'שאלה אחרת'
-      ]
-    };
-    setMessages([initialMessage]);
-  }, []);
+    if (messages.length === 0) { // Initialize only if messages are empty
+      const initialMessage: Message = {
+        id: 'welcome',
+        text: 'היי! 👋 אני הבוט החכם של SpeedLeads.AI. איך אני יכול לעזור לך היום?',
+        sender: 'bot',
+        options: [
+          'ספר לי על בניית אתרים',
+          'אני מעוניין באוטומציות',
+          'אני רוצה הצעת מחיר',
+          'שאלה אחרת'
+        ]
+      };
+      setMessages([initialMessage]);
+    }
+  }, [messages.length]); // Depend on messages.length to re-evaluate if needed, but logic inside prevents re-init
 
   // Scroll to bottom on new message
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
+  // Handle closing form when chatbot is closed externally
+  useEffect(() => {
+    if (!isOpen) {
+      setShowForm(false);
+    }
+  }, [isOpen]);
+
   const handleSendMessage = (text: string = userInput) => {
     if (!text.trim()) return;
 
-    // Add user message
     const newUserMessage: Message = {
       id: `user-${Date.now()}`,
       text,
@@ -71,11 +78,9 @@ const Chatbot: React.FC<ChatbotProps> = ({ isOpen, onClose }) => {
     setMessages(prev => [...prev, newUserMessage]);
     setUserInput('');
 
-    // Simulate bot response based on user input
     setTimeout(() => {
       let botResponse: Message;
 
-      // Handle predefined options
       if (text === 'ספר לי על בניית אתרים') {
         botResponse = {
           id: `bot-${Date.now()}`,
@@ -171,7 +176,11 @@ const Chatbot: React.FC<ChatbotProps> = ({ isOpen, onClose }) => {
     <>
       {/* Chatbot window */}
       <div 
-        className={`fixed bottom-32 right-10 md:bottom-32 md:right-10 sm:bottom-28 sm:right-4 w-80 md:w-96 sm:w-[95vw] bg-white rounded-lg shadow-2xl z-50 transition-transform duration-300 ease-in-out transform ${isOpen ? 'scale-100 animate-fade-in' : 'scale-0'} origin-bottom-right border border-white/30`} 
+        className={`fixed bottom-32 left-10 md:bottom-32 md:left-10 sm:bottom-28 sm:left-4 w-80 md:w-96 sm:w-[95vw] bg-white rounded-lg shadow-2xl z-50 transition-all duration-300 ease-in-out transform ${
+          isOpen 
+            ? 'opacity-100 scale-100 animate-fade-in' 
+            : 'opacity-0 scale-0 pointer-events-none'
+        } origin-bottom-left border border-white/30`} 
         style={{ boxShadow: '0 8px 32px 0 rgba(59, 130, 246, 0.18)' }}
         aria-hidden={!isOpen}
       >
