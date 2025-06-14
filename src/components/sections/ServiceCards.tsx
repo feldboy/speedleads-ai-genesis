@@ -1,9 +1,14 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 
-// Placeholder images (replace with your own if you want)
-// Laptop: Unsplash photo-1488590528505-98d2b5aba04b
-// Phone: Unsplash photo-1531297484001-80022131f5a1
+// "Build for me" photo (suggested from user screenshot)
+const buildForMeImg =
+  "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=420&fit=crop";
+
+// "Do it yourself" photo
+const diyImg =
+  "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=420&fit=crop";
 
 const ServiceCards = () => {
   return (
@@ -22,22 +27,34 @@ const ServiceCards = () => {
             בחרו את הדרך שהכי מתאימה לכם לבניית הנוכחות הדיגיטלית: פיתוח מלא שלנו, או בעבודה עצמאית בליווי והכוונה.
           </p>
         </div>
-        {/* Split layout */}
-        <div className="relative flex flex-col md:flex-row items-stretch justify-center max-w-3xl mx-auto gap-8 md:gap-12">
-          {/* Left Card */}
+        {/* Split layout - 2 modern cards side by side on desktop, stacked on mobile */}
+        <div className="flex flex-col md:flex-row items-stretch justify-center max-w-3xl mx-auto gap-8 md:gap-12">
+          {/* "Build for me" Card */}
           <div
-            className="flex-1 bg-white rounded-2xl shadow-xl border border-gray-100 flex flex-col px-7 py-10 md:py-14 md:px-10 relative overflow-hidden z-10"
+            className="flex-1 bg-white rounded-2xl shadow-xl border border-gray-100 flex flex-col overflow-hidden"
             data-aos="fade-left"
           >
-            <div className="flex flex-col items-center h-full">
-              <div className="w-20 h-20 rounded-full overflow-hidden mb-4 border-2 border-tech-blue shadow-sm">
-                <img
-                  src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=300&h=300&fit=crop"
-                  alt="שולחן עבודה עם לפטופ"
-                  className="object-cover object-center w-full h-full"
-                  loading="lazy"
-                />
-              </div>
+            {/* Large image on top */}
+            <div className="relative w-full" style={{ aspectRatio: "2 / 1" }}>
+              <img
+                src={buildForMeImg}
+                alt="Build for me"
+                className="object-cover w-full h-full block"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "block",
+                  position: "absolute",
+                  inset: 0,
+                  color: "transparent",
+                }}
+                loading="lazy"
+                decoding="async"
+                sizes="100vw"
+              />
+            </div>
+            {/* Card content below image */}
+            <div className="flex flex-col px-7 py-8 md:py-10 md:px-10 bg-white flex-1 relative">
               <h3 className="text-xl md:text-2xl font-bold text-dark mb-3 text-center">
                 בנה עבורי
               </h3>
@@ -68,20 +85,32 @@ const ServiceCards = () => {
               </Button>
             </div>
           </div>
-          {/* Right Card */}
+          {/* "Do it yourself" Card */}
           <div
-            className="flex-1 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 rounded-2xl shadow-xl border border-gray-100 flex flex-col px-7 py-10 md:py-14 md:px-10 relative overflow-hidden z-10"
+            className="flex-1 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 rounded-2xl shadow-xl border border-gray-100 flex flex-col overflow-hidden"
             data-aos="fade-right"
           >
-            <div className="flex flex-col items-center h-full">
-              <div className="w-20 h-20 rounded-full overflow-hidden mb-4 border-2 border-gold shadow-sm">
-                <img
-                  src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=300&h=300&fit=crop"
-                  alt="סמארטפון"
-                  className="object-cover object-center w-full h-full"
-                  loading="lazy"
-                />
-              </div>
+            {/* Large image on top */}
+            <div className="relative w-full" style={{ aspectRatio: "2 / 1" }}>
+              <img
+                src={diyImg}
+                alt="עשה זאת בעצמך"
+                className="object-cover w-full h-full block"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "block",
+                  position: "absolute",
+                  inset: 0,
+                  color: "transparent",
+                }}
+                loading="lazy"
+                decoding="async"
+                sizes="100vw"
+              />
+            </div>
+            {/* Card content below image */}
+            <div className="flex flex-col px-7 py-8 md:py-10 md:px-10 flex-1 relative">
               <h3 className="text-xl md:text-2xl font-bold text-white mb-3 text-center">
                 עשה זאת בעצמך
               </h3>
