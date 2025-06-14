@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-// Removed: import ProductCarousel3D from '@/components/effects/ProductCarousel3D';
 
 const ProductShowcaseSection = () => {
   return (
@@ -67,30 +66,33 @@ const ProductShowcaseSection = () => {
             מפיתוח אפליקציות מובייל ועד פתרונות תוכנה מתקדמים
           </motion.p>
         </motion.div>
+      </div>
 
-        {/* Responsive Video Showcase */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-2 md:p-6 shadow-xl border border-white/50 max-w-3xl mx-auto">
-            <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-glow-blue">
-              <video
-                src="/lovable-uploads/2K.webm"
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-cover rounded-xl"
-                poster="/placeholder.svg"
-                aria-label="Showcase video of products and technology"
-              />
-            </div>
+      {/* Responsive Full Width Video Showcase */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, delay: 0.6 }}
+        viewport={{ once: true }}
+        className="-mx-0 md:-mx-10 lg:-mx-28"
+      >
+        <div className="w-full">
+          <div className="relative w-full aspect-video rounded-none md:rounded-2xl overflow-hidden shadow-glow-blue bg-gradient-to-br from-gray-50 to-white border border-white/50">
+            <video
+              src="/lovable-uploads/2K.webm"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover"
+              poster="/placeholder.svg"
+              aria-label="Showcase video of products and technology"
+            />
           </div>
-        </motion.div>
+        </div>
+      </motion.div>
 
+      <div className="container mx-auto relative z-10">
         {/* Features grid */}
         <motion.div
           className="grid md:grid-cols-3 gap-8 mt-16"
@@ -141,3 +143,4 @@ const ProductShowcaseSection = () => {
 };
 
 export default ProductShowcaseSection;
+
