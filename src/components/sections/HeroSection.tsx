@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -19,42 +18,78 @@ const aiTexts = [
 // Animation Variants
 const heroVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.14, when: "beforeChildren" } }
+  visible: { 
+    opacity: 1,
+    transition: { staggerChildren: 0.14, when: "beforeChildren" }
+  }
 };
 
 const bgVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.5, ease: "easeOut" } }
+  visible: { 
+    opacity: 1, 
+    transition: { duration: 0.5, ease: "easeOut" as const } 
+  }
 };
 
 const headlineVariants = {
   hidden: { opacity: 0, x: -70, scale: 0.92 },
-  visible: { opacity: 1, x: 0, scale: 1, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } }
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    scale: 1, 
+    transition: { 
+      duration: 0.7, 
+      ease: [0.22, 1, 0.36, 1] as any // casting to any to satisfy FM typing
+    }
+  }
 };
 
 const subHeadlineVariants = {
   hidden: { opacity: 0, x: 70 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: "easeOut" } }
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    transition: { duration: 0.55, ease: "easeOut" as const }
+  }
 };
 
 const ctaVariants = {
   hidden: { opacity: 0, y: 40, scale: 0.8 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", bounce: 0.32, duration: 0.57 } }
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1, 
+    transition: { type: "spring" as const, bounce: 0.32, duration: 0.57 }
+  }
 };
 
 const codeVariants = {
   hidden: { opacity: 0, y: 80, scale: 0.93 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.9, type: "spring", bounce: 0.25 } }
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1, 
+    transition: { duration: 0.9, type: "spring" as const, bounce: 0.25 }
+  }
 };
 
 const decorVariants = {
   hidden: { opacity: 0, scale: 0.7 },
-  visible: { opacity: 0.7, scale: 1, transition: { duration: 0.6, type: "spring", bounce: 0.1 } }
+  visible: { 
+    opacity: 0.7, 
+    scale: 1, 
+    transition: { duration: 0.6, type: "spring" as const, bounce: 0.1 }
+  }
 };
 
 const scrollIndicatorVariants = {
   hidden: { opacity: 0, y: 22 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65 } }
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.65 }
+  }
 };
 
 const HeroSection = () => {
