@@ -1,4 +1,3 @@
-
 import React from "react";
 import { cn } from "@/lib/utils";
 import {
@@ -147,8 +146,8 @@ const TestimonialsSection = () => {
               ))}
             </CarouselContent>
             {/* Navigation Buttons (outside content for overlay) */}
-            <CarouselPrevious className="z-10 -right-8 left-auto hidden tablet:inline-flex" />
-            <CarouselNext className="z-10 -left-8 right-auto hidden tablet:inline-flex" />
+            <CarouselPrevious className="absolute z-10 left-2 sm:left-[-1rem] md:left-[-2rem] top-1/2 -translate-y-1/2 bg-slate-800/50 hover:bg-slate-700/50 border-slate-700 text-white" />
+            <CarouselNext className="absolute z-10 right-2 sm:right-[-1rem] md:right-[-2rem] top-1/2 -translate-y-1/2 bg-slate-800/50 hover:bg-slate-700/50 border-slate-700 text-white" />
           </Carousel>
         </div>
       </div>
