@@ -9,6 +9,8 @@ import FaqSection from '@/components/sections/FaqSection';
 import ContactSection from '@/components/sections/ContactSection';
 import Chatbot from '@/components/Chatbot';
 import CookieConsent from '@/components/CookieConsent';
+import FloatingAI from '@/components/effects/FloatingAI';
+import AnimatedStats from '@/components/effects/AnimatedStats';
 import { initializeAnalytics, trackEvent } from '@/lib/analytics';
 
 const Index = () => {
@@ -82,10 +84,18 @@ const Index = () => {
   }, []);
 
   return (
-    <div dir="rtl" lang="he" className="min-h-screen bg-white text-dark relative">
+    <div dir="rtl" lang="he" className="min-h-screen bg-white text-dark relative overflow-x-hidden">
       <Header />
       <main>
         <HeroSection />
+        
+        {/* Animated Stats Section */}
+        <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+          <div className="container mx-auto">
+            <AnimatedStats />
+          </div>
+        </section>
+        
         <ServicesSection />
         <AdvantagesSection />
         <TestimonialsSection />
@@ -94,6 +104,7 @@ const Index = () => {
       </main>
       <Footer />
       <Chatbot />
+      <FloatingAI />
       
       {/* Improved WhatsApp floating button */}
       <a 
