@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useInView, useSpring, useTransform } from 'framer-motion';
+import { useRef, useEffect } from 'react';
 
 interface StatProps {
   number: number;
@@ -13,6 +13,15 @@ interface StatProps {
 const AnimatedStat: React.FC<StatProps> = ({ number, label, suffix = "", duration = 2 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  
+  const motionValue = useSpring(0, { duration: duration * 1000 });
+  const rounded = useTransform(motionValue, (latest) => Math.round(latest));
+
+  useEffect(() => {
+    if (isInView) {
+      motionValue.set(number);
+    }
+  }, [isInView, motionValue, number]);
 
   return (
     <motion.div
@@ -28,21 +37,7 @@ const AnimatedStat: React.FC<StatProps> = ({ number, label, suffix = "", duratio
         animate={isInView ? { scale: 1 } : {}}
         transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
       >
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration }}
-        >
-          {isInView && (
-            <motion.span
-              initial={{ value: 0 }}
-              animate={{ value: number }}
-              transition={{ duration, ease: "easeOut" }}
-            >
-              {({ value }) => Math.round(value)}
-            </motion.span>
-          )}
-        </motion.span>
+        <motion.span>{rounded}</motion.span>
         {suffix}
       </motion.div>
       <p className="text-gray-600 text-lg">{label}</p>
