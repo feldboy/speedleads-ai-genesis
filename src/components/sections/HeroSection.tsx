@@ -14,21 +14,12 @@ const HeroSection = () => {
 
   React.useEffect(() => {
     if (reducedMotion) {
-      // For users who prefer reduced motion, show everything immediately
       controls.set("visible");
       return;
     }
-
-    // Start with everything hidden
     controls.set("hidden");
-    
-    // Begin the orchestrated "assembling" animation sequence
-    const startAnimation = async () => {
-      await controls.start("visible");
-    };
-    
-    // Start animation immediately on mount for that "cool" entry effect
-    startAnimation();
+    // Start animation in sequence as soon as component mounts
+    controls.start("visible");
   }, [controls, reducedMotion]);
 
   return (

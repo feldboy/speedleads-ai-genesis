@@ -8,9 +8,9 @@ import FloatingDecoration from './FloatingDecoration';
 const HeroCodeSection: React.FC<{ controls: any }> = ({ controls }) => {
   const [showCode, setShowCode] = useState(false);
 
-  // Show code after the code section animates in (coordinated timing)
+  // Reveal the code component after the code section animates in
   useEffect(() => {
-    const timeout = setTimeout(() => setShowCode(true), 1400);
+    const timeout = setTimeout(() => setShowCode(true), 1300);
     return () => clearTimeout(timeout);
   }, []);
 
@@ -30,17 +30,12 @@ const HeroCodeSection: React.FC<{ controls: any }> = ({ controls }) => {
               y: [0, -10, 0],
               rotateY: [0, 5, 0]
             }}
-            transition={{ 
-              duration: 4, 
-              repeat: Infinity, 
-              ease: "easeInOut",
-              delay: 0.5 
-            }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
             <AnimatedCode />
           </motion.div>
         )}
-        
+        {/* Decorative elements - orchestrated in entrance with controls */}
         <FloatingDecoration
           className="absolute -top-4 -right-4 w-20 h-20 bg-gold/30 rounded-full blur-xl"
           styleOpacity={0.3}

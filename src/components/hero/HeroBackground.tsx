@@ -8,7 +8,7 @@ import FloatingDecoration from './FloatingDecoration';
 
 const HeroBackground = ({ controls }: { controls: any }) => (
   <>
-    {/* Phase 1: Animated background with coordinated entrance */}
+    {/* Animated BG in sequence */}
     <motion.div
       className="absolute inset-0"
       variants={heroVariants.background}
@@ -19,8 +19,7 @@ const HeroBackground = ({ controls }: { controls: any }) => (
       <FluidBackground />
       <EnhancedParticles />
     </motion.div>
-    
-    {/* Phase 6: Floating decorations as part of the assembly sequence */}
+    {/* Floating blurred backgrounds join the animation sequence */}
     <FloatingDecoration
       className="absolute top-1/4 left-1/4 w-64 h-64 bg-tech-blue rounded-full filter blur-3xl"
       styleOpacity={0.1}
@@ -34,7 +33,7 @@ const HeroBackground = ({ controls }: { controls: any }) => (
       useControls={controls}
     />
     <FloatingDecoration
-      className="absolute top-1/3 right-1/4 w-32 h-32 border-2 border-tech-blue/20 rounded-lg"
+      className="absolute top-1/3 right-1/4 w-32 h-32 border-2 border-tech-blue/20"
       delayIdx={2}
       useControls={controls}
     />

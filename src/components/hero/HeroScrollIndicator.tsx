@@ -9,7 +9,7 @@ const HeroScrollIndicator = ({ controls }: { controls: any }) => (
     variants={heroVariants.scrollIndicator}
     initial="hidden"
     animate={controls}
-    custom={{ delayIdx: 0 }}
+    custom={{ delayIdx: 6 }}
   >
     <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center relative overflow-hidden">
       <motion.div
@@ -18,11 +18,7 @@ const HeroScrollIndicator = ({ controls }: { controls: any }) => (
           y: [0, 12, 0],
           opacity: [1, 0.3, 1]
         }}
-        transition={{ 
-          duration: 2, 
-          repeat: Infinity,
-          delay: 2.2
-        }}
+        transition={{ duration: 2, repeat: Infinity }}
       />
     </div>
   </motion.div>

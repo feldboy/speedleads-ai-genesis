@@ -8,6 +8,10 @@ export interface FloatingDecorationProps {
   styleOpacity?: number;
   delayIdx?: number;
   children?: React.ReactNode;
+  transition?: any;
+  whileInView?: any;
+  initial?: "hidden" | "visible";
+  animate?: "hidden" | "visible";
   useControls?: any;
 }
 
