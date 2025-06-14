@@ -1,8 +1,10 @@
+
 import React, { useEffect, useState } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import HeroSection from '@/components/sections/HeroSection';
 import ServicesSection from '@/components/sections/ServicesSection';
+import VideoSection from '@/components/sections/VideoSection';
 import AdvantagesSection from '@/components/sections/AdvantagesSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import FaqSection from '@/components/sections/FaqSection';
@@ -95,8 +97,11 @@ const Index = () => {
             <AnimatedStats />
           </div>
         </section>
-        
+
         <ServicesSection />
+
+        {/* Responsive Video Section */}
+        <VideoSection />
         
         <AdvantagesSection />
         <TestimonialsSection />
