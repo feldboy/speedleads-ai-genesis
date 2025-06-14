@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Bot, Sparkles } from 'lucide-react';
@@ -27,7 +28,7 @@ const FloatingAI = () => {
   return (
     <>
       <motion.div
-        className="fixed bottom-32 left-6 z-30"
+        className="fixed bottom-32 left-6 z-40"
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 2, duration: 0.8 }}
@@ -37,20 +38,13 @@ const FloatingAI = () => {
           animate={{ y: [0, -10, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
-          <motion.div
+          <motion.button
             className="bg-gradient-to-br from-tech-blue to-blue-600 rounded-full p-4 shadow-2xl cursor-pointer"
             whileHover={{ scale: 1.1, boxShadow: "0 20px 40px rgba(0, 246, 255, 0.3)" }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleChatbot}
             aria-label="פתח צ'אטבוט"
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault(); // Prevent page scroll on spacebar
-                toggleChatbot();
-              }
-            }}
+            type="button"
           >
             <Bot className="w-8 h-8 text-white" />
             
@@ -70,17 +64,17 @@ const FloatingAI = () => {
             >
               <Sparkles className="w-3 h-3 text-tech-blue" />
             </motion.div>
-          </motion.div>
+          </motion.button>
           
           {/* Pulsing rings */}
           <motion.div
-            className="absolute inset-0 rounded-full border-2 border-tech-blue/30"
+            className="absolute inset-0 rounded-full border-2 border-tech-blue/30 pointer-events-none"
             animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
           
           <motion.div
-            className="absolute inset-0 rounded-full border-2 border-gold/30"
+            className="absolute inset-0 rounded-full border-2 border-gold/30 pointer-events-none"
             animate={{ scale: [1, 1.8, 1], opacity: [0.3, 0, 0.3] }}
             transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
           />
@@ -89,7 +83,7 @@ const FloatingAI = () => {
         {/* Tooltip */}
         {!isChatbotOpen && (
           <motion.div
-            className="absolute bottom-full mb-4 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-3 text-sm text-gray-800 whitespace-nowrap"
+            className="absolute bottom-full mb-4 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-3 text-sm text-gray-800 whitespace-nowrap pointer-events-none"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 3 }}

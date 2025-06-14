@@ -45,10 +45,10 @@ const Chatbot: React.FC<ChatbotProps> = ({ isOpen, onClose }) => {
 
   return (
     <div 
-      className={`fixed bottom-32 left-10 md:bottom-32 md:left-10 sm:bottom-28 sm:left-4 w-80 md:w-96 sm:w-[95vw] bg-white rounded-lg shadow-2xl z-50 transition-all duration-300 ease-in-out transform ${
+      className={`fixed bottom-4 left-4 w-80 md:w-96 sm:w-[calc(100vw-2rem)] bg-white rounded-lg shadow-2xl z-50 transition-all duration-300 ease-in-out ${
         isOpen 
-          ? 'opacity-100 scale-100 animate-fade-in' 
-          : 'opacity-0 scale-0 pointer-events-none'
+          ? 'opacity-100 translate-y-0 scale-100' 
+          : 'opacity-0 translate-y-4 scale-95 pointer-events-none'
       } origin-bottom-left border border-white/30`} 
       style={{ boxShadow: '0 8px 32px 0 rgba(59, 130, 246, 0.18)' }}
       aria-hidden={!isOpen}
