@@ -9,7 +9,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import * as THREE from 'three';
 
 // iPhone 3D Model Component
-const iPhone = ({ rotation = [0, 0, 0], ...props }) => {
+const iPhone: React.FC<{ rotation?: [number, number, number]; [key: string]: any }> = ({ rotation = [0, 0, 0], ...props }) => {
   const meshRef = useRef<THREE.Group>(null);
   
   useFrame((state) => {
@@ -55,7 +55,7 @@ const iPhone = ({ rotation = [0, 0, 0], ...props }) => {
 };
 
 // MacBook 3D Model Component
-const MacBook = ({ rotation = [0, 0, 0], ...props }) => {
+const MacBook: React.FC<{ rotation?: [number, number, number]; [key: string]: any }> = ({ rotation = [0, 0, 0], ...props }) => {
   const meshRef = useRef<THREE.Group>(null);
   
   useFrame((state) => {
@@ -113,7 +113,7 @@ const MacBook = ({ rotation = [0, 0, 0], ...props }) => {
 };
 
 // 3D Scene Component
-const ProductScene = ({ product }: { product: 'iphone' | 'macbook' }) => {
+const ProductScene: React.FC<{ product: 'iphone' | 'macbook' }> = ({ product }) => {
   return (
     <div className="w-full h-96 relative">
       <Canvas
@@ -165,7 +165,7 @@ const ProductScene = ({ product }: { product: 'iphone' | 'macbook' }) => {
   );
 };
 
-const ProductCarousel3D = () => {
+const ProductCarousel3D: React.FC = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'center' });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -197,7 +197,9 @@ const ProductCarousel3D = () => {
     emblaApi.on('select', onSelect);
     onSelect();
 
-    return () => emblaApi.off('select', onSelect);
+    return () => {
+      emblaApi.off('select', onSelect);
+    };
   }, [emblaApi]);
 
   return (
