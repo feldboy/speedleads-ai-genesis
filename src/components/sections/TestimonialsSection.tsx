@@ -1,6 +1,13 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
 
 interface Testimonial {
   id: string;
@@ -20,7 +27,7 @@ const testimonials: Testimonial[] = [
     quote:
       "האוטומציות שהוטמעו בעסק שלנו חסכו לנו שעות עבודה יקרות ושיפרו את חווית הלקוח באופן משמעותי.",
     author: "מיכל כהן",
-    role: "סמנכ\"ל שיווק",
+    role: 'סמנכ"ל שיווק',
     company: "מרקט פרו",
     image: "/placeholder.svg",
     companyLogo: "/placeholder.svg",
@@ -64,11 +71,17 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => (
         loading="lazy"
       />
     </div>
-    <span className="mb-2 text-[16px] font-medium text-white text-center">{testimonial.author}</span>
-    <span className="mb-8 text-[14px] text-[#8B94A3] text-center">{testimonial.role}</span>
+    <span className="mb-2 text-[16px] font-medium text-white text-center">
+      {testimonial.author}
+    </span>
+    <span className="mb-8 text-[14px] text-[#8B94A3] text-center">
+      {testimonial.role}
+    </span>
     <div className="flex flex-col flex-grow justify-between">
-      <blockquote className="mb-8 text-[16px] text-white text-center leading-relaxed">{testimonial.quote}</blockquote>
-      <div className="mx-auto flex items-center justify-center text-white h-14">
+      <blockquote className="mb-8 text-[16px] text-white text-center leading-relaxed">
+        {testimonial.quote}
+      </blockquote>
+      <div className="mx-auto flex items-center justify-center text-white h-14 mt-auto">
         {testimonial.companyLogo ? (
           <img
             src={testimonial.companyLogo}
@@ -78,7 +91,9 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => (
             loading="lazy"
           />
         ) : (
-          <span className="text-white text-base font-semibold">{testimonial.company}</span>
+          <span className="text-white text-base font-semibold">
+            {testimonial.company}
+          </span>
         )}
       </div>
     </div>
@@ -87,10 +102,16 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => (
 
 const TestimonialsSection = () => {
   return (
-    <section id="clients" className="py-20 bg-gradient-to-b from-dark to-gray-900 text-white">
+    <section
+      id="clients"
+      className="py-20 bg-gradient-to-b from-dark to-gray-900 text-white"
+    >
       <div className="container mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-3" data-aos="fade-up">
+          <h2
+            className="text-3xl md:text-4xl font-bold mb-3"
+            data-aos="fade-up"
+          >
             מה הלקוחות שלנו אומרים
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-gold to-tech-blue mx-auto mb-4" />
@@ -102,18 +123,33 @@ const TestimonialsSection = () => {
             סיפורי הצלחה של לקוחות SpeedLeads.AI
           </p>
         </div>
-        {/* Responsive grid: 1/2/3 columns */}
-        <div className="
-          grid 
-          grid-cols-1 
-          tablet:grid-cols-2 
-          laptop:grid-cols-3 
-          gap-6 
-          max-w-5xl mx-auto
-        ">
-          {testimonials.map((t) => (
-            <TestimonialCard key={t.id} testimonial={t} />
-          ))}
+        <div className="relative max-w-5xl mx-auto">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {testimonials.map((t) => (
+                <CarouselItem
+                  key={t.id}
+                  className="
+                    px-2
+                    mobile:basis-full
+                    tablet:basis-1/2
+                    laptop:basis-1/3
+                  "
+                >
+                  <TestimonialCard testimonial={t} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            {/* Navigation Buttons (outside content for overlay) */}
+            <CarouselPrevious className="z-10 -right-8 left-auto hidden tablet:inline-flex" />
+            <CarouselNext className="z-10 -left-8 right-auto hidden tablet:inline-flex" />
+          </Carousel>
         </div>
       </div>
     </section>
