@@ -7,7 +7,6 @@ import AdvantagesSection from '@/components/sections/AdvantagesSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import FaqSection from '@/components/sections/FaqSection';
 import ContactSection from '@/components/sections/ContactSection';
-import Chatbot from '@/components/Chatbot';
 import CookieConsent from '@/components/CookieConsent';
 import FloatingAI from '@/components/effects/FloatingAI';
 import AnimatedStats from '@/components/effects/AnimatedStats';
@@ -103,7 +102,6 @@ const Index = () => {
         <ContactSection />
       </main>
       <Footer />
-      <Chatbot />
       <FloatingAI />
       
       {/* Improved WhatsApp floating button */}

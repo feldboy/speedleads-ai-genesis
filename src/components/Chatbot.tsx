@@ -18,9 +18,13 @@ interface LeadData {
   interest?: string;
 }
 
-const Chatbot = () => {
+interface ChatbotProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const Chatbot: React.FC<ChatbotProps> = ({ isOpen, onClose }) => {
   const { toast } = useToast();
-  const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [userInput, setUserInput] = useState('');
   const [showForm, setShowForm] = useState(false);
@@ -162,33 +166,18 @@ const Chatbot = () => {
     }, 750);
   };
 
+  if (!isOpen && messages.length <= 1) {
+    return null;
+  }
+
   return (
     <>
-      {/* Improved Chatbot toggle button */}
-      <button
-        type="button"
-        id="chatbot_option_button"
-        className="fixed bottom-20 right-10 md:bottom-20 md:right-10 sm:bottom-16 sm:right-4 bg-tech-blue hover:bg-tech-blue/80 text-dark rounded-full p-4 md:p-4 sm:p-3 shadow-xl z-50 transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-fade-in border border-white/30"
-        style={{ boxShadow: '0 8px 32px 0 rgba(59, 130, 246, 0.18)' }}
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label={isOpen ? "Close Chatbot" : "Open Chatbot"}
-        aria-expanded={isOpen}
-      >
-        {isOpen ? (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <title>Close Chatbot</title>
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <title>Open Chatbot</title>
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-          </svg>
-        )}
-      </button>
-
       {/* Chatbot window */}
-      <div className={`fixed bottom-32 right-10 md:bottom-32 md:right-10 sm:bottom-28 sm:right-4 w-80 md:w-96 sm:w-[95vw] bg-white rounded-lg shadow-2xl z-50 transition-transform duration-300 ease-in-out transform ${isOpen ? 'scale-100 animate-fade-in' : 'scale-0'} origin-bottom-right border border-white/30`} style={{ boxShadow: '0 8px 32px 0 rgba(59, 130, 246, 0.18)' }}>
+      <div 
+        className={`fixed bottom-32 right-10 md:bottom-32 md:right-10 sm:bottom-28 sm:right-4 w-80 md:w-96 sm:w-[95vw] bg-white rounded-lg shadow-2xl z-50 transition-transform duration-300 ease-in-out transform ${isOpen ? 'scale-100 animate-fade-in' : 'scale-0'} origin-bottom-right border border-white/30`} 
+        style={{ boxShadow: '0 8px 32px 0 rgba(59, 130, 246, 0.18)' }}
+        aria-hidden={!isOpen}
+      >
         {/* Chat header */}
         <div className="bg-dark text-white p-4 rounded-t-lg flex justify-between items-center">
           <div className="flex items-center space-x-2 space-x-reverse rtl:space-x-reverse">
@@ -205,7 +194,7 @@ const Chatbot = () => {
           </div>
           <button
             type="button"
-            onClick={() => setIsOpen(false)}
+            onClick={onClose}
             className="text-gray-300 hover:text-white focus:outline-none"
             aria-label="Close Chat Window"
           >
