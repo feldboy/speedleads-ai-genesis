@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -10,6 +11,7 @@ import ContactSection from '@/components/sections/ContactSection';
 import CookieConsent from '@/components/CookieConsent';
 import FloatingAI from '@/components/effects/FloatingAI';
 import AnimatedStats from '@/components/effects/AnimatedStats';
+import ProjectShowcase from '@/components/effects/ProjectShowcase';
 import { initializeAnalytics, trackEvent } from '@/lib/analytics';
 
 const Index = () => {

@@ -2,7 +2,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import InteractiveParticles from '@/components/effects/InteractiveParticles';
+import EnhancedParticles from '@/components/effects/EnhancedParticles';
+import FluidBackground from '@/components/effects/FluidBackground';
 import TypewriterText from '@/components/effects/TypewriterText';
 import AnimatedCode from '@/components/effects/AnimatedCode';
 import MagneticButton from '@/components/effects/MagneticButton';
@@ -17,19 +18,22 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center bg-gradient-to-br from-dark via-gray-900 to-dark overflow-hidden">
-      {/* Interactive Particles Background */}
-      <InteractiveParticles />
+      {/* Enhanced Background Effects */}
+      <FluidBackground />
+      <EnhancedParticles />
       
-      {/* Animated Background Elements */}
+      {/* Additional Animated Background Elements */}
       <div className="absolute inset-0 z-0">
         <motion.div 
           className="absolute top-1/4 left-1/4 w-64 h-64 bg-tech-blue rounded-full opacity-10 filter blur-3xl"
           animate={{ 
             scale: [1, 1.2, 1],
-            rotate: [0, 180, 360]
+            rotate: [0, 180, 360],
+            x: [0, 50, 0],
+            y: [0, -30, 0]
           }}
           transition={{ 
-            duration: 8, 
+            duration: 12, 
             repeat: Infinity, 
             ease: "easeInOut" 
           }}
@@ -38,12 +42,29 @@ const HeroSection = () => {
           className="absolute top-3/4 left-3/4 w-96 h-96 bg-gold rounded-full opacity-5 filter blur-3xl"
           animate={{ 
             scale: [1, 1.3, 1],
-            rotate: [360, 180, 0]
+            rotate: [360, 180, 0],
+            x: [0, -40, 0],
+            y: [0, 20, 0]
           }}
           transition={{ 
-            duration: 10, 
+            duration: 15, 
             repeat: Infinity, 
             ease: "easeInOut" 
+          }}
+        />
+        
+        {/* Morphing Shapes */}
+        <motion.div 
+          className="absolute top-1/3 right-1/4 w-32 h-32 border-2 border-tech-blue/20"
+          animate={{
+            borderRadius: ["0%", "50%", "0%"],
+            rotate: [0, 180, 360],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
           }}
         />
       </div>
@@ -57,7 +78,18 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              SpeedLeads.AI:
+              <motion.span
+                animate={{
+                  textShadow: [
+                    "0 0 20px rgba(0,246,255,0.5)",
+                    "0 0 40px rgba(0,246,255,0.8)",
+                    "0 0 20px rgba(0,246,255,0.5)"
+                  ]
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                SpeedLeads.AI:
+              </motion.span>
               <br />
               <span className="gradient-text">העתיד של</span>
               <br />
@@ -96,7 +128,7 @@ const HeroSection = () => {
                 <Button 
                   id="hero_cta_button" 
                   size="lg" 
-                  className="bg-gradient-to-r from-tech-blue to-blue-600 hover:from-tech-blue/80 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-lg shadow-lg"
+                  className="bg-gradient-to-r from-tech-blue to-blue-600 hover:from-tech-blue/80 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-lg shadow-lg hover:shadow-tech-blue/25 transition-all duration-300"
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   בואו נדבר על הפרויקט שלכם
@@ -109,7 +141,7 @@ const HeroSection = () => {
                   size="lg" 
                   variant="outline" 
                   onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })} 
-                  className="border-2 border-white/30 font-semibold text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 px-8 py-4 rounded-lg"
+                  className="border-2 border-white/30 font-semibold text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 px-8 py-4 rounded-lg hover:shadow-gold/25 transition-all duration-300"
                 >
                   גלו את השירותים שלנו
                 </Button>
@@ -126,18 +158,22 @@ const HeroSection = () => {
             <div className="relative">
               <motion.div
                 className="relative z-10"
-                animate={{ y: [0, -10, 0] }}
+                animate={{ 
+                  y: [0, -10, 0],
+                  rotateY: [0, 5, 0]
+                }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               >
                 <AnimatedCode />
               </motion.div>
               
-              {/* Floating decorative elements */}
+              {/* Enhanced floating decorative elements */}
               <motion.div
                 className="absolute -top-4 -right-4 w-20 h-20 bg-gold/30 rounded-full blur-xl"
                 animate={{ 
                   scale: [1, 1.2, 1],
-                  opacity: [0.3, 0.6, 0.3]
+                  opacity: [0.3, 0.6, 0.3],
+                  rotate: [0, 180, 360]
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
@@ -146,7 +182,8 @@ const HeroSection = () => {
                 className="absolute -bottom-4 -left-4 w-16 h-16 bg-tech-blue/20 rounded-full blur-xl"
                 animate={{ 
                   scale: [1, 1.3, 1],
-                  opacity: [0.2, 0.5, 0.2]
+                  opacity: [0.2, 0.5, 0.2],
+                  rotate: [360, 180, 0]
                 }}
                 transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
               />
@@ -155,7 +192,12 @@ const HeroSection = () => {
                 className="absolute top-1/3 right-1/4 w-8 h-8 bg-gradient-to-r from-gold to-tech-blue rounded-full"
                 animate={{ 
                   rotate: 360,
-                  scale: [1, 1.5, 1]
+                  scale: [1, 1.5, 1],
+                  boxShadow: [
+                    "0 0 20px rgba(0,246,255,0.5)",
+                    "0 0 40px rgba(176,141,87,0.8)",
+                    "0 0 20px rgba(0,246,255,0.5)"
+                  ]
                 }}
                 transition={{ duration: 4, repeat: Infinity }}
               />
@@ -164,16 +206,19 @@ const HeroSection = () => {
         </div>
       </div>
       
-      {/* Scroll indicator */}
+      {/* Enhanced scroll indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center relative overflow-hidden">
           <motion.div
-            className="w-1 h-3 bg-white rounded-full mt-2"
-            animate={{ y: [0, 12, 0] }}
+            className="w-1 h-3 bg-gradient-to-b from-tech-blue to-gold rounded-full mt-2"
+            animate={{ 
+              y: [0, 12, 0],
+              opacity: [1, 0.3, 1]
+            }}
             transition={{ duration: 2, repeat: Infinity }}
           />
         </div>
