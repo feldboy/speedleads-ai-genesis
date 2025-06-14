@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 
@@ -24,7 +23,7 @@ const ServiceCards = () => {
           </p>
         </div>
         {/* Split layout */}
-        <div className="relative flex flex-col md:flex-row items-stretch justify-center max-w-3xl mx-auto gap-6 md:gap-0">
+        <div className="relative flex flex-col md:flex-row items-stretch justify-center max-w-3xl mx-auto gap-8 md:gap-12">
           {/* Left Card */}
           <div
             className="flex-1 bg-white rounded-2xl shadow-xl border border-gray-100 flex flex-col px-7 py-10 md:py-14 md:px-10 relative overflow-hidden z-10"
@@ -67,14 +66,6 @@ const ServiceCards = () => {
               >
                 בואו נתחיל בפרויקט
               </Button>
-            </div>
-          </div>
-          {/* Center 'או' element */}
-          <div className="flex items-center justify-center z-20">
-            <div className="md:absolute md:top-1/2 md:left-1/2 md:-translate-y-1/2 md:-translate-x-1/2 flex items-center justify-center">
-              <span className="rounded-full bg-white shadow-md border border-gray-200 text-dark text-lg font-bold px-7 py-4 md:py-2 md:px-4 md:text-lg flex items-center select-none" aria-hidden="true">
-                או
-              </span>
             </div>
           </div>
           {/* Right Card */}
