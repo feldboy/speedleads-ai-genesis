@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import ProductCarousel3D from '@/components/effects/ProductCarousel3D';
+// Removed: import ProductCarousel3D from '@/components/effects/ProductCarousel3D';
 
 const ProductShowcaseSection = () => {
   return (
@@ -68,14 +68,27 @@ const ProductShowcaseSection = () => {
           </motion.p>
         </motion.div>
 
-        {/* 3D Product Carousel */}
+        {/* Responsive Video Showcase */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
           viewport={{ once: true }}
         >
-          <ProductCarousel3D />
+          <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-2 md:p-6 shadow-xl border border-white/50 max-w-3xl mx-auto">
+            <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-glow-blue">
+              <video
+                src="/lovable-uploads/2K.webm"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover rounded-xl"
+                poster="/placeholder.svg"
+                aria-label="Showcase video of products and technology"
+              />
+            </div>
+          </div>
         </motion.div>
 
         {/* Features grid */}
