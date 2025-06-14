@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef, type ChangeEvent, type FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -165,10 +166,6 @@ const Chatbot: React.FC<ChatbotProps> = ({ isOpen, onClose }) => {
       });
     }, 750);
   };
-
-  if (!isOpen && messages.length <= 1) {
-    return null;
-  }
 
   return (
     <>
