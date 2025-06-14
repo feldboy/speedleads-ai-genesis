@@ -3,13 +3,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { heroVariants } from './heroAnimationVariants';
 
-const HeroScrollIndicator = ({ controls }: { controls: any }) => (
+const HeroScrollIndicator = () => (
   <motion.div
     className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
     variants={heroVariants.scrollIndicator}
     initial="hidden"
-    animate={controls}
-    custom={{ delayIdx: 11 }} // Phase 7: Scroll indicator (last element)
+    animate="visible"
+    custom={{ delayIdx: 6 }}
   >
     <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center relative overflow-hidden">
       <motion.div
