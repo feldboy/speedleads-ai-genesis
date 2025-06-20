@@ -1,10 +1,26 @@
 
 import React from 'react';
 
-// Placeholder SVG components instead of real images
-const PlaceholderImg = ({ label }: { label?: string }) => (
+// Real image component with fallback
+const FeatureImage = ({ src, alt, label }: { src: string; alt: string; label?: string }) => (
   <div className="w-full flex-1 flex items-end justify-center min-h-[120px] md:min-h-[180px]">
-    <div className="w-24 h-24 md:w-36 md:h-36 rounded-xl bg-gradient-to-br from-tech-blue via-gold to-dark flex items-center justify-center text-white text-sm opacity-80 shadow-glow-blue">
+    <img
+      src={src}
+      alt={alt}
+      className="w-full h-full object-cover rounded-lg opacity-90 transition-opacity duration-300 hover:opacity-100"
+      style={{ minHeight: '120px', maxHeight: '180px' }}
+      loading="lazy"
+      onError={(e) => {
+        // Fallback to placeholder if image fails to load
+        const target = e.target as HTMLImageElement;
+        target.style.display = 'none';
+        const fallback = target.parentElement?.querySelector('.fallback');
+        if (fallback) {
+          (fallback as HTMLElement).style.display = 'flex';
+        }
+      }}
+    />
+    <div className="fallback w-24 h-24 md:w-36 md:h-36 rounded-xl bg-gradient-to-br from-tech-blue via-gold to-dark flex items-center justify-center text-white text-sm opacity-80 shadow-glow-blue" style={{ display: 'none' }}>
       <span>{label || "Image"}</span>
     </div>
   </div>
@@ -14,25 +30,29 @@ const features = [
   {
     category: "הרחבת דפדפן",
     headline: "קל כמו צילום מסך",
-    imgLabel: "Browser extension",
+    imageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop&crop=entropy&auto=format",
+    alt: "Browser extension development",
     labelColor: "text-tech-blue",
   },
   {
     category: "שלבים אוטומטיים",
     headline: "לא תכתבו תיעוד ידני",
-    imgLabel: "Auto steps",
+    imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop&crop=entropy&auto=format",
+    alt: "Automated processes and workflows",
     labelColor: "text-gold",
   },
   {
     category: "קסם שחזור מיידי",
     headline: "לתפוס כל מה שקרה",
-    imgLabel: "Replay magic",
+    imageUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=400&fit=crop&crop=entropy&auto=format",
+    alt: "Instant replay and recording magic",
     labelColor: "text-tech-blue",
   },
   {
     category: "עריכה ושיתוף",
     headline: "להוסיף, לטשטש ולשתף",
-    imgLabel: "Markup/share",
+    imageUrl: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&h=400&fit=crop&crop=entropy&auto=format",
+    alt: "Editing and sharing tools",
     labelColor: "text-gold",
   },
 ];
@@ -66,7 +86,7 @@ const WhySpeedLeadsSection = () => (
                 {f.headline}
               </h3>
             </div>
-            <PlaceholderImg label={f.imgLabel} />
+            <FeatureImage src={f.imageUrl} alt={f.alt} label={f.category} />
           </div>
         ))}
       </div>
