@@ -13,8 +13,7 @@ const services = [
       "High-Conversion Landing Pages", 
       "Intelligent E-Commerce Solutions"
     ],
-    buttonText: "Let's Start a Project",
-    id: "service_learn_more_websitebuilding"
+    buttonText: "Let's Start a Project"
   },
   {
     icon: Bot,
@@ -25,8 +24,7 @@ const services = [
       "Custom-Built AI Solutions",
       "Save Time & Boost Efficiency"
     ],
-    buttonText: "Discover Our Solutions",
-    id: "service_learn_more_automations"
+    buttonText: "Discover Our Solutions"
   },
   {
     icon: BrainCircuit,
@@ -37,21 +35,19 @@ const services = [
       "AI-Powered Search & Recommendations", 
       "Interactive & Personalized Content"
     ],
-    buttonText: "Upgrade Your Website",
-    id: "service_learn_more_aiintegrations"
+    buttonText: "Upgrade Your Website"
   }
 ]
 
-const ServicesSection = () => {
+export function ServicesSection() {
   return (
-    <section id="services" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4" data-aos="fade-up">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Our Services
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto mb-8" data-aos="fade-up" data-aos-delay="100" />
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Cutting-edge technology solutions designed to accelerate your business growth and digital transformation
           </p>
         </div>
@@ -65,8 +61,6 @@ const ServicesSection = () => {
                 className="h-full min-h-[500px]"
                 gradientColor="#3b82f6"
                 gradientOpacity={0.2}
-                data-aos="fade-up"
-                data-aos-delay={index * 100}
               >
                 <div className="p-8 h-full flex flex-col">
                   <div className="mb-6">
@@ -95,7 +89,6 @@ const ServicesSection = () => {
                   </div>
                   
                   <Button 
-                    id={service.id}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                     size="lg"
                   >
@@ -108,7 +101,5 @@ const ServicesSection = () => {
         </div>
       </div>
     </section>
-  );
-};
-
-export default ServicesSection;
+  )
+}

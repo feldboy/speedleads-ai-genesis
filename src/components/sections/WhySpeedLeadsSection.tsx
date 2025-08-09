@@ -28,31 +28,35 @@ const FeatureImage = ({ src, alt, label }: { src: string; alt: string; label?: s
 
 const features = [
   {
-    category: "הרחבת דפדפן",
-    headline: "קל כמו צילום מסך",
+    category: "שירות אישי",
+    headline: "שותפות אמיתית והתחייבות",
+    description: "אתם מקבלים מנהל פרויקט ייעודי, זמינות גבוהה ותמיכה הרבה אחרי ההשקה. אנחנו השותפים שלכם בכל שלב - מאסטרטגיה ראשונית ועד תחזוקה שוטפת.",
     imageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop&crop=entropy&auto=format",
-    alt: "Browser extension development",
+    alt: "Personalized service and partnership",
     labelColor: "text-tech-blue",
   },
   {
-    category: "שלבים אוטומטיים",
-    headline: "לא תכתבו תיעוד ידני",
+    category: "ניהול מוצר אסטרטגי",
+    headline: "אסטרטגיה ברורה, תוצאות מדידות",
+    description: "אנחנו מגדירים את המוצר שלכם יחד, בונים MVP מהיר ומניעים צמיחה דרך איטרציות מבוססות נתונים. עם מדדי הצלחה ברורים, תמיד תדעו מה הסטטוס וה-ROI של הפרויקט.",
     imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop&crop=entropy&auto=format",
-    alt: "Automated processes and workflows",
+    alt: "Strategic product management",
     labelColor: "text-gold",
   },
   {
-    category: "קסם שחזור מיידי",
-    headline: "לתפוס כל מה שקרה",
+    category: "איכות וביצועים",
+    headline: "יציב, מאובטח ומהיר",
+    description: "אנחנו בונים לפי הסטנדרטים הגבוהים ביותר עם בדיקות אוטומטיות, פרוטוקולי אבטחה מקיפים וזמני טעינה מהירים מותאמים להצלחה ב-SEO.",
     imageUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=400&fit=crop&crop=entropy&auto=format",
-    alt: "Instant replay and recording magic",
+    alt: "Quality and performance",
     labelColor: "text-tech-blue",
   },
   {
-    category: "עריכה ושיתוף",
-    headline: "להוסיף, לטשטש ולשתף",
+    category: "שקיפות מלאה",
+    headline: "אתם תמיד על ההגה",
+    description: "מקבלים גישה מלאה לקוד המקור, תשתית ודוחות התקדמות. אנחנו שומרים אתכם על ההגה עם מידע מלא ותהליכי החלטה שקופים.",
     imageUrl: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&h=400&fit=crop&crop=entropy&auto=format",
-    alt: "Editing and sharing tools",
+    alt: "Full transparency and control",
     labelColor: "text-gold",
   },
 ];
@@ -78,13 +82,16 @@ const WhySpeedLeadsSection = () => (
             data-aos="fade-up"
             data-aos-delay={i*80}
           >
-            <div className="p-5 pb-0 md:p-8 md:pb-0 flex flex-col">
+            <div className="p-5 pb-0 md:p-8 md:pb-0 flex flex-col flex-grow">
               <span className={`mb-2 block font-bold text-xs md:text-sm ${f.labelColor}`} style={{letterSpacing: "0.05em"}}>
                 {f.category}
               </span>
-              <h3 className="mb-0 font-heading text-base md:text-2xl font-black text-white">
+              <h3 className="mb-3 font-heading text-base md:text-xl font-black text-white">
                 {f.headline}
               </h3>
+              <p className="text-gray-300 text-sm md:text-base leading-relaxed flex-grow">
+                {f.description}
+              </p>
             </div>
             <FeatureImage src={f.imageUrl} alt={f.alt} label={f.category} />
           </div>
