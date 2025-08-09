@@ -31,12 +31,8 @@ interface Service {
     value: string
     icon: React.ComponentType<{ className?: string }>
   }[]
-  rating: number
-  reviewsCount: number
-  badge: string
   button: string
   icon: React.ComponentType<{ className?: string }>
-  gradient: string
   price: string
   deliveryTime: string
   trustSignals: string[]
@@ -65,12 +61,8 @@ const services: Service[] = [
       { label: "שיפור בהמרות", value: "250%", icon: TrendingUp },
       { label: "זמן טעינה ממוצע", value: "1.2s", icon: Zap }
     ],
-    rating: 4.9,
-    reviewsCount: 127,
-    badge: "מומלץ ביותר",
     button: "בואו נתחיל בפרויקט",
     icon: Palette,
-    gradient: "from-purple-500 to-pink-500",
     price: "החל מ-15,000 ₪",
     deliveryTime: "4-8 שבועות",
     trustSignals: ["אחריות מלאה", "תמיכה 24/7", "עדכונים חינם"]
@@ -97,12 +89,8 @@ const services: Service[] = [
       { label: "הפחתת עלויות", value: "60%", icon: Target },
       { label: "שיפור יעילות", value: "300%", icon: Rocket }
     ],
-    rating: 4.8,
-    reviewsCount: 94,
-    badge: "חדשני",
     button: "גלה את הפתרונות שלנו",
     icon: Bot,
-    gradient: "from-blue-500 to-cyan-500",
     price: "החל מ-8,000 ₪",
     deliveryTime: "2-4 שבועות",
     trustSignals: ["ROI מובטח", "הדרכה מלאה", "תמיכה מתמשכת"]
@@ -129,12 +117,8 @@ const services: Service[] = [
       { label: "זמן שהייה באתר", value: "+45%", icon: Clock },
       { label: "הגדלת מכירות", value: "220%", icon: TrendingUp }
     ],
-    rating: 4.9,
-    reviewsCount: 156,
-    badge: "פופולרי",
     button: "שדרג את האתר שלך",
     icon: BrainCircuit,
-    gradient: "from-green-500 to-teal-500",
     price: "החל מ-12,000 ₪",
     deliveryTime: "3-6 שבועות",
     trustSignals: ["תוצאות מוכחות", "יועץ אישי", "גישה מלאה לנתונים"]
@@ -188,32 +172,14 @@ const ServiceCards = () => {
                 data-aos-delay={index * 150}
               >
                 <article className="p-8 h-full flex flex-col text-right relative z-10">
-                  {/* Premium Badge */}
-                  <div className="flex items-center justify-between mb-6">
-                    <Badge 
-                      variant="secondary" 
-                      className={`bg-gradient-to-r ${service.gradient} text-white border-0 font-semibold px-3 py-1`}
-                    >
-                      {service.badge}
-                    </Badge>
-                    <div className="flex items-center gap-1 text-amber-500">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star 
-                          key={i} 
-                          className={`w-4 h-4 ${i < Math.floor(service.rating) ? 'fill-current' : 'fill-gray-200'}`} 
-                        />
-                      ))}
-                      <span className="text-sm text-gray-600 mr-1">({service.reviewsCount})</span>
-                    </div>
-                  </div>
 
-                  {/* Accent top bar with animation */}
-                  <div className={`h-2 bg-gradient-to-r ${service.gradient} mb-8 rounded-full group-hover:scale-105 transition-transform duration-500`} />
+                  {/* Accent top bar */}
+                  <div className="h-2 bg-gray-200 mb-8 rounded-full" />
                   
                   {/* Icon and Header */}
                   <div className="mb-8">
-                    <div className={`w-20 h-20 bg-gradient-to-br ${service.gradient} rounded-3xl flex items-center justify-center mb-6 mr-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}>
-                      <IconComponent className="w-10 h-10 text-white" />
+                    <div className="w-20 h-20 bg-gray-100 rounded-3xl flex items-center justify-center mb-6 mr-auto shadow-lg">
+                      <IconComponent className="w-10 h-10 text-gray-600" />
                     </div>
                     
                     <h3 className="text-2xl md:text-3xl font-bold text-dark mb-3 group-hover:text-tech-blue transition-colors duration-300">
@@ -275,8 +241,8 @@ const ServiceCards = () => {
                         return (
                           <div key={statIndex} className="bg-white/50 rounded-lg p-3 border border-gray-100">
                             <div className="flex items-center gap-3">
-                              <div className={`w-10 h-10 bg-gradient-to-br ${service.gradient} rounded-lg flex items-center justify-center`}>
-                                <StatIcon className="w-5 h-5 text-white" />
+                              <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                                <StatIcon className="w-5 h-5 text-gray-600" />
                               </div>
                               <div>
                                 <div className="text-xl font-bold text-dark">{stat.value}</div>
@@ -324,20 +290,18 @@ const ServiceCards = () => {
                   <div className="mt-auto">
                     <Button 
                       id={`${service.id}_cta`}
-                      className={`w-full bg-gradient-to-r ${service.gradient} hover:shadow-2xl hover:scale-105 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 text-lg group/button`}
+                      className="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 text-lg"
                       size="lg"
                     >
-                      <span className="group-hover/button:scale-110 transition-transform duration-200">
-                        {service.button}
-                      </span>
-                      <Rocket className="w-5 h-5 mr-2 group-hover/button:translate-x-1 transition-transform duration-200" />
+                      {service.button}
+                      <Rocket className="w-5 h-5 mr-2" />
                     </Button>
                   </div>
                 </article>
 
                 {/* Background decoration */}
-                <div className={`absolute top-0 left-0 w-full h-2 bg-gradient-to-r ${service.gradient} opacity-20`} />
-                <div className={`absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl ${service.gradient} opacity-5 rounded-tl-full`} />
+                <div className="absolute top-0 left-0 w-full h-2 bg-gray-200 opacity-20" />
+                <div className="absolute bottom-0 right-0 w-32 h-32 bg-gray-100 opacity-5 rounded-tl-full" />
               </MagicCard>
             )
           })}

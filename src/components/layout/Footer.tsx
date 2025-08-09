@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { GradientHeading } from '@/components/ui/gradient-heading';
 
 const Footer = () => {
   return (
@@ -8,7 +9,7 @@ const Footer = () => {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">SpeedLeads.AI</h3>
+            <GradientHeading variant="light" size="sm" className="mb-4">SpeedLeads.AI</GradientHeading>
             <p className="text-gray-400 mb-4">
               פתרונות דיגיטליים מתקדמים מבוססי AI לעסקים שרוצים להוביל את השוק.
             </p>
@@ -37,7 +38,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-xl font-bold mb-4">שירותים</h3>
+            <GradientHeading variant="light" size="sm" className="mb-4">שירותים</GradientHeading>
             <ul className="space-y-2">
               <li><a href="#services" id="footer_link_websites" className="text-gray-400 hover:text-tech-blue transition-colors">בניית אתרים מונעי AI</a></li>
               <li><a href="#services" id="footer_link_landing_pages" className="text-gray-400 hover:text-tech-blue transition-colors">דפי נחיתה ממירים</a></li>
@@ -48,7 +49,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-xl font-bold mb-4">מידע נוסף</h3>
+            <GradientHeading variant="light" size="sm" className="mb-4">מידע נוסף</GradientHeading>
             <ul className="space-y-2">
               <li><a href="#advantages" id="footer_link_about_us" className="text-gray-400 hover:text-tech-blue transition-colors">אודות</a></li>
               <li><a href="#faq" id="footer_link_faq" className="text-gray-400 hover:text-tech-blue transition-colors">שאלות נפוצות</a></li>
@@ -57,7 +58,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-xl font-bold mb-4">צור קשר</h3>
+            <GradientHeading variant="light" size="sm" className="mb-4">צור קשר</GradientHeading>
             <ul className="space-y-2 text-gray-400">
               <li>טלפון: 03-1234567</li>
               <li>אימייל: info@speedleads.ai</li>
