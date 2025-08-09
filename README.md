@@ -1,73 +1,93 @@
-# Welcome to your Lovable project
+# SpeedLeads.AI
 
-## Project info
+SpeedLeads.AI is a modern business automation platform that provides advanced AI solutions for website development, business automations, and smart integrations designed to accelerate your business forward.
 
-**URL**: https://lovable.dev/projects/608ff567-b93c-49fc-aa47-aa5283193aad
+## Features
 
-## How can I edit this code?
+- **AI-Powered Website Development** - Build modern, responsive websites with intelligent automation
+- **Business Process Automation** - Streamline operations with smart workflow solutions
+- **Lead Management System** - Advanced CRM with integrated chatbot and analytics
+- **Smart Integrations** - Connect your business tools and platforms seamlessly
+- **Multi-language Support** - Full Hebrew/RTL language support with internationalization
+- **Analytics Dashboard** - Track performance with Google Analytics integration
+- **Admin Panel** - Complete backend management system for leads and settings
 
-There are several ways of editing your application.
+## Technology Stack
 
-**Use Lovable**
+This project is built with modern web technologies:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/608ff567-b93c-49fc-aa47-aa5283193aad) and start prompting.
+- **Vite** - Fast build tool and development server
+- **TypeScript** - Type-safe JavaScript development
+- **React** - Modern UI library with hooks
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - Modern component library
+- **React Router** - Client-side routing
+- **Google Analytics** - User behavior tracking
+- **WhatsApp Integration** - Direct customer communication
 
-Changes made via Lovable will be committed automatically to this repo.
+## Getting Started
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js (v16 or higher)
+- npm or yarn package manager
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Installation
 
-Follow these steps:
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd speedleads-ai-genesis
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2. Install dependencies:
+```bash
+npm install
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. Open your browser and navigate to `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Available Scripts
 
-**Use GitHub Codespaces**
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run build:dev` - Build for development
+- `npm run lint` - Run ESLint
+- `npm run preview` - Preview production build
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Project Structure
 
-## What technologies are used for this project?
+```
+src/
+├── components/          # Reusable UI components
+│   ├── ui/             # shadcn/ui components
+│   ├── layout/         # Layout components (Header, Footer)
+│   └── sections/       # Page sections
+├── pages/              # Application pages
+│   ├── admin/          # Admin panel pages
+│   └── legal/          # Legal pages
+├── lib/                # Utility functions
+└── hooks/              # Custom React hooks
+```
 
-This project is built with:
+## Deployment
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+The application can be deployed to any static hosting service such as:
 
-## How can I deploy this project?
+- Vercel
+- Netlify
+- GitHub Pages
+- AWS S3 + CloudFront
 
-Simply open [Lovable](https://lovable.dev/projects/608ff567-b93c-49fc-aa47-aa5283193aad) and click on Share -> Publish.
+Build the project for production:
 
-## Can I connect a custom domain to my Lovable project?
+```bash
+npm run build
+```
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+The built files will be in the `dist` directory.
