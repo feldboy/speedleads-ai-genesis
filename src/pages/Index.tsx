@@ -1,173 +1,137 @@
 
-import React from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import Hero from '@/components/Hero';
-import ProductCategory from '@/components/ProductCategory';
-import FeaturedTip from '@/components/FeaturedTip';
-import TestimonialCard from '@/components/TestimonialCard';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import HeroSection from '@/components/sections/HeroSection';
+import ServicesSection from '@/components/sections/ServicesSection';
+import VideoSection from '@/components/sections/VideoSection';
+import WhySpeedLeadsSection from '@/components/sections/WhySpeedLeadsSection';
+import TestimonialsSection from '@/components/sections/TestimonialsSection';
+import FaqSection from '@/components/sections/FaqSection';
+import ContactSection from '@/components/sections/ContactSection';
+import CookieConsent from '@/components/CookieConsent';
+import FloatingAI from '@/components/effects/FloatingAI';
+import AnimatedStats from '@/components/effects/AnimatedStats';
+import ProjectShowcase from '@/components/effects/ProjectShowcase';
+import ServiceCards from '@/components/sections/ServiceCards';
+import { initializeAnalytics, trackEvent } from '@/lib/analytics';
 
 const Index = () => {
-  const categories = [
-    {
-      title: "צמחי בית",
-      description: "צמחים מטהרי אוויר, צמחים פורחים וצמחים ירוקים לבית ולמשרד.",
-      imageSrc: "https://images.unsplash.com/photo-1463320898484-cdee8141c787?ixlib=rb-4.0.3&auto=format&fit=crop&w=1050&q=80",
-      link: "/catalog"
-    },
-    {
-      title: "צמחי גינה",
-      description: "כל מה שתצטרכו לגינה פורחת ומלבלבת, כולל עונתיים, שיחים ועצים.",
-      imageSrc: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1050&q=80",
-      link: "/catalog"
-    },
-    {
-      title: "תבלינים וירקות",
-      description: "גדלו את המזון שלכם בעצמכם עם מבחר תבלינים טריים וירקות עונתיים.",
-      imageSrc: "https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1051&q=80",
-      link: "/catalog"
-    },
-    {
-      title: "אדמה ודישון",
-      description: "מצעי גידול, תערובות ייחודיות, חיפויים, דשנים וחומרי הדברה ירוקים.",
-      imageSrc: "https://images.unsplash.com/photo-1577639673047-f3ea5c0456bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1050&q=80",
-      link: "/catalog"
+  const [cookieConsentShown, setCookieConsentShown] = useState(false);
+  const [hasConsent, setHasConsent] = useState(false);
+  
+  // Initialize analytics after cookie consent
+  useEffect(() => {
+    // Check if user already gave consent (stored in localStorage)
+    const storedConsent = localStorage.getItem('cookieConsent');
+    if (storedConsent === 'accepted') {
+      setHasConsent(true);
+      initializeAnalytics();
+    } else {
+      setCookieConsentShown(true);
     }
-  ];
+  }, []);
 
-  const testimonials = [
-    {
-      name: "רונית כהן",
-      text: "כבר שנים שאני קונה את הצמחים שלי במשתלת 'לגן ולגנן'. האיכות מעולה והצוות תמיד שמח לייעץ. המקום הפך לביקור שבועי קבוע בשבילי.",
-      location: "רמת גן"
-    },
-    {
-      name: "דני לוי",
-      text: "גיליתי את המשתלה לפני שנה כשקניתי בית חדש. הצוות עזר לי לתכנן את הגינה מאפס, והתוצאה מדהימה! בכל פעם שאני צריך משהו, אני חוזר אליהם.",
-      location: "הרצליה"
-    },
-    {
-      name: "מיכל אברהם",
-      text: "האווירה במשתלה פשוט קסומה. הצוות מקצועי, הצמחים איכותיים והמחירים הוגנים. יש סיבה שהם הפכו למוסד באזור!",
-      location: "כפר סבא"
+  // Google Analytics event tracking
+  useEffect(() => {
+    if (!hasConsent) return;
+    
+    const trackClickEvent = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const clickableElement = target.closest('[id]');
+      
+      if (clickableElement?.id) {
+        console.log(`Analytics: Clicked element with ID: ${clickableElement.id}`);
+        trackEvent('element_click', { 
+          element_id: clickableElement.id,
+          element_text: clickableElement.textContent?.trim() || '',
+          page_location: window.location.pathname
+        });
+      }
+    };
+
+    // Add click tracking
+    document.addEventListener('click', trackClickEvent);
+    
+    // Log page view
+    console.log('Analytics: Page view - Homepage');
+    trackEvent('page_view', { page_title: 'Homepage' });
+    
+    return () => {
+      document.removeEventListener('click', trackClickEvent);
+    };
+  }, [hasConsent]);
+  
+  const handleCookieConsent = (accepted: boolean) => {
+    if (accepted) {
+      localStorage.setItem('cookieConsent', 'accepted');
+      setHasConsent(true);
+      initializeAnalytics();
+      trackEvent('cookie_consent_accepted', {});
+    } else {
+      localStorage.setItem('cookieConsent', 'declined');
     }
-  ];
+    setCookieConsentShown(false);
+  };
+
+  useEffect(() => {
+    if (window.location.hash) {
+      const id = window.location.hash.replace('#', '');
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      
-      <main className="flex-grow">
-        {/* Hero Section */}
-        <Hero />
+    <div dir="rtl" lang="he" className="min-h-screen bg-white text-dark relative overflow-x-hidden">
+      <Header />
+      <main>
+        <HeroSection />
         
-        {/* Categories Section */}
-        <section className="garden-section">
-          <div className="garden-container">
-            <h2 className="text-3xl font-heebo font-bold text-garden-dark-green mb-8 text-center">
-              במה אנחנו מתמחים
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {categories.map((category, index) => (
-                <ProductCategory 
-                  key={index}
-                  title={category.title}
-                  description={category.description}
-                  imageSrc={category.imageSrc}
-                  link={category.link}
-                />
-              ))}
-            </div>
+        {/* Animated Stats Section */}
+        <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+          <div className="container mx-auto">
+            <AnimatedStats />
           </div>
         </section>
 
-        {/* About Us Section */}
-        <section className="garden-section bg-garden-cream py-16">
-          <div className="garden-container">
-            <div className="md:flex items-center gap-8">
-              <div className="md:w-1/2 mb-8 md:mb-0">
-                <img 
-                  src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixlib=rb-4.0.3&auto=format&fit=crop&w=1050&q=80" 
-                  alt="המשפחה שלנו במשתלה" 
-                  className="rounded-lg shadow-lg"
-                />
-              </div>
-              
-              <div className="md:w-1/2">
-                <h2 className="text-3xl font-heebo font-bold text-garden-dark-green mb-4">
-                  המשפחה שלנו
-                </h2>
-                
-                <p className="text-gray-600 mb-4">
-                  כבר למעלה מ-20 שנה שמשפחת ישראלי מגדלת ומטפחת את משתלת "לגן ולגנן". התחלנו כחלום קטן ביישוב הכפרי שלנו, וצמחנו להיות המשתלה האהובה באזור.
-                </p>
-                
-                <p className="text-gray-600 mb-6">
-                  אנחנו מאמינים שכל צמח, כמו כל אדם, צריך אהבה וטיפול אישי. לכן אנחנו מגדלים את הצמחים שלנו בקפידה, ומעניקים ייעוץ אישי לכל לקוח.
-                </p>
-                
-                <Link to="/about" className="garden-button">
-                  קראו עוד עלינו
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        <ServiceCards />
 
-        {/* Featured Tip */}
-        <section className="garden-section">
-          <div className="garden-container">
-            <FeaturedTip 
-              title="איך להכין את הגינה לקיץ הישראלי"
-              excerpt="הקיץ הישראלי יכול להיות אתגר לגינה שלכם. בהדרכה הזו נשתף את הטיפים שלנו להכנת הגינה לחודשים החמים, כולל בחירת צמחים עמידים לחום, טכניקות השקיה חסכוניות, ורעיונות להצללה טבעית."
-              date="1 ביוני, 2025"
-              imageSrc="https://images.unsplash.com/photo-1455659817273-f96807779a8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1050&q=80"
-              link="/blog"
-            />
-          </div>
-        </section>
-
-        {/* Testimonials */}
-        <section className="garden-section bg-garden-light-green/10">
-          <div className="garden-container">
-            <h2 className="text-3xl font-heebo font-bold text-garden-dark-green mb-8 text-center">
-              מה הלקוחות שלנו אומרים
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {testimonials.map((testimonial, index) => (
-                <TestimonialCard 
-                  key={index}
-                  name={testimonial.name}
-                  text={testimonial.text}
-                  location={testimonial.location}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Call to Action */}
-        <section className="garden-section bg-garden-medium-green text-white py-16">
-          <div className="garden-container text-center">
-            <h2 className="text-3xl font-heebo font-bold mb-4">
-              בואו לבקר אותנו במשתלה
-            </h2>
-            
-            <p className="text-lg mb-8 max-w-2xl mx-auto">
-              אנחנו מזמינים אתכם לבקר במשתלה, להתרשם ממגוון הצמחים והמוצרים, וליהנות מייעוץ מקצועי. צוות המשתלה ישמח לעזור לכם למצוא את הצמחים המושלמים עבורכם.
-            </p>
-            
-            <Link to="/contact" className="garden-button bg-white text-garden-dark-green hover:bg-garden-cream">
-              לשעות הפתיחה והכתובת
-            </Link>
-          </div>
-        </section>
+        {/* Responsive Video Section */}
+        <VideoSection />
+        
+        <WhySpeedLeadsSection />
+        <TestimonialsSection />
+        <FaqSection />
+        <ContactSection />
       </main>
-      
       <Footer />
+      <FloatingAI />
+      
+      {/* Improved WhatsApp floating button */}
+      <a 
+        href="https://wa.me/9721234567" 
+        target="_blank"
+        rel="noopener noreferrer"
+        id="whatsapp_floating_button"
+        className="fixed bottom-6 right-6 md:bottom-6 md:right-6 sm:bottom-4 sm:right-4 bg-[#25D366] hover:bg-[#20BD5C] text-white rounded-full p-4 md:p-4 sm:p-3 shadow-xl z-40 transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-fade-in border border-white/30"
+        style={{ boxShadow: '0 8px 32px 0 rgba(34, 197, 94, 0.25)' }}
+        onClick={() => hasConsent && trackEvent('click_whatsapp', {})}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 md:h-6 md:w-6 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 24 24" aria-labelledby="whatsappTitle">
+          <title id="whatsappTitle">WhatsApp</title>
+          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+        </svg>
+      </a>
+      
+      {/* Cookie Consent Banner */}
+      {cookieConsentShown && (
+        <CookieConsent onAction={handleCookieConsent} />
+      )}
     </div>
   );
 };

@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -13,12 +12,23 @@ export default {
 	theme: {
 		container: {
 			center: true,
-			padding: '2rem',
+			padding: {
+				DEFAULT: '2rem',
+				sm: '0.5rem',
+				md: '2rem',
+				lg: '2rem',
+				xl: '2rem',
+				'2xl': '2rem'
+			},
 			screens: {
 				'2xl': '1400px'
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Assistant', 'Heebo', 'sans-serif'],
+				heading: ['Heebo', 'Assistant', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -63,16 +73,9 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom colors for לגן ולגנן
-				garden: {
-					'light-green': '#c1e1c1',
-					'medium-green': '#7fb069',
-					'dark-green': '#4a8054',
-					'earth-brown': '#8d6346',
-					'light-brown': '#c8b6a6',
-					'cream': '#f8f4e3',
-					'accent-flower': '#e6b8a2'
-				}
+				dark: '#0D1B2A',
+				gold: '#B08D57',
+				'tech-blue': '#00F6FF',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -97,37 +100,61 @@ export default {
 					}
 				},
 				'fade-in': {
-					'0%': {
-						opacity: '0',
-						transform: 'translateY(10px)'
+					"0%": {
+						opacity: "0",
+						transform: "translateY(10px)"
 					},
-					'100%': {
-						opacity: '1',
-						transform: 'translateY(0)'
+					"100%": {
+						opacity: "1",
+						transform: "translateY(0)"
 					}
 				},
-				'gentle-sway': {
-					'0%, 100%': {
-						transform: 'rotate(-1deg)'
+				'fade-out': {
+					"0%": {
+						opacity: "1",
+						transform: "translateY(0)"
 					},
-					'50%': {
-						transform: 'rotate(1deg)'
+					"100%": {
+						opacity: "0",
+						transform: "translateY(10px)"
 					}
+				},
+				'scale-in': {
+					"0%": {
+						transform: "scale(0.95)",
+						opacity: "0"
+					},
+					"100%": {
+						transform: "scale(1)",
+						opacity: "1"
+					}
+				},
+				'scale-out': {
+					from: { transform: "scale(1)", opacity: "1" },
+					to: { transform: "scale(0.95)", opacity: "0" }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' },
+				},
+				'pulse-slow': {
+					'0%, 100%': { opacity: 1 },
+					'50%': { opacity: 0.8 },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fade-in 0.5s ease-out',
-				'gentle-sway': 'gentle-sway 6s ease-in-out infinite'
+				'fade-in': 'fade-in 0.3s ease-out',
+				'fade-out': 'fade-out 0.3s ease-out',
+				'scale-in': 'scale-in 0.2s ease-out',
+				'scale-out': 'scale-out 0.2s ease-out',
+				'float': 'float 6s ease-in-out infinite',
+				'pulse-slow': 'pulse-slow 3s ease-in-out infinite',
 			},
 			backgroundImage: {
-				'texture-light': "url('https://images.unsplash.com/photo-1515895309288-a3815ab7cf81?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80')",
-				'leaf-pattern': "url('https://images.unsplash.com/photo-1486162928267-e6274cb3106f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80')"
-			},
-			fontFamily: {
-				'heebo': ['Heebo', 'sans-serif'],
-				'open-sans': ['Open Sans Hebrew', 'sans-serif'],
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'hero-pattern': 'linear-gradient(to right bottom, rgba(13, 27, 42, 0.9), rgba(13, 27, 42, 0.95)), url("/grid-pattern.png")',
 			}
 		}
 	},
