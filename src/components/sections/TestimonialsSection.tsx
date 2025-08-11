@@ -440,7 +440,7 @@ const TestimonialsSection = () => {
         <div
           className="relative max-w-7xl mx-auto"
           onMouseEnter={() => setIsPlaying(false)}
-          // onMouseLeave={() => setIsPlaying(true)}
+          onMouseLeave={() => setIsPlaying(true)}
         >
           {/* Viewport WITH horizontal padding; track only manages internal gaps */}
           <div
