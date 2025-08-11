@@ -107,25 +107,25 @@ export const About3 = ({
     <section className="py-20 lg:py-32 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto px-4 md:px-6">
         {/* Header - Improved text alignment and spacing */}
-        <div className="mb-16 text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight">
+        <div className="mb-16 text-center max-w-4xl mx-auto" data-aos="fade-up">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight" data-aos="fade-up" data-aos-delay="100">
             {title}
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
             {description}
           </p>
         </div>
 
         {/* Images Grid - Enhanced with better proportions */}
         <div className="grid gap-6 lg:gap-8 lg:grid-cols-3 mb-20">
-          <div className="lg:col-span-2 group">
+          <div className="lg:col-span-2 group" data-aos="fade-right" data-aos-delay="300">
             <img
               src={mainImage.src}
               alt={mainImage.alt}
               className="h-80 md:h-96 lg:h-[500px] w-full rounded-2xl object-cover shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]"
             />
           </div>
-          <div className="group">
+          <div className="group" data-aos="fade-left" data-aos-delay="400">
             <img
               src={secondaryImage.src}
               alt={secondaryImage.alt}
@@ -135,7 +135,7 @@ export const About3 = ({
         </div>
 
         {/* Breakout Section - Enhanced styling */}
-        <div className="relative mb-20 grid gap-8 overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/50 dark:to-purple-950/50 p-8 lg:p-12 lg:grid-cols-3 shadow-xl border border-blue-100 dark:border-blue-800">
+        <div className="relative mb-20 grid gap-8 overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/50 dark:to-purple-950/50 p-8 lg:p-12 lg:grid-cols-3 shadow-xl border border-blue-100 dark:border-blue-800" data-aos="fade-up" data-aos-delay="500">
           <div className="lg:col-span-2 flex flex-col justify-center">
             <h3 className="mb-4 text-2xl lg:text-3xl font-bold text-center lg:text-right">
               {breakout.title}
@@ -164,14 +164,14 @@ export const About3 = ({
 
         {/* Features Section - Improved card design and spacing */}
         <div className="mb-20">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12" data-aos="fade-up" data-aos-delay="600">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">מה מייחד אותנו</h2>
             <p className="text-muted-foreground text-lg">ארבעה עמודי התווך שלנו להצלחה שלכם</p>
           </div>
           
           <div className="grid gap-8 md:grid-cols-2 max-w-6xl mx-auto">
             {/* Feature 1 - שירות אישי */}
-            <div className="group rounded-2xl border border-border bg-background/80 backdrop-blur-sm p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+            <div className="group rounded-2xl border border-border bg-background/80 backdrop-blur-sm p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="700">
               <div className="mb-6 overflow-hidden rounded-xl">
                 <img
                   src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=300&fit=crop&auto=format&q=80"
@@ -191,7 +191,7 @@ export const About3 = ({
             </div>
 
             {/* Feature 2 - ניהול מוצר אסטרטגי */}
-            <div className="group rounded-2xl border border-border bg-background/80 backdrop-blur-sm p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+            <div className="group rounded-2xl border border-border bg-background/80 backdrop-blur-sm p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="800">
               <div className="mb-6 overflow-hidden rounded-xl">
                 <img
                   src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=300&fit=crop&auto=format&q=80"
@@ -211,7 +211,7 @@ export const About3 = ({
             </div>
 
             {/* Feature 3 - איכות וביצועים */}
-            <div className="group rounded-2xl border border-border bg-background/80 backdrop-blur-sm p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+            <div className="group rounded-2xl border border-border bg-background/80 backdrop-blur-sm p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="900">
               <div className="mb-6 overflow-hidden rounded-xl">
                 <img
                   src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=300&fit=crop&auto=format&q=80"
@@ -231,7 +231,7 @@ export const About3 = ({
             </div>
 
             {/* Feature 4 - שקיפות מלאה */}
-            <div className="group rounded-2xl border border-border bg-background/80 backdrop-blur-sm p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+            <div className="group rounded-2xl border border-border bg-background/80 backdrop-blur-sm p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="1000">
               <div className="mb-6 overflow-hidden rounded-xl">
                 <img
                   src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=300&fit=crop&auto=format&q=80"
@@ -253,7 +253,7 @@ export const About3 = ({
         </div>
 
         {/* Companies Section - Enhanced styling */}
-        <div className="mb-20 text-center">
+        <div className="mb-20 text-center" data-aos="fade-up" data-aos-delay="1100">
           <h3 className="mb-8 text-lg font-semibold text-muted-foreground uppercase tracking-wider">
             {companiesTitle}
           </h3>
@@ -270,7 +270,7 @@ export const About3 = ({
         </div>
 
         {/* Achievements - Better alignment and spacing */}
-        <div className="mb-16 text-center">
+        <div className="mb-16 text-center" data-aos="fade-up" data-aos-delay="1200">
           <h3 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4">
             {achievementsTitle}
           </h3>
@@ -279,7 +279,7 @@ export const About3 = ({
           </p>
           <dl className="mt-12 grid grid-cols-2 gap-8 lg:grid-cols-4 max-w-4xl mx-auto">
             {achievements.map((achievement, index) => (
-              <div key={index} className="text-center group">
+              <div key={index} className="text-center group" data-aos="fade-up" data-aos-delay={`${1300 + index * 100}`}>
                 <dd className="text-3xl lg:text-4xl font-bold leading-9 tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
                   {achievement.value}
                 </dd>
@@ -292,7 +292,7 @@ export const About3 = ({
         </div>
 
         {/* CTA Button - Enhanced positioning and styling */}
-        <div className="text-center">
+        <div className="text-center" data-aos="fade-up" data-aos-delay="1700">
           <Button
             size="lg"
             className="inline-flex items-center px-10 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-500 hover:from-blue-500 hover:via-purple-500 hover:to-blue-600 text-white font-bold text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/25 border-0"
