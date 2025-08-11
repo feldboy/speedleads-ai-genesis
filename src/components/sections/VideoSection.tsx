@@ -13,7 +13,7 @@ const VideoSection = () => (
           playsInline
           controls={false}
           className="w-full aspect-video object-cover"
-          poster="/placeholder.svg"
+          poster="/speedleads-logo.png"
         >
           הדפדפן שלך אינו תומך בסרטונים.
         </video>

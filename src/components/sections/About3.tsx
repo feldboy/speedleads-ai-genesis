@@ -34,27 +34,27 @@ interface About3Props {
 
 const defaultCompanies = [
   {
-    src: "https://www.shadcnblocks.com/images/block/logos/microsoft.svg",
+    src: "/logos/microsoft.svg",
     alt: "Microsoft",
   },
   {
-    src: "https://www.shadcnblocks.com/images/block/logos/google.svg",
+    src: "/logos/google.svg",
     alt: "Google",
   },
   {
-    src: "https://www.shadcnblocks.com/images/block/logos/amazon.svg",
+    src: "/logos/amazon.svg",
     alt: "Amazon",
   },
   {
-    src: "https://www.shadcnblocks.com/images/block/logos/netflix.svg",
+    src: "/logos/netflix.svg",
     alt: "Netflix",
   },
   {
-    src: "https://www.shadcnblocks.com/images/block/logos/paypal.svg",
+    src: "/logos/paypal.svg",
     alt: "PayPal",
   },
   {
-    src: "https://www.shadcnblocks.com/images/block/logos/slack.svg",
+    src: "/logos/slack.svg",
     alt: "Slack",
   },
 ];
@@ -253,17 +253,20 @@ export const About3 = ({
         </div>
 
         {/* Companies Section - Enhanced styling */}
-        <div className="mb-20 text-center" data-aos="fade-up" data-aos-delay="1100">
+        <div className="mb-20 text-center" data-aos="fade-up" data-aos-delay="600">
           <h3 className="mb-8 text-lg font-semibold text-muted-foreground uppercase tracking-wider">
             {companiesTitle}
           </h3>
-          <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-12 opacity-60 hover:opacity-80 transition-opacity duration-300">
+          <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-12 transition-opacity duration-500">
             {companies.map((company, index) => (
               <img
                 key={index}
                 src={company.src}
                 alt={company.alt}
-                className="h-8 lg:h-12 max-w-28 object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                className="h-8 lg:h-10 max-w-32 object-contain opacity-60 hover:opacity-90 transition-all duration-500 hover:scale-105"
+                data-aos="fade-in"
+                data-aos-delay={800 + (index * 100)}
+                data-aos-duration="600"
               />
             ))}
           </div>

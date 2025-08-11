@@ -1,0 +1,6 @@
+<svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <text x="10" y="32" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#6B7280">amazon</text>
+  <!-- Amazon smile arrow -->
+  <path d="M45 42 Q90 37, 135 42" stroke="#6B7280" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M128 39 L135 42 L128 45" stroke="#6B7280" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

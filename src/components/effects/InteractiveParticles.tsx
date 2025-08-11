@@ -20,7 +20,7 @@ function ParticleField({ count = 5000 }) {
       <Points ref={ref} positions={sphere} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
-          color="#00F6FF"
+          color="hsl(188, 100%, 50%)"
           size={0.002}
           sizeAttenuation={true}
           depthWrite={false}

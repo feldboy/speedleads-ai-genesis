@@ -214,7 +214,7 @@ const SuccessStoryCard = ({ story }: { story: SuccessStory }) => (
           href={story.project.demoLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-gold to-yellow-500 text-dark font-bold rounded-xl hover:from-yellow-500 hover:to-gold transition-colors duration-300 backdrop-blur-md shadow-lg"
+          className="flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-tech-blue to-cyan-500 text-dark font-bold rounded-xl hover:from-cyan-500 hover:to-tech-blue transition-all duration-300 backdrop-blur-md shadow-lg hover:shadow-tech-blue/30 border border-tech-blue/20"
         >
           <Play size={18} />
           צפה בדמו
@@ -273,13 +273,13 @@ const SuccessStoryCard = ({ story }: { story: SuccessStory }) => (
             key={i}
             className="flex items-start gap-2 text-xs text-gray-300 hover:text-white transition-colors duration-200"
           >
-            <div className="w-1.5 h-1.5 bg-gradient-to-r from-gold to-yellow-500 rounded-full flex-shrink-0 mt-1" />
+            <div className="w-1.5 h-1.5 bg-gradient-to-r from-tech-blue to-cyan-400 rounded-full flex-shrink-0 mt-1" />
             <span className="leading-relaxed line-clamp-2">{result}</span>
           </div>
         ))}
       </div>
       <div className="mt-auto" />
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-gold via-yellow-500 to-gold opacity-60" />
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-tech-blue via-cyan-400 to-tech-blue opacity-60" />
     </div>
   </div>
 );
@@ -407,12 +407,12 @@ const TestimonialsSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-20">
           <h2
-            className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-gold via-yellow-400 to-tech-blue bg-clip-text text-transparent"
+            className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-tech-blue via-cyan-300 to-speedleads-gold bg-clip-text text-transparent"
             data-aos="fade-up"
           >
             סיפורי הצלחה מרשימים
           </h2>
-          <div className="w-32 h-2 bg-gradient-to-r from-gold via-yellow-500 to-tech-blue mx-auto mb-8 rounded-full shadow-lg shadow-gold/30" />
+          <div className="w-32 h-2 bg-gradient-to-r from-tech-blue via-cyan-400 to-speedleads-gold mx-auto mb-8 rounded-full shadow-lg shadow-tech-blue/30" />
           <p
             className="text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light"
             data-aos="fade-up"
@@ -492,7 +492,7 @@ const TestimonialsSection = () => {
                   onClick={() => scrollTo(i)}
                   className={`h-3 rounded-full transition-all ${
                     active
-                      ? "w-10 bg-gradient-to-r from-gold to-yellow-400"
+                      ? "w-10 bg-gradient-to-r from-tech-blue to-cyan-400"
                       : "w-3 bg-slate-600 hover:bg-slate-500"
                   }`}
                   aria-label={`Go to slide ${i + 1}`}
@@ -506,7 +506,7 @@ const TestimonialsSection = () => {
           <p className="text-xl text-gray-300 mb-8">
             מוכנים לכתוב את סיפור ההצלחה הבא שלכם?
           </p>
-          <button className="px-8 py-4 bg-gradient-to-r from-gold to-yellow-500 text-dark font-bold rounded-xl hover:from-yellow-500 hover:to-gold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-gold/30">
+          <button className="px-8 py-4 bg-gradient-to-r from-tech-blue to-cyan-500 text-dark font-bold rounded-xl hover:from-cyan-500 hover:to-tech-blue transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-tech-blue/30 border border-tech-blue/20">
             בואו נתחיל לעבוד ביחד
           </button>
         </div>

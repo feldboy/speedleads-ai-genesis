@@ -9,13 +9,10 @@ import {
   Star, 
   CheckCircle2, 
   Users, 
-  Clock, 
   Trophy, 
   Zap,
   Shield,
   Rocket,
-  Target,
-  TrendingUp,
   Award
 } from "lucide-react"
 
@@ -26,11 +23,6 @@ interface Service {
   description: string
   points: string[]
   features: string[]
-  stats: {
-    label: string
-    value: string
-    icon: React.ComponentType<{ className?: string }>
-  }[]
   button: string
   icon: React.ComponentType<{ className?: string }>
   price: string
@@ -56,11 +48,6 @@ const services: Service[] = [
       "טעינה מהירה ואבטחה מתקדמת",
       "ניתוח נתונים ודוחות ביצועים"
     ],
-    stats: [
-      { label: "פרויקטים הושלמו", value: "200+", icon: Trophy },
-      { label: "שיפור בהמרות", value: "250%", icon: TrendingUp },
-      { label: "זמן טעינה ממוצע", value: "1.2s", icon: Zap }
-    ],
     button: "בואו נתחיל בפרויקט",
     icon: Palette,
     price: "החל מ-15,000 ₪",
@@ -84,11 +71,6 @@ const services: Service[] = [
       "מערכות דיווח ומעקב אוטומטיות",
       "התראות ועדכונים בזמן אמת"
     ],
-    stats: [
-      { label: "חיסכון בזמן", value: "75%", icon: Clock },
-      { label: "הפחתת עלויות", value: "60%", icon: Target },
-      { label: "שיפור יעילות", value: "300%", icon: Rocket }
-    ],
     button: "גלה את הפתרונות שלנו",
     icon: Bot,
     price: "החל מ-8,000 ₪",
@@ -111,11 +93,6 @@ const services: Service[] = [
       "מערכת המלצות מבוססת AI",
       "פרסונליזציה דינמית של תוכן",
       "אינטגרציה עם רשתות חברתיות"
-    ],
-    stats: [
-      { label: "שיפור מעורבות", value: "185%", icon: Users },
-      { label: "זמן שהייה באתר", value: "+45%", icon: Clock },
-      { label: "הגדלת מכירות", value: "220%", icon: TrendingUp }
     ],
     button: "שדרג את האתר שלך",
     icon: BrainCircuit,
@@ -166,7 +143,7 @@ const ServiceCards = () => {
               <MagicCard
                 key={service.id}
                 className="h-full min-h-[850px] group relative overflow-hidden"
-                gradientColor="#3b82f6"
+                gradientColor="hsl(188, 100%, 50%)"
                 gradientOpacity={0.15}
                 data-aos="fade-up"
                 data-aos-delay={index * 150}
@@ -174,12 +151,12 @@ const ServiceCards = () => {
                 <article className="p-8 h-full flex flex-col text-right relative z-10">
 
                   {/* Accent top bar */}
-                  <div className="h-2 bg-gray-200 mb-8 rounded-full" />
+                  <div className="h-2 bg-gradient-to-r from-speedleads-gold via-accent to-speedleads-gold mb-8 rounded-full" />
                   
                   {/* Icon and Header */}
                   <div className="mb-8">
-                    <div className="w-20 h-20 bg-gray-100 rounded-3xl flex items-center justify-center mb-6 mr-auto shadow-lg">
-                      <IconComponent className="w-10 h-10 text-gray-600" />
+                    <div className="w-20 h-20 bg-gradient-to-br from-speedleads-gold/20 to-accent/20 rounded-3xl flex items-center justify-center mb-6 mr-auto shadow-lg border border-speedleads-gold/30 hover:shadow-xl hover:scale-105 transition-all duration-300">
+                      <IconComponent className="w-10 h-10 text-speedleads-gold group-hover:text-accent transition-colors duration-300" />
                     </div>
                     
                     <h3 className="text-2xl md:text-3xl font-bold text-dark mb-3 group-hover:text-tech-blue transition-colors duration-300">
@@ -229,31 +206,6 @@ const ServiceCards = () => {
                     </ul>
                   </div>
 
-                  {/* Stats Section */}
-                  <div className="mb-8">
-                    <h4 className="text-lg font-bold text-dark mb-4 flex items-center gap-2">
-                      <TrendingUp className="w-5 h-5 text-green-500" />
-                      הישגים מוכחים:
-                    </h4>
-                    <div className="grid grid-cols-1 gap-4">
-                      {service.stats.map((stat, statIndex) => {
-                        const StatIcon = stat.icon
-                        return (
-                          <div key={statIndex} className="bg-white/50 rounded-lg p-3 border border-gray-100">
-                            <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
-                                <StatIcon className="w-5 h-5 text-gray-600" />
-                              </div>
-                              <div>
-                                <div className="text-xl font-bold text-dark">{stat.value}</div>
-                                <div className="text-sm text-gray-600">{stat.label}</div>
-                              </div>
-                            </div>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  </div>
 
                   {/* Pricing and Timing */}
                   <div className="mb-8 p-4 bg-gradient-to-l from-gray-50 to-white rounded-xl border border-gray-100">
@@ -308,8 +260,8 @@ const ServiceCards = () => {
         </div>
 
         {/* Bottom CTA Section */}
-        <div className="text-center mt-16" data-aos="fade-up" data-aos-delay="600">
-          <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-8 max-w-4xl mx-auto">
+        <div className="text-center mt-16" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="800" data-aos-easing="ease-out-cubic">
+          <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-8 max-w-4xl mx-auto shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105">
             <h3 className="text-2xl md:text-3xl font-bold text-dark mb-4">
               מוכנים לשדרג את העסק שלכם?
             </h3>
@@ -319,7 +271,10 @@ const ServiceCards = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-tech-blue to-blue-600 hover:from-blue-600 hover:to-tech-blue text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-gradient-to-r from-tech-blue to-blue-600 hover:from-blue-600 hover:to-tech-blue text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in"
+                data-aos="slide-right" 
+                data-aos-delay="600"
+                data-aos-duration="600"
               >
                 <Users className="w-5 h-5 ml-2" />
                 קבעו פגישת ייעוץ חינם
@@ -327,7 +282,10 @@ const ServiceCards = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-2 border-gold text-gold hover:bg-gold hover:text-white font-bold px-8 py-4 rounded-xl transition-all duration-300"
+                className="border-2 border-gold text-gold hover:bg-gold hover:text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 animate-fade-in"
+                data-aos="slide-left" 
+                data-aos-delay="800"
+                data-aos-duration="600"
               >
                 <Star className="w-5 h-5 ml-2" />
                 צפו בדוגמאות עבודות

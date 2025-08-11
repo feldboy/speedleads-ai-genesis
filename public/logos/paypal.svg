@@ -1,0 +1,6 @@
+<svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- PayPal P logo -->
+  <path d="M15 12 L30 12 Q40 12, 40 22 Q40 32, 30 32 L25 32 L25 48 L15 48 Z M25 20 L25 24 L28 24 Q32 24, 32 22 Q32 20, 28 20 Z" fill="#6B7280"/>
+  
+  <text x="55" y="35" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#6B7280">PayPal</text>
+</svg>

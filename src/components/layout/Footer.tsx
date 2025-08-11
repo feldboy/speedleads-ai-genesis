@@ -9,7 +9,10 @@ const Footer = () => {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div>
-            <GradientHeading variant="light" size="sm" className="mb-4">SpeedLeads.AI</GradientHeading>
+            <div className="flex items-center mb-4">
+              <img src="/speedleads-logo.png" alt="SpeedLeads.AI Logo" className="h-6 mr-3" />
+              <GradientHeading variant="light" size="sm">SpeedLeads.AI</GradientHeading>
+            </div>
             <p className="text-gray-400 mb-4">
               פתרונות דיגיטליים מתקדמים מבוססי AI לעסקים שרוצים להוביל את השוק.
             </p>

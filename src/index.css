@@ -15,6 +15,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
+    /* SpeedLeads AI Primary Brand Colors */
     --primary: 216 50% 11%;
     --primary-foreground: 210 40% 98%;
 
@@ -24,11 +25,38 @@
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 188 100% 50%;
+    /* SpeedLeads AI Accent Colors */
+    --accent: 188 100% 50%;        /* Tech Blue #00F6FF */
     --accent-foreground: 222.2 47.4% 11.2%;
 
+    --gold: 45 69% 52%;            /* Gold #B08D57 */
+    --gold-foreground: 0 0% 100%;
+
+    /* Status Colors */
+    --success: 142 76% 36%;        /* Success Green */
+    --success-foreground: 0 0% 100%;
+    
+    --warning: 45 93% 47%;         /* Warning Amber */
+    --warning-foreground: 0 0% 0%;
+    
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
+
+    /* WhatsApp Brand Color */
+    --whatsapp: 142 69% 49%;       /* #25D366 */
+    --whatsapp-hover: 142 72% 45%; /* #20BD5C */
+
+    /* Extended Gray Palette */
+    --gray-50: 210 40% 98%;
+    --gray-100: 210 40% 96%;
+    --gray-200: 214 32% 91%;
+    --gray-300: 213 27% 84%;
+    --gray-400: 215 20% 65%;
+    --gray-500: 215 16% 47%;
+    --gray-600: 215 19% 35%;
+    --gray-700: 215 25% 27%;
+    --gray-800: 217 33% 17%;
+    --gray-900: 222 47% 11%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
@@ -59,7 +87,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #B08D57, #00F6FF);
+  background: linear-gradient(90deg, hsl(var(--gold)), hsl(var(--accent)));
   border-radius: 4px 4px 0 0;
   transform: scaleX(0);
   transform-origin: 0 0;

@@ -73,6 +73,37 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
+				// SpeedLeads AI Brand Colors (using CSS custom properties)
+				'speedleads-gold': {
+					DEFAULT: 'hsl(var(--gold))',
+					foreground: 'hsl(var(--gold-foreground))'
+				},
+				'speedleads-success': {
+					DEFAULT: 'hsl(var(--success))',
+					foreground: 'hsl(var(--success-foreground))'
+				},
+				'speedleads-warning': {
+					DEFAULT: 'hsl(var(--warning))',
+					foreground: 'hsl(var(--warning-foreground))'
+				},
+				'speedleads-whatsapp': {
+					DEFAULT: 'hsl(var(--whatsapp))',
+					hover: 'hsl(var(--whatsapp-hover))'
+				},
+				// Comprehensive Gray Scale
+				'speedleads-gray': {
+					50: 'hsl(var(--gray-50))',
+					100: 'hsl(var(--gray-100))',
+					200: 'hsl(var(--gray-200))',
+					300: 'hsl(var(--gray-300))',
+					400: 'hsl(var(--gray-400))',
+					500: 'hsl(var(--gray-500))',
+					600: 'hsl(var(--gray-600))',
+					700: 'hsl(var(--gray-700))',
+					800: 'hsl(var(--gray-800))',
+					900: 'hsl(var(--gray-900))'
+				},
+				// Backward compatibility (maintain existing direct colors)
 				dark: '#0D1B2A',
 				gold: '#B08D57',
 				'tech-blue': '#00F6FF',

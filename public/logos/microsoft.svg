@@ -1,0 +1,9 @@
+<svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Microsoft 4-square logo -->
+  <rect x="15" y="18" width="10" height="10" fill="#6B7280"/>
+  <rect x="27" y="18" width="10" height="10" fill="#6B7280"/>
+  <rect x="15" y="32" width="10" height="10" fill="#6B7280"/>
+  <rect x="27" y="32" width="10" height="10" fill="#6B7280"/>
+  
+  <text x="45" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="normal" fill="#6B7280">Microsoft</text>
+</svg>
