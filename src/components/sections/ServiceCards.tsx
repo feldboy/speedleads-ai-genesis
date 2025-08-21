@@ -1,7 +1,7 @@
-import React from "react"
-import { MagicCard } from "@/components/ui/magic-card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import React from "react";
+import { MagicCard } from "@/components/ui/magic-card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { 
   Palette, 
   Bot, 
@@ -14,7 +14,7 @@ import {
   Shield,
   Rocket,
   Award
-} from "lucide-react"
+} from "lucide-react";
 
 interface Service {
   id: string
@@ -27,7 +27,7 @@ interface Service {
   icon: React.ComponentType<{ className?: string }>
   price: string
   deliveryTime: string
-  trustSignals: string[]
+  trustSignals: string[];
 }
 
 const services: Service[] = [
@@ -100,7 +100,7 @@ const services: Service[] = [
     deliveryTime: "3-6 שבועות",
     trustSignals: ["תוצאות מוכחות", "יועץ אישי", "גישה מלאה לנתונים"]
   },
-]
+];
 
 const ServiceCards = () => {
   return (
@@ -295,7 +295,7 @@ const ServiceCards = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default ServiceCards
+export default ServiceCards;
