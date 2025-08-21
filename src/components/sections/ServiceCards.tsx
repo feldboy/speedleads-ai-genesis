@@ -118,7 +118,7 @@ const ServiceCards = () => {
           
           <h2
             id="services_title"
-            className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-l from-tech-blue via-gold to-tech-blue bg-clip-text text-transparent"
+            className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-l from-tech-blue via-gold to-tech-blue bg-clip-text text-transparent"
             data-aos="fade-up"
             data-aos-delay="100"
           >
@@ -128,7 +128,7 @@ const ServiceCards = () => {
           <div className="w-32 h-1.5 bg-gradient-to-r from-gold via-tech-blue to-gold mx-auto mb-8 rounded-full" data-aos="fade-up" data-aos-delay="200" />
           
           <p
-            className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4 sm:px-0"
             data-aos="fade-up"
             data-aos-delay="300"
           >
@@ -136,19 +136,19 @@ const ServiceCards = () => {
           </p>
         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto px-4 lg:px-0"
           {services.map((service, index) => {
             const IconComponent = service.icon
             return (
               <MagicCard
                 key={service.id}
-                className="h-full min-h-[850px] group relative overflow-hidden"
+                className="h-full group relative overflow-hidden"
                 gradientColor="hsl(188, 100%, 50%)"
                 gradientOpacity={0.15}
                 data-aos="fade-up"
                 data-aos-delay={index * 150}
               >
-                <article className="p-8 h-full flex flex-col text-right relative z-10">
+                <article className="p-6 sm:p-8 h-full flex flex-col text-right relative z-10"
 
                   {/* Accent top bar */}
                   <div className="h-2 bg-gradient-to-r from-speedleads-gold via-accent to-speedleads-gold mb-8 rounded-full" />
@@ -159,15 +159,15 @@ const ServiceCards = () => {
                       <IconComponent className="w-10 h-10 text-speedleads-gold group-hover:text-accent transition-colors duration-300" />
                     </div>
                     
-                    <h3 className="text-2xl md:text-3xl font-bold text-dark mb-3 group-hover:text-tech-blue transition-colors duration-300">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-dark mb-3 group-hover:text-tech-blue transition-colors duration-300"
                       {service.title}
                     </h3>
                     
-                    <p className="text-lg font-medium text-gray-500 mb-4">
+                    <p className="text-base sm:text-lg font-medium text-gray-500 mb-4"
                       {service.subtitle}
                     </p>
                     
-                    <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+                    <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed"
                       {service.description}
                     </p>
                   </div>
@@ -178,7 +178,7 @@ const ServiceCards = () => {
                       <CheckCircle2 className="w-5 h-5 text-green-500" />
                       מה כלול בשירות:
                     </h4>
-                    <ul className="space-y-3 text-sm md:text-base text-gray-700">
+                    <ul className="space-y-3 text-xs sm:text-sm md:text-base text-gray-700"
                       {service.points.map((point, pointIndex) => (
                         <li key={pointIndex} className="flex items-start group/item">
                           <div className="w-2 h-2 bg-tech-blue rounded-full mt-2 mr-3 flex-shrink-0 group-hover/item:scale-150 transition-transform duration-300" />
@@ -196,7 +196,7 @@ const ServiceCards = () => {
                       <Zap className="w-5 h-5 text-yellow-500" />
                       תכונות מתקדמות:
                     </h4>
-                    <ul className="space-y-2 text-sm text-gray-600">
+                    <ul className="space-y-2 text-xs sm:text-sm text-gray-600"
                       {service.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="flex items-center gap-2">
                           <div className="w-1.5 h-1.5 bg-gold rounded-full flex-shrink-0" />
@@ -262,16 +262,16 @@ const ServiceCards = () => {
         {/* Bottom CTA Section */}
         <div className="text-center mt-16" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="800" data-aos-easing="ease-out-cubic">
           <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-8 max-w-4xl mx-auto shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105">
-            <h3 className="text-2xl md:text-3xl font-bold text-dark mb-4">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-dark mb-4"
               מוכנים לשדרג את העסק שלכם?
             </h3>
-            <p className="text-lg text-gray-600 mb-6">
+            <p className="text-base sm:text-lg text-gray-600 mb-6"
               בואו נתחיל בפגישת ייעוץ חינם ונראה איך אנחנו יכולים לעזור לכם להגיע למטרות שלכם
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center px-4 sm:px-0"
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-tech-blue to-blue-600 hover:from-blue-600 hover:to-tech-blue text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in"
+                className="bg-gradient-to-r from-tech-blue to-blue-600 hover:from-blue-600 hover:to-tech-blue text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in text-sm sm:text-base min-h-[44px]"
                 data-aos="slide-right" 
                 data-aos-delay="600"
                 data-aos-duration="600"
@@ -282,7 +282,7 @@ const ServiceCards = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-2 border-gold text-gold hover:bg-gold hover:text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 animate-fade-in"
+                className="border-2 border-gold text-gold hover:bg-gold hover:text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 hover:scale-105 animate-fade-in text-sm sm:text-base min-h-[44px]"
                 data-aos="slide-left" 
                 data-aos-delay="800"
                 data-aos-duration="600"

@@ -33,8 +33,8 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <a href="/" className="flex items-center">
-            <img src="/speedleads-logo.png" alt="SpeedLeads.AI Logo" className="h-7 mr-5" />
-            <span className="text-white text-2xl font-bold mx-[14px]">
+            <img src="/speedleads-logo.png" alt="SpeedLeads.AI Logo" className="h-6 sm:h-7 md:h-8 mr-3 sm:mr-5" />
+            <span className="text-white text-lg sm:text-xl md:text-2xl font-bold mx-[8px] sm:mx-[14px]">
               Speed<span className="text-tech-blue">Leads</span>.AI
             </span>
           </a>
@@ -61,28 +61,28 @@ const Header = () => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <Button variant="ghost" size="icon" className="text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <Button variant="ghost" size="icon" className="text-white min-h-[44px] min-w-[44px]" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X /> : <Menu />}
           </Button>
         </div>
       </div>
 
       {/* Mobile Navigation */}
-      {mobileMenuOpen && <nav className="md:hidden bg-dark bg-opacity-95 py-5 px-4">
+      {mobileMenuOpen && <nav className="md:hidden bg-dark bg-opacity-95 py-5 px-4 border-t border-gray-700">
           <div className="flex flex-col space-y-4">
-            <Button variant="link" className="text-white hover:text-tech-blue transition-colors p-0 justify-start" onClick={() => scrollToSection('services')}>
+            <Button variant="link" className="text-white hover:text-tech-blue transition-colors p-2 justify-start min-h-[44px] text-base" onClick={() => scrollToSection('services')}>
               השירותים שלנו
             </Button>
-            <Button variant="link" className="text-white hover:text-tech-blue transition-colors p-0 justify-start" onClick={() => scrollToSection('advantages')}>
+            <Button variant="link" className="text-white hover:text-tech-blue transition-colors p-2 justify-start min-h-[44px] text-base" onClick={() => scrollToSection('advantages')}>
               היתרונות
             </Button>
-            <Button variant="link" className="text-white hover:text-tech-blue transition-colors p-0 justify-start" onClick={() => scrollToSection('clients')}>
+            <Button variant="link" className="text-white hover:text-tech-blue transition-colors p-2 justify-start min-h-[44px] text-base" onClick={() => scrollToSection('clients')}>
               לקוחות
             </Button>
-            <Button variant="link" className="text-white hover:text-tech-blue transition-colors p-0 justify-start" onClick={() => scrollToSection('faq')}>
+            <Button variant="link" className="text-white hover:text-tech-blue transition-colors p-2 justify-start min-h-[44px] text-base" onClick={() => scrollToSection('faq')}>
               שאלות נפוצות
             </Button>
-            <Button id="header_mobile_contact_button" className="bg-transparent border border-tech-blue text-tech-blue hover:bg-tech-blue hover:text-dark w-full" onClick={() => scrollToSection('contact')}>
+            <Button id="header_mobile_contact_button" className="bg-transparent border border-tech-blue text-tech-blue hover:bg-tech-blue hover:text-dark w-full min-h-[44px] text-base" onClick={() => scrollToSection('contact')}>
               צור קשר
             </Button>
           </div>
