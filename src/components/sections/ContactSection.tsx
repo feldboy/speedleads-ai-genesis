@@ -63,9 +63,9 @@ const ContactSection = () => {
           </p>
         </div>
         
-        <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start px-4 lg:px-0"
+        <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start px-4 lg:px-0">
           <div data-aos="fade-right">
-            <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6 sm:p-8"
+            <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6 sm:p-8">
               <div className="mb-6">
                 <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">שם מלא *</label>
                 <Input
