@@ -195,12 +195,12 @@ const successStories: SuccessStory[] = [
 
 const SuccessStoryCard = ({ story }: { story: SuccessStory }) => (
   <div className="success-story-card box-border group relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700/50 hover:border-gold/60 transition-colors duration-400 shadow-xl hover:shadow-gold/10 h-full flex flex-col">
-    {/* Project Image (fixed height) */}
-    <div className="relative h-64 overflow-hidden shrink-0">
+    {/* Project Image (responsive height) */}
+    <div className="relative h-40 sm:h-64 overflow-hidden shrink-0">
       <img
         src={story.project.image}
         alt={story.title}
-        className="w-full h-full object-cover transition-transform duration-[1600ms] group-hover:scale-105"
+        className="w-full h-full object-cover transition-transform duration-300 sm:group-hover:scale-105"
         loading="lazy"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent" />
@@ -222,8 +222,8 @@ const SuccessStoryCard = ({ story }: { story: SuccessStory }) => (
       </div>
     </div>
     {/* Content */}
-    <div className="p-8 flex-1 flex flex-col">
-      <div className="flex items-center gap-4 mb-6">
+    <div className="p-4 sm:p-8 flex-1 flex flex-col">
+      <div className="flex items-center gap-4 mb-3 sm:mb-6">
         <div className="relative shrink-0">
           <img
             src={story.client.image}
@@ -246,13 +246,13 @@ const SuccessStoryCard = ({ story }: { story: SuccessStory }) => (
           </p>
         </div>
       </div>
-      <h3 className="text-2xl font-bold text-white mb-3 leading-snug line-clamp-2 min-h-[3.2rem]">
+      <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 leading-snug line-clamp-2 min-h-[3.2rem]">
         {story.title}
       </h3>
       <p className="text-gray-300 text-sm mb-5 leading-relaxed line-clamp-3 min-h-[4.2rem]">
         {story.description}
       </p>
-      <div className="grid grid-cols-2 gap-4 mb-6">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-6">
         {story.stats.map((stat, index) => (
           <div
             key={index}
@@ -347,40 +347,40 @@ const TestimonialsSection = () => {
     return () => clearInterval(id);
   }, [emblaApi, isPlaying]);
 
-  // const measure = useCallback(() => {
-  //   const cards = document.querySelectorAll<HTMLElement>(".success-story-card");
-  //   if (!cards.length) return;
-  //   let max = 0;
-  //   cards.forEach((c) => {
-  //     c.style.height = "auto";
-  //     const h = c.offsetHeight;
-  //     if (h > max) max = h;
-  //   });
-  //   if (max && max !== uniformHeight) setUniformHeight(max);
-  // }, [uniformHeight]);
-  // useEffect(() => {
-  //   const imgs = Array.from(
-  //     document.querySelectorAll<HTMLImageElement>(".success-story-card img")
-  //   );
-  //   Promise.allSettled(
-  //     imgs.map((img) =>
-  //       img.decode ? img.decode().catch(() => {}) : Promise.resolve()
-  //     )
-  //   ).finally(() => {
-  //     measure();
-  //     setTimeout(measure, 100);
-  //     setTimeout(() => {
-  //       measure();
-  //       setHeightLocked(true);
-  //     }, 400);
-  //   });
-  //   window.addEventListener("resize", measure);
-  //   return () => window.removeEventListener("resize", measure);
-  // }, [measure]);
-  // useEffect(() => {
-  //   if (!emblaApi) return;
-  //   emblaApi.on("reInit", () => !heightLocked && measure());
-  // }, [emblaApi, measure, heightLocked]);
+  const measure = useCallback(() => {
+    const cards = document.querySelectorAll<HTMLElement>(".success-story-card");
+    if (!cards.length) return;
+    let max = 0;
+    cards.forEach((c) => {
+      c.style.height = "auto";
+      const h = c.offsetHeight;
+      if (h > max) max = h;
+    });
+    if (max && max !== uniformHeight) setUniformHeight(max);
+  }, [uniformHeight]);
+  useEffect(() => {
+    const imgs = Array.from(
+      document.querySelectorAll<HTMLImageElement>(".success-story-card img")
+    );
+    Promise.allSettled(
+      imgs.map((img) =>
+        img.decode ? img.decode().catch(() => {}) : Promise.resolve()
+      )
+    ).finally(() => {
+      measure();
+      setTimeout(measure, 100);
+      setTimeout(() => {
+        measure();
+        setHeightLocked(true);
+      }, 400);
+    });
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [measure]);
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on("reInit", () => !heightLocked && measure());
+  }, [emblaApi, measure, heightLocked]);
 
   const scrollPrev = useCallback(
     () => emblaApi && emblaApi.scrollPrev(),
@@ -404,7 +404,7 @@ const TestimonialsSection = () => {
         <div className="absolute top-20 left-10 w-72 h-72 bg-gold rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-tech-blue rounded-full blur-3xl"></div>
       </div>
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-20">
           <h2
             className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-tech-blue via-cyan-300 to-speedleads-gold bg-clip-text text-transparent"
@@ -444,19 +444,18 @@ const TestimonialsSection = () => {
         >
           {/* Viewport WITH horizontal padding; track only manages internal gaps */}
           <div
-            className="overflow-hidden rounded-3xl"
+            className="overflow-hidden rounded-3xl mx-4 sm:mx-0"
             ref={emblaRef}
             style={{ direction: "ltr" }}
           >
-            <div className="flex items-stretch will-change-transform">
+            <div className="flex items-stretch will-change-transform transform-gpu">
               {successStories.map((story, index) => (
                 <div
                   key={story.id}
-                  className="embla__slide min-w-0 flex flex-col h-full box-border"
+                  className="embla__slide min-w-0 flex flex-col h-full box-border testimonial-slide"
                   style={{
-                    flex: `0 0  calc(100% /3)`,
                     height: uniformHeight || undefined,
-                    paddingRight:  GAP_PX 
+                    paddingRight: index < successStories.length - 1 ? GAP_PX : 0
                   }}
                   aria-label={story.title}
                 >

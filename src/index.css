@@ -359,6 +359,20 @@
   .sm\:w-\[95vw\] { width: 95vw !important; }
 }
 
+/* Testimonials Carousel Responsive with Performance Optimizations */
+.testimonial-slide {
+  flex: 0 0 100%;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+@media (min-width: 768px) {
+  .testimonial-slide {
+    flex: 0 0 calc(100% / 3);
+  }
+}
+
 html, body {
   max-width: 100vw;
   overflow-x: hidden;

@@ -51,7 +51,7 @@ const MagneticButton: React.FC<MagneticButtonProps> = ({
         stiffness: 300,
         damping: 30,
       }}
-      whileHover={{ scale: 1.05 }}
+      whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.95 }}
     >
       <motion.div

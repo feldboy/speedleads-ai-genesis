@@ -118,7 +118,7 @@ const Index = () => {
         target="_blank"
         rel="noopener noreferrer"
         id="whatsapp_floating_button"
-        className="fixed bottom-6 right-6 md:bottom-6 md:right-6 sm:bottom-4 sm:right-4 bg-speedleads-whatsapp hover:bg-speedleads-whatsapp-hover text-white rounded-full p-4 md:p-4 sm:p-3 shadow-xl z-40 transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-fade-in border border-white/30"
+        className="fixed bottom-6 right-6 md:bottom-6 md:right-6 sm:bottom-4 sm:right-4 bg-speedleads-whatsapp hover:bg-speedleads-whatsapp-hover text-white rounded-full p-4 md:p-4 sm:p-3 shadow-xl z-40 transition-all duration-300 sm:hover:scale-105 sm:hover:shadow-2xl animate-fade-in border border-white/30"
         style={{ boxShadow: '0 8px 32px 0 rgba(34, 197, 94, 0.25)' }}
         onClick={() => hasConsent && trackEvent('click_whatsapp', {})}
       >

@@ -11,7 +11,7 @@ const WhatsAppButton = () => {
       type="button"
       id="whatsapp_floating_button"
       onClick={handleWhatsAppClick}
-      className="fixed bottom-4 right-10 md:bottom-4 md:right-10 sm:bottom-2 sm:right-4 bg-green-500 hover:bg-green-600 text-white rounded-full p-3 md:p-3 sm:p-2 shadow-lg z-40 transition-all duration-300 hover:scale-105 hover:shadow-xl animate-fade-in border border-green-400"
+      className="fixed bottom-4 right-10 md:bottom-4 md:right-10 sm:bottom-2 sm:right-4 bg-green-500 hover:bg-green-600 text-white rounded-full p-3 md:p-3 sm:p-2 shadow-lg z-40 transition-all duration-300 sm:hover:scale-105 sm:hover:shadow-xl animate-fade-in border border-green-400"
       aria-label="שלח הודעה בוואטסאפ"
       title="וואטסאפ"
       style={{ boxShadow: '0 8px 32px 0 rgba(0,0,0,0.10)' }}

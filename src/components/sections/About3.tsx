@@ -147,7 +147,7 @@ export const About3 = ({
               <Button 
                 asChild 
                 size="lg" 
-                className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg sm:hover:shadow-xl transition-all duration-300 sm:hover:scale-105"
               >
                 <a href={breakout.buttonUrl}>{breakout.buttonText}</a>
               </Button>
@@ -176,7 +176,7 @@ export const About3 = ({
                 <img
                   src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=300&fit=crop&auto=format&q=80"
                   alt="שירות אישי ושותפות עסקית אמיתית"
-                  className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  className="h-48 w-full object-cover transition-transform duration-300 sm:group-hover:scale-105"
                 />
               </div>
               <div className="text-center">
@@ -196,7 +196,7 @@ export const About3 = ({
                 <img
                   src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=300&fit=crop&auto=format&q=80"
                   alt="אנליטיקה ואסטרטגיה מבוססת נתונים"
-                  className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  className="h-48 w-full object-cover transition-transform duration-300 sm:group-hover:scale-105"
                 />
               </div>
               <div className="text-center">
@@ -216,7 +216,7 @@ export const About3 = ({
                 <img
                   src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=300&fit=crop&auto=format&q=80"
                   alt="תשתית יציבה ובטוחה לביצועים מיטביים"
-                  className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  className="h-48 w-full object-cover transition-transform duration-300 sm:group-hover:scale-105"
                 />
               </div>
               <div className="text-center">
@@ -236,7 +236,7 @@ export const About3 = ({
                 <img
                   src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=300&fit=crop&auto=format&q=80"
                   alt="שקיפות מלאה ובקרה על הפרויקט"
-                  className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  className="h-48 w-full object-cover transition-transform duration-300 sm:group-hover:scale-105"
                 />
               </div>
               <div className="text-center">
@@ -283,7 +283,7 @@ export const About3 = ({
           <dl className="mt-12 grid grid-cols-2 gap-8 lg:grid-cols-4 max-w-4xl mx-auto">
             {achievements.map((achievement, index) => (
               <div key={index} className="text-center group" data-aos="fade-up" data-aos-delay={`${1300 + index * 100}`}>
-                <dd className="text-3xl lg:text-4xl font-bold leading-9 tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
+                <dd className="text-3xl lg:text-4xl font-bold leading-9 tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent sm:group-hover:scale-105 transition-transform duration-300">
                   {achievement.value}
                 </dd>
                 <dt className="mt-2 text-base leading-7 text-muted-foreground">
@@ -298,7 +298,7 @@ export const About3 = ({
         <div className="text-center" data-aos="fade-up" data-aos-delay="1700">
           <Button
             size="lg"
-            className="inline-flex items-center px-10 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-500 hover:from-blue-500 hover:via-purple-500 hover:to-blue-600 text-white font-bold text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/25 border-0"
+            className="inline-flex items-center px-10 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-500 hover:from-blue-500 hover:via-purple-500 hover:to-blue-600 text-white font-bold text-lg rounded-2xl transition-all duration-300 sm:hover:scale-105 shadow-2xl sm:hover:shadow-blue-500/25 border-0"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
             בואו נתחיל לעבוד יחד
