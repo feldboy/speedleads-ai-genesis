@@ -63,9 +63,7 @@ const Footer = () => {
           <div>
             <GradientHeading variant="light" size="sm" className="mb-4">צור קשר</GradientHeading>
             <ul className="space-y-2 text-gray-400">
-              <li>טלפון: 03-1234567</li>
-              <li>אימייל: info@speedleads.ai</li>
-              <li>כתובת: רחוב הטכנולוגיה 1, תל אביב</li>
+              <li>אימייל: info@speedleads-ai.com</li>
             </ul>
             <Button 
               id="footer_contact_button"

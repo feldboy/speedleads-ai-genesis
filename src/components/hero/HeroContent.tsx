@@ -28,7 +28,7 @@ const HeroContent: React.FC = () => {
         initial="hidden"
         animate="visible"
         custom={{ delayIdx: 0 }}
-        className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4"
+        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4"
       >
         <motion.span
           animate={{
@@ -67,7 +67,7 @@ const HeroContent: React.FC = () => {
         initial="hidden"
         animate="visible"
         custom={{ delayIdx: 1 }}
-        className="text-xl text-gray-300 mb-8"
+        className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 leading-relaxed px-4 sm:px-0"
       >
         פתרונות AI מתקדמים לבניית אתרים, אוטומציות עסקיות ואינטגרציות חכמות –
         שנועדו להזניק את העסק שלך קדימה.
@@ -78,13 +78,13 @@ const HeroContent: React.FC = () => {
         initial="hidden"
         animate="visible"
         custom={{ delayIdx: 2 }}
-        className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse rtl:space-x-reverse"
+        className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse rtl:space-x-reverse px-4 sm:px-0"
       >
         <MagneticButton>
           <Button
             id="hero_cta_button"
             size="lg"
-            className="bg-gradient-to-r from-tech-blue to-blue-600 hover:from-tech-blue/80 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-lg shadow-lg hover:shadow-tech-blue/25 transition-all duration-300"
+            className="bg-gradient-to-r from-tech-blue to-blue-600 hover:from-tech-blue/80 hover:to-blue-500 text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-lg shadow-lg hover:shadow-tech-blue/25 transition-all duration-300 text-sm sm:text-base min-h-[44px]"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
             בואו נדבר על הפרויקט שלכם
@@ -96,7 +96,7 @@ const HeroContent: React.FC = () => {
             size="lg"
             variant="outline"
             onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-            className="border-2 border-white/30 font-semibold text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 px-8 py-4 rounded-lg hover:shadow-gold/25 transition-all duration-300"
+            className="border-2 border-white/30 font-semibold text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:shadow-gold/25 transition-all duration-300 text-sm sm:text-base min-h-[44px]"
           >
             גלו את השירותים שלנו
           </Button>

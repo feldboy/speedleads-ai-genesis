@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent, type FormEvent } from 'react';
+import React, { useState, type ChangeEvent, type FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -56,16 +56,16 @@ const ContactSection = () => {
     <section id="contact" className="py-20 bg-gray-100">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">מוכנים לקחת את העסק שלכם לשלב הבא?</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 px-4 sm:px-0" data-aos="fade-up">מוכנים לקחת את העסק שלכם לשלב הבא?</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-gold to-tech-blue mx-auto mb-8" />
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0" data-aos="fade-up" data-aos-delay="100">
             מלאו את הפרטים ונחזור אליכם בהקדם לשיחת ייעוץ ללא התחייבות
           </p>
         </div>
         
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start px-4 lg:px-0">
           <div data-aos="fade-right">
-            <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-8">
+            <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6 sm:p-8">
               <div className="mb-6">
                 <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">שם מלא *</label>
                 <Input
@@ -75,7 +75,7 @@ const ContactSection = () => {
                   required
                   value={formData.fullName}
                   onChange={handleChange}
-                  className="w-full"
+                  className="w-full min-h-[44px]"
                   placeholder="השם המלא שלך"
                 />
               </div>
@@ -88,7 +88,7 @@ const ContactSection = () => {
                   type="text"
                   value={formData.company}
                   onChange={handleChange}
-                  className="w-full"
+                  className="w-full min-h-[44px]"
                   placeholder="שם החברה או העסק"
                 />
               </div>
@@ -102,7 +102,7 @@ const ContactSection = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full"
+                  className="w-full min-h-[44px]"
                   placeholder="האימייל שלך"
                 />
               </div>
@@ -116,7 +116,7 @@ const ContactSection = () => {
                   required
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full"
+                  className="w-full min-h-[44px]"
                   placeholder="מספר הטלפון שלך"
                 />
               </div>
@@ -128,7 +128,7 @@ const ContactSection = () => {
                   name="interest"
                   value={formData.interest}
                   onChange={handleChange}
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-tech-blue focus:border-transparent"
+                  className="w-full rounded-md border border-gray-300 px-3 py-3 min-h-[44px] text-base focus:outline-none focus:ring-2 focus:ring-tech-blue focus:border-transparent"
                 >
                   <option value="general">ייעוץ כללי</option>
                   <option value="website">בניית אתר</option>
@@ -146,7 +146,7 @@ const ContactSection = () => {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full"
+                  className="w-full min-h-[44px]"
                   placeholder="ספר לנו קצת על הפרויקט שלך"
                   rows={4}
                 />
@@ -155,7 +155,7 @@ const ContactSection = () => {
               <Button
                 id="submit_contact_form_button"
                 type="submit"
-                className="w-full bg-tech-blue hover:bg-tech-blue/80 text-dark font-bold"
+                className="w-full bg-tech-blue hover:bg-tech-blue/80 text-dark font-bold min-h-[44px] text-base"
                 disabled={loading}
               >
                 {loading ? (
@@ -176,8 +176,8 @@ const ContactSection = () => {
             </form>
           </div>
           
-          <div className="bg-dark text-white rounded-lg shadow-lg p-8" data-aos="fade-left">
-            <h3 className="text-2xl font-bold mb-6">דרכי התקשרות נוספות</h3>
+          <div className="bg-dark text-white rounded-lg shadow-lg p-6 sm:p-8" data-aos="fade-left">
+            <h3 className="text-xl sm:text-2xl font-bold mb-6">דרכי התקשרות נוספות</h3>
             
             <div className="space-y-6">
               <div className="flex items-start">
@@ -188,8 +188,8 @@ const ContactSection = () => {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold mb-1">טלפון</h4>
-                  <p className="text-gray-300">03-1234567</p>
+                  <h4 className="text-base sm:text-lg font-semibold mb-1">טלפון</h4>
+                  <p className="text-sm sm:text-base text-gray-300">03-1234567</p>
                 </div>
               </div>
               
@@ -201,8 +201,8 @@ const ContactSection = () => {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold mb-1">אימייל</h4>
-                  <p className="text-gray-300">info@speedleads.ai</p>
+                  <h4 className="text-base sm:text-lg font-semibold mb-1">אימייל</h4>
+                  <p className="text-sm sm:text-base text-gray-300">info@speedleads-ai.com</p>
                 </div>
               </div>
               
@@ -215,21 +215,21 @@ const ContactSection = () => {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold mb-1">כתובת</h4>
-                  <p className="text-gray-300">רחוב הטכנולוגיה 1, תל אביב</p>
+                  <h4 className="text-base sm:text-lg font-semibold mb-1">כתובת</h4>
+                  <p className="text-sm sm:text-base text-gray-300">רחוב הטכנולוגיה 1, תל אביב</p>
                 </div>
               </div>
             </div>
             
             <div className="mt-10">
-              <h4 className="text-lg font-semibold mb-4">שעות פעילות</h4>
-              <div className="grid grid-cols-2 gap-2">
-                <div className="text-gray-300">ראשון - חמישי:</div>
-                <div className="text-white">9:00 - 18:00</div>
-                <div className="text-gray-300">שישי:</div>
-                <div className="text-white">9:00 - 13:00</div>
-                <div className="text-gray-300">שבת:</div>
-                <div className="text-white">סגור</div>
+              <h4 className="text-base sm:text-lg font-semibold mb-4">שעות פעילות</h4>
+              <div className="grid grid-cols-2 gap-2 text-sm sm:text-base">
+                <div className="text-gray-300 text-xs sm:text-sm">ראשון - חמישי:</div>
+                <div className="text-white text-xs sm:text-sm">9:00 - 18:00</div>
+                <div className="text-gray-300 text-xs sm:text-sm">שישי:</div>
+                <div className="text-white text-xs sm:text-sm">9:00 - 13:00</div>
+                <div className="text-gray-300 text-xs sm:text-sm">שבת:</div>
+                <div className="text-white text-xs sm:text-sm">סגור</div>
               </div>
             </div>
             {/* Original WhatsApp button block removed */}
