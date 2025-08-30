@@ -11,72 +11,9 @@ interface About3Props {
     src: string;
     alt: string;
   };
-  breakout?: {
-    src: string;
-    alt: string;
-    title?: string;
-    description?: string;
-    buttonText?: string;
-    buttonUrl?: string;
-  };
-  companiesTitle?: string;
-  companies?: Array<{
-    src: string;
-    alt: string;
-  }>;
-  achievementsTitle?: string;
-  achievementsDescription?: string;
-  achievements?: Array<{
-    label: string;
-    value: string;
-  }>;
 }
 
-const defaultCompanies = [
-  {
-    src: "/logos/microsoft.svg",
-    alt: "Microsoft",
-  },
-  {
-    src: "/logos/google.svg",
-    alt: "Google",
-  },
-  {
-    src: "/logos/amazon.svg",
-    alt: "Amazon",
-  },
-  {
-    src: "/logos/netflix.svg",
-    alt: "Netflix",
-  },
-  {
-    src: "/logos/paypal.svg",
-    alt: "PayPal",
-  },
-  {
-    src: "/logos/slack.svg",
-    alt: "Slack",
-  },
-];
 
-const defaultAchievements = [
-  {
-    label: "עסקים שעוברים אוטומציה",
-    value: "300+",
-  },
-  {
-    label: "תיקי לקוחות מוצלחים",
-    value: "1.2M+",
-  },
-  {
-    label: "שיפור בביצועים",
-    value: "99%",
-  },
-  {
-    label: "שעות חיסכון בחודש",
-    value: "300+",
-  },
-];
 
 export const About3 = ({
   title = "למה SpeedLeads.AI?",
@@ -89,19 +26,6 @@ export const About3 = ({
     src: "/lovable-uploads/Group_12762czc.jpg",
     alt: "עבודת צוות מקצועית וטכנולוגית",
   },
-  breakout = {
-    src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80",
-    alt: "אנליטיקה עסקית וצמיחה מבוססת נתונים",
-    title: "התוצאות מדברות בעד עצמן",
-    description: "300+ עסקים כבר חוסכים שעות עבודה כל יום בזכות הפתרונות שלנו. בואו נראה איך אנחנו יכולים לעזור גם לכם.",
-    buttonText: "בואו נתחיל לעבוד יחד",
-    buttonUrl: "#contact",
-  },
-  companiesTitle = "מובילים בתחום ה-AI",
-  companies = defaultCompanies,
-  achievementsTitle = "הנתונים שלנו",
-  achievementsDescription = "מעל 3 שנים של ניסיון בפיתוח פתרונות AI לעסקים",
-  achievements = defaultAchievements,
 }: About3Props = {}) => {
   return (
     <section className="py-20 lg:py-32 bg-gradient-to-b from-background to-muted/20">
@@ -134,33 +58,6 @@ export const About3 = ({
           </div>
         </div>
 
-        {/* Breakout Section - Enhanced styling */}
-        <div className="relative mb-20 grid gap-8 overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/50 dark:to-purple-950/50 p-8 lg:p-12 lg:grid-cols-3 shadow-xl border border-blue-100 dark:border-blue-800" data-aos="fade-up">
-          <div className="lg:col-span-2 flex flex-col justify-center">
-            <h3 className="mb-4 text-2xl lg:text-3xl font-bold text-center lg:text-right">
-              {breakout.title}
-            </h3>
-            <p className="mb-6 text-muted-foreground text-lg leading-relaxed text-center lg:text-right">
-              {breakout.description}
-            </p>
-            <div className="flex justify-center lg:justify-end">
-              <Button 
-                asChild 
-                size="lg" 
-                className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg sm:hover:shadow-xl transition-all duration-300 sm:hover:scale-105"
-              >
-                <a href={breakout.buttonUrl}>{breakout.buttonText}</a>
-              </Button>
-            </div>
-          </div>
-          <div className="group">
-            <img
-              src={breakout.src}
-              alt={breakout.alt}
-              className="h-64 lg:h-80 w-full rounded-xl object-cover shadow-lg transition-transform duration-300 group-hover:scale-105"
-            />
-          </div>
-        </div>
 
         {/* Features Section - Improved card design and spacing */}
         <div className="mb-20">
@@ -252,50 +149,6 @@ export const About3 = ({
           </div>
         </div>
 
-        {/* Companies Section - Enhanced styling */}
-        <div className="mb-20 text-center" data-aos="fade-up">
-          <h3 className="mb-12 text-lg font-semibold text-muted-foreground uppercase tracking-wider">
-            {companiesTitle}
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12 items-center justify-items-center max-w-4xl mx-auto">
-            {companies.map((company, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-center h-12 w-24 md:w-32 lg:w-36 transition-all duration-500 hover:scale-110 group"
-                data-aos="zoom-in"
-                data-aos-delay={index * 50}
-              >
-                <img
-                  src={company.src}
-                  alt={company.alt}
-                  className="max-h-10 max-w-full object-contain opacity-90 group-hover:opacity-100 transition-all duration-500 hover:scale-105"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Achievements - Better alignment and spacing */}
-        <div className="mb-16 text-center" data-aos="fade-up">
-          <h3 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4">
-            {achievementsTitle}
-          </h3>
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            {achievementsDescription}
-          </p>
-          <dl className="mt-12 grid grid-cols-2 gap-8 lg:grid-cols-4 max-w-4xl mx-auto">
-            {achievements.map((achievement, index) => (
-              <div key={index} className="text-center group" data-aos="zoom-in" data-aos-delay={index * 50}>
-                <dd className="text-3xl lg:text-4xl font-bold leading-9 tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
-                  {achievement.value}
-                </dd>
-                <dt className="mt-2 text-base leading-7 text-muted-foreground">
-                  {achievement.label}
-                </dt>
-              </div>
-            ))}
-          </dl>
-        </div>
 
         {/* CTA Button - Enhanced positioning and styling */}
         <div className="text-center" data-aos="fade-up">
