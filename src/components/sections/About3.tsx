@@ -86,7 +86,7 @@ export const About3 = ({
     alt: "מגוון כלים וטכנולוגיות מתקדמות לפיתוח דיגיטלי",
   },
   secondaryImage = {
-    src: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&auto=format&fit=crop&q=80",
+    src: "/lovable-uploads/Group_12762czc.jpg",
     alt: "עבודת צוות מקצועית וטכנולוגית",
   },
   breakout = {
