@@ -33,9 +33,9 @@ interface Service {
 const services: Service[] = [
   {
     id: "service_advanced_digital_experiences",
-    title: "פיתוח חוויות דיגיטליות מתקדמות",
+    title: "פיתוח אתרים מתקדם",
     subtitle: "פתרונות דיגיטליים מותאמים אישית לעסק שלך",
-    description: "אתרי תדמית יוקרתיים, דפי נחיתה ממוקדי המרה ופתרונות מסחר אלקטרוני מתקדמים המותאמים למותג שלך.",
+    description: "אתרי תדמית יוקרתיים ודפי נחיתה ממוקדי המרה המותאמים למותג שלך.",
     points: [
       "עיצוב מותאם אישית למותג שלך",
       "ביצועים מעולים וחוויית משתמש מושלמת",
@@ -58,7 +58,7 @@ const services: Service[] = [
     id: "service_automations",
     title: "אוטומציות ושיפור תהליכים",
     subtitle: "חסוך זמן וכסף עם אוטומציות חכמות",
-    description: "פתרונות טכנולוגיים שמייעלים תפעול, חוסכים זמן ומגדילים רווחיות עם אוטומציות מתקדמות.",
+    description: "פתרונות טכנולוגיים שמייעלים תפעול וחוסכים זמן עם אוטומציות מתקדמות.",
     points: [
       "אוטומציות מוכנות ליישום מיידי",
       "פתרונות מותאמים אישית לעסק שלך",
@@ -79,9 +79,9 @@ const services: Service[] = [
   },
   {
     id: "service_ai_implementations",
-    title: "הטמעת פתרונות AI מתקדמים",
+    title: "הטמעת פתרונות AI",
     subtitle: "הצטרף למהפכת הבינה המלאכותית",
-    description: "פיתוח והטמעה של פתרונות בינה מלאכותית מותאמים לעסק שלך. מעיבוד שפה טבעית ועד ניתוח נתונים מתקדם ומערכות החלטה חכמות שיעזרו לכם לקחת יתרון תחרותי.",
+    description: "פיתוח והטמעה של פתרונות בינה מלאכותית מותאמים לעסק שלך עם יתרון תחרותי ברור.",
     points: [
       "פתרונות AI מותאמים לתחום העסקי שלכם",
       "שילוב חלק במערכות קיימות",
@@ -127,108 +127,98 @@ function ServiceCards() {
           </p>
         </header>
 
-        <div className="grid gap-8 md:gap-12 lg:gap-16">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => {
             const IconComponent = service.icon;
             return (
               <MagicCard
                 key={service.id}
-                className="group relative overflow-hidden bg-white border border-gray-200 rounded-3xl p-8 lg:p-12 shadow-lg hover:shadow-2xl transition-all duration-500"
+                className="group relative overflow-hidden bg-white border border-gray-200 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[595px]"
                 gradientColor="#f0f9ff"
                 gradientOpacity={0.1}
                 data-aos="fade-up"
                 data-aos-delay={index * 200}
               >
-                <div className={`grid gap-8 lg:gap-12 ${index % 2 === 0 ? 'lg:grid-cols-2' : 'lg:grid-cols-2'}`}>
-                  
-                  {/* Content Side */}
-                  <div className={`${index % 2 !== 0 ? 'lg:order-2' : ''} flex flex-col justify-center`}>
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 bg-gradient-to-r from-tech-blue to-gold rounded-2xl flex items-center justify-center shadow-lg">
-                        <IconComponent className="w-6 h-6 text-white" />
-                      </div>
-                      <Badge variant="secondary" className="bg-tech-blue/10 text-tech-blue hover:bg-tech-blue/20 font-medium px-3 py-1">
-                        {service.deliveryTime}
-                      </Badge>
-                    </div>
-                    
-                    <h3 className="text-2xl lg:text-3xl font-bold mb-3 text-gray-900">
-                      {service.title}
-                    </h3>
-                    
-                    <h4 className="text-lg font-semibold text-tech-blue mb-4">
-                      {service.subtitle}
-                    </h4>
-                    
-                    <p className="text-gray-600 mb-8 leading-relaxed text-base">
-                      {service.description}
-                    </p>
-
-                    {/* Key Points */}
-                    <div className="space-y-3 mb-8">
-                      {service.points.map((point, pointIndex) => (
-                        <div key={pointIndex} className="flex items-start gap-3">
-                          <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-700 text-sm leading-relaxed">{point}</span>
+                  {/* Content */}
+                  <div className="flex flex-col justify-between min-h-full">
+                    {/* Main Content - Flexible height */}
+                    <div className="flex-grow space-y-4 lg:space-y-6">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-r from-tech-blue to-gold rounded-xl flex items-center justify-center shadow-lg">
+                          <IconComponent className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
                         </div>
-                      ))}
-                    </div>
-
-                    {/* Features Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                      {service.features.map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex items-center gap-2 bg-gray-50 rounded-lg p-3">
-                          <Zap className="w-4 h-4 text-tech-blue flex-shrink-0" />
-                          <span className="text-sm font-medium text-gray-700">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Price */}
-                    <div className="flex items-center gap-4 mb-6">
-                      <span className="text-2xl font-bold text-tech-blue">{service.price}</span>
-                      <div className="flex items-center gap-2">
-                        <Trophy className="w-4 h-4 text-gold" />
-                        <span className="text-sm text-gray-500">מחיר הוגן ושקוף</span>
+                        <h3 className="text-xl lg:text-3xl font-bold text-gray-900 flex-1">
+                          {service.title}
+                        </h3>
                       </div>
-                    </div>
-
-                    {/* Trust Signals */}
-                    <div className="flex flex-wrap gap-2 mb-8">
-                      {service.trustSignals.map((signal, signalIndex) => (
-                        <Badge key={signalIndex} variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200">
-                          <Award className="w-3 h-3 ml-1" />
-                          {signal}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    <Button 
-                      size="lg" 
-                      className="w-full sm:w-auto bg-gradient-to-r from-tech-blue to-tech-blue-dark hover:from-tech-blue-dark hover:to-tech-blue text-white font-bold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
-                      onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                    >
-                      <Rocket className="w-5 h-5 ml-2" />
-                      {service.button}
-                    </Button>
-                  </div>
-
-                  {/* Visual Side */}
-                  <div className={`${index % 2 !== 0 ? 'lg:order-1' : ''} relative`}>
-                    <div className="relative aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-tech-blue/10 via-gold/10 to-purple-100 flex items-center justify-center">
-                      <div className="absolute inset-0 bg-gradient-to-br from-tech-blue/5 to-gold/5"></div>
-                      <IconComponent className="w-24 h-24 lg:w-32 lg:h-32 text-tech-blue/30" />
                       
-                      {/* Floating elements */}
-                      <div className="absolute top-4 right-4 w-8 h-8 bg-tech-blue/20 rounded-full flex items-center justify-center">
-                        <Users className="w-4 h-4 text-tech-blue" />
-                      </div>
-                      <div className="absolute bottom-4 left-4 w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center">
-                        <Star className="w-3 h-3 text-gold" />
+                      <div className="space-y-3 lg:space-y-4">
+                        <h4 className="text-base lg:text-lg font-semibold text-tech-blue">
+                          {service.subtitle}
+                        </h4>
+                        
+                        <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
+                          {service.description}
+                        </p>
+
+                        {/* Key Points */}
+                        <div className="space-y-2">
+                          {service.points.slice(0, 3).map((point, pointIndex) => (
+                            <div key={pointIndex} className="flex items-start gap-2">
+                              <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 text-sm leading-relaxed">{point}</span>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Features */}
+                        <div className="grid grid-cols-1 gap-2">
+                          {service.features.slice(0, 3).map((feature, featureIndex) => (
+                            <div key={featureIndex} className="flex items-center gap-2 bg-gray-50 rounded-lg p-2">
+                              <Zap className="w-4 h-4 text-tech-blue flex-shrink-0" />
+                              <span className="text-sm font-medium text-gray-700">{feature}</span>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Price & Time */}
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <span className="text-lg lg:text-2xl font-bold text-tech-blue">{service.price}</span>
+                            <div className="flex items-center gap-1">
+                              <Trophy className="w-3 h-3 lg:w-4 lg:h-4 text-gold" />
+                              <span className="text-xs lg:text-sm text-gray-500">מחיר הוגן</span>
+                            </div>
+                          </div>
+                          <Badge variant="secondary" className="bg-tech-blue/10 text-tech-blue font-medium px-2 py-1 text-xs">
+                            {service.deliveryTime}
+                          </Badge>
+                        </div>
+
+                        {/* Trust Signals */}
+                        <div className="flex flex-wrap gap-1 lg:gap-2">
+                          {service.trustSignals.slice(0, 2).map((signal, signalIndex) => (
+                            <Badge key={signalIndex} variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200 px-2 py-1">
+                              <Award className="w-2 h-2 lg:w-3 lg:h-3 ml-1" />
+                              {signal}
+                            </Badge>
+                          ))}
+                        </div>
                       </div>
                     </div>
+
+                    {/* CTA Button - Fixed at bottom */}
+                    <div className="mt-6 pt-4 border-t border-gray-100">
+                      <Button 
+                        size="lg" 
+                        className="w-full bg-gradient-to-r from-tech-blue to-tech-blue-dark hover:from-tech-blue-dark hover:to-tech-blue text-white font-bold px-6 lg:px-8 py-3 lg:py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl text-sm lg:text-base"
+                        onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                      >
+                        <Rocket className="w-4 h-4 lg:w-5 lg:h-5 ml-2" />
+                        {service.button}
+                      </Button>
+                    </div>
                   </div>
-                </div>
               </MagicCard>
             );
           })}
