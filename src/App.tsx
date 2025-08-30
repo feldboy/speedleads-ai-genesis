@@ -48,9 +48,14 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 const App = () => {
   useEffect(() => {
     AOS.init({
-      duration: 800,    // Animation duration
-      once: false,       // Whether animation should happen only once - while scrolling down
-      mirror: true       // Whether elements should animate out while scrolling past them
+      duration: 600,        // Shorter animation duration for faster feel
+      once: false,         // Allow animations to repeat on scroll
+      mirror: true,        // Enable reverse animations when scrolling up
+      offset: 120,         // Trigger animations earlier
+      easing: 'ease-out-cubic',  // Smoother easing
+      throttleDelay: 99,   // Throttle scroll events for better performance
+      debounceDelay: 50,   // Debounce resize events
+      anchorPlacement: 'top-bottom'  // When element top hits bottom of viewport
     });
   }, []);
 

@@ -1,6 +1,5 @@
-<svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
-  <text x="10" y="32" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#6B7280">amazon</text>
-  <!-- Amazon smile arrow -->
-  <path d="M45 42 Q90 37, 135 42" stroke="#6B7280" stroke-width="3" fill="none" stroke-linecap="round"/>
-  <path d="M128 39 L135 42 L128 45" stroke="#6B7280" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<svg width="120" height="40" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+  <text x="10" y="22" font-family="Arial, sans-serif" font-size="14" font-weight="400" fill="#232F3E">amazon</text>
+  <path d="M15 28C35 26 55 26 75 28" stroke="#FF9900" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M70 25L75 28L70 31" stroke="#FF9900" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

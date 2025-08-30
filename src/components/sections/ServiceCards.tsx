@@ -17,16 +17,16 @@ import {
 } from "lucide-react";
 
 interface Service {
-  id: string
-  title: string
-  subtitle: string
-  description: string
-  points: string[]
-  features: string[]
-  button: string
-  icon: React.ComponentType<{ className?: string }>
-  price: string
-  deliveryTime: string
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  points: string[];
+  features: string[];
+  button: string;
+  icon: any;
+  price: string;
+  deliveryTime: string;
   trustSignals: string[];
 }
 
@@ -37,16 +37,16 @@ const services: Service[] = [
     subtitle: "פתרונות דיגיטליים מותאמים אישית לעסק שלך",
     description: "אתרי תדמית יוקרתיים, דפי נחיתה ממוקדי המרה ופתרונות מסחר אלקטרוני מתקדמים המותאמים למותג שלך.",
     points: [
-      "אתרי תדמית יוקרתיים עם עיצוב מותאם אישית",
-      "דפי נחיתה ממירים עם אופטימיזציה לקונברסיה",
-      "פתרונות מסחר אלקטרוני מתקדמים עם CRM משולב",
-      "מערכות ניהול תוכן מקצועיות וידידותיות"
+      "עיצוב מותאם אישית למותג שלך",
+      "ביצועים מעולים וחוויית משתמש מושלמת",
+      "SEO מתקדם ואופטימיזציה מלאה",
+      "תמיכה מתמשכת ועדכונים קבועים"
     ],
     features: [
-      "עיצוב רספונסיבי למכשירים ניידים",
-      "אופטימיזציה למנועי חיפוש (SEO)",
-      "טעינה מהירה ואבטחה מתקדמת",
-      "ניתוח נתונים ודוחות ביצועים"
+      "אתרי תדמית יוקרתיים",
+      "דפי נחיתה ממוקדי המרה",
+      "פתרונות מסחר אלקטרוני",
+      "מערכות ניהול תוכן מתקדמות"
     ],
     button: "בואו נתחיל בפרויקט",
     icon: Palette,
@@ -78,20 +78,20 @@ const services: Service[] = [
     trustSignals: ["ROI מובטח", "הדרכה מלאה", "תמיכה מתמשכת"]
   },
   {
-    id: "service_integrations",
-    title: "אינטגרציות וכלים מתקדמים",
-    subtitle: "שדרג את האתר שלך עם טכנולוגיות מתקדמות",
-    description: "כלים טכנולוגיים מתקדמים לשיפור חוויית המשתמש עם AI, שירות לקוחות מיידי והתאמה אישית.",
+    id: "service_ai_implementations",
+    title: "הטמעת פתרונות AI מתקדמים",
+    subtitle: "הצטרף למהפכת הבינה המלאכותית",
+    description: "פיתוח והטמעה של פתרונות בינה מלאכותית מותאמים לעסק שלך. מעיבוד שפה טבעית ועד ניתוח נתונים מתקדם ומערכות החלטה חכמות שיעזרו לכם לקחת יתרון תחרותי.",
     points: [
-      "כלי שירות לקוחות מתקדמים עם בינה מלאכותית",
-      "חיפוש חכם והמלצות מותאמות אישית",
-      "עיצוב ותוכן אינטראקטיבי ומרשים",
-      "מערכות CRM ואנליטיקה מתקדמות"
+      "פתרונות AI מותאמים לתחום העסקי שלכם",
+      "שילוב חלק במערכות קיימות",
+      "שיפור משמעותי ברמת השירות והיעילות",
+      "מעקב וניתוח תוצאות בזמן אמת"
     ],
     features: [
-      "צ'אט בוט חכם עם עיבוד שפה טבעית",
-      "מערכת המלצות מבוססת AI",
-      "פרסונליזציה דינמית של תוכן",
+      "צ'אטבוטים חכמים ומתקדמים",
+      "ניתוח נתונים וחיזוי מגמות",
+      "אוטומציה חכמה של תהליכים",
       "אינטגרציה עם רשתות חברתיות"
     ],
     button: "שדרג את האתר שלך",
@@ -102,14 +102,10 @@ const services: Service[] = [
   },
 ];
 
-const ServiceCards = () => {
+function ServiceCards() {
   return (
-    <section 
-      id="services" 
-      className="py-12 sm:py-20 bg-gradient-to-b from-gray-50 to-white" 
-      aria-labelledby="services_title"
-    >
-      <div className="container mx-auto px-2 xs:px-4 sm:px-6">
+    <section id="services" className="py-20 bg-gradient-to-b from-gray-50 to-white" aria-labelledby="services_title">
+      <div className="container mx-auto">
         <header className="text-center mb-20">
           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full px-6 py-2 mb-6" data-aos="fade-up">
             <Shield className="w-4 h-4 text-tech-blue" />
@@ -125,272 +121,149 @@ const ServiceCards = () => {
             השירותים שלנו
           </h2>
           
-          <div className="w-32 h-1.5 bg-gradient-to-r from-gold via-tech-blue to-gold mx-auto mb-8 rounded-full" data-aos="fade-up" data-aos-delay="200" />
-          
-          <p
-            className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
-            data-aos="fade-up"
-            data-aos-delay="300"
-          >
-            פתרונות מקצה לקצה — פיתוח, אוטומציה ואינטגרציות — בעיצוב מדויק ובביצועים שממירים.
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+            אנחנו מתמחים בפיתוח פתרונות טכנולוגיים מתקדמים שמביאים תוצאות אמיתיות.
+            כל פרויקט מותאם אישית לצרכים הייחודיים של העסק שלכם.
           </p>
         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 max-w-7xl mx-auto px-2 xs:px-4 sm:px-6">
+        <div className="grid gap-8 md:gap-12 lg:gap-16">
           {services.map((service, index) => {
-            const IconComponent = service.icon
+            const IconComponent = service.icon;
             return (
               <MagicCard
                 key={service.id}
-                className="h-full min-h-[600px] xs:min-h-[650px] sm:min-h-[700px] md:min-h-[750px] lg:min-h-[800px] group relative overflow-hidden"
-                gradientColor="hsl(188, 100%, 50%)"
-                gradientOpacity={0.15}
+                className="group relative overflow-hidden bg-white border border-gray-200 rounded-3xl p-8 lg:p-12 shadow-lg hover:shadow-2xl transition-all duration-500"
+                gradientColor="#f0f9ff"
+                gradientOpacity={0.1}
                 data-aos="fade-up"
-                data-aos-delay={index * 150}
+                data-aos-delay={index * 200}
               >
-                <article className="p-4 xs:p-5 sm:p-6 md:p-8 h-full flex flex-col justify-between text-right relative z-10">
-
-                  {/* Mobile Accent bar */}
-                  <div className="sm:hidden h-1.5 xs:h-2 bg-gradient-to-r from-gold via-tech-blue to-gold mb-3 xs:mb-4 sm:mb-6 rounded-full" />
-
-                  {/* Mobile Icon - Top Left Corner */}
-                  <div className="absolute top-10 xs:top-12 left-3 xs:left-4 sm:hidden z-20">
-                    <div className="w-10 h-10 xs:w-12 xs:h-12 bg-gradient-to-br from-gold/20 to-tech-blue/20 rounded-lg xs:rounded-xl flex items-center justify-center shadow-lg border border-gold/30">
-                      <IconComponent className="w-5 h-5 xs:w-6 xs:h-6 text-gold" />
-                    </div>
-                  </div>
-
-                  {/* Desktop Icon and Header - Hidden on Mobile */}
-                  <div className="hidden sm:block mb-8">
-                    {/* Accent top bar */}
-                    <div className="h-2 bg-gradient-to-r from-gold via-tech-blue to-gold mb-8 rounded-full" />
-                    
-                    <div className="w-20 h-20 bg-gradient-to-br from-gold/20 to-tech-blue/20 rounded-3xl flex items-center justify-center mb-6 mr-auto shadow-lg border border-gold/30 sm:hover:shadow-xl sm:hover:scale-105 transition-all duration-300">
-                      <IconComponent className="w-10 h-10 text-gold group-hover:text-tech-blue transition-colors duration-300" />
-                    </div>
-                  </div>
-
-                  {/* Mobile Header Section */}
-                  <div className="sm:hidden flex-none pl-12 xs:pl-16 text-right">
-                    <h3 className="text-lg xs:text-xl font-bold text-dark mb-2 xs:mb-3 group-hover:text-tech-blue transition-colors duration-300 leading-tight text-right">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm xs:text-base font-medium text-gray-500 mb-3 xs:mb-4 leading-relaxed text-right">
-                      {service.subtitle}
-                    </p>
-                    <p className="text-sm text-gray-600 leading-relaxed mb-4 xs:mb-5 text-right">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  {/* Desktop Header */}
-                  <div className="hidden sm:block mb-8">
-                    <h3 className="text-2xl md:text-3xl font-bold text-dark mb-3 group-hover:text-tech-blue transition-colors duration-300">
-                      {service.title}
-                    </h3>
-                    <p className="text-lg font-medium text-gray-500 mb-4">
-                      {service.subtitle}
-                    </p>
-                    <p className="text-gray-600 text-base md:text-lg leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  {/* Mobile - Key Benefits Section */}
-                  <div className="sm:hidden flex-1 mb-4 xs:mb-5">
-                    <h4 className="text-sm xs:text-base font-bold text-dark mb-3 xs:mb-4 flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 xs:w-5 xs:h-5 text-green-500" />
-                      מה כלול בשירות:
-                    </h4>
-                    <ul className="space-y-2 xs:space-y-3 text-sm xs:text-base text-gray-700 mb-4 xs:mb-5">
-                      {service.points.slice(0, 3).map((point, pointIndex) => (
-                        <li key={pointIndex} className="flex items-start">
-                          <div className="w-1.5 h-1.5 xs:w-2 xs:h-2 bg-tech-blue rounded-full mt-1.5 ml-2 xs:ml-3 flex-shrink-0" />
-                          <span className="font-medium leading-relaxed text-right">{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    
-                    <h4 className="text-sm xs:text-base font-bold text-dark mb-3 xs:mb-4 flex items-center gap-2">
-                      <Zap className="w-4 h-4 xs:w-5 xs:h-5 text-yellow-500" />
-                      תכונות מתקדמות:
-                    </h4>
-                    <ul className="space-y-2 xs:space-y-3 text-sm xs:text-base text-gray-600">
-                      {service.features.slice(0, 3).map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start">
-                          <div className="w-1.5 h-1.5 xs:w-2 xs:h-2 bg-gold rounded-full mt-1.5 ml-2 xs:ml-3 flex-shrink-0" />
-                          <span className="leading-relaxed text-right">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Desktop - Separate Sections */}
-                  <div className="hidden sm:block">
-                    {/* Key Points */}
-                    <div className="mb-8">
-                      <h4 className="text-lg font-bold text-dark mb-4 flex items-center gap-2">
-                        <CheckCircle2 className="w-5 h-5 text-green-500" />
-                        מה כלול בשירות:
-                      </h4>
-                      <ul className="space-y-3 text-sm md:text-base text-gray-700">
-                        {service.points.map((point, pointIndex) => (
-                          <li key={pointIndex} className="flex items-start group/item">
-                            <div className="w-2 h-2 bg-tech-blue rounded-full mt-1.5 mr-3 flex-shrink-0 sm:group-hover/item:scale-150 transition-transform duration-300" />
-                            <span className="font-medium sm:group-hover/item:text-tech-blue transition-colors duration-300">
-                              {point}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Advanced Features */}
-                    <div className="mb-8">
-                      <h4 className="text-lg font-bold text-dark mb-4 flex items-center gap-2">
-                        <Zap className="w-5 h-5 text-yellow-500" />
-                        תכונות מתקדמות:
-                      </h4>
-                      <ul className="space-y-2 text-sm text-gray-600">
-                        {service.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-center gap-2">
-                            <div className="w-1.5 h-1.5 bg-gold rounded-full flex-shrink-0" />
-                            <span>{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-
-                  {/* Mobile - Bottom Section with Pricing & CTA */}
-                  <div className="sm:hidden flex-none">
-                    {/* Compact Pricing */}
-                    <div className="mb-3 xs:mb-4 p-3 xs:p-4 bg-gradient-to-l from-gray-50 to-white rounded-lg border border-gray-100">
-                      <div className="flex items-center justify-between text-sm xs:text-base">
-                        <span className="font-bold text-tech-blue">{service.price}</span>
-                        <span className="text-gray-600">{service.deliveryTime}</span>
-                      </div>
-                    </div>
-
-                    {/* Trust Signals */}
-                    <div className="mb-3 xs:mb-4">
-                      <div className="flex gap-1 xs:gap-2 flex-wrap">
-                        {service.trustSignals.map((signal, signalIndex) => (
-                          <span 
-                            key={signalIndex}
-                            className="inline-flex items-center gap-1 bg-green-50 text-green-700 text-xs xs:text-sm font-medium px-2 xs:px-3 py-1 xs:py-1.5 rounded-md border border-green-200"
-                          >
-                            <CheckCircle2 className="w-3 h-3 xs:w-4 xs:h-4" />
-                            {signal}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Mobile CTA Button */}
-                    <Button 
-                      id={`${service.id}_cta`}
-                      className="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 xs:py-4 px-4 xs:px-6 rounded-lg transition-all duration-300 text-sm xs:text-base"
-                      size="lg"
-                    >
-                      {service.button}
-                      <Rocket className="w-4 h-4 xs:w-5 xs:h-5 mr-2 xs:mr-3" />
-                    </Button>
-                  </div>
-
-                  {/* Desktop - Full Pricing and Trust Signals */}
-                  <div className="hidden sm:block">
-                    {/* Pricing and Timing */}
-                    <div className="mb-8 p-4 bg-gradient-to-l from-gray-50 to-white rounded-xl border border-gray-100">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm text-gray-500">מחיר:</span>
-                        <span className="text-lg font-bold text-tech-blue">{service.price}</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-500">זמן ביצוע:</span>
-                        <span className="text-sm font-semibold text-gray-700">{service.deliveryTime}</span>
-                      </div>
-                    </div>
-
-                    {/* Trust Signals */}
-                    <div className="mb-8">
-                      <h4 className="text-sm font-bold text-gray-500 mb-3 flex items-center gap-2">
-                        <Award className="w-4 h-4" />
-                        מה מבטיחים לך:
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {service.trustSignals.map((signal, signalIndex) => (
-                          <span 
-                            key={signalIndex}
-                            className="inline-flex items-center gap-1 bg-green-50 text-green-700 text-xs font-medium px-2 py-1 rounded-full border border-green-200"
-                          >
-                            <CheckCircle2 className="w-3 h-3" />
-                            {signal}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+                <div className={`grid gap-8 lg:gap-12 ${index % 2 === 0 ? 'lg:grid-cols-2' : 'lg:grid-cols-2'}`}>
                   
-                  {/* Desktop CTA Button */}
-                  <div className="hidden sm:block mt-auto">
+                  {/* Content Side */}
+                  <div className={`${index % 2 !== 0 ? 'lg:order-2' : ''} flex flex-col justify-center`}>
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 bg-gradient-to-r from-tech-blue to-gold rounded-2xl flex items-center justify-center shadow-lg">
+                        <IconComponent className="w-6 h-6 text-white" />
+                      </div>
+                      <Badge variant="secondary" className="bg-tech-blue/10 text-tech-blue hover:bg-tech-blue/20 font-medium px-3 py-1">
+                        {service.deliveryTime}
+                      </Badge>
+                    </div>
+                    
+                    <h3 className="text-2xl lg:text-3xl font-bold mb-3 text-gray-900">
+                      {service.title}
+                    </h3>
+                    
+                    <h4 className="text-lg font-semibold text-tech-blue mb-4">
+                      {service.subtitle}
+                    </h4>
+                    
+                    <p className="text-gray-600 mb-8 leading-relaxed text-base">
+                      {service.description}
+                    </p>
+
+                    {/* Key Points */}
+                    <div className="space-y-3 mb-8">
+                      {service.points.map((point, pointIndex) => (
+                        <div key={pointIndex} className="flex items-start gap-3">
+                          <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                          <span className="text-gray-700 text-sm leading-relaxed">{point}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Features Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                      {service.features.map((feature, featureIndex) => (
+                        <div key={featureIndex} className="flex items-center gap-2 bg-gray-50 rounded-lg p-3">
+                          <Zap className="w-4 h-4 text-tech-blue flex-shrink-0" />
+                          <span className="text-sm font-medium text-gray-700">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Price */}
+                    <div className="flex items-center gap-4 mb-6">
+                      <span className="text-2xl font-bold text-tech-blue">{service.price}</span>
+                      <div className="flex items-center gap-2">
+                        <Trophy className="w-4 h-4 text-gold" />
+                        <span className="text-sm text-gray-500">מחיר הוגן ושקוף</span>
+                      </div>
+                    </div>
+
+                    {/* Trust Signals */}
+                    <div className="flex flex-wrap gap-2 mb-8">
+                      {service.trustSignals.map((signal, signalIndex) => (
+                        <Badge key={signalIndex} variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200">
+                          <Award className="w-3 h-3 ml-1" />
+                          {signal}
+                        </Badge>
+                      ))}
+                    </div>
+
                     <Button 
-                      id={`${service.id}_cta_desktop`}
-                      className="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 text-lg"
-                      size="lg"
+                      size="lg" 
+                      className="w-full sm:w-auto bg-gradient-to-r from-tech-blue to-tech-blue-dark hover:from-tech-blue-dark hover:to-tech-blue text-white font-bold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+                      onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                     >
+                      <Rocket className="w-5 h-5 ml-2" />
                       {service.button}
-                      <Rocket className="w-5 h-5 mr-2" />
                     </Button>
                   </div>
-                </article>
 
-                {/* Background decoration */}
-                <div className="absolute top-0 left-0 w-full h-2 bg-gray-200 opacity-20" />
-                <div className="absolute bottom-0 right-0 w-32 h-32 bg-gray-100 opacity-5 rounded-tl-full" />
+                  {/* Visual Side */}
+                  <div className={`${index % 2 !== 0 ? 'lg:order-1' : ''} relative`}>
+                    <div className="relative aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-tech-blue/10 via-gold/10 to-purple-100 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-gradient-to-br from-tech-blue/5 to-gold/5"></div>
+                      <IconComponent className="w-24 h-24 lg:w-32 lg:h-32 text-tech-blue/30" />
+                      
+                      {/* Floating elements */}
+                      <div className="absolute top-4 right-4 w-8 h-8 bg-tech-blue/20 rounded-full flex items-center justify-center">
+                        <Users className="w-4 h-4 text-tech-blue" />
+                      </div>
+                      <div className="absolute bottom-4 left-4 w-6 h-6 bg-gold/20 rounded-full flex items-center justify-center">
+                        <Star className="w-3 h-3 text-gold" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </MagicCard>
-            )
+            );
           })}
         </div>
 
-        {/* Bottom CTA Section */}
-        <div className="text-center mt-16" data-aos="fade-up" data-aos-delay="300" data-aos-duration="600">
-          <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-8 max-w-4xl mx-auto shadow-xl sm:hover:shadow-2xl transition-all duration-300 sm:hover:scale-105">
-            <h3 className="text-2xl md:text-3xl font-bold text-dark mb-4">
-              מוכנים לשדרג את העסק שלכם?
-            </h3>
-            <p className="text-lg text-gray-600 mb-6">
-              בואו נתחיל בפגישת ייעוץ חינם ונראה איך אנחנו יכולים לעזור לכם להגיע למטרות שלכם
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-tech-blue to-blue-600 hover:from-blue-600 hover:to-tech-blue text-white font-bold px-8 py-4 rounded-xl shadow-lg sm:hover:shadow-xl transition-all duration-300 sm:hover:scale-105 animate-fade-in"
-                data-aos="fade-up" 
-                data-aos-delay="600"
-                data-aos-duration="400"
-              >
-                <Users className="w-5 h-5 ml-2" />
-                קבעו פגישת ייעוץ חינם
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-2 border-gold text-gold hover:bg-gold hover:text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 sm:hover:scale-105 animate-fade-in"
-                data-aos="fade-up" 
-                data-aos-delay="700"
-                data-aos-duration="400"
-              >
-                <Star className="w-5 h-5 ml-2" />
-                צפו בדוגמאות עבודות
-              </Button>
-            </div>
+        {/* Call to Action */}
+        <div className="text-center mt-20">
+          <div className="inline-flex flex-col sm:flex-row gap-4">
+            <Button 
+              size="lg"
+              className="bg-gradient-to-r from-tech-blue via-tech-blue-dark to-tech-blue hover:from-tech-blue-dark hover:via-tech-blue hover:to-tech-blue-dark text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl animate-fade-in text-sm sm:text-base min-h-[44px]"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              data-aos="slide-right" 
+              data-aos-delay="600"
+              data-aos-duration="600"
+            >
+              <Rocket className="w-5 h-5 ml-2" />
+              בואו נתחיל לעבוד יחד
+            </Button>
+            <Button 
+              variant="outline" 
+              size="lg"
+              className="border-2 border-gold text-gold hover:bg-gold hover:text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 hover:scale-105 animate-fade-in text-sm sm:text-base min-h-[44px]"
+              data-aos="slide-left" 
+              data-aos-delay="800"
+              data-aos-duration="600"
+            >
+              <Star className="w-5 h-5 ml-2" />
+              צפו בדוגמאות עבודות
+            </Button>
           </div>
         </div>
       </div>
     </section>
   );
-};
+}
 
 export default ServiceCards;
