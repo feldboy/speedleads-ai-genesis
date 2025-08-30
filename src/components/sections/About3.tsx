@@ -82,8 +82,8 @@ export const About3 = ({
   title = "למה SpeedLeads.AI?",
   description = "פתרונות AI מתקדמים שחוסכים זמן, משפרים דיוק ומאפשרים לכם להתמקד במה שחשוב באמת",
   mainImage = {
-    src: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop&q=80",
-    alt: "פתרונות AI מתקדמים וחדשנות טכנולוגית",
+    src: "/tech-logos-grid.jpg",
+    alt: "מגוון כלים וטכנולוגיות מתקדמות לפיתוח דיגיטלי",
   },
   secondaryImage = {
     src: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&auto=format&fit=crop&q=80",
@@ -92,7 +92,7 @@ export const About3 = ({
   breakout = {
     src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80",
     alt: "אנליטיקה עסקית וצמיחה מבוססת נתונים",
-    title: "התוצאות דוברות בעד עצמן",
+    title: "התוצאות מדברות בעד עצמן",
     description: "300+ עסקים כבר חוסכים שעות עבודה כל יום בזכות הפתרונות שלנו. בואו נראה איך אנחנו יכולים לעזור גם לכם.",
     buttonText: "בואו נתחיל לעבוד יחד",
     buttonUrl: "#contact",
