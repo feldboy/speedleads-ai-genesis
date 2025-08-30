@@ -229,7 +229,10 @@ function ServiceCards() {
           <div className="inline-flex flex-col sm:flex-row gap-4">
             <Button 
               size="lg"
-              className="bg-gradient-to-r from-tech-blue via-tech-blue-dark to-tech-blue hover:from-tech-blue-dark hover:via-tech-blue hover:to-tech-blue-dark text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl animate-fade-in text-sm sm:text-base min-h-[44px]"
+              className="bg-gradient-to-r from-tech-blue via-tech-blue-dark to-tech-blue hover:from-tech-blue-dark hover:via-tech-blue hover:to-tech-blue-dark text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl animate-fade-in text-sm sm:text-base min-h-[44px]"
+              style={{ transformOrigin: 'center', transition: 'all 0.3s ease', transform: 'scale(1)' }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               data-aos="slide-right" 
               data-aos-delay="600"
@@ -241,7 +244,11 @@ function ServiceCards() {
             <Button 
               variant="outline" 
               size="lg"
-              className="border-2 border-gold text-gold hover:bg-gold hover:text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 hover:scale-105 animate-fade-in text-sm sm:text-base min-h-[44px]"
+              className="border-2 border-gold text-gold hover:bg-gold hover:text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl animate-fade-in text-sm sm:text-base min-h-[44px]"
+              style={{ transformOrigin: 'center', transition: 'all 0.3s ease', transform: 'scale(1)' }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              onClick={() => document.getElementById('success-stories')?.scrollIntoView({ behavior: 'smooth' })}
               data-aos="slide-left" 
               data-aos-delay="800"
               data-aos-duration="600"

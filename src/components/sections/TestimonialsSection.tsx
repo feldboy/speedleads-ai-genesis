@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, Rocket } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const GAP_PX = 24; // uniform gap
 // Fallback (used before JS calc). Viewport padding supplies edge gaps => total gap space consumed: (VISIBLE_COUNT + 1)*GAP_PX
@@ -505,9 +506,17 @@ const TestimonialsSection = () => {
           <p className="text-xl text-gray-300 mb-8">
             מוכנים לכתוב את סיפור ההצלחה הבא שלכם?
           </p>
-          <button className="px-8 py-4 bg-gradient-to-r from-tech-blue to-cyan-500 text-dark font-bold rounded-xl hover:from-cyan-500 hover:to-tech-blue transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-tech-blue/30 border border-tech-blue/20">
+          <Button 
+            size="lg" 
+            className="bg-gradient-to-r from-tech-blue to-cyan-500 hover:from-cyan-500 hover:to-tech-blue text-dark font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+            style={{ transformOrigin: 'center', transition: 'all 0.3s ease', transform: 'scale(1)' }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            <Rocket className="w-5 h-5 ml-2" />
             בואו נתחיל לעבוד ביחד
-          </button>
+          </Button>
         </div>
       </div>
     </section>
