@@ -57,15 +57,15 @@ const ContactSection = () => {
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 px-4 sm:px-0" data-aos="fade-up">מוכנים לקחת את העסק שלכם לשלב הבא?</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-gold to-tech-blue mx-auto mb-8" />
+          <div className="w-24 h-1 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] mx-auto mb-8" />
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0" data-aos="fade-up" data-aos-delay="100">
             מלאו את הפרטים ונחזור אליכם בהקדם לשיחת ייעוץ ללא התחייבות
           </p>
         </div>
         
-        <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start px-4 lg:px-0">
-          <div data-aos="fade-right">
-            <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6 sm:p-8">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch px-4 lg:px-0">
+          <div data-aos="fade-right" className="flex">
+            <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6 sm:p-8 w-full flex flex-col">
               <div className="mb-6">
                 <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">שם מלא *</label>
                 <Input
@@ -152,10 +152,12 @@ const ContactSection = () => {
                 />
               </div>
               
+              <div className="flex-grow"></div>
+              
               <Button
                 id="submit_contact_form_button"
                 type="submit"
-                className="w-full bg-tech-blue hover:bg-tech-blue/80 text-dark font-bold min-h-[44px] text-base"
+                className="w-full bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold min-h-[44px] text-base"
                 disabled={loading}
               >
                 {loading ? (
@@ -176,15 +178,21 @@ const ContactSection = () => {
             </form>
           </div>
           
-          <div className="bg-dark text-white rounded-lg shadow-lg p-6 sm:p-8" data-aos="fade-left">
+          <div className="bg-dark text-white rounded-lg shadow-lg p-6 sm:p-8 flex flex-col" data-aos="fade-left">
             <h3 className="text-xl sm:text-2xl font-bold mb-6">דרכי התקשרות נוספות</h3>
             
-            <div className="space-y-6">
+            <div className="space-y-6 flex-grow">
               <div className="flex items-start">
-                <div className="bg-tech-blue/20 p-3 rounded-full mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-tech-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <div className="bg-gradient-to-r from-[#00f6ff]/20 to-[#00a7ff]/20 p-3 rounded-full mr-6 ml-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <title>Phone Icon</title>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    <defs>
+                      <linearGradient id="phone-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style={{stopColor: '#00f6ff'}} />
+                        <stop offset="100%" style={{stopColor: '#00a7ff'}} />
+                      </linearGradient>
+                    </defs>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="url(#phone-gradient)" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
                 <div>
@@ -194,10 +202,16 @@ const ContactSection = () => {
               </div>
               
               <div className="flex items-start">
-                <div className="bg-tech-blue/20 p-3 rounded-full mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-tech-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <div className="bg-gradient-to-r from-[#00f6ff]/20 to-[#00a7ff]/20 p-3 rounded-full mr-6 ml-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <title>Email Icon</title>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    <defs>
+                      <linearGradient id="email-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style={{stopColor: '#00f6ff'}} />
+                        <stop offset="100%" style={{stopColor: '#00a7ff'}} />
+                      </linearGradient>
+                    </defs>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="url(#email-gradient)" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
                 <div>
@@ -207,11 +221,17 @@ const ContactSection = () => {
               </div>
               
               <div className="flex items-start">
-                <div className="bg-tech-blue/20 p-3 rounded-full mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-tech-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <div className="bg-gradient-to-r from-[#00f6ff]/20 to-[#00a7ff]/20 p-3 rounded-full mr-6 ml-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <title>Location Icon</title>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <defs>
+                      <linearGradient id="location-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style={{stopColor: '#00f6ff'}} />
+                        <stop offset="100%" style={{stopColor: '#00a7ff'}} />
+                      </linearGradient>
+                    </defs>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="url(#location-gradient)" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="url(#location-gradient)" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
                 <div>
@@ -221,7 +241,23 @@ const ContactSection = () => {
               </div>
             </div>
             
-            <div className="mt-10">
+            {/* Google Maps Component */}
+            <div className="mt-10 mb-10">
+              <div className="w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3381.0772851683395!2d34.78177641543686!3d32.07530518116768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4ca6193b7c1f%3A0x4e4b5e5e5e5e5e5e!2sTel%20Aviv-Yafo%2C%20Israel!5e0!3m2!1sen!2sus!4v1640000000000!5m2!1sen!2sus"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="מיקום משרדי SpeedLeads AI"
+                ></iframe>
+              </div>
+            </div>
+            
+            <div>
               <h4 className="text-base sm:text-lg font-semibold mb-4">שעות פעילות</h4>
               <div className="grid grid-cols-2 gap-2 text-sm sm:text-base">
                 <div className="text-gray-300 text-xs sm:text-sm">ראשון - חמישי:</div>

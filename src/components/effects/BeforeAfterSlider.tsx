@@ -98,7 +98,7 @@ const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
         style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
       >
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center">
-          <div className="w-4 h-4 rounded-full bg-gradient-to-r from-gold to-tech-blue"></div>
+          <div className="w-4 h-4 rounded-full bg-gradient-to-l from-[#00f6ff] to-[#00a7ff]"></div>
         </div>
       </div>
 

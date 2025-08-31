@@ -2,6 +2,7 @@ import React from "react";
 import { MagicCard } from "@/components/ui/magic-card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import MagneticButton from "@/components/effects/MagneticButton";
 import { 
   Palette, 
   Bot, 
@@ -108,18 +109,19 @@ function ServiceCards() {
       <div className="container mx-auto">
         <header className="text-center mb-20">
           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full px-6 py-2 mb-6" data-aos="fade-up">
-            <Shield className="w-4 h-4 text-tech-blue" />
+            <Shield className="w-4 h-4 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent" />
             <span className="text-sm font-medium text-gray-600">פתרונות מקצועיים מובילים</span>
           </div>
           
           <h2
             id="services_title"
-            className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-l from-tech-blue via-gold to-tech-blue bg-clip-text text-transparent"
+            className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent"
             data-aos="fade-up"
             data-aos-delay="100"
           >
             השירותים שלנו
           </h2>
+          <div className="w-32 h-2 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] mx-auto mb-8 rounded-full shadow-lg shadow-tech-blue/30" data-aos="fade-up" data-aos-delay="150" />
           
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
             אנחנו מתמחים בפיתוח פתרונות טכנולוגיים מתקדמים שמביאים תוצאות אמיתיות.
@@ -144,7 +146,7 @@ function ServiceCards() {
                     {/* Main Content - Flexible height */}
                     <div className="flex-grow space-y-4 lg:space-y-6">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-r from-tech-blue to-gold rounded-xl flex items-center justify-center shadow-lg">
+                        <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] rounded-xl flex items-center justify-center shadow-lg">
                           <IconComponent className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
                         </div>
                         <h3 className="text-xl lg:text-3xl font-bold text-gray-900 flex-1">
@@ -153,7 +155,7 @@ function ServiceCards() {
                       </div>
                       
                       <div className="space-y-3 lg:space-y-4">
-                        <h4 className="text-base lg:text-lg font-semibold text-tech-blue">
+                        <h4 className="text-base lg:text-lg font-semibold bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent">
                           {service.subtitle}
                         </h4>
                         
@@ -175,7 +177,7 @@ function ServiceCards() {
                         <div className="grid grid-cols-1 gap-2">
                           {service.features.slice(0, 3).map((feature, featureIndex) => (
                             <div key={featureIndex} className="flex items-center gap-2 bg-gray-50 rounded-lg p-2">
-                              <Zap className="w-4 h-4 text-tech-blue flex-shrink-0" />
+                              <Zap className="w-4 h-4 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent flex-shrink-0" />
                               <span className="text-sm font-medium text-gray-700">{feature}</span>
                             </div>
                           ))}
@@ -184,13 +186,13 @@ function ServiceCards() {
                         {/* Price & Time */}
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <span className="text-lg lg:text-2xl font-bold text-tech-blue">{service.price}</span>
+                            <span className="text-lg lg:text-2xl font-bold bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent">{service.price}</span>
                             <div className="flex items-center gap-1">
                               <Trophy className="w-3 h-3 lg:w-4 lg:h-4 text-gold" />
                               <span className="text-xs lg:text-sm text-gray-500">מחיר הוגן</span>
                             </div>
                           </div>
-                          <Badge variant="secondary" className="bg-tech-blue/10 text-tech-blue font-medium px-2 py-1 text-xs">
+                          <Badge variant="secondary" className="bg-gradient-to-l from-[#00f6ff]/10 to-[#00a7ff]/10 text-transparent bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text font-medium px-2 py-1 text-xs">
                             {service.deliveryTime}
                           </Badge>
                         </div>
@@ -211,7 +213,7 @@ function ServiceCards() {
                     <div className="mt-6 pt-4 border-t border-gray-100">
                       <Button 
                         size="lg" 
-                        className="w-full bg-gradient-to-r from-tech-blue to-tech-blue-dark hover:from-tech-blue-dark hover:to-tech-blue text-white font-bold px-6 lg:px-8 py-3 lg:py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl text-sm lg:text-base"
+                        className="w-full bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold px-6 lg:px-8 py-3 lg:py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl text-sm lg:text-base"
                         onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                       >
                         <Rocket className="w-4 h-4 lg:w-5 lg:h-5 ml-2" />
@@ -227,35 +229,31 @@ function ServiceCards() {
         {/* Call to Action */}
         <div className="text-center mt-20">
           <div className="inline-flex flex-col sm:flex-row gap-4">
-            <Button 
-              size="lg"
-              className="bg-gradient-to-r from-tech-blue via-tech-blue-dark to-tech-blue hover:from-tech-blue-dark hover:via-tech-blue hover:to-tech-blue-dark text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl animate-fade-in text-sm sm:text-base min-h-[44px]"
-              style={{ transformOrigin: 'center', transition: 'all 0.3s ease', transform: 'scale(1)' }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              data-aos="slide-right" 
-              data-aos-delay="600"
-              data-aos-duration="600"
-            >
-              <Rocket className="w-5 h-5 ml-2" />
-              בואו נתחיל לעבוד יחד
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="border-2 border-gold text-gold hover:bg-gold hover:text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl animate-fade-in text-sm sm:text-base min-h-[44px]"
-              style={{ transformOrigin: 'center', transition: 'all 0.3s ease', transform: 'scale(1)' }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-              onClick={() => document.getElementById('success-stories')?.scrollIntoView({ behavior: 'smooth' })}
-              data-aos="slide-left" 
-              data-aos-delay="800"
-              data-aos-duration="600"
-            >
-              <Star className="w-5 h-5 ml-2" />
-              צפו בדוגמאות עבודות
-            </Button>
+            <MagneticButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+              <Button 
+                size="lg"
+                className="bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-lg shadow-lg hover:shadow-tech-blue/25 transition-all duration-300 text-sm sm:text-base min-h-[44px]"
+                data-aos="slide-right" 
+                data-aos-delay="200"
+                data-aos-duration="600"
+              >
+                <Rocket className="w-5 h-5 ml-2" />
+                בואו נתחיל לעבוד יחד
+              </Button>
+            </MagneticButton>
+            <MagneticButton onClick={() => document.getElementById('success-stories')?.scrollIntoView({ behavior: 'smooth' })}>
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="border-2 border-gold text-gold hover:bg-gold hover:text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-lg shadow-lg hover:shadow-gold/25 transition-all duration-300 text-sm sm:text-base min-h-[44px]"
+                data-aos="slide-left" 
+                data-aos-delay="400"
+                data-aos-duration="600"
+              >
+                <Star className="w-5 h-5 ml-2" />
+                צפו בדוגמאות עבודות
+              </Button>
+            </MagneticButton>
           </div>
         </div>
       </div>

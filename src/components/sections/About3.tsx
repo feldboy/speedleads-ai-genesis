@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import MagneticButton from "@/components/effects/MagneticButton";
 
 interface About3Props {
   title?: string;
@@ -32,9 +33,10 @@ export const About3 = ({
       <div className="container mx-auto px-4 md:px-6">
         {/* Header - Improved text alignment and spacing */}
         <div className="mb-16 text-center max-w-4xl mx-auto" data-aos="fade-up">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent leading-tight">
             {title}
           </h1>
+          <div className="w-32 h-2 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] mx-auto mb-8 rounded-full shadow-lg shadow-tech-blue/30" />
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
             {description}
           </p>
@@ -152,16 +154,17 @@ export const About3 = ({
 
         {/* CTA Button - Enhanced positioning and styling */}
         <div className="text-center" data-aos="fade-up">
-          <Button
-            size="lg"
-            className="inline-flex items-center px-10 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-500 hover:from-blue-500 hover:via-purple-500 hover:to-blue-600 text-white font-bold text-lg rounded-2xl transition-all duration-300 sm:hover:scale-105 shadow-2xl sm:hover:shadow-blue-500/25 border-0"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            בואו נתחיל לעבוד יחד
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3 rtl:mr-0 rtl:ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </Button>
+          <MagneticButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+            <Button
+              size="lg"
+              className="inline-flex items-center px-10 py-4 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold text-lg rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-tech-blue/25 border-0"
+            >
+              בואו נתחיל לעבוד יחד
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3 rtl:mr-0 rtl:ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </Button>
+          </MagneticButton>
         </div>
       </div>
     </section>

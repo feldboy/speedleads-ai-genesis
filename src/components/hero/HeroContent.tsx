@@ -80,22 +80,20 @@ const HeroContent: React.FC = () => {
         custom={{ delayIdx: 2 }}
         className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse rtl:space-x-reverse px-4 sm:px-0"
       >
-        <MagneticButton>
+        <MagneticButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
           <Button
             id="hero_cta_button"
             size="lg"
-            className="bg-gradient-to-r from-tech-blue to-blue-600 hover:from-tech-blue/80 hover:to-blue-500 text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-lg shadow-lg hover:shadow-tech-blue/25 transition-all duration-300 text-sm sm:text-base min-h-[44px]"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-lg shadow-lg hover:shadow-tech-blue/25 transition-all duration-300 text-sm sm:text-base min-h-[44px]"
           >
             בואו נדבר על הפרויקט שלכם
           </Button>
         </MagneticButton>
-        <MagneticButton>
+        <MagneticButton onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>
           <Button
             id="hero_services_button"
             size="lg"
             variant="outline"
-            onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
             className="border-2 border-white/30 font-semibold text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:shadow-gold/25 transition-all duration-300 text-sm sm:text-base min-h-[44px]"
           >
             גלו את השירותים שלנו

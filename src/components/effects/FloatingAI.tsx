@@ -39,7 +39,7 @@ const FloatingAI = () => {
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
           <motion.button
-            className="bg-gradient-to-br from-tech-blue to-blue-600 rounded-full p-4 shadow-2xl cursor-pointer"
+            className="bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] rounded-full p-4 shadow-2xl cursor-pointer"
             whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(0, 246, 255, 0.3)" }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleChatbot}

@@ -13,7 +13,7 @@ const HeroScrollIndicator = () => (
   >
     <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center relative overflow-hidden">
       <motion.div
-        className="w-1 h-3 bg-gradient-to-b from-tech-blue to-gold rounded-full mt-2"
+        className="w-1 h-3 bg-gradient-to-b from-[#00f6ff] to-[#00a7ff] rounded-full mt-2"
         animate={{
           y: [0, 12, 0],
           opacity: [1, 0.3, 1]

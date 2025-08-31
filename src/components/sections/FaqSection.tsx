@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import MagneticButton from '@/components/effects/MagneticButton';
 
 interface FaqItem {
   id: string;
@@ -47,7 +48,7 @@ const FaqSection = () => {
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">שאלות נפוצות</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-gold to-tech-blue mx-auto mb-8" />
+          <div className="w-24 h-1 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] mx-auto mb-8" />
           <p className="text-xl text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
             כאן תוכלו למצוא מענה לשאלות הנפוצות ביותר. לא מצאתם את מה שחיפשתם? צרו איתנו קשר!
           </p>
@@ -95,14 +96,15 @@ const FaqSection = () => {
         
         <div className="text-center mt-12" data-aos="fade-up">
           <p className="text-lg text-gray-600 mb-6">עדיין יש לכם שאלות?</p>
-          <Button 
-            id="faq_contact_button"
-            size="lg"
-            className="bg-tech-blue hover:bg-tech-blue/80 text-dark font-bold"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            דברו איתנו ישירות
-          </Button>
+          <MagneticButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+            <Button 
+              id="faq_contact_button"
+              size="lg"
+              className="bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold transition-all duration-300 shadow-lg hover:shadow-tech-blue/25"
+            >
+              דברו איתנו ישירות
+            </Button>
+          </MagneticButton>
         </div>
       </div>
     </section>

@@ -72,7 +72,7 @@
 }
 
 .gradient-text {
-  @apply bg-gradient-to-r from-gold to-tech-blue text-transparent bg-clip-text;
+  @apply bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] text-transparent bg-clip-text;
 }
 
 .service-card {
@@ -260,6 +260,11 @@
 @keyframes gradient-shift {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
+}
+
+@keyframes gradient-move {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
 }
 
 .animate-float {

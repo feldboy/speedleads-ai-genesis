@@ -35,7 +35,7 @@ const Header = () => {
           <a href="/" className="flex items-center">
             <img src="/speedleads-logo.png" alt="SpeedLeads.AI Logo" className="h-6 sm:h-7 md:h-8 mr-3 sm:mr-5" />
             <span className="text-white text-lg sm:text-xl md:text-2xl font-bold mx-[8px] sm:mx-[14px]">
-              Speed<span className="text-tech-blue">Leads</span>.AI
+              Speed<span className="bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent">Leads</span>.AI
             </span>
           </a>
         </div>

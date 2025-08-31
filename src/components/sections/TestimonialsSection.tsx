@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight, Play, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import MagneticButton from "@/components/effects/MagneticButton";
 
 const GAP_PX = 24; // uniform gap
 // Fallback (used before JS calc). Viewport padding supplies edge gaps => total gap space consumed: (VISIBLE_COUNT + 1)*GAP_PX
@@ -206,7 +207,7 @@ const SuccessStoryCard = ({ story }: { story: SuccessStory }) => (
       />
       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent" />
       <div className="absolute top-6 right-6">
-        <span className="px-4 py-2 bg-tech-blue/95 text-white text-sm font-semibold rounded-full backdrop-blur-md shadow-lg border border-tech-blue/30">
+        <span className="px-4 py-2 bg-gradient-to-l from-[#00f6ff]/95 to-[#00a7ff]/95 text-white text-sm font-semibold rounded-full backdrop-blur-md shadow-lg border border-[#00f6ff]/30">
           {story.project.category}
         </span>
       </div>
@@ -215,7 +216,7 @@ const SuccessStoryCard = ({ story }: { story: SuccessStory }) => (
           href={story.project.demoLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-tech-blue to-cyan-500 text-dark font-bold rounded-xl hover:from-cyan-500 hover:to-tech-blue transition-all duration-300 backdrop-blur-md shadow-lg hover:shadow-tech-blue/30 border border-tech-blue/20"
+          className="flex items-center gap-3 px-5 py-3 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] text-white font-bold rounded-xl hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 transition-all duration-300 backdrop-blur-md shadow-lg hover:shadow-tech-blue/30 border border-tech-blue/20"
         >
           <Play size={18} />
           צפה בדמו
@@ -274,13 +275,13 @@ const SuccessStoryCard = ({ story }: { story: SuccessStory }) => (
             key={i}
             className="flex items-start gap-2 text-xs text-gray-300 hover:text-white transition-colors duration-200"
           >
-            <div className="w-1.5 h-1.5 bg-gradient-to-r from-tech-blue to-cyan-400 rounded-full flex-shrink-0 mt-1" />
+            <div className="w-1.5 h-1.5 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] rounded-full flex-shrink-0 mt-1" />
             <span className="leading-relaxed line-clamp-2">{result}</span>
           </div>
         ))}
       </div>
       <div className="mt-auto" />
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-tech-blue via-cyan-400 to-tech-blue opacity-60" />
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] opacity-60" />
     </div>
   </div>
 );
@@ -408,12 +409,12 @@ const TestimonialsSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-20">
           <h2
-            className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-tech-blue via-cyan-300 to-speedleads-gold bg-clip-text text-transparent"
+            className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent"
             data-aos="fade-up"
           >
             סיפורי הצלחה מרשימים
           </h2>
-          <div className="w-32 h-2 bg-gradient-to-r from-tech-blue via-cyan-400 to-speedleads-gold mx-auto mb-8 rounded-full shadow-lg shadow-tech-blue/30" />
+          <div className="w-32 h-2 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] mx-auto mb-8 rounded-full shadow-lg shadow-tech-blue/30" />
           <p
             className="text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light"
             data-aos="fade-up"
@@ -456,7 +457,7 @@ const TestimonialsSection = () => {
                   className="embla__slide min-w-0 flex flex-col h-full box-border testimonial-slide"
                   style={{
                     height: uniformHeight || undefined,
-                    paddingRight: index < successStories.length - 1 ? GAP_PX : 0
+                    paddingRight: GAP_PX
                   }}
                   aria-label={story.title}
                 >
@@ -492,7 +493,7 @@ const TestimonialsSection = () => {
                   onClick={() => scrollTo(i)}
                   className={`h-3 rounded-full transition-all ${
                     active
-                      ? "w-10 bg-gradient-to-r from-tech-blue to-cyan-400"
+                      ? "w-10 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff]"
                       : "w-3 bg-slate-600 hover:bg-slate-500"
                   }`}
                   aria-label={`Go to slide ${i + 1}`}
@@ -506,17 +507,15 @@ const TestimonialsSection = () => {
           <p className="text-xl text-gray-300 mb-8">
             מוכנים לכתוב את סיפור ההצלחה הבא שלכם?
           </p>
-          <Button 
-            size="lg" 
-            className="bg-gradient-to-r from-tech-blue to-cyan-500 hover:from-cyan-500 hover:to-tech-blue text-dark font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
-            style={{ transformOrigin: 'center', transition: 'all 0.3s ease', transform: 'scale(1)' }}
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            <Rocket className="w-5 h-5 ml-2" />
-            בואו נתחיל לעבוד ביחד
-          </Button>
+          <MagneticButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              <Rocket className="w-5 h-5 ml-2" />
+              בואו נתחיל לעבוד ביחד
+            </Button>
+          </MagneticButton>
         </div>
       </div>
     </section>

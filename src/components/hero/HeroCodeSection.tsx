@@ -62,7 +62,7 @@ const HeroCodeSection: React.FC = () => {
           }}
         />
         <FloatingDecoration
-          className="absolute top-1/3 right-1/4 w-8 h-8 bg-gradient-to-r from-gold to-tech-blue rounded-full"
+          className="absolute top-1/3 right-1/4 w-8 h-8 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] rounded-full"
           styleOpacity={1}
           delayIdx={5}
           transition={{ duration: 4, repeat: Infinity }}

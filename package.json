@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@21st-extension/toolbar-react": "^0.5.14",
     "@composio/mcp": "^1.0.9",
     "@hookform/resolvers": "^3.9.0",
     "@microsoft/clarity": "^1.0.0",
