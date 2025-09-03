@@ -47,6 +47,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 
 const App = () => {
   useEffect(() => {
+    // Initialize AOS immediately - no delay needed
     AOS.init({
       duration: 600,        // Shorter animation duration for faster feel
       once: false,         // Allow animations to repeat on scroll
@@ -57,6 +58,29 @@ const App = () => {
       debounceDelay: 50,   // Debounce resize events
       anchorPlacement: 'top-bottom'  // When element top hits bottom of viewport
     });
+
+    // Fix viewport sync issue: Aggressive refresh strategy
+    // Hero animation changes body position which breaks AOS calculations
+    let refreshCount = 0;
+    const maxRefreshes = 10;
+    
+    const aggressiveRefresh = setInterval(() => {
+      // Check if body position is normal (not fixed)
+      const bodyPosition = window.getComputedStyle(document.body).position;
+      
+      if (bodyPosition !== 'fixed' && refreshCount < maxRefreshes) {
+        AOS.refresh();
+        refreshCount++;
+        console.log(`AOS refresh attempt ${refreshCount} - body position: ${bodyPosition}`);
+      }
+      
+      if (refreshCount >= maxRefreshes) {
+        clearInterval(aggressiveRefresh);
+      }
+    }, 1000); // Refresh every second for first 10 seconds
+
+    // Cleanup
+    return () => clearInterval(aggressiveRefresh);
   }, []);
 
   return (

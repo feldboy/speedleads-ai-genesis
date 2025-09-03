@@ -14,6 +14,7 @@ import FloatingAI from '@/components/effects/FloatingAI';
 import AnimatedStats from '@/components/effects/AnimatedStats';
 import ProjectShowcase from '@/components/effects/ProjectShowcase';
 import ServiceCards from '@/components/sections/ServiceCards';
+import { Component as HorizonHero } from '@/components/ui/horizon-hero-section';
 import { initializeAnalytics, trackEvent } from '@/lib/analytics';
 
 const Index = () => {
@@ -90,6 +91,7 @@ const Index = () => {
     <div dir="rtl" lang="he" className="min-h-screen bg-white text-dark relative overflow-x-hidden">
       <Header />
       <main>
+        <HorizonHero />
         <HeroSection />
         
         {/* Animated Stats Section */}

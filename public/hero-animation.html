@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizon Animation</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            background: #000;
+        }
+
+        /* Horizon Hero Section Styles */
+        .hero-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, #001122 0%, #000000 100%);
+        }
+
+        .hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 50%;
+            left: 30px;
+            transform: translateY(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .menu-icon {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .menu-icon span {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon:hover span {
+            background: #00f6ff;
+        }
+
+        .vertical-text {
+            writing-mode: vertical-lr;
+            text-orientation: mixed;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-top: 20px;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 5;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .hero-title {
+            font-size: clamp(4rem, 15vw, 12rem);
+            font-weight: 900;
+            color: white;
+            line-height: 0.8;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+            font-family: Arial, sans-serif;
+        }
+
+        .title-char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(100px);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.4;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .subtitle-line {
+            opacity: 0;
+            transform: translateY(30px);
+            margin: 0.5rem 0;
+        }
+
+        .scroll-progress {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .scroll-text {
+            transform: rotate(90deg);
+            white-space: nowrap;
+        }
+
+        .progress-track {
+            width: 2px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 1px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to top, #00f6ff, #ffffff);
+            transition: width 0.3s ease;
+        }
+
+        .section-counter {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 1px;
+        }
+
+        .scroll-sections {
+            position: relative;
+            z-index: 2;
+            background: transparent;
+        }
+
+        .content-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .content-section .hero-title {
+            margin-bottom: 1rem;
+        }
+
+        .content-section .hero-subtitle {
+            margin-top: 0;
+        }
+
+        .cosmos-style {
+            background: linear-gradient(135deg, 
+                #000000 0%, 
+                #0a0a1a 25%, 
+                #1a0a2e 50%, 
+                #16213e 75%, 
+                #0f3460 100%);
+        }
+
+        .cosmos-content .hero-title {
+            background: linear-gradient(135deg, #ffffff 0%, #00f6ff 50%, #ff0066 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cosmos-subtitle {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(0,246,255,0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .side-menu {
+                left: 20px;
+                gap: 20px;
+            }
+            
+            .menu-icon {
+                width: 25px;
+                height: 25px;
+            }
+            
+            .vertical-text {
+                font-size: 12px;
+                letter-spacing: 2px;
+            }
+            
+            .hero-title {
+                font-size: clamp(3rem, 12vw, 8rem);
+                margin-bottom: 1rem;
+            }
+            
+            .hero-subtitle {
+                font-size: clamp(1rem, 4vw, 1.5rem);
+                padding: 0 1rem;
+            }
+            
+            .scroll-progress {
+                bottom: 30px;
+                right: 30px;
+                gap: 10px;
+            }
+            
+            .progress-track {
+                height: 60px;
+            }
+            
+            .scroll-text {
+                font-size: 10px;
+            }
+            
+            .content-section {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .side-menu {
+                left: 15px;
+            }
+            
+            .hero-title {
+                font-size: clamp(2.5rem, 10vw, 6rem);
+            }
+            
+            .hero-subtitle {
+                font-size: clamp(0.9rem, 3.5vw, 1.3rem);
+            }
+            
+            .scroll-progress {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="hero-container" class="hero-container cosmos-style">
+        <canvas id="hero-canvas" class="hero-canvas"></canvas>
+        
+        <!-- Side menu -->
+        <div id="side-menu" class="side-menu" style="visibility: hidden;">
+            <div class="menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="vertical-text">SPACE</div>
+        </div>
+
+        <!-- Main content -->
+        <div class="hero-content cosmos-content">
+            <h1 id="hero-title" class="hero-title">
+                HORIZON
+            </h1>
+            
+            <div id="hero-subtitle" class="hero-subtitle cosmos-subtitle">
+                <p class="subtitle-line">
+                    Where vision meets reality, 
+                </p>
+                <p class="subtitle-line">
+                    we shape the future of tomorrow
+                </p>
+            </div>
+        </div>
+
+        <!-- Scroll progress indicator -->
+        <div id="scroll-progress" class="scroll-progress" style="visibility: hidden;">
+            <div class="scroll-text">SCROLL</div>
+            <div class="progress-track">
+                <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+            </div>
+            <div id="section-counter" class="section-counter">
+                00 / 02
+            </div>
+        </div>
+
+        <!-- Additional sections for scrolling -->
+        <div class="scroll-sections">
+            <section class="content-section">
+                <h1 class="hero-title">COSMOS</h1>
+                <div class="hero-subtitle cosmos-subtitle">
+                    <p class="subtitle-line">Beyond the boundaries of imagination,</p>
+                    <p class="subtitle-line">lies the universe of possibilities</p>
+                </div>
+            </section>
+            
+            <section class="content-section">
+                <h1 class="hero-title">INFINITY</h1>
+                <div class="hero-subtitle cosmos-subtitle">
+                    <p class="subtitle-line">In the space between thought and creation,</p>
+                    <p class="subtitle-line">we find the essence of true innovation</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Three.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- GSAP from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Global variables
+        let scene, camera, renderer, composer;
+        let stars = [];
+        let nebula, mountains = [];
+        let animationId;
+        let locations = [];
+        let targetCameraX = 0, targetCameraY = 30, targetCameraZ = 100;
+        let smoothCameraPos = { x: 0, y: 30, z: 100 };
+        
+        let scrollProgress = 0;
+        let currentSection = 0;
+        let isReady = false;
+        const totalSections = 3;
+
+        // Initialize Three.js
+        function initThree() {
+            // Scene setup
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x000000, 0.00025);
+
+            // Camera
+            camera = new THREE.PerspectiveCamera(
+                75,
+                window.innerWidth / window.innerHeight,
+                0.1,
+                2000
+            );
+            camera.position.z = 100;
+            camera.position.y = 20;
+
+            // Renderer
+            const canvas = document.getElementById('hero-canvas');
+            renderer = new THREE.WebGLRenderer({
+                canvas: canvas,
+                antialias: true,
+                alpha: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 0.5;
+
+            // Create scene elements
+            createStarField();
+            createNebula();
+            createMountains();
+            createAtmosphere();
+            getLocation();
+
+            // Start animation
+            animate();
+            
+            // Mark as ready
+            isReady = true;
+            
+            // Start initial animations
+            startInitialAnimations();
+        }
+
+        function createStarField() {
+            const starCount = 5000;
+            
+            for (let i = 0; i < 3; i++) {
+                const geometry = new THREE.BufferGeometry();
+                const positions = new Float32Array(starCount * 3);
+                const colors = new Float32Array(starCount * 3);
+                const sizes = new Float32Array(starCount);
+
+                for (let j = 0; j < starCount; j++) {
+                    const radius = 200 + Math.random() * 800;
+                    const theta = Math.random() * Math.PI * 2;
+                    const phi = Math.acos(Math.random() * 2 - 1);
+
+                    positions[j * 3] = radius * Math.sin(phi) * Math.cos(theta);
+                    positions[j * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+                    positions[j * 3 + 2] = radius * Math.cos(phi);
+
+                    // Color variation
+                    const color = new THREE.Color();
+                    const colorChoice = Math.random();
+                    if (colorChoice < 0.7) {
+                        color.setHSL(0, 0, 0.8 + Math.random() * 0.2);
+                    } else if (colorChoice < 0.9) {
+                        color.setHSL(0.08, 0.5, 0.8);
+                    } else {
+                        color.setHSL(0.6, 0.5, 0.8);
+                    }
+                    
+                    colors[j * 3] = color.r;
+                    colors[j * 3 + 1] = color.g;
+                    colors[j * 3 + 2] = color.b;
+
+                    sizes[j] = Math.random() * 2 + 0.5;
+                }
+
+                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+                geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+                const material = new THREE.ShaderMaterial({
+                    uniforms: {
+                        time: { value: 0 },
+                        depth: { value: i }
+                    },
+                    vertexShader: `
+                        attribute float size;
+                        attribute vec3 color;
+                        varying vec3 vColor;
+                        uniform float time;
+                        uniform float depth;
+                        
+                        void main() {
+                            vColor = color;
+                            vec3 pos = position;
+                            
+                            float angle = time * 0.05 * (1.0 - depth * 0.3);
+                            mat2 rot = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+                            pos.xy = rot * pos.xy;
+                            
+                            vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+                            gl_PointSize = size * (300.0 / -mvPosition.z);
+                            gl_Position = projectionMatrix * mvPosition;
+                        }
+                    `,
+                    fragmentShader: `
+                        varying vec3 vColor;
+                        
+                        void main() {
+                            float dist = length(gl_PointCoord - vec2(0.5));
+                            if (dist > 0.5) discard;
+                            
+                            float opacity = 1.0 - smoothstep(0.0, 0.5, dist);
+                            gl_FragColor = vec4(vColor, opacity);
+                        }
+                    `,
+                    transparent: true,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                });
+
+                const starField = new THREE.Points(geometry, material);
+                scene.add(starField);
+                stars.push(starField);
+            }
+        }
+
+        function createNebula() {
+            const geometry = new THREE.PlaneGeometry(8000, 4000, 100, 100);
+            const material = new THREE.ShaderMaterial({
+                uniforms: {
+                    time: { value: 0 },
+                    color1: { value: new THREE.Color(0x0033ff) },
+                    color2: { value: new THREE.Color(0xff0066) },
+                    opacity: { value: 0.3 }
+                },
+                vertexShader: `
+                    varying vec2 vUv;
+                    varying float vElevation;
+                    uniform float time;
+                    
+                    void main() {
+                        vUv = uv;
+                        vec3 pos = position;
+                        
+                        float elevation = sin(pos.x * 0.01 + time) * cos(pos.y * 0.01 + time) * 20.0;
+                        pos.z += elevation;
+                        vElevation = elevation;
+                        
+                        gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+                    }
+                `,
+                fragmentShader: `
+                    uniform vec3 color1;
+                    uniform vec3 color2;
+                    uniform float opacity;
+                    uniform float time;
+                    varying vec2 vUv;
+                    varying float vElevation;
+                    
+                    void main() {
+                        float mixFactor = sin(vUv.x * 10.0 + time) * cos(vUv.y * 10.0 + time);
+                        vec3 color = mix(color1, color2, mixFactor * 0.5 + 0.5);
+                        
+                        float alpha = opacity * (1.0 - length(vUv - 0.5) * 2.0);
+                        alpha *= 1.0 + vElevation * 0.01;
+                        
+                        gl_FragColor = vec4(color, alpha);
+                    }
+                `,
+                transparent: true,
+                blending: THREE.AdditiveBlending,
+                side: THREE.DoubleSide,
+                depthWrite: false
+            });
+
+            nebula = new THREE.Mesh(geometry, material);
+            nebula.position.z = -1050;
+            nebula.rotation.x = 0;
+            scene.add(nebula);
+        }
+
+        function createMountains() {
+            const layers = [
+                { distance: -50, height: 60, color: 0x1a1a2e, opacity: 1 },
+                { distance: -100, height: 80, color: 0x16213e, opacity: 0.8 },
+                { distance: -150, height: 100, color: 0x0f3460, opacity: 0.6 },
+                { distance: -200, height: 120, color: 0x0a4668, opacity: 0.4 }
+            ];
+
+            layers.forEach((layer, index) => {
+                const points = [];
+                const segments = 50;
+                
+                for (let i = 0; i <= segments; i++) {
+                    const x = (i / segments - 0.5) * 1000;
+                    const y = Math.sin(i * 0.1) * layer.height + 
+                           Math.sin(i * 0.05) * layer.height * 0.5 +
+                           Math.random() * layer.height * 0.2 - 100;
+                    points.push(new THREE.Vector2(x, y));
+                }
+                
+                points.push(new THREE.Vector2(5000, -300));
+                points.push(new THREE.Vector2(-5000, -300));
+
+                const shape = new THREE.Shape(points);
+                const geometry = new THREE.ShapeGeometry(shape);
+                const material = new THREE.MeshBasicMaterial({
+                    color: layer.color,
+                    transparent: true,
+                    opacity: layer.opacity,
+                    side: THREE.DoubleSide
+                });
+
+                const mountain = new THREE.Mesh(geometry, material);
+                mountain.position.z = layer.distance;
+                mountain.position.y = 0;
+                mountain.userData = { baseZ: layer.distance, index };
+                scene.add(mountain);
+                mountains.push(mountain);
+            });
+        }
+
+        function createAtmosphere() {
+            const geometry = new THREE.SphereGeometry(600, 32, 32);
+            const material = new THREE.ShaderMaterial({
+                uniforms: {
+                    time: { value: 0 }
+                },
+                vertexShader: `
+                    varying vec3 vNormal;
+                    varying vec3 vPosition;
+                    
+                    void main() {
+                        vNormal = normalize(normalMatrix * normal);
+                        vPosition = position;
+                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                    }
+                `,
+                fragmentShader: `
+                    varying vec3 vNormal;
+                    varying vec3 vPosition;
+                    uniform float time;
+                    
+                    void main() {
+                        float intensity = pow(0.7 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
+                        vec3 atmosphere = vec3(0.3, 0.6, 1.0) * intensity;
+                        
+                        float pulse = sin(time * 2.0) * 0.1 + 0.9;
+                        atmosphere *= pulse;
+                        
+                        gl_FragColor = vec4(atmosphere, intensity * 0.25);
+                    }
+                `,
+                side: THREE.BackSide,
+                blending: THREE.AdditiveBlending,
+                transparent: true
+            });
+
+            const atmosphere = new THREE.Mesh(geometry, material);
+            scene.add(atmosphere);
+        }
+
+        function animate() {
+            animationId = requestAnimationFrame(animate);
+            
+            const time = Date.now() * 0.001;
+
+            // Update stars
+            stars.forEach((starField, i) => {
+                if (starField.material.uniforms) {
+                    starField.material.uniforms.time.value = time;
+                }
+            });
+
+            // Update nebula
+            if (nebula && nebula.material.uniforms) {
+                nebula.material.uniforms.time.value = time * 0.5;
+            }
+
+            // Smooth camera movement
+            if (targetCameraX !== undefined) {
+                const smoothingFactor = 0.05;
+                
+                smoothCameraPos.x += (targetCameraX - smoothCameraPos.x) * smoothingFactor;
+                smoothCameraPos.y += (targetCameraY - smoothCameraPos.y) * smoothingFactor;
+                smoothCameraPos.z += (targetCameraZ - smoothCameraPos.z) * smoothingFactor;
+                
+                const floatX = Math.sin(time * 0.1) * 2;
+                const floatY = Math.cos(time * 0.15) * 1;
+                
+                camera.position.x = smoothCameraPos.x + floatX;
+                camera.position.y = smoothCameraPos.y + floatY;
+                camera.position.z = smoothCameraPos.z;
+                camera.lookAt(0, 10, -600);
+            }
+
+            // Animate mountains
+            mountains.forEach((mountain, i) => {
+                const parallaxFactor = 1 + i * 0.5;
+                mountain.position.x = Math.sin(time * 0.1) * 2 * parallaxFactor;
+                mountain.position.y = 50 + (Math.cos(time * 0.15) * 1 * parallaxFactor);
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        function getLocation() {
+            locations = [];
+            mountains.forEach((mountain, i) => {
+                locations[i] = mountain.position.z;
+            });
+        }
+
+        function startInitialAnimations() {
+            // Set initial states
+            gsap.set(['#side-menu', '#hero-title', '#hero-subtitle', '#scroll-progress'], {
+                visibility: 'visible'
+            });
+
+            const tl = gsap.timeline();
+
+            // Animate menu
+            tl.from('#side-menu', {
+                x: -100,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+
+            // Split and animate title
+            const titleElement = document.getElementById('hero-title');
+            const titleText = titleElement.textContent;
+            titleElement.innerHTML = titleText.split('').map(char => 
+                `<span class="title-char">${char}</span>`
+            ).join('');
+
+            const titleChars = titleElement.querySelectorAll('.title-char');
+            tl.from(titleChars, {
+                y: 200,
+                opacity: 0,
+                duration: 1.5,
+                stagger: 0.05,
+                ease: "power4.out"
+            }, "-=0.5");
+
+            // Animate subtitle
+            const subtitleLines = document.querySelectorAll('.subtitle-line');
+            tl.from(subtitleLines, {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.2,
+                ease: "power3.out"
+            }, "-=0.8");
+
+            // Animate scroll indicator
+            tl.from('#scroll-progress', {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: "power2.out"
+            }, "-=0.5");
+        }
+
+        // Scroll handling
+        function handleScroll() {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const maxScroll = documentHeight - windowHeight;
+            const progress = Math.min(scrollY / maxScroll, 1);
+            
+            scrollProgress = progress;
+            const newSection = Math.floor(progress * totalSections);
+            
+            if (newSection !== currentSection) {
+                currentSection = newSection;
+                updateContent();
+            }
+
+            // Update progress indicator
+            const progressFill = document.getElementById('progress-fill');
+            const sectionCounter = document.getElementById('section-counter');
+            
+            if (progressFill) {
+                progressFill.style.width = `${progress * 100}%`;
+            }
+            
+            if (sectionCounter) {
+                sectionCounter.textContent = `${String(currentSection).padStart(2, '0')} / ${String(totalSections - 1).padStart(2, '0')}`;
+            }
+
+            // Calculate smooth progress through all sections
+            const totalProgress = progress * totalSections;
+            const sectionProgress = totalProgress % 1;
+            
+            // Define camera positions
+            const cameraPositions = [
+                { x: 0, y: 30, z: 300 },    // HORIZON
+                { x: 0, y: 40, z: -50 },    // COSMOS
+                { x: 0, y: 50, z: -700 }    // INFINITY
+            ];
+            
+            const currentPos = cameraPositions[newSection] || cameraPositions[0];
+            const nextPos = cameraPositions[newSection + 1] || currentPos;
+            
+            targetCameraX = currentPos.x + (nextPos.x - currentPos.x) * sectionProgress;
+            targetCameraY = currentPos.y + (nextPos.y - currentPos.y) * sectionProgress;
+            targetCameraZ = currentPos.z + (nextPos.z - currentPos.z) * sectionProgress;
+            
+            // Parallax mountains
+            mountains.forEach((mountain, i) => {
+                const speed = 1 + i * 0.9;
+                const targetZ = mountain.userData.baseZ + scrollY * speed * 0.5;
+                if (nebula) {
+                    nebula.position.z = (targetZ + progress * speed * 0.01) - 100;
+                }
+                
+                if (progress > 0.7) {
+                    mountain.position.z = 600000;
+                } else {
+                    mountain.position.z = locations[i];
+                }
+            });
+            
+            if (nebula && mountains[3]) {
+                nebula.position.z = mountains[3].position.z;
+            }
+
+            // Check for animation completion
+            if (progress >= 0.95) {
+                // Animation nearly complete, send message to parent
+                setTimeout(() => {
+                    if (window.parent) {
+                        window.parent.postMessage('animation-complete', '*');
+                    }
+                }, 1000);
+            }
+        }
+
+        function updateContent() {
+            const titles = ['HORIZON', 'COSMOS', 'INFINITY'];
+            const subtitles = [
+                {
+                    line1: 'Where vision meets reality,',
+                    line2: 'we shape the future of tomorrow'
+                },
+                {
+                    line1: 'Beyond the boundaries of imagination,',
+                    line2: 'lies the universe of possibilities'
+                },
+                {
+                    line1: 'In the space between thought and creation,',
+                    line2: 'we find the essence of true innovation'
+                }
+            ];
+
+            const titleElement = document.getElementById('hero-title');
+            const subtitleElement = document.getElementById('hero-subtitle');
+            
+            if (titleElement && titles[currentSection]) {
+                titleElement.textContent = titles[currentSection];
+                
+                // Re-split title for animation
+                titleElement.innerHTML = titles[currentSection].split('').map(char => 
+                    `<span class="title-char">${char}</span>`
+                ).join('');
+                
+                // Animate new title
+                const titleChars = titleElement.querySelectorAll('.title-char');
+                gsap.fromTo(titleChars, 
+                    { y: 50, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.8, stagger: 0.03, ease: "power3.out" }
+                );
+            }
+            
+            if (subtitleElement && subtitles[currentSection]) {
+                const subtitleLines = subtitleElement.querySelectorAll('.subtitle-line');
+                if (subtitleLines[0]) subtitleLines[0].textContent = subtitles[currentSection].line1;
+                if (subtitleLines[1]) subtitleLines[1].textContent = subtitles[currentSection].line2;
+                
+                // Animate subtitle
+                gsap.fromTo(subtitleLines,
+                    { y: 30, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out" }
+                );
+            }
+        }
+
+        // Resize handler
+        function handleResize() {
+            if (camera && renderer) {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initThree();
+            
+            window.addEventListener('scroll', handleScroll);
+            window.addEventListener('resize', handleResize);
+            
+            // Set initial position
+            handleScroll();
+        });
+
+        // Cleanup on unload
+        window.addEventListener('beforeunload', () => {
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+            
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleResize);
+            
+            // Dispose Three.js resources
+            if (stars) {
+                stars.forEach(starField => {
+                    if (starField.geometry) starField.geometry.dispose();
+                    if (starField.material) starField.material.dispose();
+                });
+            }
+            
+            if (mountains) {
+                mountains.forEach(mountain => {
+                    if (mountain.geometry) mountain.geometry.dispose();
+                    if (mountain.material) mountain.material.dispose();
+                });
+            }
+            
+            if (nebula) {
+                if (nebula.geometry) nebula.geometry.dispose();
+                if (nebula.material) nebula.material.dispose();
+            }
+            
+            if (renderer) {
+                renderer.dispose();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -54,7 +54,7 @@ const Header = () => {
           <Button variant="link" className="text-white hover:text-tech-blue transition-colors p-0" onClick={() => scrollToSection('faq')}>
             שאלות נפוצות
           </Button>
-          <Button id="header_contact_button" className="bg-transparent border border-tech-blue text-tech-blue hover:bg-tech-blue hover:text-dark" onClick={() => scrollToSection('contact')}>
+          <Button id="header_contact_button" className="bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold transition-all duration-300 shadow-lg hover:shadow-tech-blue/25" onClick={() => scrollToSection('contact')}>
             צור קשר
           </Button>
         </nav>
@@ -82,7 +82,7 @@ const Header = () => {
             <Button variant="link" className="text-white hover:text-tech-blue transition-colors p-2 justify-start min-h-[44px] text-base" onClick={() => scrollToSection('faq')}>
               שאלות נפוצות
             </Button>
-            <Button id="header_mobile_contact_button" className="bg-transparent border border-tech-blue text-tech-blue hover:bg-tech-blue hover:text-dark w-full min-h-[44px] text-base" onClick={() => scrollToSection('contact')}>
+            <Button id="header_mobile_contact_button" className="bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold w-full min-h-[44px] text-base transition-all duration-300 shadow-lg hover:shadow-tech-blue/25" onClick={() => scrollToSection('contact')}>
               צור קשר
             </Button>
           </div>

@@ -117,7 +117,7 @@ function ServiceCards() {
             id="services_title"
             className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent"
             data-aos="fade-up"
-            data-aos-delay="100"
+data-aos-delay="0"
           >
             השירותים שלנו
           </h2>
