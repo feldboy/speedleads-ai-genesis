@@ -20,6 +20,7 @@ import { initializeAnalytics, trackEvent } from '@/lib/analytics';
 const Index = () => {
   const [cookieConsentShown, setCookieConsentShown] = useState(false);
   const [hasConsent, setHasConsent] = useState(false);
+  const [horizonComplete, setHorizonComplete] = useState(false);
   
   // Initialize analytics after cookie consent
   useEffect(() => {
@@ -29,9 +30,17 @@ const Index = () => {
       setHasConsent(true);
       initializeAnalytics();
     } else {
-      setCookieConsentShown(true);
+      // Don't show cookie consent until horizon animation completes
+      if (horizonComplete) {
+        setCookieConsentShown(true);
+      }
     }
-  }, []);
+  }, [horizonComplete]);
+
+  // Handler for when horizon animation completes
+  const handleHorizonComplete = () => {
+    setHorizonComplete(true);
+  };
 
   // Google Analytics event tracking
   useEffect(() => {
@@ -91,8 +100,14 @@ const Index = () => {
     <div dir="rtl" lang="he" className="min-h-screen bg-white text-dark relative overflow-x-hidden">
       <Header />
       <main>
-        <HorizonHero />
-        <HeroSection />
+        <HorizonHero onAnimationComplete={handleHorizonComplete} />
+        <div className="transition-all duration-700 ease-out" style={{ 
+          backdropFilter: 'none',
+          position: 'relative',
+          zIndex: 10
+        }}>
+          <HeroSection />
+        </div>
         
         {/* Animated Stats Section */}
         <section className="py-20 bg-gradient-to-b from-gray-50 to-white">

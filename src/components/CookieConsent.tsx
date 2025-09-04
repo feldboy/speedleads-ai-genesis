@@ -9,7 +9,12 @@ interface CookieConsentProps {
 
 const CookieConsent: React.FC<CookieConsentProps> = ({ onAction }) => {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 p-4 z-50 shadow-lg">
+    <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 p-4 z-50 shadow-lg animate-slide-up-fade-in" 
+         style={{
+           animation: 'slideUpFadeIn 800ms cubic-bezier(0.4, 0.0, 0.2, 1) forwards',
+           transform: 'translateY(100%)',
+           opacity: 0
+         }}>
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="flex items-start gap-3 max-w-3xl">

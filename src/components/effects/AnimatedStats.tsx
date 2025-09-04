@@ -47,10 +47,10 @@ const AnimatedStat: React.FC<StatProps> = ({ number, label, suffix = "", duratio
 
 const AnimatedStats = () => {
   const stats = [
-    { number: 150, label: "פרויקטים שהושלמו", suffix: "+" },
-    { number: 98, label: "שביעות רצון לקוחות", suffix: "%" },
-    { number: 300, label: "שעות עבודה שנחסכו", suffix: "K+" },
-    { number: 45, label: "עלייה ממוצעת בלידים", suffix: "%" }
+    { number: 5, label: "פרויקטים שהושלמו", suffix: "+" },
+    { number: 100, label: "שביעות רצון לקוחות", suffix: "%" },
+    { number: 50, label: "שעות שנחסכו לכל לקוח", suffix: "+" },
+    { number: 25, label: "עלייה ממוצעת בלידים", suffix: "%" }
   ];
 
   return (

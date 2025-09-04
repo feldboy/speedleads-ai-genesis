@@ -5,7 +5,11 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 
-export const Component = () => {
+interface HorizonHeroProps {
+  onAnimationComplete?: () => void;
+}
+
+export const Component: React.FC<HorizonHeroProps> = ({ onAnimationComplete }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -18,9 +22,11 @@ export const Component = () => {
   const [isReady, setIsReady] = useState(false);
   const [animationComplete, setAnimationComplete] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
+  const [scrollEnabled, setScrollEnabled] = useState(false);
 
   const wheelDelta = useRef(0);
   const touchStartY = useRef(0);
+  const animationFrameRef = useRef<number | null>(null);
   
   const threeRefs = useRef({
     scene: null as THREE.Scene | null,
@@ -96,6 +102,7 @@ export const Component = () => {
         // Scene setup
         console.log('📦 Creating scene...');
         refs.scene = new THREE.Scene();
+        refs.scene.background = new THREE.Color(0x0a0a0a); // Dark background to prevent white flashes
         refs.scene.fog = new THREE.FogExp2(0x000000, 0.00025);
         console.log('✅ Scene created');
 
@@ -120,7 +127,7 @@ export const Component = () => {
         refs.renderer.setSize(window.innerWidth, window.innerHeight);
         refs.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         refs.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        refs.renderer.toneMappingExposure = 0.5;
+        refs.renderer.toneMappingExposure = 0.3; // reduced from 0.5 to prevent bright flashes
         console.log('✅ Renderer created, size:', window.innerWidth, 'x', window.innerHeight);
 
         // Post-processing setup
@@ -131,9 +138,9 @@ export const Component = () => {
 
         const bloomPass = new UnrealBloomPass(
           new THREE.Vector2(window.innerWidth, window.innerHeight),
-          0.8,  // strength
+          0.35, // strength - reduced from 0.8 to prevent bright flashes
           0.4,  // radius
-          0.85  // threshold
+          0.9   // threshold - increased from 0.85 to reduce bloom
         );
         refs.composer.addPass(bloomPass);
         console.log('✅ Post-processing composer created with bloom pass');
@@ -741,19 +748,38 @@ export const Component = () => {
         refs.targetCameraZ = cameraPositions[2].z;
       }
       
-      // Check for completion
+      // Progressive scroll restoration - start enabling scroll at 85% completion
+      if (newProgress >= 0.85 && !scrollEnabled) {
+        setScrollEnabled(true);
+        
+        // Gradually restore scroll functionality with better animation frame management
+        const enableScrollGradually = () => {
+          document.removeEventListener('wheel', preventScroll);
+          document.removeEventListener('touchmove', preventScroll);
+          document.removeEventListener('keydown', preventKeyScroll);
+        };
+        
+        animationFrameRef.current = requestAnimationFrame(enableScrollGradually);
+      }
+      
+      // Check for completion with smoother transition
       if (newProgress >= 0.95) {
         setFadeOut(true);
         
-        // Restore scrolling immediately when animation completes
-        setTimeout(() => {
-          // Restore document scroll functionality
-          document.removeEventListener('wheel', preventScroll);
-          document.removeEventListener('touchmove', preventScroll);
-          document.removeEventListener('scroll', preventScroll);
-          document.removeEventListener('keydown', preventKeyScroll);
+        // Use requestAnimationFrame for smoother timing instead of setTimeout
+        const completeAnimation = () => {
+          // Restore remaining document scroll functionality if not already done
+          if (!scrollEnabled) {
+            document.removeEventListener('wheel', preventScroll);
+            document.removeEventListener('touchmove', preventScroll);
+            document.removeEventListener('scroll', preventScroll);
+            document.removeEventListener('keydown', preventKeyScroll);
+          }
           
-          // Restore body styles
+          // Only remove scroll lock - leave document scroll enabled
+          document.removeEventListener('scroll', preventScroll);
+          
+          // Restore body styles smoothly
           document.body.style.overflow = originalOverflow;
           document.body.style.position = originalPosition;
           document.body.style.width = '';
@@ -765,7 +791,21 @@ export const Component = () => {
           }
           
           setAnimationComplete(true);
-        }, 1000);
+          
+          // Call the callback to notify parent component
+          if (onAnimationComplete) {
+            onAnimationComplete();
+          }
+        };
+        
+        // Use requestAnimationFrame chain for smoother animation completion detection
+        const scheduleCompletion = () => {
+          animationFrameRef.current = requestAnimationFrame(() => {
+            animationFrameRef.current = requestAnimationFrame(completeAnimation);
+          });
+        };
+        
+        scheduleCompletion();
       }
     };
 
@@ -792,6 +832,11 @@ export const Component = () => {
         history.scrollRestoration = 'auto';
       }
       
+      // Cancel any pending animation frames
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+      
       // Remove container events
       container.removeEventListener('wheel', handleWheel);
       container.removeEventListener('touchstart', handleTouch);
@@ -807,14 +852,18 @@ export const Component = () => {
   return (
     <div 
       ref={containerRef} 
-      className={`fixed inset-0 z-50 hero-container cosmos-style transition-opacity duration-1000 ${
-        fadeOut ? 'opacity-0' : 'opacity-100'
+      className={`fixed inset-0 hero-container cosmos-style transition-all duration-700 ease-out ${
+        fadeOut ? 'opacity-0 z-40' : 'opacity-100 z-50'
       }`}
       style={{ 
         width: '100vw', 
         height: '100vh',
         overflow: 'hidden',
-        touchAction: 'none'
+        touchAction: 'none',
+        transform: fadeOut ? 'scale(1.1)' : 'scale(1)',
+        filter: fadeOut ? 'blur(8px) brightness(0.4)' : 'blur(0px) brightness(0.8)',
+        transition: 'all 700ms cubic-bezier(0.4, 0.0, 0.2, 1)',
+        backdropFilter: fadeOut ? 'blur(12px)' : 'none'
       }}
     >
       <canvas ref={canvasRef} className="hero-canvas" />
@@ -826,7 +875,7 @@ export const Component = () => {
           <span></span>
           <span></span>
         </div>
-        <div className="vertical-text">SPACE</div>
+        <div className="vertical-text">SPEEDLEADS</div>
       </div>
 
       {/* Main content */}
