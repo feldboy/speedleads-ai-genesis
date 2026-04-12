@@ -1,149 +1,108 @@
 import { Button } from "@/components/ui/button";
 import MagneticButton from "@/components/effects/MagneticButton";
+import SpeedLeadsLogo from "@/components/ui/SpeedLeadsLogo";
 
-interface About3Props {
-  title?: string;
-  description?: string;
-  mainImage?: {
-    src: string;
-    alt: string;
-  };
-  secondaryImage?: {
-    src: string;
-    alt: string;
-  };
-}
-
-
-
-export const About3 = ({
-  title = "למה SpeedLeads.AI?",
-  description = "פתרונות AI מתקדמים שחוסכים זמן, משפרים דיוק ומאפשרים לכם להתמקד במה שחשוב באמת",
-  mainImage = {
-    src: "/tech-logos-grid.jpg",
-    alt: "מגוון כלים וטכנולוגיות מתקדמות לפיתוח דיגיטלי",
-  },
-  secondaryImage = {
-    src: "/lovable-uploads/Group_12762czc.jpg",
-    alt: "עבודת צוות מקצועית וטכנולוגית",
-  },
-}: About3Props = {}) => {
+export const About3 = () => {
   return (
-    <section className="py-20 lg:py-32 bg-gradient-to-b from-background to-muted/20">
+    <section className="py-20 lg:py-32 bg-gradient-to-b from-[#0D1B2A]/70 via-[#0f2035]/60 to-[#0D1B2A]/70 relative overflow-hidden">
+
       <div className="container mx-auto px-4 md:px-6">
-        {/* Header - Improved text alignment and spacing */}
+        {/* Header */}
         <div className="mb-16 text-center max-w-4xl mx-auto" data-aos="fade-up">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent leading-tight">
-            {title}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <span className="text-white">למה </span>
+            <SpeedLeadsLogo size="xl" />
+            <span className="text-white">?</span>
           </h1>
           <div className="w-32 h-2 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] mx-auto mb-8 rounded-full shadow-lg shadow-tech-blue/30" />
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            {description}
+          <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+            פתרונות AI מתקדמים שחוסכים זמן, משפרים דיוק ומאפשרים לכם להתמקד במה שחשוב באמת
           </p>
         </div>
 
-        {/* Images Grid - Enhanced with better proportions */}
-        <div className="grid gap-6 lg:gap-8 lg:grid-cols-3 mb-20">
-          <div className="lg:col-span-2 group" data-aos="fade-up">
-            <img
-              src={mainImage.src}
-              alt={mainImage.alt}
-              className="h-80 md:h-96 lg:h-[500px] w-full rounded-2xl object-cover shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]"
-            />
-          </div>
-          <div className="group" data-aos="fade-up" data-aos-delay="100">
-            <img
-              src={secondaryImage.src}
-              alt={secondaryImage.alt}
-              className="h-80 md:h-96 lg:h-[500px] w-full rounded-2xl object-cover shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]"
-            />
-          </div>
-        </div>
-
-
-        {/* Features Section - Improved card design and spacing */}
+        {/* Features Section */}
         <div className="mb-20">
           <div className="text-center mb-12" data-aos="fade-up">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">מה מייחד אותנו</h2>
-            <p className="text-muted-foreground text-lg">ארבעה עמודי התווך שלנו להצלחה שלכם</p>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-white">מה מייחד אותנו</h2>
+            <p className="text-gray-400 text-lg">ארבעה עמודי התווך שלנו להצלחה שלכם</p>
           </div>
-          
+
           <div className="grid gap-8 md:grid-cols-2 max-w-6xl mx-auto">
-            {/* Feature 1 - שירות אישי */}
-            <div className="group rounded-2xl border border-border bg-background/80 backdrop-blur-sm p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
-              <div className="mb-6 overflow-hidden rounded-xl">
-                <img
-                  src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=300&fit=crop&auto=format&q=80"
-                  alt="שירות אישי ושותפות עסקית אמיתית"
-                  className="h-48 w-full object-cover transition-transform duration-300 sm:group-hover:scale-105"
-                />
+            {/* Feature 1 */}
+            <div className="group glass-liquid rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+              <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
+                background: 'linear-gradient(135deg, #00A7FF 0%, #00F6FF 50%, #0D1B2A 100%)'
+              }}>
+                <div className="absolute inset-0 opacity-30" style={{
+                  background: 'radial-gradient(circle at 30% 40%, rgba(0,246,255,0.4) 0%, transparent 60%), radial-gradient(circle at 70% 60%, rgba(0,167,255,0.3) 0%, transparent 50%)'
+                }} />
               </div>
               <div className="text-center">
-                <h3 className="mb-2 text-2xl font-bold">שירות אישי</h3>
-                <h4 className="mb-4 text-lg font-semibold text-blue-600 dark:text-blue-400">
+                <h3 className="mb-2 text-2xl font-bold text-white">שירות אישי</h3>
+                <h4 className="mb-4 text-lg font-semibold text-blue-400">
                   שותפות אמיתית והתחייבות
                 </h4>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-gray-300 leading-relaxed">
                   אתם מקבלים מנהל פרויקט ייעודי, זמינות גבוהה ותמיכה הרבה אחרי ההשקה. אנחנו השותפים שלכם בכל שלב - מאסטרטגיה ראשונית ועד תחזוקה שוטפת.
                 </p>
               </div>
             </div>
 
-            {/* Feature 2 - ניהול מוצר אסטרטגי */}
-            <div className="group rounded-2xl border border-border bg-background/80 backdrop-blur-sm p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="150">
-              <div className="mb-6 overflow-hidden rounded-xl">
-                <img
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=300&fit=crop&auto=format&q=80"
-                  alt="אנליטיקה ואסטרטגיה מבוססת נתונים"
-                  className="h-48 w-full object-cover transition-transform duration-300 sm:group-hover:scale-105"
-                />
+            {/* Feature 2 */}
+            <div className="group glass-liquid rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="150">
+              <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
+                background: 'linear-gradient(135deg, #7C3AED 0%, #3B82F6 50%, #0D1B2A 100%)'
+              }}>
+                <div className="absolute inset-0 opacity-30" style={{
+                  background: 'radial-gradient(circle at 60% 30%, rgba(124,58,237,0.4) 0%, transparent 60%), radial-gradient(circle at 40% 70%, rgba(59,130,246,0.3) 0%, transparent 50%)'
+                }} />
               </div>
               <div className="text-center">
-                <h3 className="mb-2 text-2xl font-bold">ניהול מוצר אסטרטגי</h3>
-                <h4 className="mb-4 text-lg font-semibold text-purple-600 dark:text-purple-400">
+                <h3 className="mb-2 text-2xl font-bold text-white">ניהול מוצר אסטרטגי</h3>
+                <h4 className="mb-4 text-lg font-semibold text-purple-400">
                   אסטרטגיה ברורה, תוצאות מדידות
                 </h4>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-gray-300 leading-relaxed">
                   אנחנו מגדירים את המוצר שלכם יחד, בונים MVP מהיר ומניעים צמיחה דרך איטרציות מבוססות נתונים. עם מדדי הצלחה ברורים, תמיד תדעו מה הסטטוס וה-ROI של הפרויקט.
                 </p>
               </div>
             </div>
 
-            {/* Feature 3 - איכות וביצועים */}
-            <div className="group rounded-2xl border border-border bg-background/80 backdrop-blur-sm p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
-              <div className="mb-6 overflow-hidden rounded-xl">
-                <img
-                  src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=300&fit=crop&auto=format&q=80"
-                  alt="תשתית יציבה ובטוחה לביצועים מיטביים"
-                  className="h-48 w-full object-cover transition-transform duration-300 sm:group-hover:scale-105"
-                />
+            {/* Feature 3 */}
+            <div className="group glass-liquid rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+              <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
+                background: 'linear-gradient(135deg, #10B981 0%, #06B6D4 50%, #0D1B2A 100%)'
+              }}>
+                <div className="absolute inset-0 opacity-30" style={{
+                  background: 'radial-gradient(circle at 40% 50%, rgba(16,185,129,0.4) 0%, transparent 60%), radial-gradient(circle at 70% 30%, rgba(6,182,212,0.3) 0%, transparent 50%)'
+                }} />
               </div>
               <div className="text-center">
-                <h3 className="mb-2 text-2xl font-bold">איכות וביצועים</h3>
-                <h4 className="mb-4 text-lg font-semibold text-green-600 dark:text-green-400">
+                <h3 className="mb-2 text-2xl font-bold text-white">איכות וביצועים</h3>
+                <h4 className="mb-4 text-lg font-semibold text-green-400">
                   יציב, מאובטח ומהיר
                 </h4>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-gray-300 leading-relaxed">
                   אנחנו בונים לפי הסטנדרטים הגבוהים ביותר עם בדיקות אוטומטיות, פרוטוקולי אבטחה מקיפים וזמני טעינה מהירים מותאמים להצלחה ב-SEO.
                 </p>
               </div>
             </div>
 
-            {/* Feature 4 - שקיפות מלאה */}
-            <div className="group rounded-2xl border border-border bg-background/80 backdrop-blur-sm p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="250">
-              <div className="mb-6 overflow-hidden rounded-xl">
-                <img
-                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=300&fit=crop&auto=format&q=80"
-                  alt="שקיפות מלאה ובקרה על הפרויקט"
-                  className="h-48 w-full object-cover transition-transform duration-300 sm:group-hover:scale-105"
-                />
+            {/* Feature 4 */}
+            <div className="group glass-liquid rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="250">
+              <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
+                background: 'linear-gradient(135deg, #F59E0B 0%, #B08D57 50%, #0D1B2A 100%)'
+              }}>
+                <div className="absolute inset-0 opacity-30" style={{
+                  background: 'radial-gradient(circle at 50% 40%, rgba(245,158,11,0.4) 0%, transparent 60%), radial-gradient(circle at 30% 70%, rgba(176,141,87,0.3) 0%, transparent 50%)'
+                }} />
               </div>
               <div className="text-center">
-                <h3 className="mb-2 text-2xl font-bold">שקיפות מלאה</h3>
-                <h4 className="mb-4 text-lg font-semibold text-orange-600 dark:text-orange-400">
+                <h3 className="mb-2 text-2xl font-bold text-white">שקיפות מלאה</h3>
+                <h4 className="mb-4 text-lg font-semibold text-orange-400">
                   אתם תמיד על ההגה
                 </h4>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-gray-300 leading-relaxed">
                   מקבלים גישה מלאה לקוד המקור, תשתית ודוחות התקדמות. אנחנו שומרים אתכם על ההגה עם מידע מלא ותהליכי החלטה שקופים.
                 </p>
               </div>
@@ -151,8 +110,7 @@ export const About3 = ({
           </div>
         </div>
 
-
-        {/* CTA Button - Enhanced positioning and styling */}
+        {/* CTA Button */}
         <div className="text-center" data-aos="fade-up">
           <MagneticButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
             <Button

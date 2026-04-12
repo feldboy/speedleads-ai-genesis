@@ -2,16 +2,17 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { GradientHeading } from '@/components/ui/gradient-heading';
+import SpeedLeadsLogo from '@/components/ui/SpeedLeadsLogo';
 
 const Footer = () => {
   return (
-    <footer className="bg-dark text-white pt-16 pb-8">
+    <footer className="bg-dark/90 text-white pt-16 pb-8">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center mb-4">
               <img src="/speedleads-logo.png" alt="SpeedLeads.AI Logo" className="h-6 mr-3" />
-              <GradientHeading variant="light" size="sm">SpeedLeads.AI</GradientHeading>
+              <SpeedLeadsLogo size="sm" />
             </div>
             <p className="text-gray-400 mb-4">
               פתרונות דיגיטליים מתקדמים מבוססי AI לעסקים שרוצים להוביל את השוק.

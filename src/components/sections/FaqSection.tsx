@@ -44,22 +44,23 @@ const FaqSection = () => {
   };
 
   return (
-    <section id="faq" className="py-20 bg-white">
+    <section id="faq" className="py-20 bg-gradient-to-b from-[#0D1B2A]/70 via-[#0f2035]/60 to-[#0D1B2A]/70 relative overflow-hidden">
+
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">שאלות נפוצות</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-aos="fade-up">שאלות נפוצות</h2>
           <div className="w-24 h-1 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] mx-auto mb-8" />
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
             כאן תוכלו למצוא מענה לשאלות הנפוצות ביותר. לא מצאתם את מה שחיפשתם? צרו איתנו קשר!
           </p>
         </div>
-        
+
         <div className="max-w-3xl mx-auto">
           {faqs.map((faq, index) => (
-            <div 
-              key={faq.id} 
-              className="border-b border-gray-200 py-4 last:border-b-0" 
-              data-aos="fade-up" 
+            <div
+              key={faq.id}
+              className="glass-liquid rounded-xl mb-4 p-4"
+              data-aos="fade-up"
               data-aos-delay={index * 100}
             >
               <button
@@ -70,11 +71,11 @@ const FaqSection = () => {
                 aria-expanded={openFaq === faq.id}
                 aria-controls={`faq_answer_${faq.id}`}
               >
-                <span className="text-xl font-medium text-dark">{faq.question}</span>
-                <svg 
-                  className={`w-5 h-5 text-dark transition-transform ${openFaq === faq.id ? 'transform rotate-180' : ''}`}
-                  fill="none" 
-                  stroke="currentColor" 
+                <span className="text-xl font-medium text-white">{faq.question}</span>
+                <svg
+                  className={`w-5 h-5 text-gray-300 transition-transform ${openFaq === faq.id ? 'transform rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
@@ -83,19 +84,19 @@ const FaqSection = () => {
                 </svg>
               </button>
               {openFaq === faq.id && (
-                <div 
-                  id={`faq_answer_${faq.id}`} 
-                  className="mt-4 text-gray-600 pr-6 animate-fade-in" // Keeping existing fade-in for accordion open
-                > 
+                <div
+                  id={`faq_answer_${faq.id}`}
+                  className="mt-4 text-gray-300 pr-6 animate-fade-in"
+                >
                   {faq.answer}
                 </div>
               )}
             </div>
           ))}
         </div>
-        
+
         <div className="text-center mt-12" data-aos="fade-up">
-          <p className="text-lg text-gray-600 mb-6">עדיין יש לכם שאלות?</p>
+          <p className="text-lg text-gray-300 mb-6">עדיין יש לכם שאלות?</p>
           <MagneticButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
             <Button 
               id="faq_contact_button"

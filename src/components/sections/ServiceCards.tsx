@@ -105,12 +105,13 @@ const services: Service[] = [
 
 function ServiceCards() {
   return (
-    <section id="services" className="py-20 bg-gradient-to-b from-gray-50 to-white" aria-labelledby="services_title">
+    <section id="services" className="py-20 bg-gradient-to-b from-[#0D1B2A]/70 via-[#0f2035]/60 to-[#0D1B2A]/70 relative overflow-hidden" aria-labelledby="services_title">
+
       <div className="container mx-auto">
         <header className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full px-6 py-2 mb-6" data-aos="fade-up">
-            <Shield className="w-4 h-4 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent" />
-            <span className="text-sm font-medium text-gray-600">פתרונות מקצועיים מובילים</span>
+          <div className="inline-flex items-center gap-2 glass-liquid rounded-full px-6 py-2 mb-6" data-aos="fade-up">
+            <Shield className="w-4 h-4 text-tech-blue" />
+            <span className="text-sm font-medium text-gray-300">פתרונות מקצועיים מובילים</span>
           </div>
           
           <h2
@@ -123,7 +124,7 @@ data-aos-delay="0"
           </h2>
           <div className="w-32 h-2 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] mx-auto mb-8 rounded-full shadow-lg shadow-tech-blue/30" data-aos="fade-up" data-aos-delay="150" />
           
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
             אנחנו מתמחים בפיתוח פתרונות טכנולוגיים מתקדמים שמביאים תוצאות אמיתיות.
             כל פרויקט מותאם אישית לצרכים הייחודיים של העסק שלכם.
           </p>
@@ -135,8 +136,8 @@ data-aos-delay="0"
             return (
               <MagicCard
                 key={service.id}
-                className="group relative overflow-hidden bg-white border border-gray-200 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[595px]"
-                gradientColor="#f0f9ff"
+                className="group relative overflow-hidden glass-liquid rounded-3xl p-6 transition-all duration-500 min-h-[595px]"
+                gradientColor="#00F6FF"
                 gradientOpacity={0.1}
                 data-aos="fade-up"
                 data-aos-delay={index * 200}
@@ -149,7 +150,7 @@ data-aos-delay="0"
                         <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] rounded-xl flex items-center justify-center shadow-lg">
                           <IconComponent className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
                         </div>
-                        <h3 className="text-xl lg:text-3xl font-bold text-gray-900 flex-1">
+                        <h3 className="text-xl lg:text-3xl font-bold text-white flex-1">
                           {service.title}
                         </h3>
                       </div>
@@ -159,7 +160,7 @@ data-aos-delay="0"
                           {service.subtitle}
                         </h4>
                         
-                        <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
+                        <p className="text-gray-300 leading-relaxed text-sm lg:text-base">
                           {service.description}
                         </p>
 
@@ -168,7 +169,7 @@ data-aos-delay="0"
                           {service.points.slice(0, 3).map((point, pointIndex) => (
                             <div key={pointIndex} className="flex items-start gap-2">
                               <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 text-sm leading-relaxed">{point}</span>
+                              <span className="text-gray-300 text-sm leading-relaxed">{point}</span>
                             </div>
                           ))}
                         </div>
@@ -176,9 +177,9 @@ data-aos-delay="0"
                         {/* Features */}
                         <div className="grid grid-cols-1 gap-2">
                           {service.features.slice(0, 3).map((feature, featureIndex) => (
-                            <div key={featureIndex} className="flex items-center gap-2 bg-gray-50 rounded-lg p-2">
-                              <Zap className="w-4 h-4 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent flex-shrink-0" />
-                              <span className="text-sm font-medium text-gray-700">{feature}</span>
+                            <div key={featureIndex} className="flex items-center gap-2 bg-white/5 rounded-lg p-2">
+                              <Zap className="w-4 h-4 text-tech-blue flex-shrink-0" />
+                              <span className="text-sm font-medium text-gray-300">{feature}</span>
                             </div>
                           ))}
                         </div>
@@ -189,7 +190,7 @@ data-aos-delay="0"
                             <span className="text-lg lg:text-2xl font-bold bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent">{service.price}</span>
                             <div className="flex items-center gap-1">
                               <Trophy className="w-3 h-3 lg:w-4 lg:h-4 text-gold" />
-                              <span className="text-xs lg:text-sm text-gray-500">מחיר הוגן</span>
+                              <span className="text-xs lg:text-sm text-gray-400">מחיר הוגן</span>
                             </div>
                           </div>
                           <Badge variant="secondary" className="bg-gradient-to-l from-[#00f6ff]/10 to-[#00a7ff]/10 text-transparent bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text font-medium px-2 py-1 text-xs">
@@ -200,7 +201,7 @@ data-aos-delay="0"
                         {/* Trust Signals */}
                         <div className="flex flex-wrap gap-1 lg:gap-2">
                           {service.trustSignals.slice(0, 2).map((signal, signalIndex) => (
-                            <Badge key={signalIndex} variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200 px-2 py-1">
+                            <Badge key={signalIndex} variant="outline" className="text-xs bg-green-500/10 text-green-400 border-green-500/30 px-2 py-1">
                               <Award className="w-2 h-2 lg:w-3 lg:h-3 ml-1" />
                               {signal}
                             </Badge>
@@ -210,7 +211,7 @@ data-aos-delay="0"
                     </div>
 
                     {/* CTA Button - Fixed at bottom */}
-                    <div className="mt-6 pt-4 border-t border-gray-100">
+                    <div className="mt-6 pt-4 border-t border-white/10">
                       <Button 
                         size="lg" 
                         className="w-full bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold px-6 lg:px-8 py-3 lg:py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl text-sm lg:text-base"

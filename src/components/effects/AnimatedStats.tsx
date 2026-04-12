@@ -32,7 +32,7 @@ const AnimatedStat: React.FC<StatProps> = ({ number, label, suffix = "", duratio
       transition={{ duration: 0.6 }}
     >
       <motion.div
-        className="text-4xl md:text-5xl font-bold gradient-text mb-2"
+        className="text-4xl md:text-5xl font-bold gradient-text mb-2 drop-shadow-lg"
         initial={{ scale: 0 }}
         animate={isInView ? { scale: 1 } : {}}
         transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
@@ -40,7 +40,7 @@ const AnimatedStat: React.FC<StatProps> = ({ number, label, suffix = "", duratio
         <motion.span>{rounded}</motion.span>
         {suffix}
       </motion.div>
-      <p className="text-gray-600 text-lg">{label}</p>
+      <p className="text-gray-300 text-lg">{label}</p>
     </motion.div>
   );
 };
@@ -58,6 +58,7 @@ const AnimatedStats = () => {
       {stats.map((stat, index) => (
         <motion.div
           key={index}
+          className="glass-liquid rounded-2xl p-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.1, duration: 0.6 }}

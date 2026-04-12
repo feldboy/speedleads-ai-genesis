@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import SpeedLeadsLogo from '@/components/ui/SpeedLeadsLogo';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -29,14 +30,12 @@ const Header = () => {
       setMobileMenuOpen(false);
     }
   };
-  return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 ${isScrolled ? 'bg-dark bg-opacity-95 shadow-md py-2' : 'bg-transparent'}`}>
+  return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 ${isScrolled ? 'glass-navbar shadow-md py-2' : 'bg-transparent'}`}>
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <a href="/" className="flex items-center">
             <img src="/speedleads-logo.png" alt="SpeedLeads.AI Logo" className="h-6 sm:h-7 md:h-8 mr-3 sm:mr-5" />
-            <span className="text-white text-lg sm:text-xl md:text-2xl font-bold mx-[8px] sm:mx-[14px]">
-              Speed<span className="bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent">Leads</span>.AI
-            </span>
+            <SpeedLeadsLogo size="sm" className="mx-[8px] sm:mx-[14px]" />
           </a>
         </div>
 
@@ -68,7 +67,7 @@ const Header = () => {
       </div>
 
       {/* Mobile Navigation */}
-      {mobileMenuOpen && <nav className="md:hidden bg-dark bg-opacity-95 py-5 px-4 border-t border-gray-700">
+      {mobileMenuOpen && <nav className="md:hidden glass-navbar py-5 px-4 border-t border-gray-700">
           <div className="flex flex-col space-y-4">
             <Button variant="link" className="text-white hover:text-tech-blue transition-colors p-2 justify-start min-h-[44px] text-base" onClick={() => scrollToSection('services')}>
               השירותים שלנו

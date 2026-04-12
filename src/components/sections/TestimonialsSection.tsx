@@ -400,7 +400,7 @@ const TestimonialsSection = () => {
   return (
     <section
       id="success-stories"
-      className="py-32 bg-gradient-to-b from-dark via-slate-900 to-gray-900 text-white overflow-hidden relative"
+      className="py-32 bg-gradient-to-b from-dark/70 via-slate-900/60 to-gray-900/70 text-white overflow-hidden relative"
     >
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 w-72 h-72 bg-gold rounded-full blur-3xl"></div>

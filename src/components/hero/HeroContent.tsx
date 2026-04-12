@@ -39,8 +39,12 @@ const HeroContent: React.FC = () => {
             ]
           }}
           transition={{ duration: 3, repeat: Infinity }}
+          dir="ltr"
+          className="inline-flex items-baseline"
         >
-          SpeedLeads.AI:
+          <span className="font-logo-speed font-bold">Speed</span>
+          <span className="font-logo-leads italic gradient-text">Leads</span>
+          <span>.AI:</span>
         </motion.span>
         <br />
         <span className="gradient-text">העתיד של</span>

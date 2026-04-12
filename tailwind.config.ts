@@ -29,6 +29,8 @@ export default {
 			fontFamily: {
 				sans: ['Assistant', 'Heebo', 'sans-serif'],
 				heading: ['Heebo', 'Assistant', 'sans-serif'],
+				'logo-speed': ['"DM Sans"', 'sans-serif'],
+				'logo-leads': ['"Playfair Display"', 'serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
