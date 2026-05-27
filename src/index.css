@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -62,8 +62,104 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
+
+    /* Rebrand tokens */
+    --gradient-hero: linear-gradient(135deg, hsl(216 50% 11%) 0%, hsl(216 60% 6%) 100%);
+    --gradient-accent: linear-gradient(90deg, #00f6ff 0%, #00a7ff 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(45 69% 52%) 0%, hsl(45 60% 38%) 100%);
+    --shadow-elegant: 0 24px 60px -24px hsl(216 50% 11% / 0.25);
+    --shadow-tech: 0 0 0 1px hsl(188 100% 50% / 0.12), 0 20px 50px -20px hsl(188 100% 50% / 0.35);
+    --hairline: hsl(216 30% 88%);
+    --hairline-dark: hsl(216 30% 22%);
   }
+}
+
+/* ============ Rebrand typography ============ */
+body {
+  font-family: 'DM Sans', 'Assistant', 'Heebo', sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* English display headings (use for SpeedLeads.AI, numbers, eyebrows) */
+.font-display {
+  font-family: 'Space Grotesk', 'Heebo', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Hebrew display headings — keep Heebo for legibility, tighter tracking */
+.heading-he {
+  font-family: 'Heebo', 'Assistant', sans-serif;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+/* Display sizes */
+.display-2xl { font-size: clamp(3rem, 9vw, 8rem); line-height: 0.95; font-weight: 700; letter-spacing: -0.04em; }
+.display-xl  { font-size: clamp(2.5rem, 7vw, 6rem); line-height: 1; font-weight: 700; letter-spacing: -0.035em; }
+.display-lg  { font-size: clamp(2rem, 5vw, 4.5rem); line-height: 1.02; font-weight: 700; letter-spacing: -0.03em; }
+.display-md  { font-size: clamp(1.75rem, 3.5vw, 3rem); line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; }
+
+/* Eyebrow / kicker */
+.eyebrow {
+  font-family: 'Space Grotesk', 'Heebo', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* Section index marker e.g. "01 / 04" */
+.section-index {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hairline divider */
+.hairline { height: 1px; background: hsl(var(--border)); }
+.hairline-dark { height: 1px; background: hsl(216 30% 22%); }
+
+/* Asymmetric grid helpers */
+.asym-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2rem, 4vw, 5rem);
+}
+.asym-grid-flip {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(2rem, 4vw, 5rem);
+}
+@media (max-width: 768px) {
+  .asym-grid, .asym-grid-flip { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* Refined brand button */
+.btn-brand {
+  background: linear-gradient(90deg, #00f6ff 0%, #00a7ff 100%);
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 10px 30px -10px rgba(0, 167, 255, 0.5);
+}
+.btn-brand:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 40px -10px rgba(0, 246, 255, 0.6);
+}
+.btn-ghost-brand {
+  border: 1px solid currentColor;
+  background: transparent;
+  border-radius: 2px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: all 0.3s ease;
 }
 
 .invert-on-dark {

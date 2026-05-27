@@ -27,8 +27,10 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Assistant', 'Heebo', 'sans-serif'],
-				heading: ['Heebo', 'Assistant', 'sans-serif'],
+				sans: ['DM Sans', 'Assistant', 'Heebo', 'sans-serif'],
+				heading: ['Heebo', 'Space Grotesk', 'Assistant', 'sans-serif'],
+				display: ['Space Grotesk', 'Heebo', 'sans-serif'],
+				mono: ['Space Grotesk', 'monospace'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
