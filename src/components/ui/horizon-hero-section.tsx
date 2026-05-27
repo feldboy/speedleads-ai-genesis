@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
+// @ts-ignore
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
+// @ts-ignore
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
+// @ts-ignore
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 
 interface HorizonHeroProps {
@@ -80,7 +83,6 @@ export const Component: React.FC<HorizonHeroProps> = ({ onAnimationComplete }) =
         visibility: 'visible',
         display: 'inline-block',
         fontSize: 'inherit',
-        textFillColor: 'white',
         WebkitTextFillColor: 'white',
         backgroundClip: 'unset',
         WebkitBackgroundClip: 'unset'
@@ -427,7 +429,7 @@ export const Component: React.FC<HorizonHeroProps> = ({ onAnimationComplete }) =
       const time = Date.now() * 0.001;
 
       // Update star shader uniforms (using original uniform names)
-      refs.stars.forEach((starField, i) => {
+      refs.stars.forEach((starField: any, i: number) => {
         if (starField.material.uniforms) {
           starField.material.uniforms.time.value = time;
         }
@@ -436,14 +438,14 @@ export const Component: React.FC<HorizonHeroProps> = ({ onAnimationComplete }) =
       // Update nebula shader uniforms and animation
       if (refs.nebula) {
         refs.nebula.rotation.z += 0.0001;
-        if (refs.nebula.material.uniforms) {
-          refs.nebula.material.uniforms.time.value = time * 0.5;
+        if ((refs.nebula.material as any).uniforms) {
+          (refs.nebula.material as any).uniforms.time.value = time * 0.5;
         }
       }
 
       // Update atmosphere shader uniforms
-      if (refs.atmosphere && refs.atmosphere.material.uniforms) {
-        refs.atmosphere.material.uniforms.time.value = time;
+      if (refs.atmosphere && (refs.atmosphere.material as any).uniforms) {
+        (refs.atmosphere.material as any).uniforms.time.value = time;
       }
 
       // Smooth camera movement with easing
@@ -516,19 +518,19 @@ export const Component: React.FC<HorizonHeroProps> = ({ onAnimationComplete }) =
       window.removeEventListener('resize', handleResize);
 
       // Dispose Three.js resources
-      refs.stars.forEach(starField => {
+      refs.stars.forEach((starField: any) => {
         if (starField.geometry) starField.geometry.dispose();
-        if (starField.material) starField.material.dispose();
+        if (starField.material) (starField.material as any).dispose();
       });
 
-      refs.mountains.forEach(mountain => {
+      refs.mountains.forEach((mountain: any) => {
         if (mountain.geometry) mountain.geometry.dispose();
-        if (mountain.material) mountain.material.dispose();
+        if (mountain.material) (mountain.material as any).dispose();
       });
 
       if (refs.nebula) {
         if (refs.nebula.geometry) refs.nebula.geometry.dispose();
-        if (refs.nebula.material) refs.nebula.material.dispose();
+        if (refs.nebula.material) (refs.nebula.material as any).dispose();
       }
 
       if (refs.renderer) {
