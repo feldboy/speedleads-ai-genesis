@@ -29,6 +29,7 @@ export default {
 			fontFamily: {
 				sans: ['Assistant', 'Heebo', 'sans-serif'],
 				heading: ['Heebo', 'Assistant', 'sans-serif'],
+				display: ['"Suez One"', 'Heebo', 'serif'],
 				'logo-speed': ['"DM Sans"', 'sans-serif'],
 				'logo-leads': ['"Playfair Display"', 'serif'],
 			},

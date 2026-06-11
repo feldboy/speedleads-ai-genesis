@@ -579,3 +579,148 @@ html, body {
   animation: slideUpFadeIn 800ms cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
 }
 
+
+/* ============================================================
+   Fable 5 Kinetic Design Layer — "Cinematic Spatial Dark"
+   Tokens + utilities for The Signal (האות) design system.
+   See DESIGN-OVERHAUL-PLAN.md › "Fable 5 Elevation".
+   ============================================================ */
+
+:root {
+  /* Deep base behind glass — darker than brand navy for contrast */
+  --bg-abyss: 222 60% 5%;                /* ~#05080F */
+
+  /* Signal light stops */
+  --signal-cyan: 188 100% 50%;           /* #00F6FF */
+  --signal-azure: 199 100% 50%;          /* #00A7FF */
+  --signal-violet: 258 72% 55%;          /* #643CDC */
+  --signal-gold: 38 35% 52%;             /* #B08D57 */
+
+  /* The brand gradient used by kinetic headings, borders, the Signal */
+  --brand-gradient: linear-gradient(
+    105deg,
+    hsl(var(--signal-cyan)),
+    hsl(var(--signal-azure)) 35%,
+    hsl(var(--signal-violet)) 70%,
+    hsl(var(--signal-gold))
+  );
+
+  /* Glow shadows */
+  --glow-signal: 0 0 24px rgba(0, 246, 255, 0.35), 0 0 64px rgba(0, 246, 255, 0.12);
+  --glow-gold: 0 0 24px rgba(176, 141, 87, 0.35), 0 0 64px rgba(176, 141, 87, 0.12);
+}
+
+/* Page atmosphere: abyss base + faint grain so dark areas never look flat */
+.bg-abyss {
+  background-color: hsl(var(--bg-abyss));
+}
+
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Kinetic gradient text (animated sweep of the brand gradient) */
+.text-brand-gradient {
+  background-image: var(--brand-gradient);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: brand-gradient-pan 8s ease-in-out infinite alternate;
+}
+
+@keyframes brand-gradient-pan {
+  from { background-position: 0% 50%; }
+  to   { background-position: 100% 50%; }
+}
+
+/* Giant outlined numerals (Stats / Process stations) */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(0, 246, 255, 0.45);
+  text-stroke: 1.5px rgba(0, 246, 255, 0.45);
+}
+
+.text-outline-gold {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(176, 141, 87, 0.55);
+  text-stroke: 1.5px rgba(176, 141, 87, 0.55);
+}
+
+/* Animated conic border for GlowCard (rotating highlight on a 1px frame) */
+@property --glow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.glow-border {
+  position: relative;
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--glow-angle),
+    transparent 0%,
+    rgba(0, 246, 255, 0.8) 12%,
+    transparent 28%,
+    transparent 55%,
+    rgba(176, 141, 87, 0.6) 68%,
+    transparent 82%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.glow-border:hover::before,
+.glow-border:focus-within::before {
+  opacity: 1;
+  animation: glow-rotate 4s linear infinite;
+}
+
+@keyframes glow-rotate {
+  to { --glow-angle: 360deg; }
+}
+
+/* The Signal thread — glow treatment for the scroll-drawn SVG path */
+.signal-path {
+  filter: drop-shadow(0 0 6px rgba(0, 246, 255, 0.8))
+          drop-shadow(0 0 18px rgba(0, 246, 255, 0.35));
+}
+
+.signal-path-gold {
+  filter: drop-shadow(0 0 6px rgba(176, 141, 87, 0.8))
+          drop-shadow(0 0 18px rgba(176, 141, 87, 0.35));
+}
+
+/* Reduced motion: stop the kinetic layer's own animations */
+@media (prefers-reduced-motion: reduce) {
+  .text-brand-gradient {
+    animation: none;
+  }
+
+  .glow-border:hover::before,
+  .glow-border:focus-within::before {
+    animation: none;
+  }
+
+  .grain-overlay {
+    display: none;
+  }
+}

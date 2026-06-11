@@ -101,6 +101,18 @@ Composition is updated in `src/pages/Index.tsx` (new sections marked **NEW**); e
 4. `npm run build` succeeds; no TypeScript/console errors; Lighthouse spot-check stays reasonable.
 5. Use Playwright MCP to screenshot hero + each section at desktop (1440) and mobile (390) for a before/after visual pass.
 
+## Fable 5 Elevation (2026-06-12, supersedes conflicting items above)
+
+Owner-approved refinements layered on this plan at implementation time:
+
+1. **Unifying concept — "The Signal" (האות).** One thread of cyan→gold light is the site's narrative: a lead traveling at speed through the funnel. Born in the intro (point of light ignites the logo) → lives in the hero aurora as its brightest filament → drawn down the page by scroll as an SVG path that **replaces every flat `.section-divider`** → becomes the Process section's progress rail → terminates into the Contact submit CTA. New primitive: `src/components/effects/SignalThread.tsx` (GSAP ScrollTrigger scrub on stroke-dashoffset).
+2. **Restraint cuts.** RGB-shift hover is dropped (dated). The custom cursor is a **brand spotlight glow only** (`SpotlightCursor.tsx`, CSS/GSAP — no WebGL lens/liquid distortion; native cursor stays). **One WebGL surface only** — the hero aurora; everything else is CSS/SVG/Framer/GSAP. Particles live only inside the hero.
+3. **Typography as the hero.** New Hebrew display face: **Suez One** (`font-display`), giant outlined numerals in Stats/Process. Kinetic reveals stagger **right-to-left**; Hebrew splits at **word** level (letterform safety), char-level only for numerals/Latin.
+4. **Generative ambient sound.** Synthesized live with Web Audio (detuned oscillators → LFO-swept lowpass → feedback delay) instead of an audio file: zero weight, seamless infinite loop, no licensing; filter opens subtly with scroll depth. All autoplay/persistence/reduced-motion rules from "New sections #1" still apply. No `public/audio/` asset needed.
+5. **Engineering discipline.** Single `useGsap` hook owning `gsap.context()` + cleanup; hero canvas lazy-mounted and unmounted offscreen (IntersectionObserver); DPR capped at 1.5; everything gated by `useReducedMotion`.
+
+**Owner decisions:** Signal concept ✓ · generative audio ✓ · branch `feature/fable5-kinetic-redesign` created from the dirty working tree (baseline commit), reconciliation with `origin/main` deferred.
+
 ## Sources (research)
 
 - [Awwwards — Best GSAP Animation Websites](https://www.awwwards.com/websites/gsap/) · [Awwwards — Hovers, Cursors & Interactions](https://www.awwwards.com/awwwards/collections/hovers-cursors-and-cute-interactions/) · [Awwwards — WebGL liquid distortion (Heroine)](https://www.awwwards.com/inspiration/mouse-interaction-webgl-liquid-distortion-heroine) · [Awwwards — WebGL cursor (Sweetpunk)](https://www.awwwards.com/inspiration/webgl-cursor-animation-effect-sweetpunk)
