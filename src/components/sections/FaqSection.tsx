@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import MagneticButton from '@/components/effects/MagneticButton';
+import { Plus, Minus } from 'lucide-react';
 
 interface FaqItem {
   id: string;
@@ -22,90 +23,98 @@ const faqs: FaqItem[] = [
   {
     id: "faq_question_3",
     question: "אילו טכנולוגיות AI אתם משלבים?",
-    answer: "אנו עובדים עם מגוון רחב של טכנולוגיות AI מתקדמות, ביניהן: צ'אטבוטים חכמים מבוססי LLM, מערכות המלצות אישיות למשתמשים, אלגוריתמי למידת מכונה לניתוח התנהגות משתמשים, מנועי חיפוש סמנטי משופרים, כלי ניתוח תוכן ויצירת תוכן אוטומטי, ואינטגרציות עם פלטפורמות AI מובילות כמו OpenAI, Google AI ואחרות. אנו בוחרים את הפתרון הטכנולוגי המתאים ביותר לצרכי הפרויקט הספציפי."
+    answer: "אנו עובדים עם מגוון רחב של טכנולוגיות AI מתקדמות, ביניהן: צ'אטבוטים חכמים מבוססי LLM, מערכות המלצות אישיות למשתמשים, אלגוריתמי למידת מכונה לניתוח התנהגות משתמשים, מנועי חיפוש סמנטי משופרים, כלי ניתוח תוכן ויצירת תוכן אוטומטי, ואינטגרציות עם פלטפורמות AI מובילות כמו OpenAI, Google AI ואחרות."
   },
   {
     id: "faq_question_4",
     question: "מהו התהליך לעבודה משותפת?",
-    answer: "התהליך שלנו מורכב מכמה שלבים מובנים: 1) פגישת אפיון ראשונית להבנת הצרכים והמטרות שלכם. 2) הצעת מחיר מפורטת הכוללת אפיון ראשוני ולוח זמנים. 3) עיצוב ואישור קונספט ויזואלי. 4) פיתוח והתקדמות בשלבים עם נקודות אישור. 5) בדיקות מקיפות ושיפורים. 6) השקה והדרכה. 7) תמיכה שוטפת והמשך שיתוף פעולה. לאורך כל התהליך, תהיו מעורבים ותקבלו עדכונים שוטפים."
+    answer: "התהליך שלנו מורכב מכמה שלבים מובנים: פגישת אפיון ראשונית, הצעת מחיר מפורטת, עיצוב ואישור קונספט ויזואלי, פיתוח בשלבים עם נקודות אישור, בדיקות מקיפות ושיפורים, השקה והדרכה, ולבסוף תמיכה שוטפת. לאורך כל התהליך, תהיו מעורבים ותקבלו עדכונים שוטפים."
   },
   {
     id: "faq_question_6",
     question: "איך אתם מבטיחים שהפרויקט יעמוד בציפיות שלנו?",
-    answer: "אנו משקיעים זמן רב בתהליך האפיון הראשוני כדי להבין לעומק את הציפיות, המטרות והצרכים שלכם. אנו עובדים בשיטת פיתוח אג'ילית (Agile) המאפשרת משוב מתמיד ואיטרציות שוטפות. במהלך הפרויקט, אנו מקיימים פגישות סטטוס קבועות ומספקים גישה למערכת ניהול הפרויקט שלנו, כך שתוכלו לעקוב אחר ההתקדמות בזמן אמת. בנוסף, כל שלב מחייב את האישור שלכם לפני שאנו ממשיכים, מה שמבטיח שהתוצאה הסופית תתאים בדיוק למה שציפיתם."
+    answer: "אנו משקיעים זמן רב בתהליך האפיון הראשוני כדי להבין לעומק את הציפיות, המטרות והצרכים שלכם. אנו עובדים בשיטת פיתוח אג'ילית (Agile) המאפשרת משוב מתמיד ואיטרציות שוטפות. במהלך הפרויקט, אנו מקיימים פגישות סטטוס קבועות ומספקים גישה למערכת ניהול הפרויקט שלנו, כך שתוכלו לעקוב אחר ההתקדמות בזמן אמת."
   }
 ];
 
 const FaqSection = () => {
-  const [openFaq, setOpenFaq] = useState<string | null>(null);
+  const [openFaq, setOpenFaq] = useState<string | null>(faqs[0].id);
 
   const toggleFaq = (id: string) => {
     setOpenFaq(openFaq === id ? null : id);
   };
 
   return (
-    <section id="faq" className="py-20 bg-gradient-to-b from-[#0D1B2A]/70 via-[#0f2035]/60 to-[#0D1B2A]/70 relative overflow-hidden">
-
+    <section id="faq" className="py-24 lg:py-32 bg-white">
       <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-aos="fade-up">שאלות נפוצות</h2>
-          <div className="w-24 h-1 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] mx-auto mb-8" />
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-            כאן תוכלו למצוא מענה לשאלות הנפוצות ביותר. לא מצאתם את מה שחיפשתם? צרו איתנו קשר!
-          </p>
-        </div>
-
-        <div className="max-w-3xl mx-auto">
-          {faqs.map((faq, index) => (
-            <div
-              key={faq.id}
-              className="glass-liquid rounded-xl mb-4 p-4"
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
-            >
-              <button
-                type="button"
-                id={`faq_question_toggle_${faq.id}`}
-                className="w-full flex justify-between items-center text-right focus:outline-none"
-                onClick={() => toggleFaq(faq.id)}
-                aria-expanded={openFaq === faq.id}
-                aria-controls={`faq_answer_${faq.id}`}
-              >
-                <span className="text-xl font-medium text-white">{faq.question}</span>
-                <svg
-                  className={`w-5 h-5 text-gray-300 transition-transform ${openFaq === faq.id ? 'transform rotate-180' : ''}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <title>Toggle FAQ</title>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {openFaq === faq.id && (
-                <div
-                  id={`faq_answer_${faq.id}`}
-                  className="mt-4 text-gray-300 pr-6 animate-fade-in"
-                >
-                  {faq.answer}
-                </div>
-              )}
+        <div className="asym-grid">
+          {/* Left: large heading */}
+          <div className="lg:sticky lg:top-32 self-start">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="section-index text-tech-blue">04 / 04</span>
+              <span className="h-px w-12 bg-tech-blue/40" />
+              <span className="eyebrow text-gray-500">FAQ</span>
             </div>
-          ))}
-        </div>
+            <h2 className="heading-he display-lg text-dark mb-8" data-aos="fade-up">
+              שאלות <br />
+              <span className="gradient-text">נפוצות.</span>
+            </h2>
+            <p className="text-base text-gray-600 leading-relaxed max-w-sm mb-8">
+              לא מצאתם את מה שחיפשתם? אנחנו כאן בשבילכם — דברו איתנו ישירות.
+            </p>
+            <MagneticButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+              <Button
+                id="faq_contact_button"
+                className="btn-brand text-white px-8 py-4 text-sm uppercase tracking-wider"
+              >
+                דברו איתנו →
+              </Button>
+            </MagneticButton>
+          </div>
 
-        <div className="text-center mt-12" data-aos="fade-up">
-          <p className="text-lg text-gray-300 mb-6">עדיין יש לכם שאלות?</p>
-          <MagneticButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
-            <Button 
-              id="faq_contact_button"
-              size="lg"
-              className="bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold transition-all duration-300 shadow-lg hover:shadow-tech-blue/25"
-            >
-              דברו איתנו ישירות
-            </Button>
-          </MagneticButton>
+          {/* Right: accordions */}
+          <div>
+            {faqs.map((faq, index) => {
+              const isOpen = openFaq === faq.id;
+              return (
+                <div
+                  key={faq.id}
+                  className="border-t border-gray-200 last:border-b"
+                  data-aos="fade-up"
+                  data-aos-delay={index * 60}
+                >
+                  <button
+                    type="button"
+                    id={`faq_question_toggle_${faq.id}`}
+                    className="w-full flex justify-between items-center text-right py-6 group focus:outline-none"
+                    onClick={() => toggleFaq(faq.id)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq_answer_${faq.id}`}
+                  >
+                    <div className="flex items-start gap-5 flex-1">
+                      <span className="section-index text-tech-blue mt-1.5 shrink-0">
+                        0{index + 1}
+                      </span>
+                      <span className="text-lg lg:text-xl font-medium text-dark group-hover:text-tech-blue transition-colors">
+                        {faq.question}
+                      </span>
+                    </div>
+                    <div className="shrink-0 ml-4 w-9 h-9 flex items-center justify-center border border-gray-300 group-hover:border-tech-blue transition-colors" style={{ borderRadius: '2px' }}>
+                      {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                    </div>
+                  </button>
+                  {isOpen && (
+                    <div
+                      id={`faq_answer_${faq.id}`}
+                      className="pb-6 pr-12 text-gray-600 leading-relaxed animate-fade-in"
+                    >
+                      {faq.answer}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

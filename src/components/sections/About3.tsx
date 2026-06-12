@@ -1,126 +1,107 @@
 import { Button } from "@/components/ui/button";
 import MagneticButton from "@/components/effects/MagneticButton";
-import SpeedLeadsLogo from "@/components/ui/SpeedLeadsLogo";
 
-export const About3 = () => {
+interface About3Props {
+  title?: string;
+  description?: string;
+  mainImage?: { src: string; alt: string };
+  secondaryImage?: { src: string; alt: string };
+}
+
+const features = [
+  {
+    n: "01",
+    title: "שירות אישי",
+    subtitle: "שותפות אמיתית",
+    body: "מנהל פרויקט ייעודי, זמינות גבוהה ותמיכה הרבה אחרי ההשקה — שותפים שלכם בכל שלב.",
+    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=300&fit=crop&auto=format&q=80",
+  },
+  {
+    n: "02",
+    title: "אסטרטגיה",
+    subtitle: "תוצאות מדידות",
+    body: "מגדירים את המוצר יחד, בונים MVP מהיר ומניעים צמיחה דרך איטרציות מבוססות נתונים.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=300&fit=crop&auto=format&q=80",
+  },
+  {
+    n: "03",
+    title: "איכות וביצועים",
+    subtitle: "מהיר, יציב, מאובטח",
+    body: "בנייה לפי הסטנדרטים הגבוהים ביותר — בדיקות אוטומטיות, אבטחה מקיפה וזמני טעינה מהירים.",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=300&fit=crop&auto=format&q=80",
+  },
+  {
+    n: "04",
+    title: "שקיפות מלאה",
+    subtitle: "אתם על ההגה",
+    body: "גישה מלאה לקוד המקור, תשתית ודוחות התקדמות. מידע מלא ותהליכי החלטה שקופים.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=300&fit=crop&auto=format&q=80",
+  },
+];
+
+export const About3 = ({
+  title = "למה SpeedLeads.AI?",
+  description = "פתרונות AI מתקדמים שחוסכים זמן, משפרים דיוק ומאפשרים לכם להתמקד במה שחשוב באמת.",
+}: About3Props = {}) => {
   return (
-    <section className="py-20 lg:py-32 bg-gradient-to-b from-[#0D1B2A]/70 via-[#0f2035]/60 to-[#0D1B2A]/70 relative overflow-hidden">
-
-      <div className="container mx-auto px-4 md:px-6">
-        {/* Header */}
-        <div className="mb-16 text-center max-w-4xl mx-auto" data-aos="fade-up">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            <span className="text-white">למה </span>
-            <SpeedLeadsLogo size="xl" />
-            <span className="text-white">?</span>
-          </h1>
-          <div className="w-32 h-2 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] mx-auto mb-8 rounded-full shadow-lg shadow-tech-blue/30" />
-          <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            פתרונות AI מתקדמים שחוסכים זמן, משפרים דיוק ומאפשרים לכם להתמקד במה שחשוב באמת
+    <section className="py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50">
+      <div className="container mx-auto">
+        {/* Header — asymmetric */}
+        <div className="asym-grid items-end mb-20">
+          <div>
+            <div className="flex items-center gap-4 mb-6">
+              <span className="section-index text-tech-blue">03 / 04</span>
+              <span className="h-px w-12 bg-tech-blue/40" />
+              <span className="eyebrow text-gray-500">Why us</span>
+            </div>
+            <h2 className="heading-he display-lg text-dark" data-aos="fade-up">
+              {title.split('?')[0]} <br />
+              <span className="gradient-text">?</span>
+            </h2>
+          </div>
+          <p className="text-base lg:text-lg text-gray-600 leading-relaxed max-w-md lg:justify-self-end" data-aos="fade-up" data-aos-delay="100">
+            {description}
           </p>
         </div>
 
-        {/* Features Section */}
-        <div className="mb-20">
-          <div className="text-center mb-12" data-aos="fade-up">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-white">מה מייחד אותנו</h2>
-            <p className="text-gray-400 text-lg">ארבעה עמודי התווך שלנו להצלחה שלכם</p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2 max-w-6xl mx-auto">
-            {/* Feature 1 */}
-            <div className="group glass-liquid rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
-              <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
-                background: 'linear-gradient(135deg, #00A7FF 0%, #00F6FF 50%, #0D1B2A 100%)'
-              }}>
-                <div className="absolute inset-0 opacity-30" style={{
-                  background: 'radial-gradient(circle at 30% 40%, rgba(0,246,255,0.4) 0%, transparent 60%), radial-gradient(circle at 70% 60%, rgba(0,167,255,0.3) 0%, transparent 50%)'
-                }} />
+        {/* 4 feature tiles — asymmetric 2x2 with image headers */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-200 border border-gray-200" style={{ borderRadius: '4px', overflow: 'hidden' }}>
+          {features.map((f, i) => (
+            <div
+              key={f.n}
+              className="bg-white p-8 lg:p-10 group hover:bg-gray-50/80 transition-colors duration-500"
+              data-aos="fade-up"
+              data-aos-delay={i * 80}
+            >
+              <div className="overflow-hidden mb-8" style={{ borderRadius: '2px' }}>
+                <img
+                  src={f.image}
+                  alt={f.title}
+                  className="h-48 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
               </div>
-              <div className="text-center">
-                <h3 className="mb-2 text-2xl font-bold text-white">שירות אישי</h3>
-                <h4 className="mb-4 text-lg font-semibold text-blue-400">
-                  שותפות אמיתית והתחייבות
-                </h4>
-                <p className="text-gray-300 leading-relaxed">
-                  אתם מקבלים מנהל פרויקט ייעודי, זמינות גבוהה ותמיכה הרבה אחרי ההשקה. אנחנו השותפים שלכם בכל שלב - מאסטרטגיה ראשונית ועד תחזוקה שוטפת.
-                </p>
+              <div className="flex items-center gap-3 mb-3">
+                <span className="section-index text-tech-blue">{f.n}</span>
+                <span className="h-px flex-1 bg-gray-200" />
+                <span className="eyebrow text-gray-400">{f.subtitle}</span>
               </div>
+              <h3 className="heading-he text-dark mb-3" style={{ fontSize: 'clamp(1.5rem, 2.5vw, 2.25rem)' }}>
+                {f.title}
+              </h3>
+              <p className="text-gray-600 leading-relaxed">{f.body}</p>
             </div>
-
-            {/* Feature 2 */}
-            <div className="group glass-liquid rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="150">
-              <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
-                background: 'linear-gradient(135deg, #7C3AED 0%, #3B82F6 50%, #0D1B2A 100%)'
-              }}>
-                <div className="absolute inset-0 opacity-30" style={{
-                  background: 'radial-gradient(circle at 60% 30%, rgba(124,58,237,0.4) 0%, transparent 60%), radial-gradient(circle at 40% 70%, rgba(59,130,246,0.3) 0%, transparent 50%)'
-                }} />
-              </div>
-              <div className="text-center">
-                <h3 className="mb-2 text-2xl font-bold text-white">ניהול מוצר אסטרטגי</h3>
-                <h4 className="mb-4 text-lg font-semibold text-purple-400">
-                  אסטרטגיה ברורה, תוצאות מדידות
-                </h4>
-                <p className="text-gray-300 leading-relaxed">
-                  אנחנו מגדירים את המוצר שלכם יחד, בונים MVP מהיר ומניעים צמיחה דרך איטרציות מבוססות נתונים. עם מדדי הצלחה ברורים, תמיד תדעו מה הסטטוס וה-ROI של הפרויקט.
-                </p>
-              </div>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="group glass-liquid rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
-              <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
-                background: 'linear-gradient(135deg, #10B981 0%, #06B6D4 50%, #0D1B2A 100%)'
-              }}>
-                <div className="absolute inset-0 opacity-30" style={{
-                  background: 'radial-gradient(circle at 40% 50%, rgba(16,185,129,0.4) 0%, transparent 60%), radial-gradient(circle at 70% 30%, rgba(6,182,212,0.3) 0%, transparent 50%)'
-                }} />
-              </div>
-              <div className="text-center">
-                <h3 className="mb-2 text-2xl font-bold text-white">איכות וביצועים</h3>
-                <h4 className="mb-4 text-lg font-semibold text-green-400">
-                  יציב, מאובטח ומהיר
-                </h4>
-                <p className="text-gray-300 leading-relaxed">
-                  אנחנו בונים לפי הסטנדרטים הגבוהים ביותר עם בדיקות אוטומטיות, פרוטוקולי אבטחה מקיפים וזמני טעינה מהירים מותאמים להצלחה ב-SEO.
-                </p>
-              </div>
-            </div>
-
-            {/* Feature 4 */}
-            <div className="group glass-liquid rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="250">
-              <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
-                background: 'linear-gradient(135deg, #F59E0B 0%, #B08D57 50%, #0D1B2A 100%)'
-              }}>
-                <div className="absolute inset-0 opacity-30" style={{
-                  background: 'radial-gradient(circle at 50% 40%, rgba(245,158,11,0.4) 0%, transparent 60%), radial-gradient(circle at 30% 70%, rgba(176,141,87,0.3) 0%, transparent 50%)'
-                }} />
-              </div>
-              <div className="text-center">
-                <h3 className="mb-2 text-2xl font-bold text-white">שקיפות מלאה</h3>
-                <h4 className="mb-4 text-lg font-semibold text-orange-400">
-                  אתם תמיד על ההגה
-                </h4>
-                <p className="text-gray-300 leading-relaxed">
-                  מקבלים גישה מלאה לקוד המקור, תשתית ודוחות התקדמות. אנחנו שומרים אתכם על ההגה עם מידע מלא ותהליכי החלטה שקופים.
-                </p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
 
-        {/* CTA Button */}
-        <div className="text-center" data-aos="fade-up">
+        {/* CTA */}
+        <div className="mt-16 text-center" data-aos="fade-up">
           <MagneticButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
             <Button
               size="lg"
-              className="inline-flex items-center px-10 py-4 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold text-lg rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-tech-blue/25 border-0"
+              className="btn-brand text-white px-10 py-4 text-sm uppercase tracking-wider"
             >
-              בואו נתחיל לעבוד יחד
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3 rtl:mr-0 rtl:ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
+              בואו נתחיל לעבוד יחד →
             </Button>
           </MagneticButton>
         </div>
