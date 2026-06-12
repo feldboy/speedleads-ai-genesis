@@ -8,9 +8,13 @@ const STORAGE_KEY = 'speedleads-ambient-sound';
  * Generative ambient soundscape, synthesized live with the Web Audio API —
  * no audio asset, no loop seam, no licensing.
  *
- * Voice (owner brief: "airy & breathy, calming, never static"):
- *  - two soft chords (Amaj9 ↔ Fmaj9, pure sines) crossfading on a ~40s cycle
+ * Voice (owner brief: "airy & breathy, calming, never static; wavy, with
+ * a gentle rhythm — not noisy"):
+ *  - two soft chords (Amaj9 ↔ Fmaj9) crossfading on a ~40s cycle; each voice
+ *    is a detuned unison pair with slow vibrato, so the note itself waves
  *  - every voice breathes on its own slow amplitude LFO (desynced rates)
+ *  - a sparse generative arpeggio (one soft octave-up note every ~3s) echoes
+ *    through the delay — the rhythm
  *  - a quiet band-passed noise layer — the "air" — swelling slowly
  *  - one barely-there shimmer note two octaves up with slow vibrato
  *  - gentle feedback delay for space; a lowpass opens as you scroll deeper
@@ -109,15 +113,36 @@ function createAmbientEngine(): AmbientEngine | null {
 
   const buildChord = (voices: Voice[], bus: GainNode) => {
     voices.forEach((voice, i) => {
-      const osc = ctx.createOscillator();
-      osc.type = 'sine';
-      osc.frequency.value = voice.freq;
-      osc.detune.value = (Math.random() - 0.5) * 7; // gentle ensemble drift
-
       const g = ctx.createGain();
       g.gain.value = voice.gain;
-      osc.connect(g);
       g.connect(bus);
+
+      // unison pair a few cents apart — slow beating keeps the note alive
+      const oscA = ctx.createOscillator();
+      oscA.type = 'sine';
+      oscA.frequency.value = voice.freq;
+      oscA.detune.value = -4 + (Math.random() - 0.5) * 3;
+      const oscB = ctx.createOscillator();
+      oscB.type = 'sine';
+      oscB.frequency.value = voice.freq;
+      oscB.detune.value = 4 + (Math.random() - 0.5) * 3;
+      const gA = ctx.createGain();
+      gA.gain.value = 0.6;
+      const gB = ctx.createGain();
+      gB.gain.value = 0.5;
+      oscA.connect(gA);
+      gA.connect(g);
+      oscB.connect(gB);
+      gB.connect(g);
+
+      // slow vibrato — the wave inside the note (each voice desynced)
+      const vibrato = ctx.createOscillator();
+      vibrato.frequency.value = 0.06 + ((i * 2741) % 100) / 1000;
+      const vibratoDepth = ctx.createGain();
+      vibratoDepth.gain.value = 5.5; // cents
+      vibrato.connect(vibratoDepth);
+      vibratoDepth.connect(oscA.detune);
+      vibratoDepth.connect(oscB.detune);
 
       // each voice breathes at its own slow, desynced rate
       const breath = ctx.createOscillator();
@@ -127,7 +152,9 @@ function createAmbientEngine(): AmbientEngine | null {
       breath.connect(breathDepth);
       breathDepth.connect(g.gain);
       startOsc(breath);
-      startOsc(osc);
+      startOsc(vibrato);
+      startOsc(oscA);
+      startOsc(oscB);
     });
   };
   buildChord(CHORD_A, chordBusA);
@@ -142,17 +169,17 @@ function createAmbientEngine(): AmbientEngine | null {
   noise.loop = true;
   const airBand = ctx.createBiquadFilter();
   airBand.type = 'bandpass';
-  airBand.frequency.value = 1900;
-  airBand.Q.value = 0.7;
+  airBand.frequency.value = 1200;
+  airBand.Q.value = 0.9;
   const airGain = ctx.createGain();
-  airGain.gain.value = 0.014;
+  airGain.gain.value = 0.007;
   noise.connect(airBand);
   airBand.connect(airGain);
   airGain.connect(master);
   const airSwell = ctx.createOscillator();
   airSwell.frequency.value = 0.025;
   const airSwellDepth = ctx.createGain();
-  airSwellDepth.gain.value = 0.008;
+  airSwellDepth.gain.value = 0.004;
   airSwell.connect(airSwellDepth);
   airSwellDepth.connect(airGain.gain);
   noise.start();
@@ -176,6 +203,32 @@ function createAmbientEngine(): AmbientEngine | null {
   startOsc(shimmer);
   startOsc(shimmerVibrato);
 
+  // --- The rhythm: a sparse generative arpeggio through the delay ----------
+  // Every ~2.4-3.6s one soft note (octave up) from whichever chord the
+  // crossfade currently favors; the feedback delay turns it into a slow,
+  // breathing echo pattern instead of a metronome.
+  const engineStart = ctx.currentTime;
+  let arpTimer = 0;
+  const playArpNote = () => {
+    const t = ctx.currentTime - engineStart;
+    const chord = Math.sin((2 * Math.PI * t) / 40) >= 0 ? CHORD_A : CHORD_B;
+    const voice = chord[Math.floor(Math.random() * chord.length)];
+    const osc = ctx.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.value = voice.freq * 2;
+    const g = ctx.createGain();
+    osc.connect(g);
+    g.connect(filter); // rides the lowpass AND feeds the delay's echoes
+    const now = ctx.currentTime;
+    g.gain.setValueAtTime(0, now);
+    g.gain.linearRampToValueAtTime(0.05, now + 0.4);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + 3.4);
+    osc.start(now);
+    osc.stop(now + 3.6);
+    arpTimer = window.setTimeout(playArpNote, 2400 + Math.random() * 1200);
+  };
+  arpTimer = window.setTimeout(playArpNote, 1800);
+
   // Very slow filter sweep on top of the scroll-follow — extra breathing
   const filterLfo = ctx.createOscillator();
   filterLfo.frequency.value = 0.03;
@@ -186,6 +239,7 @@ function createAmbientEngine(): AmbientEngine | null {
   startOsc(filterLfo);
 
   const stop = () => {
+    window.clearTimeout(arpTimer);
     const now = ctx.currentTime;
     master.gain.cancelScheduledValues(now);
     master.gain.setValueAtTime(master.gain.value, now);
