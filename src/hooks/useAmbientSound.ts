@@ -29,10 +29,12 @@ function createAmbientEngine(): AmbientEngine | null {
   master.gain.value = 0;
   master.connect(ctx.destination);
 
-  // LFO-swept lowpass is what makes the pad feel alive
+  // LFO-swept lowpass is what makes the pad feel alive.
+  // Base sits at 900Hz: low enough to stay soft, high enough that the pad's
+  // mid harmonics survive laptop speakers (everything below ~250Hz doesn't).
   const filter = ctx.createBiquadFilter();
   filter.type = 'lowpass';
-  filter.frequency.value = 420;
+  filter.frequency.value = 900;
   filter.Q.value = 0.7;
 
   // Dry + spacious feedback-delay wet path
@@ -49,12 +51,15 @@ function createAmbientEngine(): AmbientEngine | null {
   delay.connect(wet);
   wet.connect(master);
 
-  // A-rooted pad: sub + root + fifth + slightly-sharp octave shimmer
+  // A-rooted pad, voiced around A2-E5 so it's actually reproducible on
+  // laptop speakers (the original 55-220Hz voicing was physically inaudible
+  // on anything without a woofer)
   const voices: Array<{ type: OscillatorType; freq: number; detune: number; gain: number }> = [
-    { type: 'sine', freq: 55, detune: 0, gain: 0.35 },
-    { type: 'sine', freq: 110, detune: 0, gain: 0.5 },
-    { type: 'sine', freq: 164.81, detune: 6, gain: 0.32 },
-    { type: 'triangle', freq: 220.6, detune: -4, gain: 0.14 },
+    { type: 'sine', freq: 110, detune: 0, gain: 0.4 },
+    { type: 'sine', freq: 220, detune: 0, gain: 0.45 },
+    { type: 'sine', freq: 329.63, detune: 5, gain: 0.3 },
+    { type: 'triangle', freq: 440, detune: -6, gain: 0.18 },
+    { type: 'triangle', freq: 659.25, detune: 8, gain: 0.1 },
   ];
   const oscillators = voices.map((v) => {
     const osc = ctx.createOscillator();
@@ -73,7 +78,7 @@ function createAmbientEngine(): AmbientEngine | null {
   const lfo = ctx.createOscillator();
   lfo.frequency.value = 0.03;
   const lfoGain = ctx.createGain();
-  lfoGain.gain.value = 160;
+  lfoGain.gain.value = 350;
   lfo.connect(lfoGain);
   lfoGain.connect(filter.frequency);
   lfo.start();
@@ -105,7 +110,9 @@ export function useAmbientSound() {
     engineRef.current = engine;
     void engine.ctx.resume();
     const now = engine.ctx.currentTime;
-    engine.master.gain.linearRampToValueAtTime(0.055, now + 2.5);
+    // anchor the automation so the ramp starts from silence at `now`
+    engine.master.gain.setValueAtTime(0, now);
+    engine.master.gain.linearRampToValueAtTime(0.17, now + 2.5);
     setPlaying(true);
   }, []);
 
@@ -163,7 +170,7 @@ export function useAmbientSound() {
         if (!engine) return;
         const max = document.documentElement.scrollHeight - window.innerHeight;
         const depth = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
-        engine.filter.frequency.setTargetAtTime(420 + depth * 420, engine.ctx.currentTime, 0.5);
+        engine.filter.frequency.setTargetAtTime(900 + depth * 700, engine.ctx.currentTime, 0.5);
       });
     };
     window.addEventListener('scroll', onScroll, { passive: true });
