@@ -1,15 +1,16 @@
 import { Button } from "@/components/ui/button";
 import MagneticButton from "@/components/effects/MagneticButton";
 import SpeedLeadsLogo from "@/components/ui/SpeedLeadsLogo";
+import GlowCard from "@/components/ui/GlowCard";
 
 export const About3 = () => {
   return (
-    <section className="py-20 lg:py-32 bg-gradient-to-b from-[#0D1B2A]/70 via-[#0f2035]/60 to-[#0D1B2A]/70 relative overflow-hidden">
+    <section className="py-20 lg:py-32 relative overflow-hidden">
 
       <div className="container mx-auto px-4 md:px-6">
         {/* Header */}
         <div className="mb-16 text-center max-w-4xl mx-auto" data-aos="fade-up">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
             <span className="text-white">למה </span>
             <SpeedLeadsLogo size="xl" />
             <span className="text-white">?</span>
@@ -23,13 +24,13 @@ export const About3 = () => {
         {/* Features Section */}
         <div className="mb-20">
           <div className="text-center mb-12" data-aos="fade-up">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-white">מה מייחד אותנו</h2>
+            <h2 className="font-display text-3xl lg:text-4xl mb-4 text-white">מה מייחד אותנו</h2>
             <p className="text-gray-400 text-lg">ארבעה עמודי התווך שלנו להצלחה שלכם</p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 max-w-6xl mx-auto">
+          <div className="grid gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-12 max-w-6xl mx-auto">
             {/* Feature 1 */}
-            <div className="group glass-liquid rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+            <GlowCard className="rounded-2xl p-8 lg:col-span-7" data-aos="fade-up" data-aos-delay="100">
               <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
                 background: 'linear-gradient(135deg, #00A7FF 0%, #00F6FF 50%, #0D1B2A 100%)'
               }}>
@@ -38,7 +39,7 @@ export const About3 = () => {
                 }} />
               </div>
               <div className="text-center">
-                <h3 className="mb-2 text-2xl font-bold text-white">שירות אישי</h3>
+                <h3 className="font-display mb-2 text-2xl text-white">שירות אישי</h3>
                 <h4 className="mb-4 text-lg font-semibold text-blue-400">
                   שותפות אמיתית והתחייבות
                 </h4>
@@ -46,10 +47,10 @@ export const About3 = () => {
                   אתם מקבלים מנהל פרויקט ייעודי, זמינות גבוהה ותמיכה הרבה אחרי ההשקה. אנחנו השותפים שלכם בכל שלב - מאסטרטגיה ראשונית ועד תחזוקה שוטפת.
                 </p>
               </div>
-            </div>
+            </GlowCard>
 
             {/* Feature 2 */}
-            <div className="group glass-liquid rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="150">
+            <GlowCard className="rounded-2xl p-8 lg:col-span-5" data-aos="fade-up" data-aos-delay="150">
               <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
                 background: 'linear-gradient(135deg, #7C3AED 0%, #3B82F6 50%, #0D1B2A 100%)'
               }}>
@@ -58,7 +59,7 @@ export const About3 = () => {
                 }} />
               </div>
               <div className="text-center">
-                <h3 className="mb-2 text-2xl font-bold text-white">ניהול מוצר אסטרטגי</h3>
+                <h3 className="font-display mb-2 text-2xl text-white">ניהול מוצר אסטרטגי</h3>
                 <h4 className="mb-4 text-lg font-semibold text-purple-400">
                   אסטרטגיה ברורה, תוצאות מדידות
                 </h4>
@@ -66,10 +67,10 @@ export const About3 = () => {
                   אנחנו מגדירים את המוצר שלכם יחד, בונים MVP מהיר ומניעים צמיחה דרך איטרציות מבוססות נתונים. עם מדדי הצלחה ברורים, תמיד תדעו מה הסטטוס וה-ROI של הפרויקט.
                 </p>
               </div>
-            </div>
+            </GlowCard>
 
             {/* Feature 3 */}
-            <div className="group glass-liquid rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+            <GlowCard className="rounded-2xl p-8 lg:col-span-5" data-aos="fade-up" data-aos-delay="200">
               <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
                 background: 'linear-gradient(135deg, #10B981 0%, #06B6D4 50%, #0D1B2A 100%)'
               }}>
@@ -78,7 +79,7 @@ export const About3 = () => {
                 }} />
               </div>
               <div className="text-center">
-                <h3 className="mb-2 text-2xl font-bold text-white">איכות וביצועים</h3>
+                <h3 className="font-display mb-2 text-2xl text-white">איכות וביצועים</h3>
                 <h4 className="mb-4 text-lg font-semibold text-green-400">
                   יציב, מאובטח ומהיר
                 </h4>
@@ -86,10 +87,10 @@ export const About3 = () => {
                   אנחנו בונים לפי הסטנדרטים הגבוהים ביותר עם בדיקות אוטומטיות, פרוטוקולי אבטחה מקיפים וזמני טעינה מהירים מותאמים להצלחה ב-SEO.
                 </p>
               </div>
-            </div>
+            </GlowCard>
 
             {/* Feature 4 */}
-            <div className="group glass-liquid rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="250">
+            <GlowCard className="rounded-2xl p-8 lg:col-span-7" data-aos="fade-up" data-aos-delay="250">
               <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
                 background: 'linear-gradient(135deg, #F59E0B 0%, #B08D57 50%, #0D1B2A 100%)'
               }}>
@@ -98,7 +99,7 @@ export const About3 = () => {
                 }} />
               </div>
               <div className="text-center">
-                <h3 className="mb-2 text-2xl font-bold text-white">שקיפות מלאה</h3>
+                <h3 className="font-display mb-2 text-2xl text-white">שקיפות מלאה</h3>
                 <h4 className="mb-4 text-lg font-semibold text-orange-400">
                   אתם תמיד על ההגה
                 </h4>
@@ -106,7 +107,7 @@ export const About3 = () => {
                   מקבלים גישה מלאה לקוד המקור, תשתית ודוחות התקדמות. אנחנו שומרים אתכם על ההגה עם מידע מלא ותהליכי החלטה שקופים.
                 </p>
               </div>
-            </div>
+            </GlowCard>
           </div>
         </div>
 

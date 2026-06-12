@@ -14,7 +14,7 @@ const HeroBackground = () => (
       custom={{ delayIdx: 0 }}
       variants={heroVariants.background}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0D1B2A] via-[#0a1628] to-[#0D1B2A]" />
+      {/* Aurora atmosphere shows through from the fixed page background */}
       <ParticleVortex />
     </motion.div>
     {/* Floating blurred tech-blue/gold backgrounds */}

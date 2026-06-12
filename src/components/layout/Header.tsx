@@ -47,6 +47,9 @@ const Header = () => {
           <Button variant="link" className="text-white hover:text-tech-blue transition-colors p-0" onClick={() => scrollToSection('advantages')}>
             היתרונות
           </Button>
+          <Button variant="link" className="text-white hover:text-tech-blue transition-colors p-0" onClick={() => scrollToSection('process')}>
+            התהליך
+          </Button>
           <Button variant="link" className="text-white hover:text-tech-blue transition-colors p-0" onClick={() => scrollToSection('clients')}>
             לקוחות
           </Button>
@@ -74,6 +77,9 @@ const Header = () => {
             </Button>
             <Button variant="link" className="text-white hover:text-tech-blue transition-colors p-2 justify-start min-h-[44px] text-base" onClick={() => scrollToSection('advantages')}>
               היתרונות
+            </Button>
+            <Button variant="link" className="text-white hover:text-tech-blue transition-colors p-2 justify-start min-h-[44px] text-base" onClick={() => scrollToSection('process')}>
+              התהליך
             </Button>
             <Button variant="link" className="text-white hover:text-tech-blue transition-colors p-2 justify-start min-h-[44px] text-base" onClick={() => scrollToSection('clients')}>
               לקוחות

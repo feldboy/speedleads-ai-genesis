@@ -1,5 +1,5 @@
 import React from "react";
-import { MagicCard } from "@/components/ui/magic-card";
+import GlowCard from "@/components/ui/GlowCard";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import MagneticButton from "@/components/effects/MagneticButton";
@@ -105,7 +105,7 @@ const services: Service[] = [
 
 function ServiceCards() {
   return (
-    <section id="services" className="py-20 bg-gradient-to-b from-[#0D1B2A]/70 via-[#0f2035]/60 to-[#0D1B2A]/70 relative overflow-hidden" aria-labelledby="services_title">
+    <section id="services" className="py-20 relative overflow-hidden" aria-labelledby="services_title">
 
       <div className="container mx-auto">
         <header className="text-center mb-20">
@@ -116,7 +116,7 @@ function ServiceCards() {
           
           <h2
             id="services_title"
-            className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent"
+            className="font-display text-4xl md:text-6xl mb-6 text-brand-gradient"
             data-aos="fade-up"
 data-aos-delay="0"
           >
@@ -134,11 +134,9 @@ data-aos-delay="0"
           {services.map((service, index) => {
             const IconComponent = service.icon;
             return (
-              <MagicCard
+              <GlowCard
                 key={service.id}
-                className="group relative overflow-hidden glass-liquid rounded-3xl p-6 transition-all duration-500 min-h-[595px]"
-                gradientColor="#00F6FF"
-                gradientOpacity={0.1}
+                className="rounded-3xl p-6 transition-all duration-500 min-h-[595px]"
                 data-aos="fade-up"
                 data-aos-delay={index * 200}
               >
@@ -150,7 +148,7 @@ data-aos-delay="0"
                         <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] rounded-xl flex items-center justify-center shadow-lg">
                           <IconComponent className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
                         </div>
-                        <h3 className="text-xl lg:text-3xl font-bold text-white flex-1">
+                        <h3 className="font-display text-xl lg:text-3xl text-white flex-1">
                           {service.title}
                         </h3>
                       </div>
@@ -222,7 +220,7 @@ data-aos-delay="0"
                       </Button>
                     </div>
                   </div>
-              </MagicCard>
+              </GlowCard>
             );
           })}
         </div>

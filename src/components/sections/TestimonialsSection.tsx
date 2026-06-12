@@ -400,7 +400,7 @@ const TestimonialsSection = () => {
   return (
     <section
       id="success-stories"
-      className="py-32 bg-gradient-to-b from-dark/70 via-slate-900/60 to-gray-900/70 text-white overflow-hidden relative"
+      className="py-32 text-white overflow-hidden relative"
     >
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 w-72 h-72 bg-gold rounded-full blur-3xl"></div>
@@ -409,7 +409,7 @@ const TestimonialsSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-20">
           <h2
-            className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent"
+            className="font-display text-5xl md:text-7xl mb-6 text-brand-gradient"
             data-aos="fade-up"
           >
             סיפורי הצלחה מרשימים

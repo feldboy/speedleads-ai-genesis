@@ -53,11 +53,11 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-[#0D1B2A]/70 via-[#0f2035]/60 to-[#0D1B2A]/70 relative overflow-hidden">
+    <section id="contact" className="py-20 relative overflow-hidden">
 
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 px-4 sm:px-0 text-white" data-aos="fade-up">מוכנים לקחת את העסק שלכם לשלב הבא?</h2>
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl mb-4 px-4 sm:px-0 text-white" data-aos="fade-up">מוכנים לקחת את העסק שלכם לשלב הבא?</h2>
           <div className="w-24 h-1 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] mx-auto mb-8" />
           <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4 sm:px-0" data-aos="fade-up" data-aos-delay="100">
             מלאו את הפרטים ונחזור אליכם בהקדם לשיחת ייעוץ ללא התחייבות
@@ -158,7 +158,7 @@ const ContactSection = () => {
               <Button
                 id="submit_contact_form_button"
                 type="submit"
-                className="w-full bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold min-h-[44px] text-base"
+                className="w-full bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold min-h-[44px] text-base shadow-glow-blue transition-shadow duration-500"
                 disabled={loading}
               >
                 {loading ? (

@@ -11,9 +11,14 @@ import CookieConsent from '@/components/CookieConsent';
 import FloatingAI from '@/components/effects/FloatingAI';
 import AnimatedStats from '@/components/effects/AnimatedStats';
 import ServiceCards from '@/components/sections/ServiceCards';
+import IntroSequence from '@/components/sections/IntroSequence';
+import ProcessSection from '@/components/sections/ProcessSection';
+import SignalThread from '@/components/effects/SignalThread';
+import SpotlightCursor from '@/components/effects/SpotlightCursor';
+import AmbientSound from '@/components/effects/AmbientSound';
 import { initializeAnalytics, trackEvent } from '@/lib/analytics';
 
-const ShaderBackground = lazy(() => import('@/components/effects/ShaderBackground'));
+const AuroraBackground = lazy(() => import('@/components/effects/AuroraBackground'));
 
 const Index = () => {
   const [cookieConsentShown, setCookieConsentShown] = useState(false);
@@ -92,45 +97,40 @@ const Index = () => {
   return (
     <>
     <Suspense fallback={null}>
-      <ShaderBackground />
+      <AuroraBackground />
     </Suspense>
+    <IntroSequence />
+    <SpotlightCursor />
+    <div className="grain-overlay" aria-hidden="true" />
     <div dir="rtl" lang="he" className="min-h-screen text-white relative z-[1] overflow-x-hidden">
       <Header />
-      <main>
+      {/* relative wrapper so The Signal can span the full page height */}
+      <main className="relative">
+        <SignalThread />
         <HeroSection />
 
-        <div className="section-divider" />
-
         {/* Animated Stats Section */}
-        <section className="py-20 bg-gradient-to-b from-[#0D1B2A]/70 via-[#0f2035]/60 to-[#0D1B2A]/70 relative overflow-hidden">
-
+        <section className="py-20 relative overflow-hidden">
           <div className="container mx-auto">
             <AnimatedStats />
           </div>
         </section>
 
-        <div className="section-divider" />
-
         <ServiceCards />
-
-        <div className="section-divider" />
 
         <WhySpeedLeadsSection />
 
-        <div className="section-divider" />
+        <ProcessSection />
 
         <TestimonialsSection />
 
-        <div className="section-divider" />
-
         <FaqSection />
-
-        <div className="section-divider" />
 
         <ContactSection />
       </main>
       <Footer />
       <FloatingAI />
+      <AmbientSound />
 
       {/* WhatsApp floating button */}
       <a

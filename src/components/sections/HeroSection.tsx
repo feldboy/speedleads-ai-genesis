@@ -26,7 +26,7 @@ const HeroSection = () => {
       initial={reducedMotion ? false : "hidden"}
       animate={controls}
       variants={heroVariants.hero}
-      className="relative min-h-screen flex items-center bg-gradient-to-br from-dark via-gray-900 to-dark overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden"
     >
       <HeroBackground />
 

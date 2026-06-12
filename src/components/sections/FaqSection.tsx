@@ -44,11 +44,11 @@ const FaqSection = () => {
   };
 
   return (
-    <section id="faq" className="py-20 bg-gradient-to-b from-[#0D1B2A]/70 via-[#0f2035]/60 to-[#0D1B2A]/70 relative overflow-hidden">
+    <section id="faq" className="py-20 relative overflow-hidden">
 
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-aos="fade-up">שאלות נפוצות</h2>
+          <h2 className="font-display text-3xl md:text-4xl mb-4 text-white" data-aos="fade-up">שאלות נפוצות</h2>
           <div className="w-24 h-1 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] mx-auto mb-8" />
           <p className="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
             כאן תוכלו למצוא מענה לשאלות הנפוצות ביותר. לא מצאתם את מה שחיפשתם? צרו איתנו קשר!

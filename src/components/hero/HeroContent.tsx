@@ -47,17 +47,17 @@ const HeroContent: React.FC = () => {
           <span>.AI:</span>
         </motion.span>
         <br />
-        <span className="gradient-text">העתיד של</span>
+        <span className="font-display text-brand-gradient">העתיד של</span>
         <br />
         {showTypewriter && (
           <TypewriterText
             texts={aiTexts}
-            className="gradient-text"
+            className="font-display text-brand-gradient"
           />
         )}
         <br />
         <motion.span
-          className="text-white"
+          className="font-display text-white"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
