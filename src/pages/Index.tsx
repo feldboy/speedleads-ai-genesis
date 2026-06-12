@@ -15,6 +15,7 @@ import IntroSequence from '@/components/sections/IntroSequence';
 import ProcessSection from '@/components/sections/ProcessSection';
 import CursorCore from '@/components/effects/CursorCore';
 import AmbientSound from '@/components/effects/AmbientSound';
+import EffectsPanel from '@/components/effects/EffectsPanel';
 import { initializeAnalytics, trackEvent } from '@/lib/analytics';
 
 const LiquidInkBackground = lazy(() => import('@/components/effects/LiquidInkBackground'));
@@ -128,6 +129,7 @@ const Index = () => {
       <Footer />
       <FloatingAI />
       <AmbientSound />
+      <EffectsPanel />
 
       {/* WhatsApp floating button */}
       <a
