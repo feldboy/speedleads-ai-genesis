@@ -5,6 +5,8 @@ The marketing/lead-gen homepage for **SpeedLeads AI** — an Israeli agency sell
 
 You are acting as an elite UX/UI designer and full-stack developer. Balance aesthetics, performance, and conversion — the site is a lead-generation machine first.
 
+**Business strategy, site roadmap, conversion goals, and design psychology live in `BUSINESS-CONTEXT.md`** — read it before product/copy/structure decisions.
+
 ## Stack (actual — do not "upgrade" it)
 - **Vite 5 + React 18 + TypeScript**, SPA with react-router-dom (no Next.js, no SSR, no backend, no CMS)
 - **Tailwind CSS 3 + shadcn/ui (Radix)** — components in `src/components/ui`
