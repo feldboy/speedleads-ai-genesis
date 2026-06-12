@@ -146,29 +146,34 @@ const EffectsPanel = () => {
           </header>
 
           <Section title="רקע נוזלי">
-            <SliderRow label="עוצמת העשן" k="inkIntensity" min={0} max={2} />
-            <SliderRow label="מהירות זרימה" k="inkFlow" min={0} max={2} />
-            <SliderRow label="ערבול בעכבר" k="inkStir" min={0} max={2} />
+            <SliderRow label="עוצמת העשן" k="inkIntensity" min={0} max={4} />
+            <SliderRow label="מהירות זרימה" k="inkFlow" min={0} max={5} />
+            <SliderRow label="ערבול בעכבר" k="inkStir" min={0} max={5} />
             <ColorRow label="צבע זוהר" k="inkCyan" />
             <ColorRow label="צבע עומק" k="inkAzure" />
           </Section>
 
           <Section title="חלקיקים">
-            <SliderRow label="כמות" k="particleCount" min={0} max={900} step={10} />
-            <SliderRow label="גודל" k="particleSize" min={1} max={5} step={0.1} />
-            <SliderRow label="כבידת עכבר" k="particleGravity" min={0} max={3} />
+            <SliderRow label="כמות" k="particleCount" min={0} max={2500} step={10} />
+            <SliderRow label="גודל" k="particleSize" min={0.5} max={12} step={0.1} />
+            <SliderRow label="זוהר" k="particleGlow" min={0} max={5} />
+            <SliderRow label="חדות" k="particleSharpness" min={0} max={3} />
+            <SliderRow label="שובל" k="particleTrail" min={0} max={1} step={0.01} />
+            <SliderRow label="רזולוציה" k="particleResolution" min={0.25} max={1} step={0.05} />
+            <SliderRow label="כבידת עכבר" k="particleGravity" min={0} max={8} />
+            <SliderRow label="רדיוס כבידה" k="gravityRadius" min={40} max={500} step={10} />
             <ColorRow label="צבע" k="particleColor" />
           </Section>
 
           <Section title="עכבר">
             <ColorRow label="צבע" k="cursorColor" />
-            <SliderRow label="עוצמת זרקור" k="cursorSpotlight" min={0} max={2} />
-            <SliderRow label="גודל טבעת" k="cursorHalo" min={0.5} max={2} />
+            <SliderRow label="עוצמת זרקור" k="cursorSpotlight" min={0} max={4} />
+            <SliderRow label="גודל טבעת" k="cursorHalo" min={0.25} max={5} />
           </Section>
 
           <Section title="הירו">
-            <SliderRow label="עוצמה" k="heroIntensity" min={0} max={2} />
-            <SliderRow label="מהירות" k="heroSpeed" min={0} max={2} />
+            <SliderRow label="עוצמה" k="heroIntensity" min={0} max={4} />
+            <SliderRow label="מהירות" k="heroSpeed" min={0} max={5} />
             <ColorRow label="גוון" k="heroTint" />
           </Section>
 
@@ -180,7 +185,7 @@ const EffectsPanel = () => {
           </Section>
 
           <Section title="תנועה">
-            <SliderRow label="מהירות כללית" k="motionSpeed" min={0.25} max={2} />
+            <SliderRow label="מהירות כללית" k="motionSpeed" min={0.1} max={4} />
           </Section>
 
           <Section title="סאונד">
