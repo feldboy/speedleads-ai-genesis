@@ -49,7 +49,7 @@ const FaqSection = () => {
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="font-display text-3xl md:text-4xl mb-4 text-white" data-aos="fade-up">שאלות נפוצות</h2>
-          <div className="w-24 h-1 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] mx-auto mb-8" />
+          <div className="w-24 h-1 bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] mx-auto mb-8" />
           <p className="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
             כאן תוכלו למצוא מענה לשאלות הנפוצות ביותר. לא מצאתם את מה שחיפשתם? צרו איתנו קשר!
           </p>
@@ -101,7 +101,7 @@ const FaqSection = () => {
             <Button 
               id="faq_contact_button"
               size="lg"
-              className="bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold transition-all duration-300 shadow-lg hover:shadow-tech-blue/25"
+              className="bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] hover:brightness-110 text-white font-bold transition-all duration-300 shadow-lg hover:shadow-tech-blue/25"
             >
               דברו איתנו ישירות
             </Button>

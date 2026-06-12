@@ -122,7 +122,7 @@ data-aos-delay="0"
           >
             השירותים שלנו
           </h2>
-          <div className="w-32 h-2 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] mx-auto mb-8 rounded-full shadow-lg shadow-tech-blue/30" data-aos="fade-up" data-aos-delay="150" />
+          <div className="w-32 h-2 bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] mx-auto mb-8 rounded-full shadow-lg shadow-tech-blue/30" data-aos="fade-up" data-aos-delay="150" />
           
           <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
             אנחנו מתמחים בפיתוח פתרונות טכנולוגיים מתקדמים שמביאים תוצאות אמיתיות.
@@ -145,7 +145,7 @@ data-aos-delay="0"
                     {/* Main Content - Flexible height */}
                     <div className="flex-grow space-y-4 lg:space-y-6">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] rounded-xl flex items-center justify-center shadow-lg">
+                        <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] rounded-xl flex items-center justify-center shadow-lg">
                           <IconComponent className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
                         </div>
                         <h3 className="font-display text-xl lg:text-3xl text-white flex-1">
@@ -154,7 +154,7 @@ data-aos-delay="0"
                       </div>
                       
                       <div className="space-y-3 lg:space-y-4">
-                        <h4 className="text-base lg:text-lg font-semibold bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent">
+                        <h4 className="text-base lg:text-lg font-semibold bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] bg-clip-text text-transparent">
                           {service.subtitle}
                         </h4>
                         
@@ -185,13 +185,13 @@ data-aos-delay="0"
                         {/* Price & Time */}
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <span className="text-lg lg:text-2xl font-bold bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent">{service.price}</span>
+                            <span className="text-lg lg:text-2xl font-bold bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] bg-clip-text text-transparent">{service.price}</span>
                             <div className="flex items-center gap-1">
                               <Trophy className="w-3 h-3 lg:w-4 lg:h-4 text-gold" />
                               <span className="text-xs lg:text-sm text-gray-400">מחיר הוגן</span>
                             </div>
                           </div>
-                          <Badge variant="secondary" className="bg-gradient-to-l from-[#00f6ff]/10 to-[#00a7ff]/10 text-transparent bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text font-medium px-2 py-1 text-xs">
+                          <Badge variant="secondary" className="bg-gradient-to-l from-[#00f6ff]/10 to-[#00a7ff]/10 text-transparent bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] bg-clip-text font-medium px-2 py-1 text-xs">
                             {service.deliveryTime}
                           </Badge>
                         </div>
@@ -212,7 +212,7 @@ data-aos-delay="0"
                     <div className="mt-6 pt-4 border-t border-white/10">
                       <Button 
                         size="lg" 
-                        className="w-full bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold px-6 lg:px-8 py-3 lg:py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl text-sm lg:text-base"
+                        className="w-full bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] hover:brightness-110 text-white font-bold px-6 lg:px-8 py-3 lg:py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl text-sm lg:text-base"
                         onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                       >
                         <Rocket className="w-4 h-4 lg:w-5 lg:h-5 ml-2" />
@@ -231,7 +231,7 @@ data-aos-delay="0"
             <MagneticButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
               <Button 
                 size="lg"
-                className="bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-lg shadow-lg hover:shadow-tech-blue/25 transition-all duration-300 text-sm sm:text-base min-h-[44px]"
+                className="bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] hover:brightness-110 text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-lg shadow-lg hover:shadow-tech-blue/25 transition-all duration-300 text-sm sm:text-base min-h-[44px]"
                 data-aos="slide-right" 
                 data-aos-delay="200"
                 data-aos-duration="600"

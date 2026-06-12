@@ -70,7 +70,7 @@ const Footer = () => {
             </ul>
             <Button 
               id="footer_contact_button"
-              className="mt-4 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white"
+              className="mt-4 bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] hover:brightness-110 text-white"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               דברו איתנו

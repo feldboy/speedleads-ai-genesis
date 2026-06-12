@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from '@/hooks/useGsap';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { fx, hexToRgba, subscribeFx } from '@/lib/effectsConfig';
 
 /**
  * The site's pointer language, one system, three layers:
@@ -45,17 +46,30 @@ const CursorCore = () => {
     let mode: 'idle' | 'pull' | 'beam' = 'idle';
 
     const applyMode = (next: typeof mode) => {
+      const halo = fx.cursorHalo;
       if (next === 'pull') {
-        gsap.to(ring, { scale: 1.8, opacity: 1, borderColor: 'rgba(0, 246, 255, 0.9)', duration: 0.35, ease: 'back.out(2)' });
+        gsap.to(ring, { scale: 1.8 * halo, opacity: 1, borderColor: hexToRgba(fx.cursorColor, 0.9), duration: 0.35, ease: 'back.out(2)' });
         gsap.to(dot, { scale: 0.5, duration: 0.35, ease: 'power2.out' });
       } else if (next === 'beam') {
-        gsap.to(ring, { scale: 0.5, opacity: 0.9, borderColor: 'rgba(0, 246, 255, 0.6)', duration: 0.3, ease: 'power2.out' });
+        gsap.to(ring, { scale: 0.5 * halo, opacity: 0.9, borderColor: hexToRgba(fx.cursorColor, 0.6), duration: 0.3, ease: 'power2.out' });
         gsap.to(dot, { scale: 1.6, duration: 0.3, ease: 'power2.out' });
       } else {
-        gsap.to(ring, { scale: 1, opacity: 0.65, borderColor: 'rgba(0, 246, 255, 0.45)', duration: 0.35, ease: 'power2.out' });
+        gsap.to(ring, { scale: halo, opacity: 0.65, borderColor: hexToRgba(fx.cursorColor, 0.45), duration: 0.35, ease: 'power2.out' });
         gsap.to(dot, { scale: 1, duration: 0.35, ease: 'power2.out' });
       }
     };
+
+    // Panel tuning (color, halo size, spotlight strength) applies live
+    const applyTheme = () => {
+      const c = fx.cursorColor;
+      dot.style.background = c;
+      dot.style.boxShadow = `0 0 8px ${hexToRgba(c, 0.9)}`;
+      ring.style.boxShadow = `0 0 12px ${hexToRgba(c, 0.25)} inset, 0 0 12px ${hexToRgba(c, 0.15)}`;
+      light.style.background = `radial-gradient(circle, ${hexToRgba(c, 0.08 * fx.cursorSpotlight)} 0%, ${hexToRgba(c, 0.04 * fx.cursorSpotlight)} 35%, transparent 70%)`;
+      applyMode(mode);
+    };
+    applyTheme();
+    const unsubscribeFx = subscribeFx(applyTheme);
 
     const setMode = (next: typeof mode) => {
       if (next === mode) return;
@@ -80,7 +94,7 @@ const CursorCore = () => {
       else setMode('idle');
     };
 
-    const onDown = () => gsap.to(ring, { scale: mode === 'pull' ? 1.4 : 0.8, duration: 0.15, ease: 'power2.out' });
+    const onDown = () => gsap.to(ring, { scale: (mode === 'pull' ? 1.4 : 0.8) * fx.cursorHalo, duration: 0.15, ease: 'power2.out' });
     const onUp = () => applyMode(mode);
     const onLeave = () => {
       visible = false;
@@ -93,6 +107,7 @@ const CursorCore = () => {
     document.documentElement.addEventListener('pointerleave', onLeave);
     return () => {
       document.documentElement.classList.remove('cursor-core-active');
+      unsubscribeFx();
       window.removeEventListener('pointermove', onMove);
       window.removeEventListener('pointerdown', onDown);
       window.removeEventListener('pointerup', onUp);

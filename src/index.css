@@ -72,7 +72,7 @@
 }
 
 .gradient-text {
-  @apply bg-gradient-to-l from-[#00f6ff] to-[#00a7ff];
+  background-image: linear-gradient(to left, var(--headline-from, #00f6ff), var(--headline-to, #00a7ff));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -595,13 +595,16 @@ html, body {
   --signal-azure: 199 100% 50%;          /* #00A7FF */
   --signal-deep: 210 100% 45%;           /* #0072E5 — depth stop for big headlines */
 
-  /* The brand gradient used by kinetic headings, borders, the Signal */
-  --brand-gradient: linear-gradient(
-    105deg,
-    hsl(var(--signal-cyan)),
-    hsl(var(--signal-azure)) 55%,
-    hsl(var(--signal-deep))
-  );
+  /* Headline gradient = the exact gradient of the logo's "Leads" word
+     (owner directive). The stops are panel-editable CSS vars; effectsConfig
+     keeps them in sync with the control panel. */
+  --headline-from: #00f6ff;
+  --headline-to: #00a7ff;
+  --btn-from: #00f6ff;
+  --btn-to: #00a7ff;
+  --cursor-color: #00f6ff;
+  --motion-speed: 1;
+  --brand-gradient: linear-gradient(to left, var(--headline-from), var(--headline-to));
 
   /* Glow shadows */
   --glow-signal: 0 0 24px rgba(0, 246, 255, 0.35), 0 0 64px rgba(0, 246, 255, 0.12);
@@ -629,7 +632,7 @@ html, body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: brand-gradient-pan 8s ease-in-out infinite alternate;
+  animation: brand-gradient-pan calc(8s / var(--motion-speed, 1)) ease-in-out infinite alternate;
 }
 
 @keyframes brand-gradient-pan {
