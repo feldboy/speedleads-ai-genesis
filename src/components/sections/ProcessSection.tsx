@@ -1,19 +1,19 @@
-import { lazy, Suspense, useRef, type ReactNode } from 'react';
+import { useRef, type ReactNode } from 'react';
 import KineticHeading from '@/components/ui/KineticHeading';
 import GlowCard from '@/components/ui/GlowCard';
 import SectionReveal from '@/components/ui/SectionReveal';
 import { useGsap, gsap } from '@/hooks/useGsap';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { fxRuntime } from '@/lib/effectsConfig';
 import { VIGNETTES } from './process/Vignettes';
-
-const ParticleField = lazy(() => import('./process/ParticleField'));
 
 /**
  * Customer process scrollytelling — "how your idea comes to life".
- * Desktop: the section pins and six stations travel horizontally. Each station
- * is a live vignette (the step demos itself), fronted by a giant outlined
- * numeral that parallaxes at a slower rate, with a node-rail that ignites as
- * the scrub passes each station and a particle field pushed by scrub wind.
+ * Desktop: the section pins and six stations travel horizontally, each scroll
+ * checkpoint landing one station dead-center. Each station is a live vignette
+ * (the step demos itself), fronted by a giant outlined numeral that parallaxes
+ * at a slower rate, with a node-rail that ignites as the scrub passes. The
+ * scrub also blows wind into the global particle layer (fxRuntime.windX).
  * Mobile / reduced motion: a vertical stack, vignettes still alive.
  *
  * NOTE: step copy adapted in SpeedLeads voice (structure inspired by the
@@ -76,7 +76,7 @@ const STEPS: Step[] = [
 const StationCard = ({ step, index, horizontal }: { step: Step; index: number; horizontal: boolean }) => {
   const Vignette = VIGNETTES[index];
   return (
-    <div className="relative" data-station>
+    <div className="relative h-full" data-station>
       {/* Giant numeral behind the card — parallaxes slower than the track */}
       <span
         data-numeral
@@ -89,8 +89,8 @@ const StationCard = ({ step, index, horizontal }: { step: Step; index: number; h
         {String(index + 1).padStart(2, '0')}
       </span>
 
-      <div data-card className="relative z-10 will-change-transform">
-        <GlowCard className={`p-6 md:p-7 flex flex-col gap-4 ${horizontal ? 'mt-10' : 'mt-8'}`}>
+      <div data-card className={`relative z-10 will-change-transform ${horizontal ? 'h-full' : ''}`}>
+        <GlowCard className={`p-6 md:p-7 flex flex-col gap-4 ${horizontal ? 'mt-10 h-[calc(100%-2.5rem)]' : 'mt-8'}`}>
           {/* The live vignette — this step, demoing itself */}
           <div className="h-44 rounded-xl border border-white/10 bg-[#05080F]/60 overflow-hidden">
             <Vignette />
@@ -107,7 +107,7 @@ const ProcessSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const railRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef(0);
+  const lastProgressRef = useRef(0);
   const isMobile = useIsMobile();
 
   const reducedMotion = useGsap(
@@ -125,7 +125,10 @@ const ProcessSection = () => {
       const distance = () => track.scrollWidth - window.innerWidth;
 
       const applyStage = (progress: number) => {
-        progressRef.current = progress;
+        // blow scrub wind into the global particle layer (decays there)
+        const gust = (progress - lastProgressRef.current) * 18;
+        lastProgressRef.current = progress;
+        fxRuntime.windX = Math.max(-1, Math.min(1, fxRuntime.windX + gust));
         if (railRef.current) railRef.current.style.transform = `scaleX(${progress})`;
 
         const litCount = progress * (STEPS.length - 1) + 0.25;
@@ -144,10 +147,10 @@ const ProcessSection = () => {
           const card = cards[i];
           const numeral = numerals[i];
           if (card) {
+            // focus-pull via scale/opacity only — per-frame blur() murders the GPU
             gsap.set(card, {
               scale: 1 - 0.06 * Math.min(d, 1),
-              opacity: 1 - 0.4 * Math.min(d, 1),
-              filter: d > 0.55 ? `blur(${((d - 0.55) * 2.2).toFixed(2)}px)` : 'blur(0px)',
+              opacity: 1 - 0.45 * Math.min(d, 1),
             });
           }
           // The numeral drags behind the travel direction — depth
@@ -155,19 +158,22 @@ const ProcessSection = () => {
         });
       };
 
+      // Scroll distance is 1.8× the track travel — slower, more deliberate.
+      // Track geometry (center-aligning spacers + equal card widths) makes
+      // every snap point land one station exactly at viewport center.
       gsap.to(track, {
         x: distance,
         ease: 'none',
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: () => `+=${distance()}`,
-          scrub: 1,
+          end: () => `+=${Math.round(distance() * 1.8)}`,
+          scrub: 1.5,
           pin: true,
           invalidateOnRefresh: true,
           snap: {
             snapTo: 1 / (STEPS.length - 1),
-            duration: { min: 0.2, max: 0.5 },
+            duration: { min: 0.3, max: 0.7 },
             ease: 'power1.inOut',
           },
           onUpdate: (self) => applyStage(self.progress),
@@ -185,12 +191,6 @@ const ProcessSection = () => {
   return (
     <section ref={sectionRef} id="process" className="relative overflow-hidden">
       <div className={horizontal ? 'relative flex h-screen flex-col justify-center py-10' : 'relative py-20'}>
-        {horizontal && (
-          <Suspense fallback={null}>
-            <ParticleField progressRef={progressRef} />
-          </Suspense>
-        )}
-
         <div className="container mx-auto mb-6 relative z-10">
           <KineticHeading as="h2" gradient className="text-3xl sm:text-4xl lg:text-5xl text-center">
             איך הרעיון שלכם מתעורר לחיים
@@ -226,12 +226,17 @@ const ProcessSection = () => {
         </div>
 
         {horizontal ? (
-          <div ref={trackRef} className="relative z-10 flex gap-8 px-12 pt-16 will-change-transform">
+          <div ref={trackRef} className="relative z-10 flex items-stretch gap-8 pt-16 will-change-transform">
+            {/* Leading/trailing spacers center station 1 at progress 0 and
+                station 6 at progress 1 — every snap = one card dead-center.
+                (2rem compensates for the flex gap before/after the spacer.) */}
+            <div aria-hidden="true" className="shrink-0 w-[calc(50vw-min(480px,80vw)/2-2rem)]" />
             {STEPS.map((step, i) => (
               <div key={step.title} className="w-[min(480px,80vw)] shrink-0">
                 <StationCard step={step} index={i} horizontal />
               </div>
             ))}
+            <div aria-hidden="true" className="shrink-0 w-[calc(50vw-min(480px,80vw)/2-2rem)]" />
           </div>
         ) : (
           <SectionReveal className="container mx-auto grid gap-10 pt-8 sm:grid-cols-2">
