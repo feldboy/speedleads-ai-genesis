@@ -11,6 +11,8 @@ import FloatingAI from '@/components/effects/FloatingAI';
 import AnimatedStats from '@/components/effects/AnimatedStats';
 import ServiceCards from '@/components/sections/ServiceCards';
 import CursorAura from '@/components/effects/CursorAura';
+import ScrollProgress from '@/components/effects/ScrollProgress';
+import TickerMarquee from '@/components/effects/TickerMarquee';
 import { initializeAnalytics, trackEvent } from '@/lib/analytics';
 import { scrollToSection } from '@/lib/scroll';
 
@@ -92,12 +94,13 @@ const Index = () => {
       <div className="vignette-overlay" aria-hidden="true" />
       <div className="grain-overlay" aria-hidden="true" />
       <CursorAura />
+      <ScrollProgress />
 
       <Header />
       <main>
         <HeroSection />
 
-        <div className="section-divider" />
+        <TickerMarquee />
 
         <AnimatedStats />
 

@@ -390,8 +390,8 @@ body {
 
 /* ============ Marquee ticker ============ */
 @keyframes marquee-rtl {
-  from { transform: translateX(0); }
-  to { transform: translateX(50%); }
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
 }
 .marquee-track {
   display: flex;
@@ -399,6 +399,24 @@ body {
   animation: marquee-rtl 36s linear infinite;
 }
 .marquee-track:hover { animation-play-state: paused; }
+
+/* ============ Aurora glow blobs ============ */
+@keyframes aurora-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -28px) scale(1.08); }
+  66% { transform: translate(-30px, 20px) scale(0.94); }
+}
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(48px);
+  animation: aurora-drift 16s ease-in-out infinite;
+}
+.aurora-blob-slow {
+  animation-duration: 24s;
+  animation-direction: reverse;
+}
 
 /* ============ Cursor aura (pointer: fine only) ============ */
 @media (pointer: fine) {
@@ -575,7 +593,8 @@ html.lenis, html.lenis body { height: auto; }
   .live-dot,
   .terminal-caret,
   .animate-float,
-  .animate-pulse-slow {
+  .animate-pulse-slow,
+  .aurora-blob {
     animation: none !important;
   }
   .btn-lux::after { display: none; }

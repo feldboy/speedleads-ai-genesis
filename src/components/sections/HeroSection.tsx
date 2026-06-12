@@ -33,6 +33,18 @@ const HeroSection = () => {
       onMouseMove={onMouseMove}
       className="relative min-h-screen flex items-center overflow-hidden"
     >
+      {/* aurora glows */}
+      <div
+        className="aurora-blob -top-40 right-[8%] w-[34rem] h-[34rem]"
+        style={{ background: 'radial-gradient(circle, rgba(0, 246, 255, 0.09) 0%, transparent 70%)' }}
+        aria-hidden="true"
+      />
+      <div
+        className="aurora-blob aurora-blob-slow -bottom-32 left-[4%] w-[42rem] h-[42rem]"
+        style={{ background: 'radial-gradient(circle, rgba(212, 175, 122, 0.07) 0%, transparent 70%)' }}
+        aria-hidden="true"
+      />
+
       <div className="container mx-auto pt-32 pb-24 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-14 lg:gap-10">
           <motion.div style={reducedMotion ? undefined : { x: contentX, y: contentY }} className="w-full lg:w-7/12">

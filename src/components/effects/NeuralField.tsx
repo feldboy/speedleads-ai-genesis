@@ -138,10 +138,10 @@ const NeuralMesh = ({ nodeCount, interactive }: MeshProps) => {
             const cx = (display[ix] + display[jx]) / 2 - mx;
             const cy = (display[ix + 1] + display[jx + 1]) / 2 - my;
             const md2 = cx * cx + cy * cy;
-            if (md2 < 7) {
-              const glow = 1 - md2 / 7;
+            if (md2 < 5) {
+              const glow = 1 - md2 / 5;
               color = glow > 0.55 ? CYAN : GOLD;
-              amp = 0.16 + strength * 0.2 + glow * 0.35;
+              amp = 0.14 + strength * 0.16 + glow * 0.22;
             }
           }
           for (let v = 0; v < 2; v++) {
@@ -179,7 +179,7 @@ const NeuralMesh = ({ nodeCount, interactive }: MeshProps) => {
           size={0.045}
           color="#7fa3c4"
           transparent
-          opacity={0.65}
+          opacity={0.5}
           sizeAttenuation
           depthWrite={false}
         />
@@ -198,7 +198,7 @@ const NeuralMesh = ({ nodeCount, interactive }: MeshProps) => {
         <lineBasicMaterial
           vertexColors
           transparent
-          opacity={0.85}
+          opacity={0.6}
           blending={THREE.AdditiveBlending}
           depthWrite={false}
         />

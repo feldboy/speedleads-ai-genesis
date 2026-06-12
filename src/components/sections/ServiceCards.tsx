@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Palette, Bot, BrainCircuit, Check } from 'lucide-react';
 import SpotlightCard from '@/components/effects/SpotlightCard';
+import TiltCard from '@/components/effects/TiltCard';
 import MagneticButton from '@/components/effects/MagneticButton';
 import { scrollToSection } from '@/lib/scroll';
 
@@ -124,6 +125,7 @@ function ServiceCards() {
                 whileHover={{ y: -6 }}
                 className="h-full"
               >
+                <TiltCard className="h-full">
                 <SpotlightCard
                   corners
                   id={service.id}
@@ -185,6 +187,7 @@ function ServiceCards() {
                     </MagneticButton>
                   </div>
                 </SpotlightCard>
+                </TiltCard>
               </motion.div>
             );
           })}
