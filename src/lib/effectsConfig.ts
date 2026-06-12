@@ -34,6 +34,11 @@ export interface FxConfig {
   particleCount: number;
   particleSize: number;
   particleGravity: number; // mouse attraction strength
+  particleGlow: number; // halo strength around each particle core
+  particleSharpness: number; // core edge hardness (low = soft puff, high = crisp dot)
+  particleTrail: number; // 0 = none, 1 = long comet trails
+  particleResolution: number; // trail-layer render scale (0.25..1 of canvas)
+  gravityRadius: number; // px — exclusion circle around the cursor; dust rings around it
   // --- cursor ---
   cursorSpotlight: number; // spotlight glow strength
   cursorHalo: number; // halo ring size multiplier
@@ -62,6 +67,11 @@ export const FX_DEFAULTS: FxConfig = {
   particleCount: 320,
   particleSize: 2.2,
   particleGravity: 1,
+  particleGlow: 1,
+  particleSharpness: 1,
+  particleTrail: 0.5,
+  particleResolution: 0.6,
+  gravityRadius: 110,
   cursorSpotlight: 1,
   cursorHalo: 1,
   heroIntensity: 1,

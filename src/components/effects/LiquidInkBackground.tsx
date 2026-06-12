@@ -10,12 +10,16 @@ import { fx, fxRuntime, hexToRgb01, subscribeFx } from '@/lib/effectsConfig';
  * into the warp, so moving the mouse drags glowing currents through the ink.
  *
  * A site-wide particle dust layer lives in the SAME renderer (one canvas,
- * one rAF): the particles drift everywhere, fall toward the cursor like a
- * soft gravity well, ride the Process section's scrub wind (fxRuntime.windX),
- * and scatter when the intro dissolves (`speedleads:ink-burst`).
+ * one rAF): round glowing sprites that drift everywhere, gather in a ring
+ * around the cursor's gravity circle (they can never enter it), ride the
+ * Process section's scrub wind (fxRuntime.windX), scatter when the intro
+ * dissolves (`speedleads:ink-burst`), and detonate outward on a tap/click
+ * on empty space. The dust renders through a low-res ping-pong feedback
+ * buffer, so motion leaves fading comet trails (length is a panel dial).
  *
  * Everything tunable reads from the effects config: stir strength, flow
- * speed, smoke intensity, ink colors, particle count/size/gravity/color.
+ * speed, smoke intensity, ink colors, particle count/size/gravity/color,
+ * glow, sharpness, trail length, trail-buffer resolution, gravity radius.
  *
  * The site's ONE full-page WebGL surface. DPR capped at 1.5, pauses when the
  * tab is hidden, full dispose on unmount, static gradient fallback under
@@ -23,7 +27,64 @@ import { fx, fxRuntime, hexToRgb01, subscribeFx } from '@/lib/effectsConfig';
  */
 
 const TRAIL_POINTS = 8;
-const MAX_PARTICLES = 900;
+const MAX_PARTICLES = 2500;
+const MAX_SHOCKS = 3;
+
+// --- Particle sprite: round core + glow halo (the squares were raw POINTS) --
+const PARTICLE_VERTEX = /* glsl */ `
+  attribute float aScale;
+  uniform float uSize;  // sprite size in trail-buffer pixels
+  uniform float uGlow;
+  void main() {
+    gl_Position = vec4(position.xy, 0.0, 1.0);
+    // the halo needs room inside the sprite, so glow widens the quad
+    gl_PointSize = uSize * aScale * (2.0 + uGlow * 0.9);
+  }
+`;
+
+const PARTICLE_FRAGMENT = /* glsl */ `
+  precision highp float; // must match the vertex stage — uGlow lives in both
+  uniform vec3 uColor;
+  uniform float uGlow;      // halo strength
+  uniform float uSharpness; // core edge hardness
+  void main() {
+    float d = length(gl_PointCoord - 0.5) * 2.0; // 0 center .. 1 sprite edge
+    if (d > 1.0) discard;
+    float edge = mix(0.5, 0.05, clamp(uSharpness / 3.0, 0.0, 1.0));
+    float core = 1.0 - smoothstep(max(0.34 - edge, 0.0), 0.34 + edge, d);
+    float halo = exp(-d * 4.5) * 0.5 * uGlow;
+    float a = clamp(core * 0.85 + halo, 0.0, 1.0);
+    gl_FragColor = vec4(uColor, a);
+  }
+`;
+
+// Feedback fade: last frame's dust, dimmed — this is what leaves the trails.
+const SCREEN_VERTEX = /* glsl */ `
+  varying vec2 vUv;
+  void main() {
+    vUv = uv;
+    gl_Position = vec4(position.xy, 0.0, 1.0);
+  }
+`;
+
+const FADE_FRAGMENT = /* glsl */ `
+  precision mediump float;
+  uniform sampler2D tPrev;
+  uniform float uDecay;
+  varying vec2 vUv;
+  void main() {
+    gl_FragColor = texture2D(tPrev, vUv) * uDecay;
+  }
+`;
+
+const COMPOSITE_FRAGMENT = /* glsl */ `
+  precision mediump float;
+  uniform sampler2D tDust;
+  varying vec2 vUv;
+  void main() {
+    gl_FragColor = texture2D(tDust, vUv);
+  }
+`;
 
 const FRAGMENT_SHADER = (octaves: number) => /* glsl */ `
   precision highp float;
@@ -206,6 +267,7 @@ const LiquidInkBackground = () => {
     const homes = new Float32Array(MAX_PARTICLES * 2);
     const velocities = new Float32Array(MAX_PARTICLES * 2);
     const drift = new Float32Array(MAX_PARTICLES);
+    const scales = new Float32Array(MAX_PARTICLES);
     for (let i = 0; i < MAX_PARTICLES; i++) {
       const x = Math.random() * 2 - 1;
       const y = Math.random() * 2 - 1;
@@ -214,34 +276,89 @@ const LiquidInkBackground = () => {
       homes[i * 2] = x;
       homes[i * 2 + 1] = y;
       drift[i] = 0.4 + Math.random() * 0.8;
+      scales[i] = 0.7 + Math.random() * 0.9;
     }
     const particleGeometry = new THREE.BufferGeometry();
     particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const particleMaterial = new THREE.PointsMaterial({
-      color: new THREE.Color(fx.particleColor),
-      size: fx.particleSize * renderer.getPixelRatio(), // device px → crisp at any DPR
-      sizeAttenuation: false,
+    particleGeometry.setAttribute('aScale', new THREE.BufferAttribute(scales, 1));
+    const particleUniforms = {
+      uColor: { value: new THREE.Color(fx.particleColor) },
+      uSize: { value: 1 },
+      uGlow: { value: fx.particleGlow },
+      uSharpness: { value: fx.particleSharpness },
+    };
+    const particleMaterial = new THREE.ShaderMaterial({
+      vertexShader: PARTICLE_VERTEX,
+      fragmentShader: PARTICLE_FRAGMENT,
+      uniforms: particleUniforms,
       transparent: true,
-      opacity: 0.5,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
       depthTest: false,
     });
     const points = new THREE.Points(particleGeometry, particleMaterial);
+
+    // The dust draws into a low-res ping-pong buffer: previous frame × decay,
+    // fresh sprites on top — real comet trails for the cost of two small RTs.
+    const resScale = () => Math.min(Math.max(fx.particleResolution, 0.25), 1);
+    const rtSize = () => ({
+      w: Math.max(1, Math.floor(window.innerWidth * renderer.getPixelRatio() * resScale())),
+      h: Math.max(1, Math.floor(window.innerHeight * renderer.getPixelRatio() * resScale())),
+    });
+    const makeRT = () => {
+      const { w, h } = rtSize();
+      return new THREE.WebGLRenderTarget(w, h, { depthBuffer: false, stencilBuffer: false });
+    };
+    let rtPrev = makeRT();
+    let rtCurr = makeRT();
+    let appliedResScale = resScale();
+
+    const fadeMaterial = new THREE.ShaderMaterial({
+      vertexShader: SCREEN_VERTEX,
+      fragmentShader: FADE_FRAGMENT,
+      uniforms: { tPrev: { value: rtPrev.texture }, uDecay: { value: 0 } },
+      blending: THREE.NoBlending,
+      depthWrite: false,
+      depthTest: false,
+    });
+    const fadeQuad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), fadeMaterial);
+    fadeQuad.renderOrder = 0;
     points.renderOrder = 1;
-    scene.add(points);
+    const dustScene = new THREE.Scene();
+    dustScene.add(fadeQuad);
+    dustScene.add(points);
+
+    const compositeMaterial = new THREE.ShaderMaterial({
+      vertexShader: SCREEN_VERTEX,
+      fragmentShader: COMPOSITE_FRAGMENT,
+      uniforms: { tDust: { value: rtCurr.texture } },
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      depthTest: false,
+    });
+    const compositeQuad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), compositeMaterial);
+    const compositeScene = new THREE.Scene();
+    compositeScene.add(compositeQuad);
 
     const activeCount = () =>
       Math.min(Math.round(fx.particleCount * (isSmallScreen ? 0.4 : 1)), MAX_PARTICLES);
     particleGeometry.setDrawRange(0, activeCount());
 
+    const sizeTrailBuffers = () => {
+      const { w, h } = rtSize();
+      rtPrev.setSize(w, h);
+      rtCurr.setSize(w, h);
+      appliedResScale = resScale();
+    };
+
     // Panel changes that aren't cheap to poll per frame
     const unsubscribeFx = subscribeFx(() => {
       uniforms.uInkCyan.value.set(...hexToRgb01(fx.inkCyan));
       uniforms.uInkAzure.value.set(...hexToRgb01(fx.inkAzure));
-      particleMaterial.color.set(fx.particleColor);
-      particleMaterial.size = fx.particleSize * renderer.getPixelRatio();
+      particleUniforms.uColor.value.set(fx.particleColor);
       particleGeometry.setDrawRange(0, activeCount());
+      if (resScale() !== appliedResScale) sizeTrailBuffers();
     });
 
     // Pointer head is smoothed; a trail point is dropped whenever the head
@@ -256,17 +373,28 @@ const LiquidInkBackground = () => {
     let elapsed = 0;
     const clock = new THREE.Clock();
 
+    // Tap/click detonations — an expanding ring that kicks dust outward.
+    const shocks: Array<{ x: number; y: number; t: number }> = [];
+
     const stepParticles = (dt: number, aspect: number) => {
       const count = activeCount();
       const motion = fx.motionSpeed;
-      // gravity well center in NDC (aspect-corrected for circular falloff)
-      const px = head.x * 2 - 1;
+      // gravity well center in NDC (x is aspect-corrected so math is circular)
+      const px = (head.x * 2 - 1) * aspect;
       const py = head.y * 2 - 1;
       const gravity = isCoarsePointer || !pointerActive ? 0 : fx.particleGravity;
       const wind = fxRuntime.windX;
       fxRuntime.windX *= 0.92; // wind impulses decay here, once per frame
 
+      // px → NDC-y units: 1 unit = half the viewport height
+      const pxToNdc = 2 / window.innerHeight;
+      const exclusion = fx.gravityRadius * pxToNdc; // the gravity circle
+      const capture = exclusion * 3.5; // attraction reaches this far out
+
       const frame = Math.min(dt, 0.05) * 60; // normalize physics to ~60fps steps
+
+      for (const shock of shocks) shock.t += dt * 1000;
+      while (shocks.length && shocks[0].t > 900) shocks.shift();
 
       for (let i = 0; i < count; i++) {
         const ix = i * 3;
@@ -274,14 +402,38 @@ const LiquidInkBackground = () => {
         let x = positions[ix];
         let y = positions[ix + 1];
 
-        // cursor gravity: soft inverse-square attraction, clamped near the core
+        // cursor gravity: radial pull toward the rim of the exclusion circle;
+        // inside it, a hard outward spring — dust rings the cursor, never
+        // sits under it. (Forces are computed in aspect-corrected space and
+        // the x-component is mapped back, so the gather is truly circular.)
         if (gravity > 0) {
-          const dx = (px - x) * aspect;
+          const dx = px - x * aspect;
           const dy = py - y;
-          const d2 = dx * dx + dy * dy;
-          const force = Math.min((gravity * 0.00045) / (d2 + 0.015), 0.0035);
-          velocities[iv] += dx * force * frame;
-          velocities[iv + 1] += dy * force * frame;
+          const d = Math.sqrt(dx * dx + dy * dy) || 1e-5;
+          if (d < exclusion) {
+            const f = (1 - d / exclusion) * 0.02 * frame;
+            velocities[iv] -= ((dx / d) * f) / aspect;
+            velocities[iv + 1] -= (dy / d) * f;
+          } else if (d < capture) {
+            const f = (1 - (d - exclusion) / (capture - exclusion)) * 0.0011 * gravity * frame;
+            velocities[iv] += ((dx / d) * f) / aspect;
+            velocities[iv + 1] += (dy / d) * f;
+          }
+        }
+
+        // detonation rings (artifact-style expanding band)
+        for (const shock of shocks) {
+          const r = shock.t * 0.9 * pxToNdc;
+          const band = 44 * pxToNdc;
+          const sx = x * aspect - shock.x;
+          const sy = y - shock.y;
+          const sd = Math.sqrt(sx * sx + sy * sy) || 1e-5;
+          const off = Math.abs(sd - r);
+          if (off < band) {
+            const f = (1 - off / band) * 0.012 * frame;
+            velocities[iv] += ((sx / sd) * f) / aspect;
+            velocities[iv + 1] += (sy / sd) * f;
+          }
         }
 
         // spring home + damping keeps the field stable
@@ -327,13 +479,42 @@ const LiquidInkBackground = () => {
 
       stepParticles(dt, uniforms.uRes.value.x / uniforms.uRes.value.y);
 
-      renderer.render(scene, camera);
+      // dust pass: previous frame faded + fresh sprites → current buffer
+      particleUniforms.uSize.value =
+        fx.particleSize * renderer.getPixelRatio() * appliedResScale * 1.6;
+      particleUniforms.uGlow.value = fx.particleGlow;
+      particleUniforms.uSharpness.value = fx.particleSharpness;
+      fadeMaterial.uniforms.tPrev.value = rtPrev.texture;
+      fadeMaterial.uniforms.uDecay.value = Math.min(fx.particleTrail, 1) * 0.94;
+      renderer.setRenderTarget(rtCurr);
+      renderer.render(dustScene, camera);
+      renderer.setRenderTarget(null);
+
+      renderer.render(scene, camera); // the ink
+      compositeMaterial.uniforms.tDust.value = rtCurr.texture;
+      renderer.autoClear = false;
+      renderer.render(compositeScene, camera); // dust + trails over the ink
+      renderer.autoClear = true;
+
+      [rtPrev, rtCurr] = [rtCurr, rtPrev];
       rafId = requestAnimationFrame(tick);
     };
 
     const onPointerMove = (e: PointerEvent) => {
       pointerActive = true;
       target.set(e.clientX / window.innerWidth, 1 - e.clientY / window.innerHeight);
+    };
+    // Tap empty space to detonate: shockwave through the dust + a swirl in
+    // the ink. Interactive elements keep their clicks to themselves.
+    const onPointerDown = (e: PointerEvent) => {
+      const el = e.target as Element | null;
+      if (el?.closest?.('a, button, input, textarea, select, label, [role="button"], [role="dialog"]')) return;
+      const nx = e.clientX / window.innerWidth;
+      const ny = 1 - e.clientY / window.innerHeight;
+      shocks.push({ x: (nx * 2 - 1) * (window.innerWidth / window.innerHeight), y: ny * 2 - 1, t: 0 });
+      if (shocks.length > MAX_SHOCKS) shocks.shift();
+      trail[trailIndex].set(nx, ny, 1);
+      trailIndex = (trailIndex + 1) % TRAIL_POINTS;
     };
     const onScroll = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
@@ -342,6 +523,7 @@ const LiquidInkBackground = () => {
     const onResize = () => {
       renderer.setSize(window.innerWidth, window.innerHeight);
       uniforms.uRes.value.set(window.innerWidth, window.innerHeight);
+      sizeTrailBuffers();
     };
     const onVisibility = () => {
       running = !document.hidden;
@@ -373,6 +555,7 @@ const LiquidInkBackground = () => {
     };
 
     window.addEventListener('pointermove', onPointerMove, { passive: true });
+    window.addEventListener('pointerdown', onPointerDown, { passive: true });
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onResize);
     document.addEventListener('visibilitychange', onVisibility);
@@ -384,6 +567,7 @@ const LiquidInkBackground = () => {
       cancelAnimationFrame(rafId);
       unsubscribeFx();
       window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerdown', onPointerDown);
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
       document.removeEventListener('visibilitychange', onVisibility);
@@ -392,6 +576,12 @@ const LiquidInkBackground = () => {
       material.dispose();
       particleGeometry.dispose();
       particleMaterial.dispose();
+      fadeQuad.geometry.dispose();
+      fadeMaterial.dispose();
+      compositeQuad.geometry.dispose();
+      compositeMaterial.dispose();
+      rtPrev.dispose();
+      rtCurr.dispose();
       renderer.dispose();
       mount.removeChild(renderer.domElement);
     };
