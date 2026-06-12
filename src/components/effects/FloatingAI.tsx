@@ -27,9 +27,10 @@ const FloatingAI = () => {
 
   return (
     <>
+      {/* Right rail, stacked directly above the WhatsApp button (owner directive) */}
       <motion.div
-        className="fixed bottom-32 left-6 z-40"
-        initial={{ opacity: 0, x: -100 }}
+        className="fixed bottom-24 right-6 z-40"
+        initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 2, duration: 0.8 }}
       >
