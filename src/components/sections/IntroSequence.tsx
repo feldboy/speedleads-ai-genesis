@@ -1,26 +1,30 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import SpeedLeadsLogo from '@/components/ui/SpeedLeadsLogo';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
-const SESSION_KEY = 'speedleads-intro-seen';
 const TOTAL_MS = 4200;
+const SPARK_COUNT = 12;
 
 /**
- * Cinematic curtain-raiser, once per session: a single point of light (the
- * Signal's birth) streaks into a line, ignites the logo, the tagline
- * assembles, then the void opens into the hero. Skippable at any moment
- * (button or Escape). Never shown under reduced motion.
+ * Cinematic curtain-raiser, on EVERY entry (owner directive): a single point
+ * of light (the Signal's birth) streaks into a line, ignites the logo with a
+ * shockwave and a burst of sparks, the tagline assembles, then the intro
+ * dissolves into the liquid-ink background (a `speedleads:ink-burst` event
+ * stirs the ink as the curtain lifts). Skippable at any moment (button,
+ * Escape or Enter). Never shown under reduced motion.
  */
 const IntroSequence = () => {
   const reducedMotion = useReducedMotion();
-  const [visible, setVisible] = useState(
-    () => !sessionStorage.getItem(SESSION_KEY)
-  );
+  const [visible, setVisible] = useState(true);
+  const dismissedRef = useRef(false);
 
   const dismiss = () => {
-    sessionStorage.setItem(SESSION_KEY, '1');
+    if (dismissedRef.current) return;
+    dismissedRef.current = true;
     setVisible(false);
+    // hand the energy to the liquid ink — the intro dissolves into the page
+    window.dispatchEvent(new CustomEvent('speedleads:ink-burst'));
   };
 
   useEffect(() => {
@@ -69,6 +73,48 @@ const IntroSequence = () => {
           }}
           transition={{ duration: 1.6, times: [0, 0.25, 0.8, 1], ease: 'easeInOut' }}
         />
+
+        {/* Ignition shockwave — a ring of light racing outward */}
+        <motion.div
+          aria-hidden="true"
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            width: 120,
+            height: 120,
+            border: '1.5px solid rgba(0,246,255,0.8)',
+            boxShadow: '0 0 24px rgba(0,246,255,0.5), 0 0 24px rgba(0,246,255,0.4) inset',
+          }}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: [0, 0.2, 9], opacity: [0, 1, 0] }}
+          transition={{ delay: 1.25, duration: 1.4, times: [0, 0.12, 1], ease: [0.16, 1, 0.3, 1] }}
+        />
+
+        {/* Sparks thrown off by the ignition */}
+        {Array.from({ length: SPARK_COUNT }, (_, i) => {
+          const angle = (i / SPARK_COUNT) * Math.PI * 2;
+          const radius = 150 + (i % 3) * 70;
+          return (
+            <motion.span
+              key={i}
+              aria-hidden="true"
+              className="absolute rounded-full pointer-events-none"
+              style={{
+                width: 3,
+                height: 3,
+                background: '#00F6FF',
+                boxShadow: '0 0 8px rgba(0,246,255,0.9)',
+              }}
+              initial={{ x: 0, y: 0, opacity: 0, scale: 1 }}
+              animate={{
+                x: Math.cos(angle) * radius,
+                y: Math.sin(angle) * radius,
+                opacity: [0, 1, 0],
+                scale: [1, 1, 0.3],
+              }}
+              transition={{ delay: 1.3, duration: 1.1, ease: 'easeOut' }}
+            />
+          );
+        })}
 
         {/* The light ignites the logo */}
         <motion.div
