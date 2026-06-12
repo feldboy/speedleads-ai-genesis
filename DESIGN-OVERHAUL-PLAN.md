@@ -119,3 +119,22 @@ Owner-approved refinements layered on this plan at implementation time:
 - [Glassmorphism 2.0 — modern CSS techniques (2026)](https://weblogtrips.com/technology/glassmorphism-2-0-css-techniques-2026/) · [Glassmorphism in 2026 without killing UX (Orizon)](https://www.orizon.co/blog/glassmorphism-in-2026-how-to-use-frosted-glass-without-killing-ux)
 - [10 Web Design Trends Dominating Award Galleries (2026)](https://www.topcssgallery.com/blog/web-design-trends-dominating-award-galleries/) · [Web Design Trends 2026 — reality check (Studio Meyer)](https://studiomeyer.io/en/blog/webdesign-trends-2026-reality-check)
 - [Blend-mode animated cursor with React + GSAP (tutorial)](https://blog.olivierlarose.com/tutorials/blend-mode-cursor)
+
+---
+
+## Iteration 2 — Owner Review Feedback (2026-06-12)
+
+Owner reviewed iteration 1 live and redirected:
+
+**Rejected / changed**
+- ~~AuroraBackground~~ → **LiquidInkBackground**: domain-warped fbm "liquid ink" in pure cyan; the pointer stirs the fluid (decaying trail injects swirl into the warp). Owner asked for "something cool like the old shader, or better" rather than a revert.
+- ~~SignalThread page overlay~~ — removed ("out of place, going over stuff"). The Signal motif now lives only inside sections: process rail, contact submit glow, footer edge.
+- ~~Violet/gold in the brand gradient~~ — **cyan-only rule**: `--brand-gradient` = cyan → azure → deep azure. למה feature cards unified to cyan-family tints.
+- Process v1 (uniform cards) — "lackluster and generic".
+
+**Added**
+- **Process v2 — live vignettes**: every station demos itself (chat typing, message map, self-drawing wireframe, ghost-cursor magnetic button, code typing, launch pulse), igniting node rail, giant parallax numerals, focus-pull staging, scrub-wind particle field (three.js, lazy, desktop only). Copy structure adapted from the owner-supplied reference shiruziel.com (rich benefit paragraphs + bold emphasis + concrete deliverables) — **pending owner copy review**.
+- **CursorCore**: custom cursor (core dot + lagging halo + spotlight) replacing SpotlightCursor; ring reacts to links/buttons/inputs; native cursor on touch/reduced-motion.
+- **Ambient sound fix**: pad was voiced 55–220Hz at −32dBFS (physically inaudible on laptop speakers). Revoiced A2–E5, filter 900Hz, −20dBFS, 41% energy above 250Hz.
+
+**Standing owner directives**: intro stays; awwwards-level bar; GSAP + three.js should visibly earn their keep; everything stays on `feature/fable5-kinetic-redesign` until owner review.

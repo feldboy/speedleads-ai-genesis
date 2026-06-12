@@ -29,21 +29,22 @@ src/
   pages/Index.tsx            # homepage composition — section order + global effect layers live here
   components/sections/       # full-width page sections (HeroSection, ProcessSection, IntroSequence, …)
   components/ui/             # shadcn primitives + custom primitives (GlowCard, KineticHeading, SectionReveal, SpeedLeadsLogo)
-  components/effects/        # ambient/global layers (AuroraBackground, SignalThread, SpotlightCursor, AmbientSound, FloatingAI)
+  components/effects/        # ambient/global layers (LiquidInkBackground, CursorCore, AmbientSound, FloatingAI)
   components/hero/           # hero internals
   components/layout/         # Header, Footer
   hooks/                     # useGsap, useReducedMotion, useAmbientSound, use-mobile
   lib/analytics.ts           # event tracking
 ```
 
-## Design Language: "Cinematic Spatial Dark + The Signal"
-Full art direction in `DESIGN-OVERHAUL-PLAN.md` (source of truth). The short version:
-- One unifying motif — **The Signal (האות)**: a cyan→gold thread of light born in the intro, living in the hero aurora, drawn down the page by scroll (`SignalThread`), becoming the Process section's rail, terminating in the contact submit button.
-- **One WebGL surface only** (the aurora). Everything else is CSS/SVG/framer/GSAP. Restraint is the style: no RGB-shift, no cursor distortion (spotlight glow only, native cursor stays visible).
-- Sections are transparent so the aurora reads through; glass (`glass-liquid`, `GlowCard`) is an accent, not wallpaper.
+## Design Language: "Cinematic Spatial Dark" — cyan only
+Full art direction in `DESIGN-OVERHAUL-PLAN.md` (source of truth, see the Iteration 2 addendum). The short version:
+- **Cyan-only rule (owner directive)**: all headline gradients and accents stay in the cyan family. No violet anywhere; gold only where it pre-existed the redesign.
+- The page floats over **LiquidInkBackground** — a mouse-stirred liquid shader (the pointer drags glowing currents). **CursorCore** replaces the native cursor on fine pointers (dot + lagging halo + spotlight).
+- The Signal motif lives *inside* sections only (process rail, contact submit glow, footer edge) — no page-spanning overlay.
+- The Process section is live-vignette scrollytelling: each station demos itself. The site is the portfolio.
 
 ## Brand Tokens
-- Colors: navy/abyss `#0D1B2A` (`--bg-abyss`), cyan `#00F6FF`, azure `#00A7FF`, gold `#B08D57`; `--brand-gradient` (cyan→azure→violet→gold) and glow tokens live in `src/index.css`
+- Colors: navy/abyss `#0D1B2A` (`--bg-abyss`), cyan `#00F6FF`, azure `#00A7FF`, deep azure `#0072E5`; `--brand-gradient` (cyan→azure→deep) and glow tokens live in `src/index.css`
 - Fonts: **Heebo** (body), **Suez One** (`font-display`, Hebrew display headlines + giant numerals), Assistant/DM Sans/Playfair loaded
 - Utility classes: `text-brand-gradient`, `text-outline`, `glow-border`, `bg-abyss`, `signal-path` — defined in `src/index.css`
 
