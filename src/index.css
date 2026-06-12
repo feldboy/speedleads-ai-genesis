@@ -689,6 +689,13 @@ html, body {
   to { --glow-angle: 360deg; }
 }
 
+/* CursorCore replaces the native cursor (fine pointers only — the component
+   adds this class itself and removes it on unmount/fallback) */
+html.cursor-core-active,
+html.cursor-core-active * {
+  cursor: none !important;
+}
+
 /* Reduced motion: stop the kinetic layer's own animations */
 @media (prefers-reduced-motion: reduce) {
   .text-brand-gradient {

@@ -13,11 +13,11 @@ import AnimatedStats from '@/components/effects/AnimatedStats';
 import ServiceCards from '@/components/sections/ServiceCards';
 import IntroSequence from '@/components/sections/IntroSequence';
 import ProcessSection from '@/components/sections/ProcessSection';
-import SpotlightCursor from '@/components/effects/SpotlightCursor';
+import CursorCore from '@/components/effects/CursorCore';
 import AmbientSound from '@/components/effects/AmbientSound';
 import { initializeAnalytics, trackEvent } from '@/lib/analytics';
 
-const AuroraBackground = lazy(() => import('@/components/effects/AuroraBackground'));
+const LiquidInkBackground = lazy(() => import('@/components/effects/LiquidInkBackground'));
 
 const Index = () => {
   const [cookieConsentShown, setCookieConsentShown] = useState(false);
@@ -96,10 +96,10 @@ const Index = () => {
   return (
     <>
     <Suspense fallback={null}>
-      <AuroraBackground />
+      <LiquidInkBackground />
     </Suspense>
     <IntroSequence />
-    <SpotlightCursor />
+    <CursorCore />
     <div className="grain-overlay" aria-hidden="true" />
     <div dir="rtl" lang="he" className="min-h-screen text-white relative z-[1] overflow-x-hidden">
       <Header />
