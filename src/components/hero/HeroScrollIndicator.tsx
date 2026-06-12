@@ -1,24 +1,19 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
-import { heroVariants } from './heroAnimationVariants';
 
 const HeroScrollIndicator = () => (
   <motion.div
-    className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-    variants={heroVariants.scrollIndicator}
-    initial="hidden"
-    animate="visible"
-    custom={{ delayIdx: 6 }}
+    className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.8, delay: 1.8 }}
   >
-    <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center relative overflow-hidden">
+    <span className="eyebrow text-ivory/35">Scroll</span>
+    <div className="w-px h-12 relative overflow-hidden bg-ivory/10">
       <motion.div
-        className="w-1 h-3 bg-gradient-to-b from-[#00f6ff] to-[#00a7ff] rounded-full mt-2"
-        animate={{
-          y: [0, 12, 0],
-          opacity: [1, 0.3, 1]
-        }}
-        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent via-champagne to-transparent"
+        animate={{ y: ['-100%', '220%'] }}
+        transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
       />
     </div>
   </motion.div>

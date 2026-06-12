@@ -11,12 +11,12 @@ const TermsOfService = () => {
   }, []);
 
   return (
-    <div dir="rtl" lang="he" className="min-h-screen bg-white text-dark">
+    <div dir="rtl" lang="he" className="theme-obsidian min-h-screen text-ivory">
       <Header />
-      <main className="container mx-auto px-4 py-10 md:py-16 max-w-4xl">
+      <main className="container mx-auto px-4 pt-28 pb-10 md:pt-32 md:pb-16 max-w-4xl">
         <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">תנאי שימוש</h1>
         
-        <div className="prose prose-lg max-w-none">
+        <div className="prose prose-lg prose-invert max-w-none">
           <section className="mb-8">
             <p className="mb-4">
               ברוכים הבאים לאתר של SpeedLeads.AI. בכניסתך לאתר זה ובשימוש בו, אתה מסכים לתנאי השימוש המפורטים להלן.

@@ -27,10 +27,11 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['DM Sans', 'Assistant', 'Heebo', 'sans-serif'],
-				heading: ['Heebo', 'Space Grotesk', 'Assistant', 'sans-serif'],
-				display: ['Space Grotesk', 'Heebo', 'sans-serif'],
-				mono: ['Space Grotesk', 'monospace'],
+				sans: ['Heebo', 'Assistant', 'sans-serif'],
+				heading: ['Heebo', 'Assistant', 'sans-serif'],
+				display: ['Heebo', 'sans-serif'],
+				serif: ['Frank Ruhl Libre', 'Heebo', 'serif'],
+				mono: ['IBM Plex Mono', 'monospace'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -106,9 +107,21 @@ export default {
 					800: 'hsl(var(--gray-800))',
 					900: 'hsl(var(--gray-900))'
 				},
+				// Obsidian Luxe palette
+				obsidian: {
+					DEFAULT: '#050810',
+					raised: '#080D18',
+					card: '#0B1322',
+				},
+				champagne: {
+					light: '#E8CB9E',
+					DEFAULT: '#D4AF7A',
+					deep: '#9B7B4F',
+				},
+				ivory: '#F4F2ED',
 				// Backward compatibility (maintain existing direct colors)
-				dark: '#0D1B2A',
-				gold: '#B08D57',
+				dark: '#050810',
+				gold: '#D4AF7A',
 				'tech-blue': '#00F6FF',
 			},
 			borderRadius: {

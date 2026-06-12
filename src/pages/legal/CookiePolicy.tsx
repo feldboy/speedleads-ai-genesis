@@ -11,12 +11,12 @@ const CookiePolicy = () => {
   }, []);
 
   return (
-    <div dir="rtl" lang="he" className="min-h-screen bg-white text-dark">
+    <div dir="rtl" lang="he" className="theme-obsidian min-h-screen text-ivory">
       <Header />
-      <main className="container mx-auto px-4 py-10 md:py-16 max-w-4xl">
+      <main className="container mx-auto px-4 pt-28 pb-10 md:pt-32 md:pb-16 max-w-4xl">
         <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">מדיניות עוגיות</h1>
         
-        <div className="prose prose-lg max-w-none">
+        <div className="prose prose-lg prose-invert max-w-none">
           <section className="mb-8">
             <h2 className="text-2xl font-bold mb-4">מהן עוגיות?</h2>
             <p>

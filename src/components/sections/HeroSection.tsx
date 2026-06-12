@@ -1,44 +1,58 @@
-
-import React from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import HeroBackground from '../hero/HeroBackground';
+import React, { useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import HeroContent from '../hero/HeroContent';
-import HeroCodeSection from '../hero/HeroCodeSection';
+import AutomationFeed from '../hero/AutomationFeed';
 import HeroScrollIndicator from '../hero/HeroScrollIndicator';
-import { heroVariants } from '../hero/heroAnimationVariants';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 const HeroSection = () => {
   const reducedMotion = useReducedMotion();
-  const controls = useAnimation();
+  const sectionRef = useRef<HTMLElement>(null);
 
-  React.useEffect(() => {
-    if (reducedMotion) {
-      controls.set("visible");
-      return;
-    }
-    controls.set("hidden");
-    controls.start("visible");
-  }, [controls, reducedMotion]);
+  // mouse parallax — content drifts slightly, the feed panel drifts opposite
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const smx = useSpring(mx, { stiffness: 60, damping: 20 });
+  const smy = useSpring(my, { stiffness: 60, damping: 20 });
+  const contentX = useTransform(smx, (v) => v * -6);
+  const contentY = useTransform(smy, (v) => v * -4);
+  const panelX = useTransform(smx, (v) => v * 14);
+  const panelY = useTransform(smy, (v) => v * 10);
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (reducedMotion) return;
+    const rect = sectionRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    mx.set(((e.clientX - rect.left) / rect.width) * 2 - 1);
+    my.set(((e.clientY - rect.top) / rect.height) * 2 - 1);
+  };
 
   return (
-    <motion.section
-      initial={reducedMotion ? false : "hidden"}
-      animate={controls}
-      variants={heroVariants.hero}
-      className="relative min-h-screen flex items-center bg-gradient-to-br from-dark via-gray-900 to-dark overflow-hidden"
+    <section
+      ref={sectionRef}
+      onMouseMove={onMouseMove}
+      className="relative min-h-screen flex items-center overflow-hidden"
     >
-      <HeroBackground />
+      <div className="container mx-auto pt-32 pb-24 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center gap-14 lg:gap-10">
+          <motion.div style={reducedMotion ? undefined : { x: contentX, y: contentY }} className="w-full lg:w-7/12">
+            <HeroContent />
+          </motion.div>
 
-      <div className="container mx-auto py-20 z-10">
-        <div className="flex flex-col lg:flex-row items-center">
-          <HeroContent />
-          <HeroCodeSection />
+          <motion.div
+            style={reducedMotion ? undefined : { x: panelX, y: panelY }}
+            className="w-full lg:w-5/12 flex justify-center lg:justify-start"
+            initial={reducedMotion ? false : { opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <AutomationFeed />
+          </motion.div>
         </div>
       </div>
 
       <HeroScrollIndicator />
-    </motion.section>
+    </section>
   );
 };
 

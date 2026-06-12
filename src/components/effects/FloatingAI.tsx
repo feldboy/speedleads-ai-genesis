@@ -39,14 +39,18 @@ const FloatingAI = () => {
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
           <motion.button
-            className="bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] rounded-full p-4 shadow-2xl cursor-pointer"
-            whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(0, 246, 255, 0.3)" }}
+            className="rounded-full p-4 cursor-pointer border border-champagne/40"
+            style={{
+              background: 'linear-gradient(160deg, #0B1322, #050810)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.6), 0 0 18px rgba(0, 246, 255, 0.15)',
+            }}
+            whileHover={{ scale: 1.05, boxShadow: "0 12px 40px rgba(0, 246, 255, 0.3)" }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleChatbot}
             aria-label="פתח צ'אטבוט"
             type="button"
           >
-            <Bot className="w-8 h-8 text-white" />
+            <Bot className="w-8 h-8 text-tech-blue" />
             
             {/* Floating particles around the AI */}
             <motion.div
@@ -83,14 +87,14 @@ const FloatingAI = () => {
         {/* Tooltip */}
         {!isChatbotOpen && (
           <motion.div
-            className="absolute bottom-full mb-4 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-3 text-sm text-gray-800 whitespace-nowrap pointer-events-none"
+            className="absolute bottom-full mb-4 left-1/2 transform -translate-x-1/2 card-obsidian p-3 text-sm text-ivory whitespace-nowrap pointer-events-none"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 3 }}
           >
             <div className="relative">
               בואו נדבר על הפרויקט שלכם!
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-white"></div>
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-[#0B1322]"></div>
             </div>
           </motion.div>
         )}

@@ -1,135 +1,141 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import TypewriterText from '@/components/effects/TypewriterText';
+import { motion, AnimatePresence } from 'framer-motion';
 import MagneticButton from '@/components/effects/MagneticButton';
-import { Button } from '@/components/ui/button';
-import { heroVariants } from './heroAnimationVariants';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { scrollToSection } from '@/lib/scroll';
 
-const aiTexts = [
-  "בינה מלאכותית מתקדמת",
-  "אוטומציות חכמות",
-  "פתרונות דיגיטליים",
-  "חדשנות טכנולוגית"
-];
+const ROTATING_WORDS = ['בוטים חכמים', 'אוטומציות', 'מערכות CRM', 'אתרים חיים'];
+const ROTATE_MS = 2800;
+
+/** word-by-word mask reveal */
+const RevealWords = ({
+  text,
+  delay = 0,
+  className = '',
+}: {
+  text: string;
+  delay?: number;
+  className?: string;
+}) => {
+  const reducedMotion = useReducedMotion();
+  return (
+    <span className={className}>
+      {text.split(' ').map((word, i) => (
+        <span key={i} className="inline-block overflow-hidden align-bottom pb-[0.08em] -mb-[0.08em]">
+          <motion.span
+            className="inline-block"
+            initial={reducedMotion ? false : { y: '115%' }}
+            animate={{ y: 0 }}
+            transition={{
+              duration: 0.9,
+              delay: delay + i * 0.09,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            {word}
+          </motion.span>
+          {i < text.split(' ').length - 1 && <span>&nbsp;</span>}
+        </span>
+      ))}
+    </span>
+  );
+};
 
 const HeroContent: React.FC = () => {
-  const [showTypewriter, setShowTypewriter] = useState(false);
+  const reducedMotion = useReducedMotion();
+  const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
-    const timeout = setTimeout(() => setShowTypewriter(true), 850);
-    return () => clearTimeout(timeout);
-  }, []);
+    if (reducedMotion) return;
+    const id = setInterval(
+      () => setWordIndex((i) => (i + 1) % ROTATING_WORDS.length),
+      ROTATE_MS
+    );
+    return () => clearInterval(id);
+  }, [reducedMotion]);
+
+  const fadeUp = (delay: number) => ({
+    initial: reducedMotion ? false : { opacity: 0, y: 24 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] as const },
+  });
 
   return (
-    <div className="lg:w-1/2 text-center lg:text-right mb-10 lg:mb-0">
-      {/* Eyebrow + section index */}
+    <div className="w-full text-center lg:text-right">
+      {/* Eyebrow */}
       <motion.div
-        variants={heroVariants.subHeadline}
-        initial="hidden"
-        animate="visible"
-        custom={{ delayIdx: 0 }}
-        className="flex items-center gap-4 justify-center lg:justify-start mb-6"
+        {...fadeUp(0.3)}
+        className="flex items-center gap-4 justify-center lg:justify-start mb-8"
       >
-        <span className="section-index text-tech-blue">01 / 04</span>
-        <span className="h-px w-12 bg-tech-blue/40" />
-        <span className="eyebrow text-white/70">AI · Automation · Web</span>
+        <span className="live-dot" />
+        <span className="eyebrow text-champagne">AI Systems Studio</span>
+        <span className="h-px w-14 hairline-gold" />
+        <span className="eyebrow text-ivory/40">TLV</span>
       </motion.div>
 
-      <motion.h1
-        variants={heroVariants.headline}
-        initial="hidden"
-        animate="visible"
-        custom={{ delayIdx: 0 }}
-        className="heading-he text-white mb-6"
-      >
-        <motion.span
-          className="font-display text-white"
-          animate={{
-            textShadow: [
-              "0 0 20px rgba(0,246,255,0.4)",
-              "0 0 40px rgba(0,246,255,0.7)",
-              "0 0 20px rgba(0,246,255,0.4)"
-            ]
-          }}
-          transition={{ duration: 3, repeat: Infinity }}
-          style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', letterSpacing: '-0.04em' }}
-        >
-          SpeedLeads.AI
-        </motion.span>
-        <br />
-        <span
-          className="block mt-3"
-          style={{ fontSize: 'clamp(2.25rem, 6vw, 5rem)', lineHeight: 1.02 }}
-        >
-          <span className="gradient-text">העתיד של</span>
+      {/* Headline */}
+      <h1 className="heading-he text-ivory mb-8" style={{ fontSize: 'clamp(2.6rem, 6.5vw, 5.5rem)', lineHeight: 1.04 }}>
+        <span className="block">
+          <RevealWords text="אנחנו בונים" delay={0.45} />
         </span>
-        <span
-          className="block mt-2"
-          style={{ fontSize: 'clamp(1.75rem, 4.5vw, 3.5rem)', lineHeight: 1.1 }}
-        >
-          {showTypewriter && (
-            <TypewriterText
-              texts={aiTexts}
-              className="gradient-text"
-            />
-          )}
+        <span className="block relative mt-1" style={{ minHeight: '1.15em' }}>
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={ROTATING_WORDS[wordIndex]}
+              className="serif-lux gradient-text inline-block"
+              initial={reducedMotion ? false : { opacity: 0, y: 26, filter: 'blur(6px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              exit={reducedMotion ? undefined : { opacity: 0, y: -26, filter: 'blur(6px)' }}
+              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {ROTATING_WORDS[wordIndex]}
+            </motion.span>
+          </AnimatePresence>
         </span>
-        <motion.span
-          className="block mt-2 text-white"
-          style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-        >
-          כבר כאן
-        </motion.span>
-      </motion.h1>
+        <span className="block mt-1">
+          <RevealWords text="שעובדים בשבילך." delay={0.7} />
+          {' '}
+          <motion.span
+            {...fadeUp(1.0)}
+            className="font-tech text-tech-blue inline-block"
+            style={{ fontSize: '0.55em', verticalAlign: 'baseline', textShadow: '0 0 24px rgba(0,246,255,0.45)' }}
+            dir="ltr"
+          >
+            24/7
+          </motion.span>
+        </span>
+      </h1>
 
-      {/* Hairline divider */}
-      <motion.div
-        variants={heroVariants.subHeadline}
-        initial="hidden"
-        animate="visible"
-        custom={{ delayIdx: 1 }}
-        className="h-px w-24 bg-white/30 mb-8 mx-auto lg:mx-0 lg:mr-0"
-      />
-
+      {/* Subline */}
       <motion.p
-        variants={heroVariants.subHeadline}
-        initial="hidden"
-        animate="visible"
-        custom={{ delayIdx: 1 }}
-        className="text-base sm:text-lg text-gray-300 mb-10 leading-relaxed px-4 sm:px-0 max-w-lg mx-auto lg:mx-0 lg:mr-0"
+        {...fadeUp(1.05)}
+        className="text-base sm:text-lg text-ivory/60 mb-10 leading-relaxed max-w-xl mx-auto lg:mx-0 lg:ml-auto"
       >
-        פתרונות AI מתקדמים לבניית אתרים, אוטומציות עסקיות ואינטגרציות חכמות —
-        שנועדו להזניק את העסק שלך קדימה.
+        סטודיו לבוטים, אוטומציות ומערכות CRM מבוססות AI.
+        אנחנו מתכננים, בונים ומטמיעים מערכות שהופכות לידים ללקוחות —
+        גם כשאתם ישנים.
       </motion.p>
 
+      {/* CTAs */}
       <motion.div
-        variants={heroVariants.cta}
-        initial="hidden"
-        animate="visible"
-        custom={{ delayIdx: 2 }}
-        className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 px-4 sm:px-0"
+        {...fadeUp(1.2)}
+        className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4"
       >
-        <MagneticButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
-          <Button
+        <MagneticButton onClick={() => scrollToSection('contact')}>
+          <button
             id="hero_cta_button"
-            size="lg"
-            className="btn-brand text-white px-8 py-4 text-sm uppercase tracking-wider min-h-[48px]"
+            className="btn-lux px-9 py-4 text-sm tracking-wide min-h-[48px] w-full sm:w-auto"
           >
-            בואו נדבר →
-          </Button>
+            קבעו שיחת ייעוץ ←
+          </button>
         </MagneticButton>
-        <MagneticButton onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>
-          <Button
+        <MagneticButton onClick={() => scrollToSection('success-stories')}>
+          <button
             id="hero_services_button"
-            size="lg"
-            variant="outline"
-            className="btn-ghost-brand border-white/40 text-white hover:bg-white/10 hover:border-white px-8 py-4 text-sm uppercase tracking-wider min-h-[48px]"
+            className="btn-ghost-lux px-9 py-4 text-sm tracking-wide min-h-[48px] w-full sm:w-auto"
           >
-            השירותים שלנו
-          </Button>
+            צפו בעבודות
+          </button>
         </MagneticButton>
       </motion.div>
     </div>

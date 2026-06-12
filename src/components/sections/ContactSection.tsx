@@ -1,8 +1,8 @@
 import React, { useState, type ChangeEvent, type FormEvent } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { useToast } from "@/components/ui/use-toast";
+import { motion } from 'framer-motion';
+import { Phone, Mail, MapPin } from 'lucide-react';
+import { useToast } from '@/components/ui/use-toast';
+import SpotlightCard from '@/components/effects/SpotlightCard';
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -16,7 +16,7 @@ const ContactSection = () => {
   });
 
   const [loading, setLoading] = useState(false);
-  
+
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -24,21 +24,18 @@ const ContactSection = () => {
       [name]: value
     }));
   };
-  
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
+
     // Simulating form submission
     setTimeout(() => {
-      console.log('Form submitted:', formData);
-      
       toast({
-        title: "הפנייה נשלחה בהצלחה!",
-        description: "אנחנו ניצור איתך קשר בהקדם.",
+        title: 'הפנייה נשלחה בהצלחה!',
+        description: 'אנחנו ניצור איתך קשר בהקדם.',
       });
-      
-      // Reset form
+
       setFormData({
         fullName: '',
         company: '',
@@ -47,230 +44,227 @@ const ContactSection = () => {
         message: '',
         interest: 'general'
       });
-      
+
       setLoading(false);
     }, 1000);
   };
 
-  return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-[#0D1B2A]/70 via-[#0f2035]/60 to-[#0D1B2A]/70 relative overflow-hidden">
+  const fieldClass = 'input-lux w-full min-h-[46px] px-3.5 py-3 text-sm';
+  const labelClass = 'block text-xs font-tech tracking-[0.12em] text-ivory/50 mb-2';
 
+  return (
+    <section id="contact" className="py-24 lg:py-32 relative overflow-hidden">
       <div className="container mx-auto">
+        {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 px-4 sm:px-0 text-white" data-aos="fade-up">מוכנים לקחת את העסק שלכם לשלב הבא?</h2>
-          <div className="w-24 h-1 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] mx-auto mb-8" />
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4 sm:px-0" data-aos="fade-up" data-aos-delay="100">
-            מלאו את הפרטים ונחזור אליכם בהקדם לשיחת ייעוץ ללא התחייבות
-          </p>
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <span className="section-index text-champagne">06 / 06</span>
+            <span className="h-px w-12 bg-champagne/40" />
+            <span className="eyebrow text-ivory/50">Contact</span>
+          </div>
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="heading-he display-lg text-ivory mb-6"
+          >
+            העסק שלך מוכן <br />
+            <span className="serif-lux gradient-text">לעבוד 24/7?</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="text-base sm:text-lg text-ivory/55 max-w-2xl mx-auto"
+          >
+            מלאו את הפרטים ונחזור אליכם בהקדם לשיחת ייעוץ ללא התחייבות.
+          </motion.p>
         </div>
-        
-        <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch px-4 lg:px-0">
-          <div data-aos="fade-right" className="flex">
-            <form onSubmit={handleSubmit} className="glass-liquid rounded-2xl p-6 sm:p-8 w-full flex flex-col">
-              <div className="mb-6">
-                <label htmlFor="fullName" className="block text-sm font-medium text-gray-300 mb-1">שם מלא *</label>
-                <Input
-                  id="fullName"
-                  name="fullName"
-                  type="text"
-                  required
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  className="w-full min-h-[44px]"
-                  placeholder="השם המלא שלך"
-                />
-              </div>
-              
-              <div className="mb-6">
-                <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">שם החברה (אופציונלי)</label>
-                <Input
-                  id="company"
-                  name="company"
-                  type="text"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="w-full min-h-[44px]"
-                  placeholder="שם החברה או העסק"
-                />
-              </div>
-              
-              <div className="mb-6">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">אימייל *</label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full min-h-[44px]"
-                  placeholder="האימייל שלך"
-                />
-              </div>
-              
-              <div className="mb-6">
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">טלפון *</label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  required
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="w-full min-h-[44px]"
-                  placeholder="מספר הטלפון שלך"
-                />
-              </div>
-              
-              <div className="mb-6">
-                <label htmlFor="interest" className="block text-sm font-medium text-gray-300 mb-1">במה אתה מתעניין?</label>
-                <select
-                  id="interest"
-                  name="interest"
-                  value={formData.interest}
-                  onChange={handleChange}
-                  className="w-full rounded-md glass-input px-3 py-3 min-h-[44px] text-base"
+
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+          {/* Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="flex"
+          >
+            <SpotlightCard corners className="p-7 sm:p-9 w-full rounded">
+              <form onSubmit={handleSubmit} className="flex flex-col h-full relative z-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+                  <div>
+                    <label htmlFor="fullName" className={labelClass}>שם מלא *</label>
+                    <input
+                      id="fullName"
+                      name="fullName"
+                      type="text"
+                      required
+                      value={formData.fullName}
+                      onChange={handleChange}
+                      className={fieldClass}
+                      placeholder="השם המלא שלך"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="company" className={labelClass}>שם החברה</label>
+                    <input
+                      id="company"
+                      name="company"
+                      type="text"
+                      value={formData.company}
+                      onChange={handleChange}
+                      className={fieldClass}
+                      placeholder="שם החברה או העסק"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className={labelClass}>אימייל *</label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      className={fieldClass}
+                      placeholder="האימייל שלך"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="phone" className={labelClass}>טלפון *</label>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      required
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className={fieldClass}
+                      placeholder="מספר הטלפון שלך"
+                    />
+                  </div>
+                </div>
+
+                <div className="mb-5">
+                  <label htmlFor="interest" className={labelClass}>במה אתם מתעניינים?</label>
+                  <select
+                    id="interest"
+                    name="interest"
+                    value={formData.interest}
+                    onChange={handleChange}
+                    className={fieldClass}
+                  >
+                    <option value="general">ייעוץ כללי</option>
+                    <option value="website">בניית אתר</option>
+                    <option value="landing">דף נחיתה</option>
+                    <option value="ecommerce">חנות אונליין</option>
+                    <option value="ai">אינטגרציות AI</option>
+                    <option value="automations">אוטומציות עסקיות</option>
+                  </select>
+                </div>
+
+                <div className="mb-7">
+                  <label htmlFor="message" className={labelClass}>הודעה</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    className={`${fieldClass} resize-none`}
+                    placeholder="ספרו לנו קצת על הפרויקט שלכם"
+                    rows={4}
+                  />
+                </div>
+
+                <div className="flex-grow" />
+
+                <button
+                  id="submit_contact_form_button"
+                  type="submit"
+                  className="btn-lux w-full min-h-[48px] py-3.5 text-sm tracking-wide disabled:opacity-60"
+                  disabled={loading}
                 >
-                  <option value="general">ייעוץ כללי</option>
-                  <option value="website">בניית אתר</option>
-                  <option value="landing">דף נחיתה</option>
-                  <option value="ecommerce">חנות אונליין</option>
-                  <option value="ai">אינטגרציות AI</option>
-                  <option value="automations">אוטומציות עסקיות</option>
-                </select>
+                  {loading ? (
+                    <>
+                      <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      </svg>
+                      שולח...
+                    </>
+                  ) : 'שלחו פנייה ←'}
+                </button>
+
+                <p className="text-xs text-ivory/35 mt-4 text-center font-tech tracking-wider">
+                  * שדות חובה · מענה תוך יום עסקים
+                </p>
+              </form>
+            </SpotlightCard>
+          </motion.div>
+
+          {/* Contact info */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="flex"
+          >
+            <SpotlightCard className="p-7 sm:p-9 w-full flex flex-col rounded">
+              <h3 className="heading-he text-ivory mb-8" style={{ fontSize: '1.5rem' }}>
+                דרכי התקשרות נוספות
+              </h3>
+
+              <div className="space-y-6 relative z-10">
+                {[
+                  { icon: Phone, label: 'טלפון', value: '03-1234567', dir: 'ltr' as const },
+                  { icon: Mail, label: 'אימייל', value: 'info@speedleads-ai.com', dir: 'ltr' as const },
+                  { icon: MapPin, label: 'כתובת', value: 'רחוב הטכנולוגיה 1, תל אביב', dir: 'rtl' as const },
+                ].map(({ icon: Icon, label, value, dir }) => (
+                  <div key={label} className="flex items-center gap-4">
+                    <div className="w-11 h-11 border border-champagne/25 flex items-center justify-center shrink-0" style={{ borderRadius: '2px' }}>
+                      <Icon className="w-5 h-5 text-tech-blue" />
+                    </div>
+                    <div>
+                      <div className="text-xs font-tech tracking-[0.14em] text-ivory/40 mb-0.5">{label}</div>
+                      <div className="text-ivory/85 text-sm" dir={dir}>{value}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
-              
-              <div className="mb-6">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">הודעה</label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full min-h-[44px]"
-                  placeholder="ספר לנו קצת על הפרויקט שלך"
-                  rows={4}
-                />
-              </div>
-              
-              <div className="flex-grow"></div>
-              
-              <Button
-                id="submit_contact_form_button"
-                type="submit"
-                className="w-full bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold min-h-[44px] text-base"
-                disabled={loading}
-              >
-                {loading ? (
-                  <>
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-dark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
-                      <title>Loading Spinner</title>
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                    </svg>
-                    שולח...
-                  </>
-                ) : 'שלח פנייה'}
-              </Button>
-              
-              <p className="text-xs text-gray-400 mt-4 text-center">
-                * שדות חובה
-              </p>
-            </form>
-          </div>
-          
-          <div className="glass-liquid text-white rounded-2xl p-6 sm:p-8 flex flex-col" data-aos="fade-left">
-            <h3 className="text-xl sm:text-2xl font-bold mb-6">דרכי התקשרות נוספות</h3>
-            
-            <div className="space-y-6 flex-grow">
-              <div className="flex items-start">
-                <div className="bg-gradient-to-r from-[#00f6ff]/20 to-[#00a7ff]/20 p-3 rounded-full mr-6 ml-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <title>Phone Icon</title>
-                    <defs>
-                      <linearGradient id="phone-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style={{stopColor: '#00f6ff'}} />
-                        <stop offset="100%" style={{stopColor: '#00a7ff'}} />
-                      </linearGradient>
-                    </defs>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="url(#phone-gradient)" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="text-base sm:text-lg font-semibold mb-1">טלפון</h4>
-                  <p className="text-sm sm:text-base text-gray-300">03-1234567</p>
+
+              {/* Map */}
+              <div className="mt-9 mb-9 relative z-10">
+                <div className="w-full h-44 overflow-hidden border border-ivory/10" style={{ borderRadius: '2px' }}>
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3381.0772851683395!2d34.78177641543686!3d32.07530518116768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4ca6193b7c1f%3A0x4e4b5e5e5e5e5e5e!2sTel%20Aviv-Yafo%2C%20Israel!5e0!3m2!1sen!2sus!4v1640000000000!5m2!1sen!2sus"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0, filter: 'invert(0.92) hue-rotate(190deg) saturate(0.4) brightness(0.9)' }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="מיקום משרדי SpeedLeads AI"
+                  />
                 </div>
               </div>
-              
-              <div className="flex items-start">
-                <div className="bg-gradient-to-r from-[#00f6ff]/20 to-[#00a7ff]/20 p-3 rounded-full mr-6 ml-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <title>Email Icon</title>
-                    <defs>
-                      <linearGradient id="email-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style={{stopColor: '#00f6ff'}} />
-                        <stop offset="100%" style={{stopColor: '#00a7ff'}} />
-                      </linearGradient>
-                    </defs>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="url(#email-gradient)" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="text-base sm:text-lg font-semibold mb-1">אימייל</h4>
-                  <p className="text-sm sm:text-base text-gray-300">info@speedleads-ai.com</p>
+
+              <div className="mt-auto relative z-10">
+                <div className="eyebrow text-champagne mb-4">Hours</div>
+                <div className="grid grid-cols-2 gap-y-2 text-sm border-t border-ivory/10 pt-4">
+                  <div className="text-ivory/50">ראשון – חמישי</div>
+                  <div className="text-ivory/85 font-tech text-left" dir="ltr">09:00 – 18:00</div>
+                  <div className="text-ivory/50">שישי</div>
+                  <div className="text-ivory/85 font-tech text-left" dir="ltr">09:00 – 13:00</div>
+                  <div className="text-ivory/50">שבת</div>
+                  <div className="text-ivory/85 text-left">סגור</div>
                 </div>
               </div>
-              
-              <div className="flex items-start">
-                <div className="bg-gradient-to-r from-[#00f6ff]/20 to-[#00a7ff]/20 p-3 rounded-full mr-6 ml-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <title>Location Icon</title>
-                    <defs>
-                      <linearGradient id="location-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style={{stopColor: '#00f6ff'}} />
-                        <stop offset="100%" style={{stopColor: '#00a7ff'}} />
-                      </linearGradient>
-                    </defs>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="url(#location-gradient)" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} stroke="url(#location-gradient)" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="text-base sm:text-lg font-semibold mb-1">כתובת</h4>
-                  <p className="text-sm sm:text-base text-gray-300">רחוב הטכנולוגיה 1, תל אביב</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Google Maps Component */}
-            <div className="mt-10 mb-10">
-              <div className="w-full h-48 bg-gray-800 rounded-lg overflow-hidden">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3381.0772851683395!2d34.78177641543686!3d32.07530518116768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4ca6193b7c1f%3A0x4e4b5e5e5e5e5e5e!2sTel%20Aviv-Yafo%2C%20Israel!5e0!3m2!1sen!2sus!4v1640000000000!5m2!1sen!2sus"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="מיקום משרדי SpeedLeads AI"
-                ></iframe>
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="text-base sm:text-lg font-semibold mb-4">שעות פעילות</h4>
-              <div className="grid grid-cols-2 gap-2 text-sm sm:text-base">
-                <div className="text-gray-300 text-xs sm:text-sm">ראשון - חמישי:</div>
-                <div className="text-white text-xs sm:text-sm">9:00 - 18:00</div>
-                <div className="text-gray-300 text-xs sm:text-sm">שישי:</div>
-                <div className="text-white text-xs sm:text-sm">9:00 - 13:00</div>
-                <div className="text-gray-300 text-xs sm:text-sm">שבת:</div>
-                <div className="text-white text-xs sm:text-sm">סגור</div>
-              </div>
-            </div>
-            {/* Original WhatsApp button block removed */}
-          </div>
+            </SpotlightCard>
+          </motion.div>
         </div>
       </div>
     </section>

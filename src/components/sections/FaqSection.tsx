@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Plus } from 'lucide-react';
 import MagneticButton from '@/components/effects/MagneticButton';
-import { Plus, Minus } from 'lucide-react';
+import { scrollToSection } from '@/lib/scroll';
 
 interface FaqItem {
   id: string;
@@ -11,30 +12,35 @@ interface FaqItem {
 
 const faqs: FaqItem[] = [
   {
-    id: "faq_question_1",
-    question: "כמה זמן לוקח פרויקט ממוצע?",
-    answer: "משך הזמן משתנה בהתאם לסוג הפרויקט ומורכבותו. בדרך כלל, דף נחיתה בסיסי יכול להיות מוכן תוך 1-2 שבועות, אתר תדמית תוך 3-4 שבועות, ופרויקטים מורכבים יותר כמו חנויות אונליין או מערכות אוטומציה מותאמות אישית יכולים לקחת 6-12 שבועות. אנו מספקים לוח זמנים מפורט לכל פרויקט בתחילת העבודה."
+    id: 'faq_question_1',
+    question: 'כמה זמן לוקח פרויקט ממוצע?',
+    answer:
+      'משך הזמן משתנה בהתאם לסוג הפרויקט ומורכבותו. בדרך כלל, דף נחיתה בסיסי מוכן תוך 1–2 שבועות, אתר תדמית תוך 3–4 שבועות, ופרויקטים מורכבים כמו חנויות אונליין או מערכות אוטומציה מותאמות אישית — 6–12 שבועות. לכל פרויקט נבנה לוח זמנים מפורט כבר בתחילת העבודה.',
   },
   {
-    id: "faq_question_2",
-    question: "האם אתם מציעים תמיכה לאחר סיום הפרויקט?",
-    answer: "בהחלט! אנו מציעים מגוון חבילות תמיכה ותחזוקה שוטפת לאחר השקת הפרויקט. החבילות כוללות עדכונים, גיבויים, אבטחה, תיקוני באגים, ואף שדרוגים קלים. אנו מאמינים שהקשר עם לקוחותינו הוא לטווח ארוך, ונשמח לתמוך בהצלחת הפרויקט גם לאחר ההשקה."
+    id: 'faq_question_2',
+    question: 'האם אתם מציעים תמיכה לאחר סיום הפרויקט?',
+    answer:
+      'בהחלט. אנחנו מציעים חבילות תמיכה ותחזוקה שוטפת לאחר ההשקה — עדכונים, גיבויים, אבטחה, תיקוני באגים ושדרוגים. הקשר עם הלקוחות שלנו הוא לטווח ארוך, והמערכת ממשיכה לקבל ליווי גם אחרי העלייה לאוויר.',
   },
   {
-    id: "faq_question_3",
-    question: "אילו טכנולוגיות AI אתם משלבים?",
-    answer: "אנו עובדים עם מגוון רחב של טכנולוגיות AI מתקדמות, ביניהן: צ'אטבוטים חכמים מבוססי LLM, מערכות המלצות אישיות למשתמשים, אלגוריתמי למידת מכונה לניתוח התנהגות משתמשים, מנועי חיפוש סמנטי משופרים, כלי ניתוח תוכן ויצירת תוכן אוטומטי, ואינטגרציות עם פלטפורמות AI מובילות כמו OpenAI, Google AI ואחרות."
+    id: 'faq_question_3',
+    question: 'אילו טכנולוגיות AI אתם משלבים?',
+    answer:
+      "אנחנו עובדים עם מגוון רחב של טכנולוגיות AI מתקדמות: צ'אטבוטים חכמים מבוססי LLM, מערכות המלצות אישיות, אלגוריתמי למידת מכונה לניתוח התנהגות משתמשים, חיפוש סמנטי, כלי יצירת תוכן אוטומטיים ואינטגרציות עם פלטפורמות מובילות כמו OpenAI ו-Google AI.",
   },
   {
-    id: "faq_question_4",
-    question: "מהו התהליך לעבודה משותפת?",
-    answer: "התהליך שלנו מורכב מכמה שלבים מובנים: פגישת אפיון ראשונית, הצעת מחיר מפורטת, עיצוב ואישור קונספט ויזואלי, פיתוח בשלבים עם נקודות אישור, בדיקות מקיפות ושיפורים, השקה והדרכה, ולבסוף תמיכה שוטפת. לאורך כל התהליך, תהיו מעורבים ותקבלו עדכונים שוטפים."
+    id: 'faq_question_4',
+    question: 'מהו התהליך לעבודה משותפת?',
+    answer:
+      'התהליך בנוי משלבים ברורים: פגישת אפיון ראשונית, הצעת מחיר מפורטת, עיצוב ואישור קונספט, פיתוח בשלבים עם נקודות אישור, בדיקות מקיפות, השקה והדרכה — ולבסוף תמיכה שוטפת. לאורך כל הדרך אתם מעורבים ומקבלים עדכונים שוטפים.',
   },
   {
-    id: "faq_question_6",
-    question: "איך אתם מבטיחים שהפרויקט יעמוד בציפיות שלנו?",
-    answer: "אנו משקיעים זמן רב בתהליך האפיון הראשוני כדי להבין לעומק את הציפיות, המטרות והצרכים שלכם. אנו עובדים בשיטת פיתוח אג'ילית (Agile) המאפשרת משוב מתמיד ואיטרציות שוטפות. במהלך הפרויקט, אנו מקיימים פגישות סטטוס קבועות ומספקים גישה למערכת ניהול הפרויקט שלנו, כך שתוכלו לעקוב אחר ההתקדמות בזמן אמת."
-  }
+    id: 'faq_question_6',
+    question: 'איך אתם מבטיחים שהפרויקט יעמוד בציפיות?',
+    answer:
+      "אנחנו משקיעים זמן רב באפיון הראשוני כדי להבין לעומק את המטרות והצרכים שלכם, ועובדים בשיטה אג'ילית שמאפשרת משוב מתמיד ואיטרציות שוטפות. במהלך הפרויקט מתקיימות פגישות סטטוס קבועות ויש לכם גישה מלאה למערכת ניהול הפרויקט — כך שאתם רואים את ההתקדמות בזמן אמת.",
+  },
 ];
 
 const FaqSection = () => {
@@ -45,73 +51,100 @@ const FaqSection = () => {
   };
 
   return (
-    <section id="faq" className="py-24 lg:py-32 bg-white">
+    <section id="faq" className="py-24 lg:py-32 relative">
       <div className="container mx-auto">
         <div className="asym-grid">
-          {/* Left: large heading */}
+          {/* Sticky heading */}
           <div className="lg:sticky lg:top-32 self-start">
             <div className="flex items-center gap-4 mb-6">
-              <span className="section-index text-tech-blue">04 / 04</span>
-              <span className="h-px w-12 bg-tech-blue/40" />
-              <span className="eyebrow text-gray-500">FAQ</span>
+              <span className="section-index text-champagne">05 / 06</span>
+              <span className="h-px w-12 bg-champagne/40" />
+              <span className="eyebrow text-ivory/50">FAQ</span>
             </div>
-            <h2 className="heading-he display-lg text-dark mb-8" data-aos="fade-up">
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="heading-he display-lg text-ivory mb-8"
+            >
               שאלות <br />
-              <span className="gradient-text">נפוצות.</span>
-            </h2>
-            <p className="text-base text-gray-600 leading-relaxed max-w-sm mb-8">
+              <span className="serif-lux gradient-text">נפוצות.</span>
+            </motion.h2>
+            <p className="text-base text-ivory/55 leading-relaxed max-w-sm mb-8">
               לא מצאתם את מה שחיפשתם? אנחנו כאן בשבילכם — דברו איתנו ישירות.
             </p>
-            <MagneticButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
-              <Button
+            <MagneticButton onClick={() => scrollToSection('contact')}>
+              <button
                 id="faq_contact_button"
-                className="btn-brand text-white px-8 py-4 text-sm uppercase tracking-wider"
+                className="btn-lux px-8 py-4 text-sm tracking-wider"
               >
-                דברו איתנו →
-              </Button>
+                דברו איתנו ←
+              </button>
             </MagneticButton>
           </div>
 
-          {/* Right: accordions */}
+          {/* Accordions */}
           <div>
             {faqs.map((faq, index) => {
               const isOpen = openFaq === faq.id;
               return (
-                <div
+                <motion.div
                   key={faq.id}
-                  className="border-t border-gray-200 last:border-b"
-                  data-aos="fade-up"
-                  data-aos-delay={index * 60}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.6, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                  className="border-t border-ivory/10 last:border-b"
                 >
                   <button
                     type="button"
                     id={`faq_question_toggle_${faq.id}`}
-                    className="w-full flex justify-between items-center text-right py-6 group focus:outline-none"
+                    className="w-full flex justify-between items-center text-right py-6 group focus:outline-none focus-visible:ring-1 focus-visible:ring-champagne/60"
                     onClick={() => toggleFaq(faq.id)}
                     aria-expanded={isOpen}
                     aria-controls={`faq_answer_${faq.id}`}
                   >
                     <div className="flex items-start gap-5 flex-1">
-                      <span className="section-index text-tech-blue mt-1.5 shrink-0">
+                      <span className="section-index text-champagne mt-1.5 shrink-0">
                         0{index + 1}
                       </span>
-                      <span className="text-lg lg:text-xl font-medium text-dark group-hover:text-tech-blue transition-colors">
+                      <span
+                        className={`text-lg lg:text-xl font-medium transition-colors duration-300 ${
+                          isOpen ? 'text-champagne-light' : 'text-ivory group-hover:text-champagne-light'
+                        }`}
+                      >
                         {faq.question}
                       </span>
                     </div>
-                    <div className="shrink-0 ml-4 w-9 h-9 flex items-center justify-center border border-gray-300 group-hover:border-tech-blue transition-colors" style={{ borderRadius: '2px' }}>
-                      {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                    </div>
-                  </button>
-                  {isOpen && (
-                    <div
-                      id={`faq_answer_${faq.id}`}
-                      className="pb-6 pr-12 text-gray-600 leading-relaxed animate-fade-in"
+                    <motion.div
+                      animate={{ rotate: isOpen ? 45 : 0 }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                      className={`shrink-0 mr-4 w-9 h-9 flex items-center justify-center border transition-colors duration-300 ${
+                        isOpen ? 'border-champagne/70 text-champagne' : 'border-ivory/20 text-ivory/60 group-hover:border-champagne/50'
+                      }`}
+                      style={{ borderRadius: '2px' }}
                     >
-                      {faq.answer}
-                    </div>
-                  )}
-                </div>
+                      <Plus className="w-4 h-4" />
+                    </motion.div>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        id={`faq_answer_${faq.id}`}
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <p className="pb-7 pr-12 text-ivory/60 leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
               );
             })}
           </div>

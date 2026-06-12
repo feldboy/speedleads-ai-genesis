@@ -1,4 +1,3 @@
-
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -11,9 +10,11 @@ import CookieConsent from '@/components/CookieConsent';
 import FloatingAI from '@/components/effects/FloatingAI';
 import AnimatedStats from '@/components/effects/AnimatedStats';
 import ServiceCards from '@/components/sections/ServiceCards';
+import CursorAura from '@/components/effects/CursorAura';
 import { initializeAnalytics, trackEvent } from '@/lib/analytics';
+import { scrollToSection } from '@/lib/scroll';
 
-const ShaderBackground = lazy(() => import('@/components/effects/ShaderBackground'));
+const NeuralField = lazy(() => import('@/components/effects/NeuralField'));
 
 const Index = () => {
   const [cookieConsentShown, setCookieConsentShown] = useState(false);
@@ -45,7 +46,6 @@ const Index = () => {
       const clickableElement = target.closest('[id]');
 
       if (clickableElement?.id) {
-        console.log(`Analytics: Clicked element with ID: ${clickableElement.id}`);
         trackEvent('element_click', {
           element_id: clickableElement.id,
           element_text: clickableElement.textContent?.trim() || '',
@@ -56,7 +56,6 @@ const Index = () => {
 
     document.addEventListener('click', trackClickEvent);
 
-    console.log('Analytics: Page view - Homepage');
     trackEvent('page_view', { page_title: 'Homepage' });
 
     return () => {
@@ -79,35 +78,28 @@ const Index = () => {
   useEffect(() => {
     if (window.location.hash) {
       const id = window.location.hash.replace('#', '');
-      setTimeout(() => {
-        const el = document.getElementById(id);
-
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
+      setTimeout(() => scrollToSection(id), 100);
     }
   }, []);
 
   return (
     <>
     <Suspense fallback={null}>
-      <ShaderBackground />
+      <NeuralField />
     </Suspense>
-    <div dir="rtl" lang="he" className="min-h-screen text-white relative z-[1] overflow-x-hidden">
+    <div dir="rtl" lang="he" className="theme-obsidian min-h-screen text-ivory relative z-[1] overflow-x-hidden bg-transparent">
+      {/* atmosphere */}
+      <div className="vignette-overlay" aria-hidden="true" />
+      <div className="grain-overlay" aria-hidden="true" />
+      <CursorAura />
+
       <Header />
       <main>
         <HeroSection />
 
         <div className="section-divider" />
 
-        {/* Animated Stats Section */}
-        <section className="py-20 bg-gradient-to-b from-[#0D1B2A]/70 via-[#0f2035]/60 to-[#0D1B2A]/70 relative overflow-hidden">
-
-          <div className="container mx-auto">
-            <AnimatedStats />
-          </div>
-        </section>
+        <AnimatedStats />
 
         <div className="section-divider" />
 
@@ -138,7 +130,7 @@ const Index = () => {
         target="_blank"
         rel="noopener noreferrer"
         id="whatsapp_floating_button"
-        className="fixed bottom-6 right-6 md:bottom-6 md:right-6 sm:bottom-4 sm:right-4 bg-speedleads-whatsapp hover:bg-speedleads-whatsapp-hover text-white rounded-full p-4 md:p-4 sm:p-3 shadow-xl z-40 transition-all duration-300 sm:hover:scale-105 sm:hover:shadow-2xl animate-fade-in border border-white/30"
+        className="fixed bottom-6 right-6 md:bottom-6 md:right-6 sm:bottom-4 sm:right-4 bg-speedleads-whatsapp hover:bg-speedleads-whatsapp-hover text-white rounded-full p-4 md:p-4 sm:p-3 z-40 transition-all duration-300 sm:hover:scale-105 animate-fade-in border border-white/25"
         style={{ boxShadow: '0 8px 32px 0 rgba(34, 197, 94, 0.25)' }}
         onClick={() => hasConsent && trackEvent('click_whatsapp', {})}
       >
