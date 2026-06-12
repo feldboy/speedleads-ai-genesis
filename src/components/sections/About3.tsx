@@ -52,15 +52,15 @@ export const About3 = () => {
             {/* Feature 2 */}
             <GlowCard className="rounded-2xl p-8 lg:col-span-5" data-aos="fade-up" data-aos-delay="150">
               <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
-                background: 'linear-gradient(135deg, #7C3AED 0%, #3B82F6 50%, #0D1B2A 100%)'
+                background: 'linear-gradient(135deg, #0072E5 0%, #00A7FF 50%, #0D1B2A 100%)'
               }}>
                 <div className="absolute inset-0 opacity-30" style={{
-                  background: 'radial-gradient(circle at 60% 30%, rgba(124,58,237,0.4) 0%, transparent 60%), radial-gradient(circle at 40% 70%, rgba(59,130,246,0.3) 0%, transparent 50%)'
+                  background: 'radial-gradient(circle at 60% 30%, rgba(0,114,229,0.4) 0%, transparent 60%), radial-gradient(circle at 40% 70%, rgba(0,167,255,0.3) 0%, transparent 50%)'
                 }} />
               </div>
               <div className="text-center">
                 <h3 className="font-display mb-2 text-2xl text-white">ניהול מוצר אסטרטגי</h3>
-                <h4 className="mb-4 text-lg font-semibold text-purple-400">
+                <h4 className="mb-4 text-lg font-semibold text-sky-400">
                   אסטרטגיה ברורה, תוצאות מדידות
                 </h4>
                 <p className="text-gray-300 leading-relaxed">
@@ -72,15 +72,15 @@ export const About3 = () => {
             {/* Feature 3 */}
             <GlowCard className="rounded-2xl p-8 lg:col-span-5" data-aos="fade-up" data-aos-delay="200">
               <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
-                background: 'linear-gradient(135deg, #10B981 0%, #06B6D4 50%, #0D1B2A 100%)'
+                background: 'linear-gradient(135deg, #06B6D4 0%, #67E8F9 50%, #0D1B2A 100%)'
               }}>
                 <div className="absolute inset-0 opacity-30" style={{
-                  background: 'radial-gradient(circle at 40% 50%, rgba(16,185,129,0.4) 0%, transparent 60%), radial-gradient(circle at 70% 30%, rgba(6,182,212,0.3) 0%, transparent 50%)'
+                  background: 'radial-gradient(circle at 40% 50%, rgba(6,182,212,0.4) 0%, transparent 60%), radial-gradient(circle at 70% 30%, rgba(103,232,249,0.3) 0%, transparent 50%)'
                 }} />
               </div>
               <div className="text-center">
                 <h3 className="font-display mb-2 text-2xl text-white">איכות וביצועים</h3>
-                <h4 className="mb-4 text-lg font-semibold text-green-400">
+                <h4 className="mb-4 text-lg font-semibold text-cyan-400">
                   יציב, מאובטח ומהיר
                 </h4>
                 <p className="text-gray-300 leading-relaxed">
@@ -92,15 +92,15 @@ export const About3 = () => {
             {/* Feature 4 */}
             <GlowCard className="rounded-2xl p-8 lg:col-span-7" data-aos="fade-up" data-aos-delay="250">
               <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
-                background: 'linear-gradient(135deg, #F59E0B 0%, #B08D57 50%, #0D1B2A 100%)'
+                background: 'linear-gradient(135deg, #003B73 0%, #00C2E0 50%, #0D1B2A 100%)'
               }}>
                 <div className="absolute inset-0 opacity-30" style={{
-                  background: 'radial-gradient(circle at 50% 40%, rgba(245,158,11,0.4) 0%, transparent 60%), radial-gradient(circle at 30% 70%, rgba(176,141,87,0.3) 0%, transparent 50%)'
+                  background: 'radial-gradient(circle at 50% 40%, rgba(0,194,224,0.4) 0%, transparent 60%), radial-gradient(circle at 30% 70%, rgba(0,167,255,0.3) 0%, transparent 50%)'
                 }} />
               </div>
               <div className="text-center">
                 <h3 className="font-display mb-2 text-2xl text-white">שקיפות מלאה</h3>
-                <h4 className="mb-4 text-lg font-semibold text-orange-400">
+                <h4 className="mb-4 text-lg font-semibold text-cyan-300">
                   אתם תמיד על ההגה
                 </h4>
                 <p className="text-gray-300 leading-relaxed">

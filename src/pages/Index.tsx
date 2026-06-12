@@ -13,7 +13,6 @@ import AnimatedStats from '@/components/effects/AnimatedStats';
 import ServiceCards from '@/components/sections/ServiceCards';
 import IntroSequence from '@/components/sections/IntroSequence';
 import ProcessSection from '@/components/sections/ProcessSection';
-import SignalThread from '@/components/effects/SignalThread';
 import SpotlightCursor from '@/components/effects/SpotlightCursor';
 import AmbientSound from '@/components/effects/AmbientSound';
 import { initializeAnalytics, trackEvent } from '@/lib/analytics';
@@ -104,9 +103,7 @@ const Index = () => {
     <div className="grain-overlay" aria-hidden="true" />
     <div dir="rtl" lang="he" className="min-h-screen text-white relative z-[1] overflow-x-hidden">
       <Header />
-      {/* relative wrapper so The Signal can span the full page height */}
-      <main className="relative">
-        <SignalThread />
+      <main>
         <HeroSection />
 
         {/* Animated Stats Section */}

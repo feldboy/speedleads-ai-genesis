@@ -590,24 +590,21 @@ html, body {
   /* Deep base behind glass — darker than brand navy for contrast */
   --bg-abyss: 222 60% 5%;                /* ~#05080F */
 
-  /* Signal light stops */
+  /* Signal light stops — cyan family only (owner: "only cyan vibes") */
   --signal-cyan: 188 100% 50%;           /* #00F6FF */
   --signal-azure: 199 100% 50%;          /* #00A7FF */
-  --signal-violet: 258 72% 55%;          /* #643CDC */
-  --signal-gold: 38 35% 52%;             /* #B08D57 */
+  --signal-deep: 210 100% 45%;           /* #0072E5 — depth stop for big headlines */
 
   /* The brand gradient used by kinetic headings, borders, the Signal */
   --brand-gradient: linear-gradient(
     105deg,
     hsl(var(--signal-cyan)),
-    hsl(var(--signal-azure)) 35%,
-    hsl(var(--signal-violet)) 70%,
-    hsl(var(--signal-gold))
+    hsl(var(--signal-azure)) 55%,
+    hsl(var(--signal-deep))
   );
 
   /* Glow shadows */
   --glow-signal: 0 0 24px rgba(0, 246, 255, 0.35), 0 0 64px rgba(0, 246, 255, 0.12);
-  --glow-gold: 0 0 24px rgba(176, 141, 87, 0.35), 0 0 64px rgba(176, 141, 87, 0.12);
 }
 
 /* Page atmosphere: abyss base + faint grain so dark areas never look flat */
@@ -647,12 +644,6 @@ html, body {
   text-stroke: 1.5px rgba(0, 246, 255, 0.45);
 }
 
-.text-outline-gold {
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgba(176, 141, 87, 0.55);
-  text-stroke: 1.5px rgba(176, 141, 87, 0.55);
-}
-
 /* Animated conic border for GlowCard (rotating highlight on a 1px frame) */
 @property --glow-angle {
   syntax: '<angle>';
@@ -676,7 +667,7 @@ html, body {
     rgba(0, 246, 255, 0.8) 12%,
     transparent 28%,
     transparent 55%,
-    rgba(176, 141, 87, 0.6) 68%,
+    rgba(0, 167, 255, 0.6) 68%,
     transparent 82%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -696,17 +687,6 @@ html, body {
 
 @keyframes glow-rotate {
   to { --glow-angle: 360deg; }
-}
-
-/* The Signal thread — glow treatment for the scroll-drawn SVG path */
-.signal-path {
-  filter: drop-shadow(0 0 6px rgba(0, 246, 255, 0.8))
-          drop-shadow(0 0 18px rgba(0, 246, 255, 0.35));
-}
-
-.signal-path-gold {
-  filter: drop-shadow(0 0 6px rgba(176, 141, 87, 0.8))
-          drop-shadow(0 0 18px rgba(176, 141, 87, 0.35));
 }
 
 /* Reduced motion: stop the kinetic layer's own animations */
