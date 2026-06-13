@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import TypewriterText from '@/components/effects/TypewriterText';
@@ -22,61 +23,41 @@ const HeroContent: React.FC = () => {
 
   return (
     <div className="lg:w-1/2 text-center lg:text-right mb-10 lg:mb-0">
-      {/* Eyebrow + section index */}
-      <motion.div
-        variants={heroVariants.subHeadline}
-        initial="hidden"
-        animate="visible"
-        custom={{ delayIdx: 0 }}
-        className="flex items-center gap-4 justify-center lg:justify-start mb-6"
-      >
-        <span className="section-index text-tech-blue">01 / 04</span>
-        <span className="h-px w-12 bg-tech-blue/40" />
-        <span className="eyebrow text-white/70">AI · Automation · Web</span>
-      </motion.div>
-
       <motion.h1
         variants={heroVariants.headline}
         initial="hidden"
         animate="visible"
         custom={{ delayIdx: 0 }}
-        className="heading-he text-white mb-6"
+        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4"
       >
         <motion.span
-          className="font-display text-white"
           animate={{
             textShadow: [
-              "0 0 20px rgba(0,246,255,0.4)",
-              "0 0 40px rgba(0,246,255,0.7)",
-              "0 0 20px rgba(0,246,255,0.4)"
+              "0 0 20px rgba(0,246,255,0.5)",
+              "0 0 40px rgba(0,246,255,0.8)",
+              "0 0 20px rgba(0,246,255,0.5)"
             ]
           }}
           transition={{ duration: 3, repeat: Infinity }}
-          style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', letterSpacing: '-0.04em' }}
+          dir="ltr"
+          className="inline-flex items-baseline"
         >
-          SpeedLeads.AI
+          <span className="font-logo-speed font-bold">Speed</span>
+          <span className="font-logo-leads italic gradient-text">Leads</span>
+          <span>.AI:</span>
         </motion.span>
         <br />
-        <span
-          className="block mt-3"
-          style={{ fontSize: 'clamp(2.25rem, 6vw, 5rem)', lineHeight: 1.02 }}
-        >
-          <span className="gradient-text">העתיד של</span>
-        </span>
-        <span
-          className="block mt-2"
-          style={{ fontSize: 'clamp(1.75rem, 4.5vw, 3.5rem)', lineHeight: 1.1 }}
-        >
-          {showTypewriter && (
-            <TypewriterText
-              texts={aiTexts}
-              className="gradient-text"
-            />
-          )}
-        </span>
+        <span className="font-display text-brand-gradient">העתיד של</span>
+        <br />
+        {showTypewriter && (
+          <TypewriterText
+            texts={aiTexts}
+            className="font-display text-brand-gradient"
+          />
+        )}
+        <br />
         <motion.span
-          className="block mt-2 text-white"
-          style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}
+          className="font-display text-white"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
@@ -85,23 +66,14 @@ const HeroContent: React.FC = () => {
         </motion.span>
       </motion.h1>
 
-      {/* Hairline divider */}
-      <motion.div
-        variants={heroVariants.subHeadline}
-        initial="hidden"
-        animate="visible"
-        custom={{ delayIdx: 1 }}
-        className="h-px w-24 bg-white/30 mb-8 mx-auto lg:mx-0 lg:mr-0"
-      />
-
       <motion.p
         variants={heroVariants.subHeadline}
         initial="hidden"
         animate="visible"
         custom={{ delayIdx: 1 }}
-        className="text-base sm:text-lg text-gray-300 mb-10 leading-relaxed px-4 sm:px-0 max-w-lg mx-auto lg:mx-0 lg:mr-0"
+        className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 leading-relaxed px-4 sm:px-0"
       >
-        פתרונות AI מתקדמים לבניית אתרים, אוטומציות עסקיות ואינטגרציות חכמות —
+        פתרונות AI מתקדמים לבניית אתרים, אוטומציות עסקיות ואינטגרציות חכמות –
         שנועדו להזניק את העסק שלך קדימה.
       </motion.p>
 
@@ -110,15 +82,15 @@ const HeroContent: React.FC = () => {
         initial="hidden"
         animate="visible"
         custom={{ delayIdx: 2 }}
-        className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 px-4 sm:px-0"
+        className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse rtl:space-x-reverse px-4 sm:px-0"
       >
         <MagneticButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
           <Button
             id="hero_cta_button"
             size="lg"
-            className="btn-brand text-white px-8 py-4 text-sm uppercase tracking-wider min-h-[48px]"
+            className="bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] hover:brightness-110 text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg hover:shadow-tech-blue/25 transition-all duration-300 text-sm sm:text-base min-h-[44px]"
           >
-            בואו נדבר →
+            בואו נדבר על הפרויקט שלכם
           </Button>
         </MagneticButton>
         <MagneticButton onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>
@@ -126,9 +98,9 @@ const HeroContent: React.FC = () => {
             id="hero_services_button"
             size="lg"
             variant="outline"
-            className="btn-ghost-brand border-white/40 text-white hover:bg-white/10 hover:border-white px-8 py-4 text-sm uppercase tracking-wider min-h-[48px]"
+            className="border-2 border-white/30 font-semibold text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:shadow-gold/25 transition-all duration-300 text-sm sm:text-base min-h-[44px]"
           >
-            השירותים שלנו
+            גלו את השירותים שלנו
           </Button>
         </MagneticButton>
       </motion.div>

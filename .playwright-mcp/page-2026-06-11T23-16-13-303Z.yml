@@ -1,0 +1,1286 @@
+- generic [active] [ref=e1]:
+  - navigation
+  - img [ref=e4]
+  - link "דלג לתוכן" [ref=e112] [cursor=pointer]:
+    - /url: "#content"
+  - banner:
+    - generic [ref=e115]:
+      - navigation "תפריט" [ref=e118]:
+        - generic "כפתור פתיחת תפריט" [ref=e119]:
+          - list [ref=e120]:
+            - listitem [ref=e121]:
+              - link "בית" [ref=e123] [cursor=pointer]:
+                - /url: https://shiruziel.com
+                - generic [ref=e124]:
+                  - img [ref=e126]
+                  - img [ref=e128]
+                - generic [ref=e130]: בית
+            - listitem [ref=e131]:
+              - link "פרויקטים" [ref=e133] [cursor=pointer]:
+                - /url: https://shiruziel.com/work/
+                - generic [ref=e134]:
+                  - img [ref=e136]
+                  - img [ref=e139]
+                - generic [ref=e141]: פרויקטים
+            - listitem [ref=e142]:
+              - link "הדרכות" [ref=e144] [cursor=pointer]:
+                - /url: https://school.shiruziel.com/
+                - generic [ref=e145]:
+                  - img [ref=e147]
+                  - img [ref=e150]
+                - generic [ref=e152]: הדרכות
+            - listitem [ref=e153]:
+              - link "אינסטגרם" [ref=e155] [cursor=pointer]:
+                - /url: https://www.instagram.com/shir_uziel/
+                - generic [ref=e156]:
+                  - img [ref=e158]
+                  - img [ref=e169]
+                - generic [ref=e179]: אינסטגרם
+      - link "בואו נדבר" [ref=e182] [cursor=pointer]:
+        - /url: https://wa.link/ijvog7
+        - generic [ref=e184]:
+          - img [ref=e185]
+          - generic [ref=e190]: בואו נדבר
+  - main [ref=e191]:
+    - generic [ref=e193]:
+      - generic [ref=e196]:
+        - heading "שיר עוזיאל" [level=2] [ref=e199]
+        - generic [ref=e200]:
+          - heading "אהלן! נעים להכיר, אני" [level=2] [ref=e203]
+          - heading "בונה אתרים" [level=2] [ref=e206]:
+            - generic [ref=e207]: בונה
+            - generic [ref=e208]: אתרים
+          - heading "שמתעוררים" [level=2] [ref=e216]:
+            - generic [ref=e217]: שמתעוררים
+          - heading "לחיים" [level=2] [ref=e220]:
+            - generic [ref=e221]: לחיים
+          - link "בואו נדבר" [ref=e224] [cursor=pointer]:
+            - /url: https://wa.link/ep41na
+            - generic [ref=e226]:
+              - img [ref=e227]
+              - generic [ref=e232]: בואו נדבר
+        - img [ref=e238]
+      - generic [ref=e250]:
+        - region "קרוסלת תמונות" [ref=e253]:
+          - generic [ref=e254]:
+            - group [ref=e255]:
+              - figure [ref=e256]:
+                - img [ref=e257]
+            - group [ref=e258]:
+              - figure [ref=e259]:
+                - img [ref=e260]
+            - group [ref=e261]:
+              - figure [ref=e262]:
+                - img [ref=e263]
+            - group [ref=e264]:
+              - figure [ref=e265]:
+                - img [ref=e266]
+            - group [ref=e267]:
+              - figure [ref=e268]:
+                - img [ref=e269]
+            - group [ref=e270]:
+              - figure [ref=e271]:
+                - img [ref=e272]
+            - group [ref=e273]:
+              - figure [ref=e274]:
+                - img [ref=e275]
+            - group [ref=e276]:
+              - figure [ref=e277]:
+                - img [ref=e278]
+            - group "2 / 11" [ref=e279]:
+              - figure [ref=e280]:
+                - img "axion-loog-green" [ref=e281]
+            - group "3 / 11" [ref=e282]:
+              - figure [ref=e283]:
+                - img "beetobee-logo-color" [ref=e284]
+            - group "4 / 11" [ref=e285]:
+              - figure [ref=e286]:
+                - img "cavo logo" [ref=e287]
+            - group "5 / 11" [ref=e288]:
+              - figure [ref=e289]:
+                - img "flow-logo-color-bright-1" [ref=e290]
+            - group "6 / 11" [ref=e291]:
+              - figure [ref=e292]:
+                - img "living the dream" [ref=e293]
+            - group "7 / 11" [ref=e294]:
+              - figure [ref=e295]:
+                - img "logo-tastes like home" [ref=e296]
+            - group "8 / 11" [ref=e297]:
+              - figure [ref=e298]:
+                - img "logo-white-profit" [ref=e299]
+            - group [ref=e300]:
+              - figure [ref=e301]:
+                - img [ref=e302]
+            - group [ref=e303]:
+              - figure [ref=e304]:
+                - img [ref=e305]
+            - group [ref=e306]:
+              - figure [ref=e307]:
+                - img [ref=e308]
+            - group [ref=e309]:
+              - figure [ref=e310]:
+                - img [ref=e311]
+            - group [ref=e312]:
+              - figure [ref=e313]:
+                - img [ref=e314]
+            - group [ref=e315]:
+              - figure [ref=e316]:
+                - img [ref=e317]
+            - group [ref=e318]:
+              - figure [ref=e319]:
+                - img [ref=e320]
+            - group [ref=e321]:
+              - figure [ref=e322]:
+                - img [ref=e323]
+            - group [ref=e324]:
+              - figure [ref=e325]:
+                - img [ref=e326]
+            - group [ref=e327]:
+              - figure [ref=e328]:
+                - img [ref=e329]
+        - heading "כ ש ח ד ש נ ו ת ו ט כ נ ו ל ו ג י ה פ ו ג ש ו ת א ו מ נ ו ת" [level=2] [ref=e332]:
+          - generic [ref=e333]:
+            - generic [ref=e335]:
+              - generic [ref=e336]: כ
+              - generic [ref=e337]: ש
+              - generic [ref=e338]: ח
+              - generic [ref=e339]: ד
+              - generic [ref=e340]: ש
+              - generic [ref=e341]: נ
+              - generic [ref=e342]: ו
+              - generic [ref=e343]: ת
+            - generic [ref=e344]:
+              - generic [ref=e345]: ו
+              - generic [ref=e346]: ט
+              - generic [ref=e347]: כ
+              - generic [ref=e348]: נ
+              - generic [ref=e349]: ו
+              - generic [ref=e350]: ל
+              - generic [ref=e351]: ו
+              - generic [ref=e352]: ג
+              - generic [ref=e353]: י
+              - generic [ref=e354]: ה
+          - generic [ref=e356]:
+            - generic [ref=e357]:
+              - generic [ref=e358]: פ
+              - generic [ref=e359]: ו
+              - generic [ref=e360]: ג
+              - generic [ref=e361]: ש
+              - generic [ref=e362]: ו
+              - generic [ref=e363]: ת
+            - generic [ref=e365]:
+              - generic [ref=e366]: א
+              - generic [ref=e367]: ו
+              - generic [ref=e368]: מ
+              - generic [ref=e369]: נ
+              - generic [ref=e370]: ו
+              - generic [ref=e371]: ת
+        - generic [ref=e372]:
+          - generic [ref=e375]:
+            - img [ref=e378]
+            - generic [ref=e385]:
+              - heading "30%-50% עלייה בזמן השהייה באתר" [level=3] [ref=e386]
+              - paragraph [ref=e387]: אתר אינטרקטיבי המשלב אנימציות או גיימיפקציה (משחק) זכיר יותר, ועוזר לעסק שלך לבולט על פני מתחרים.
+          - generic [ref=e390]:
+            - img [ref=e393]
+            - generic [ref=e398]:
+              - heading "100% מרשים יותר" [level=3] [ref=e399]
+              - paragraph [ref=e400]: אתר דינמי מבטיח העברת רושם מקצועי וותיק ללקוחות מתעניינים ומעלה את האמון בעסק שלך.
+          - generic [ref=e403]:
+            - img [ref=e406]
+            - generic [ref=e413]:
+              - heading "50% פחות מלל" [level=3] [ref=e414]
+              - paragraph [ref=e415]: אתרי סטוריטלינג ויזואלי מבטיחים את העברת המסרים שלך בצורה נוחה שמשתמשים אוהבים לקרוא.
+      - generic [ref=e416]:
+        - heading "כ ש ס י פ ו ר י ם ע ס ק י י ם , מ ת ע ו ר ר י ם ל ח י י ם" [level=2] [ref=e420]:
+          - generic [ref=e421]:
+            - generic [ref=e422]: כ
+            - generic [ref=e423]: ש
+            - generic [ref=e424]: ס
+            - generic [ref=e425]: י
+            - generic [ref=e426]: פ
+            - generic [ref=e427]: ו
+            - generic [ref=e428]: ר
+            - generic [ref=e429]: י
+            - generic [ref=e430]: ם
+          - generic [ref=e431]:
+            - generic [ref=e432]: ע
+            - generic [ref=e433]: ס
+            - generic [ref=e434]: ק
+            - generic [ref=e435]: י
+            - generic [ref=e436]: י
+            - generic [ref=e437]: ם
+            - generic [ref=e438]: ","
+          - generic [ref=e439]:
+            - generic [ref=e440]:
+              - generic [ref=e441]: מ
+              - generic [ref=e442]: ת
+              - generic [ref=e443]: ע
+              - generic [ref=e444]: ו
+              - generic [ref=e445]: ר
+              - generic [ref=e446]: ר
+              - generic [ref=e447]: י
+              - generic [ref=e448]: ם
+            - generic [ref=e449]:
+              - generic [ref=e450]: ל
+              - generic [ref=e451]: ח
+              - generic [ref=e452]: י
+              - generic [ref=e453]: י
+              - generic [ref=e454]: ם
+        - generic [ref=e456]:
+          - generic [ref=e457]:
+            - generic [ref=e459]:
+              - paragraph [ref=e462]: בית ספר לריקוד
+              - paragraph [ref=e465]: אתר תדמית
+            - paragraph [ref=e468]: Swing It
+          - generic [ref=e469]:
+            - generic [ref=e471]:
+              - paragraph [ref=e474]: אוטומציות
+              - paragraph [ref=e477]: אתר תדמית
+            - paragraph [ref=e480]: Enigma
+          - generic [ref=e481]:
+            - generic [ref=e483]:
+              - paragraph [ref=e486]: בריאות
+              - paragraph [ref=e489]: אתר חנות
+            - paragraph [ref=e492]: Uzralex
+          - generic [ref=e493]:
+            - generic [ref=e495]:
+              - paragraph [ref=e498]: נדל״ן
+              - paragraph [ref=e501]: דף נחיתה
+            - paragraph [ref=e504]: Emerald
+          - link "לצפייה בכל הפרויקטים" [ref=e507] [cursor=pointer]:
+            - /url: https://shiruziel.com/work/
+            - generic [ref=e509]:
+              - img [ref=e510]
+              - generic [ref=e515]: לצפייה בכל הפרויקטים
+      - generic [ref=e528]:
+        - generic [ref=e532]:
+          - heading "י ש ס י פ ו ר י ם ש מ י ל י ם ל א מ ס פ י ק ו ת כ ד י ל ס פ ר א ו ת ם ." [level=2] [ref=e535]:
+            - generic [ref=e536]:
+              - generic [ref=e537]:
+                - generic [ref=e538]: י
+                - generic [ref=e539]: ש
+              - generic [ref=e540]:
+                - generic [ref=e541]: ס
+                - generic [ref=e542]: י
+                - generic [ref=e543]: פ
+                - generic [ref=e544]: ו
+                - generic [ref=e545]: ר
+                - generic [ref=e546]: י
+                - generic [ref=e547]: ם
+              - generic [ref=e548]:
+                - generic [ref=e549]: ש
+                - generic [ref=e550]: מ
+                - generic [ref=e551]: י
+                - generic [ref=e552]: ל
+                - generic [ref=e553]: י
+                - generic [ref=e554]: ם
+              - generic [ref=e555]:
+                - generic [ref=e556]: ל
+                - generic [ref=e557]: א
+            - generic [ref=e558]:
+              - generic [ref=e559]:
+                - generic [ref=e560]: מ
+                - generic [ref=e561]: ס
+                - generic [ref=e562]: פ
+                - generic [ref=e563]: י
+                - generic [ref=e564]: ק
+                - generic [ref=e565]: ו
+                - generic [ref=e566]: ת
+              - generic [ref=e567]:
+                - generic [ref=e568]: כ
+                - generic [ref=e569]: ד
+                - generic [ref=e570]: י
+              - generic [ref=e571]:
+                - generic [ref=e572]: ל
+                - generic [ref=e573]: ס
+                - generic [ref=e574]: פ
+                - generic [ref=e575]: ר
+              - generic [ref=e576]:
+                - generic [ref=e577]: א
+                - generic [ref=e578]: ו
+                - generic [ref=e579]: ת
+                - generic [ref=e580]: ם
+                - generic [ref=e581]: .
+          - generic [ref=e582]:
+            - heading "ב ד י ו ק ב ש ב י ל ם , ק י י מ י ם א ת ר י ס ט ו ר י ט ל י נ ג" [level=2] [ref=e585]:
+              - generic [ref=e586]:
+                - generic [ref=e587]:
+                  - generic [ref=e588]: ב
+                  - generic [ref=e589]: ד
+                  - generic [ref=e590]: י
+                  - generic [ref=e591]: ו
+                  - generic [ref=e592]: ק
+                - generic [ref=e593]:
+                  - generic [ref=e594]: ב
+                  - generic [ref=e595]: ש
+                  - generic [ref=e596]: ב
+                  - generic [ref=e597]: י
+                  - generic [ref=e598]: ל
+                  - generic [ref=e599]: ם
+                  - generic [ref=e600]: ","
+              - generic [ref=e601]:
+                - generic [ref=e602]:
+                  - generic [ref=e603]: ק
+                  - generic [ref=e604]: י
+                  - generic [ref=e605]: י
+                  - generic [ref=e606]: מ
+                  - generic [ref=e607]: י
+                  - generic [ref=e608]: ם
+                - generic [ref=e609]:
+                  - generic [ref=e610]: א
+                  - generic [ref=e611]: ת
+                  - generic [ref=e612]: ר
+                  - generic [ref=e613]: י
+                - generic [ref=e614]:
+                  - generic [ref=e615]: ס
+                  - generic [ref=e616]: ט
+                  - generic [ref=e617]: ו
+                  - generic [ref=e618]: ר
+                  - generic [ref=e619]: י
+                  - generic [ref=e620]: ט
+                  - generic [ref=e621]: ל
+                  - generic [ref=e622]: י
+                  - generic [ref=e623]: נ
+                  - generic [ref=e624]: ג
+            - heading "אתרים שמתעוררים לחיים באמצעות עיצוב מרשים, אנימציות דינמיות וקופי מדויק." [level=2] [ref=e627]
+        - generic [ref=e631]:
+          - heading "א ת ר י ם ש מ ע ב י ר י ם מ ס ר י ם ב צ ו ר ה י י ח ו ד י ת ו ב ל ת י נ ש כ ח ת ." [level=2] [ref=e634]:
+            - generic [ref=e635]:
+              - generic [ref=e636]:
+                - generic [ref=e637]: א
+                - generic [ref=e638]: ת
+                - generic [ref=e639]: ר
+                - generic [ref=e640]: י
+                - generic [ref=e641]: ם
+              - generic [ref=e642]:
+                - generic [ref=e643]: ש
+                - generic [ref=e644]: מ
+                - generic [ref=e645]: ע
+                - generic [ref=e646]: ב
+                - generic [ref=e647]: י
+                - generic [ref=e648]: ר
+                - generic [ref=e649]: י
+                - generic [ref=e650]: ם
+            - generic [ref=e651]:
+              - generic [ref=e652]:
+                - generic [ref=e653]: מ
+                - generic [ref=e654]: ס
+                - generic [ref=e655]: ר
+                - generic [ref=e656]: י
+                - generic [ref=e657]: ם
+              - generic [ref=e659]:
+                - generic [ref=e660]: ב
+                - generic [ref=e661]: צ
+                - generic [ref=e662]: ו
+                - generic [ref=e663]: ר
+                - generic [ref=e664]: ה
+            - generic [ref=e665]:
+              - generic [ref=e666]:
+                - generic [ref=e667]: י
+                - generic [ref=e668]: י
+                - generic [ref=e669]: ח
+                - generic [ref=e670]: ו
+                - generic [ref=e671]: ד
+                - generic [ref=e672]: י
+                - generic [ref=e673]: ת
+              - generic [ref=e674]:
+                - generic [ref=e675]:
+                  - generic [ref=e676]: ו
+                  - generic [ref=e677]: ב
+                  - generic [ref=e678]: ל
+                  - generic [ref=e679]: ת
+                  - generic [ref=e680]: י
+                - generic [ref=e681]:
+                  - generic [ref=e682]: נ
+                  - generic [ref=e683]: ש
+                  - generic [ref=e684]: כ
+                  - generic [ref=e685]: ח
+                  - generic [ref=e686]: ת
+                  - generic [ref=e687]: .
+          - iframe [ref=e691]:
+            - generic [ref=f8e4]:
+              - generic:
+                - generic:
+                  - img
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - img
+                - generic:
+                  - img
+                  - generic: Playing in picture-in-picture
+              - generic:
+                - generic:
+                  - button "Pause" [ref=f8e11] [cursor=pointer]:
+                    - img [ref=f8e12]
+                    - generic:
+                      - generic: Pause
+                  - generic [ref=f8e15]:
+                    - generic [ref=f8e16]:
+                      - slider "Progress Bar" [ref=f8e17] [cursor=pointer]
+                      - generic:
+                        - generic:
+                          - generic: 00:00
+                      - generic [ref=f8e22]: 00:50
+                    - generic [ref=f8e24]:
+                      - generic [ref=f8e25]:
+                        - button "Unmute" [ref=f8e27] [cursor=pointer]:
+                          - img [ref=f8e28]
+                        - slider "Volume (use up/down arrow keys to change)"
+                      - button "Settings" [ref=f8e30] [cursor=pointer]:
+                        - img [ref=f8e31]
+                        - generic:
+                          - generic: Settings
+                      - button "Picture-in-Picture" [ref=f8e33] [cursor=pointer]:
+                        - img [ref=f8e34]
+                        - generic:
+                          - generic: Picture-in-Picture
+                      - button "Fullscreen" [ref=f8e36] [cursor=pointer]:
+                        - img [ref=f8e37]
+                        - generic:
+                          - generic: Fullscreen
+        - generic [ref=e692]:
+          - paragraph [ref=e695]: התוצאה?
+          - heading "ח ו ו י י ת מ ש ת מ ש א י נ ט ר א ק ט י ב י ת ו ד י נ מ י ת ש מ ס פ ר ת א ת ה ס י פ ו ר ש ל ה ע ס ק ש ל ך כ מ ו ש מ ע ו ל ם ל א ס ו פ ר ." [level=2] [ref=e698]:
+            - generic [ref=e699]:
+              - generic [ref=e700]:
+                - generic [ref=e701]: ח
+                - generic [ref=e702]: ו
+                - generic [ref=e703]: ו
+                - generic [ref=e704]: י
+                - generic [ref=e705]: י
+                - generic [ref=e706]: ת
+              - generic [ref=e707]:
+                - generic [ref=e708]: מ
+                - generic [ref=e709]: ש
+                - generic [ref=e710]: ת
+                - generic [ref=e711]: מ
+                - generic [ref=e712]: ש
+              - generic [ref=e714]:
+                - generic [ref=e715]: א
+                - generic [ref=e716]: י
+                - generic [ref=e717]: נ
+                - generic [ref=e718]: ט
+                - generic [ref=e719]: ר
+                - generic [ref=e720]: א
+                - generic [ref=e721]: ק
+                - generic [ref=e722]: ט
+                - generic [ref=e723]: י
+                - generic [ref=e724]: ב
+                - generic [ref=e725]: י
+                - generic [ref=e726]: ת
+              - generic [ref=e728]:
+                - generic [ref=e729]: ו
+                - generic [ref=e730]: ד
+                - generic [ref=e731]: י
+                - generic [ref=e732]: נ
+                - generic [ref=e733]: מ
+                - generic [ref=e734]: י
+                - generic [ref=e735]: ת
+              - generic [ref=e736]:
+                - generic [ref=e737]: ש
+                - generic [ref=e738]: מ
+                - generic [ref=e739]: ס
+                - generic [ref=e740]: פ
+                - generic [ref=e741]: ר
+                - generic [ref=e742]: ת
+            - generic [ref=e743]:
+              - generic [ref=e744]:
+                - generic [ref=e745]: א
+                - generic [ref=e746]: ת
+              - generic [ref=e747]:
+                - generic [ref=e748]: ה
+                - generic [ref=e749]: ס
+                - generic [ref=e750]: י
+                - generic [ref=e751]: פ
+                - generic [ref=e752]: ו
+                - generic [ref=e753]: ר
+              - generic [ref=e754]:
+                - generic [ref=e755]: ש
+                - generic [ref=e756]: ל
+              - generic [ref=e757]:
+                - generic [ref=e758]: ה
+                - generic [ref=e759]: ע
+                - generic [ref=e760]: ס
+                - generic [ref=e761]: ק
+              - generic [ref=e762]:
+                - generic [ref=e763]: ש
+                - generic [ref=e764]: ל
+                - generic [ref=e765]: ך
+              - generic [ref=e766]:
+                - generic [ref=e767]: כ
+                - generic [ref=e768]: מ
+                - generic [ref=e769]: ו
+              - generic [ref=e770]:
+                - generic [ref=e771]:
+                  - generic [ref=e772]: ש
+                  - generic [ref=e773]: מ
+                  - generic [ref=e774]: ע
+                  - generic [ref=e775]: ו
+                  - generic [ref=e776]: ל
+                  - generic [ref=e777]: ם
+                - generic [ref=e778]:
+                  - generic [ref=e779]: ל
+                  - generic [ref=e780]: א
+                - generic [ref=e781]:
+                  - generic [ref=e782]: ס
+                  - generic [ref=e783]: ו
+                  - generic [ref=e784]: פ
+                  - generic [ref=e785]: ר
+                  - generic [ref=e786]: .
+      - generic [ref=e797]:
+        - heading "בתכל’ס, למה אני צריך את זה?" [level=2] [ref=e800]
+        - heading "אתרים אינטרקטיבים יוצרים חווית גלישה, ייחודית, בלתי נשכחת ומרשימה - שהופכת לתדמית מקצועית שאין לה תחרות." [level=2] [ref=e803]
+      - generic [ref=e814]:
+        - heading "אהלן, אני שיר עוזיאל." [level=2] [ref=e820]
+        - heading "א נ י מ א מ י נ ה ש א ת ר י ם ל א צ ר י כ י ם ל ה י ו ת ס ט ט י י ם , א ל א ל ס פ ק ח ו ו י ה א י נ ט ר א ק ט י ב י ת מ ק י פ ה . כ ל פ ר ו י ק ט מ י י צ ג ה ז ד מ נ ו ת ל א ת ג ר א ת ע צ מ י ו ל ה צ י ע מ ש ה ו י י ח ו ד י ו ח ד ש נ י . ז ו ה ז ד מ נ ו ת ל ה ע ב י ר א ת ה ס י פ ו ר ש ל כ ם ב צ ו ר ה מ ר ג ש ת ו ז כ י ר ה ו ל ה ש א י ר ר ו ש ם מ ק צ ו ע י ש א י א פ ש ר ל ה ת ע ל ם מ מ נ ו . ע ם ה ת מ ח ו ת ב ס ט ו ר י ט ל י נ ג ו י ז ו א ל י , א נ י מ צ י ו ת ד י נ מ י ו ת ו ק ו פ י מ ד ו י ק א נ י י ו צ ר ת א ת ר י ם מ ע ו ר ר י ה ש ר א ה , ש י ג ר מ ו ל כ ל ל ק ו ח מ ת ע נ י י ן ל ב ח ו ר ב כ ם ." [level=2] [ref=e825]:
+          - generic [ref=e826]:
+            - generic [ref=e827]: א
+            - generic [ref=e828]: נ
+            - generic [ref=e829]: י
+          - generic [ref=e830]:
+            - generic [ref=e831]: מ
+            - generic [ref=e832]: א
+            - generic [ref=e833]: מ
+            - generic [ref=e834]: י
+            - generic [ref=e835]: נ
+            - generic [ref=e836]: ה
+          - generic [ref=e837]:
+            - generic [ref=e838]: ש
+            - generic [ref=e839]: א
+            - generic [ref=e840]: ת
+            - generic [ref=e841]: ר
+            - generic [ref=e842]: י
+            - generic [ref=e843]: ם
+          - generic [ref=e844]:
+            - generic [ref=e845]: ל
+            - generic [ref=e846]: א
+          - generic [ref=e847]:
+            - generic [ref=e848]: צ
+            - generic [ref=e849]: ר
+            - generic [ref=e850]: י
+            - generic [ref=e851]: כ
+            - generic [ref=e852]: י
+            - generic [ref=e853]: ם
+          - generic [ref=e854]:
+            - generic [ref=e855]: ל
+            - generic [ref=e856]: ה
+            - generic [ref=e857]: י
+            - generic [ref=e858]: ו
+            - generic [ref=e859]: ת
+          - generic [ref=e860]:
+            - generic [ref=e861]: ס
+            - generic [ref=e862]: ט
+            - generic [ref=e863]: ט
+            - generic [ref=e864]: י
+            - generic [ref=e865]: י
+            - generic [ref=e866]: ם
+            - generic [ref=e867]: ","
+          - generic [ref=e868]:
+            - generic [ref=e869]: א
+            - generic [ref=e870]: ל
+            - generic [ref=e871]: א
+          - generic [ref=e872]:
+            - generic [ref=e873]: ל
+            - generic [ref=e874]: ס
+            - generic [ref=e875]: פ
+            - generic [ref=e876]: ק
+          - generic [ref=e877]:
+            - generic [ref=e878]:
+              - generic [ref=e879]: ח
+              - generic [ref=e880]: ו
+              - generic [ref=e881]: ו
+              - generic [ref=e882]: י
+              - generic [ref=e883]: ה
+            - generic [ref=e884]:
+              - generic [ref=e885]: א
+              - generic [ref=e886]: י
+              - generic [ref=e887]: נ
+              - generic [ref=e888]: ט
+              - generic [ref=e889]: ר
+              - generic [ref=e890]: א
+              - generic [ref=e891]: ק
+              - generic [ref=e892]: ט
+              - generic [ref=e893]: י
+              - generic [ref=e894]: ב
+              - generic [ref=e895]: י
+              - generic [ref=e896]: ת
+            - generic [ref=e897]:
+              - generic [ref=e898]: מ
+              - generic [ref=e899]: ק
+              - generic [ref=e900]: י
+              - generic [ref=e901]: פ
+              - generic [ref=e902]: ה
+              - generic [ref=e903]: .
+          - generic [ref=e904]:
+            - generic [ref=e905]: כ
+            - generic [ref=e906]: ל
+          - generic [ref=e907]:
+            - generic [ref=e908]: פ
+            - generic [ref=e909]: ר
+            - generic [ref=e910]: ו
+            - generic [ref=e911]: י
+            - generic [ref=e912]: ק
+            - generic [ref=e913]: ט
+          - generic [ref=e914]:
+            - generic [ref=e915]: מ
+            - generic [ref=e916]: י
+            - generic [ref=e917]: י
+            - generic [ref=e918]: צ
+            - generic [ref=e919]: ג
+          - generic [ref=e920]:
+            - generic [ref=e921]: ה
+            - generic [ref=e922]: ז
+            - generic [ref=e923]: ד
+            - generic [ref=e924]: מ
+            - generic [ref=e925]: נ
+            - generic [ref=e926]: ו
+            - generic [ref=e927]: ת
+          - generic [ref=e928]:
+            - generic [ref=e929]: ל
+            - generic [ref=e930]: א
+            - generic [ref=e931]: ת
+            - generic [ref=e932]: ג
+            - generic [ref=e933]: ר
+          - generic [ref=e934]:
+            - generic [ref=e935]: א
+            - generic [ref=e936]: ת
+          - generic [ref=e937]:
+            - generic [ref=e938]: ע
+            - generic [ref=e939]: צ
+            - generic [ref=e940]: מ
+            - generic [ref=e941]: י
+          - generic [ref=e942]:
+            - generic [ref=e943]: ו
+            - generic [ref=e944]: ל
+            - generic [ref=e945]: ה
+            - generic [ref=e946]: צ
+            - generic [ref=e947]: י
+            - generic [ref=e948]: ע
+          - generic [ref=e949]:
+            - generic [ref=e950]: מ
+            - generic [ref=e951]: ש
+            - generic [ref=e952]: ה
+            - generic [ref=e953]: ו
+          - generic [ref=e954]:
+            - generic [ref=e955]:
+              - generic [ref=e956]: י
+              - generic [ref=e957]: י
+              - generic [ref=e958]: ח
+              - generic [ref=e959]: ו
+              - generic [ref=e960]: ד
+              - generic [ref=e961]: י
+            - generic [ref=e962]:
+              - generic [ref=e963]: ו
+              - generic [ref=e964]: ח
+              - generic [ref=e965]: ד
+              - generic [ref=e966]: ש
+              - generic [ref=e967]: נ
+              - generic [ref=e968]: י
+              - generic [ref=e969]: .
+          - generic [ref=e970]:
+            - generic [ref=e971]: ז
+            - generic [ref=e972]: ו
+          - generic [ref=e973]:
+            - generic [ref=e974]: ה
+            - generic [ref=e975]: ז
+            - generic [ref=e976]: ד
+            - generic [ref=e977]: מ
+            - generic [ref=e978]: נ
+            - generic [ref=e979]: ו
+            - generic [ref=e980]: ת
+          - generic [ref=e981]:
+            - generic [ref=e982]: ל
+            - generic [ref=e983]: ה
+            - generic [ref=e984]: ע
+            - generic [ref=e985]: ב
+            - generic [ref=e986]: י
+            - generic [ref=e987]: ר
+          - generic [ref=e988]:
+            - generic [ref=e989]: א
+            - generic [ref=e990]: ת
+          - generic [ref=e991]:
+            - generic [ref=e992]:
+              - generic [ref=e993]: ה
+              - generic [ref=e994]: ס
+              - generic [ref=e995]: י
+              - generic [ref=e996]: פ
+              - generic [ref=e997]: ו
+              - generic [ref=e998]: ר
+            - generic [ref=e999]:
+              - generic [ref=e1000]: ש
+              - generic [ref=e1001]: ל
+              - generic [ref=e1002]: כ
+              - generic [ref=e1003]: ם
+          - generic [ref=e1004]:
+            - generic [ref=e1005]: ב
+            - generic [ref=e1006]: צ
+            - generic [ref=e1007]: ו
+            - generic [ref=e1008]: ר
+            - generic [ref=e1009]: ה
+          - generic [ref=e1010]:
+            - generic [ref=e1011]: מ
+            - generic [ref=e1012]: ר
+            - generic [ref=e1013]: ג
+            - generic [ref=e1014]: ש
+            - generic [ref=e1015]: ת
+          - generic [ref=e1016]:
+            - generic [ref=e1017]: ו
+            - generic [ref=e1018]: ז
+            - generic [ref=e1019]: כ
+            - generic [ref=e1020]: י
+            - generic [ref=e1021]: ר
+            - generic [ref=e1022]: ה
+          - generic [ref=e1023]:
+            - generic [ref=e1024]: ו
+            - generic [ref=e1025]: ל
+            - generic [ref=e1026]: ה
+            - generic [ref=e1027]: ש
+            - generic [ref=e1028]: א
+            - generic [ref=e1029]: י
+            - generic [ref=e1030]: ר
+          - generic [ref=e1031]:
+            - generic [ref=e1032]: ר
+            - generic [ref=e1033]: ו
+            - generic [ref=e1034]: ש
+            - generic [ref=e1035]: ם
+          - generic [ref=e1036]:
+            - generic [ref=e1037]: מ
+            - generic [ref=e1038]: ק
+            - generic [ref=e1039]: צ
+            - generic [ref=e1040]: ו
+            - generic [ref=e1041]: ע
+            - generic [ref=e1042]: י
+          - generic [ref=e1043]:
+            - generic [ref=e1044]:
+              - generic [ref=e1045]: ש
+              - generic [ref=e1046]: א
+              - generic [ref=e1047]: י
+            - generic [ref=e1048]:
+              - generic [ref=e1049]: א
+              - generic [ref=e1050]: פ
+              - generic [ref=e1051]: ש
+              - generic [ref=e1052]: ר
+            - generic [ref=e1053]:
+              - generic [ref=e1054]: ל
+              - generic [ref=e1055]: ה
+              - generic [ref=e1056]: ת
+              - generic [ref=e1057]: ע
+              - generic [ref=e1058]: ל
+              - generic [ref=e1059]: ם
+            - generic [ref=e1060]:
+              - generic [ref=e1061]: מ
+              - generic [ref=e1062]: מ
+              - generic [ref=e1063]: נ
+              - generic [ref=e1064]: ו
+              - generic [ref=e1065]: .
+          - generic [ref=e1066]:
+            - generic [ref=e1067]: ע
+            - generic [ref=e1068]: ם
+          - generic [ref=e1069]:
+            - generic [ref=e1070]: ה
+            - generic [ref=e1071]: ת
+            - generic [ref=e1072]: מ
+            - generic [ref=e1073]: ח
+            - generic [ref=e1074]: ו
+            - generic [ref=e1075]: ת
+          - generic [ref=e1076]:
+            - generic [ref=e1077]: ב
+            - generic [ref=e1078]: ס
+            - generic [ref=e1079]: ט
+            - generic [ref=e1080]: ו
+            - generic [ref=e1081]: ר
+            - generic [ref=e1082]: י
+            - generic [ref=e1083]: ט
+            - generic [ref=e1084]: ל
+            - generic [ref=e1085]: י
+            - generic [ref=e1086]: נ
+            - generic [ref=e1087]: ג
+          - generic [ref=e1088]:
+            - generic [ref=e1089]: ו
+            - generic [ref=e1090]: י
+            - generic [ref=e1091]: ז
+            - generic [ref=e1092]: ו
+            - generic [ref=e1093]: א
+            - generic [ref=e1094]: ל
+            - generic [ref=e1095]: י
+            - generic [ref=e1096]: ","
+          - generic [ref=e1097]:
+            - generic [ref=e1098]: א
+            - generic [ref=e1099]: נ
+            - generic [ref=e1100]: י
+            - generic [ref=e1101]: מ
+            - generic [ref=e1102]: צ
+            - generic [ref=e1103]: י
+            - generic [ref=e1104]: ו
+            - generic [ref=e1105]: ת
+          - generic [ref=e1106]:
+            - generic [ref=e1107]: ד
+            - generic [ref=e1108]: י
+            - generic [ref=e1109]: נ
+            - generic [ref=e1110]: מ
+            - generic [ref=e1111]: י
+            - generic [ref=e1112]: ו
+            - generic [ref=e1113]: ת
+          - generic [ref=e1114]:
+            - generic [ref=e1115]: ו
+            - generic [ref=e1116]: ק
+            - generic [ref=e1117]: ו
+            - generic [ref=e1118]: פ
+            - generic [ref=e1119]: י
+          - generic [ref=e1120]:
+            - generic [ref=e1121]: מ
+            - generic [ref=e1122]: ד
+            - generic [ref=e1123]: ו
+            - generic [ref=e1124]: י
+            - generic [ref=e1125]: ק
+          - generic [ref=e1126]:
+            - generic [ref=e1127]: א
+            - generic [ref=e1128]: נ
+            - generic [ref=e1129]: י
+          - generic [ref=e1130]:
+            - generic [ref=e1131]: י
+            - generic [ref=e1132]: ו
+            - generic [ref=e1133]: צ
+            - generic [ref=e1134]: ר
+            - generic [ref=e1135]: ת
+          - generic [ref=e1136]:
+            - generic [ref=e1137]: א
+            - generic [ref=e1138]: ת
+            - generic [ref=e1139]: ר
+            - generic [ref=e1140]: י
+            - generic [ref=e1141]: ם
+          - generic [ref=e1142]:
+            - generic [ref=e1143]: מ
+            - generic [ref=e1144]: ע
+            - generic [ref=e1145]: ו
+            - generic [ref=e1146]: ר
+            - generic [ref=e1147]: ר
+            - generic [ref=e1148]: י
+          - generic [ref=e1149]:
+            - generic [ref=e1150]: ה
+            - generic [ref=e1151]: ש
+            - generic [ref=e1152]: ר
+            - generic [ref=e1153]: א
+            - generic [ref=e1154]: ה
+            - generic [ref=e1155]: ","
+          - generic [ref=e1156]:
+            - generic [ref=e1157]: ש
+            - generic [ref=e1158]: י
+            - generic [ref=e1159]: ג
+            - generic [ref=e1160]: ר
+            - generic [ref=e1161]: מ
+            - generic [ref=e1162]: ו
+          - generic [ref=e1163]:
+            - generic [ref=e1164]: ל
+            - generic [ref=e1165]: כ
+            - generic [ref=e1166]: ל
+          - generic [ref=e1167]:
+            - generic [ref=e1168]: ל
+            - generic [ref=e1169]: ק
+            - generic [ref=e1170]: ו
+            - generic [ref=e1171]: ח
+          - generic [ref=e1172]:
+            - generic [ref=e1173]: מ
+            - generic [ref=e1174]: ת
+            - generic [ref=e1175]: ע
+            - generic [ref=e1176]: נ
+            - generic [ref=e1177]: י
+            - generic [ref=e1178]: י
+            - generic [ref=e1179]: ן
+          - generic [ref=e1180]:
+            - generic [ref=e1181]:
+              - generic [ref=e1182]: ל
+              - generic [ref=e1183]: ב
+              - generic [ref=e1184]: ח
+              - generic [ref=e1185]: ו
+              - generic [ref=e1186]: ר
+            - generic [ref=e1187]:
+              - generic [ref=e1188]: ב
+              - generic [ref=e1189]: כ
+              - generic [ref=e1190]: ם
+              - generic [ref=e1191]: .
+      - generic [ref=e1194]:
+        - heading "א י ך א ת ר מ ת ע ו ר ר ל ח י י ם ?" [level=2] [ref=e1198]:
+          - generic [ref=e1199]:
+            - generic [ref=e1200]: א
+            - generic [ref=e1201]: י
+            - generic [ref=e1202]: ך
+          - generic [ref=e1203]:
+            - generic [ref=e1204]: א
+            - generic [ref=e1205]: ת
+            - generic [ref=e1206]: ר
+          - generic [ref=e1207]:
+            - generic [ref=e1208]:
+              - generic [ref=e1209]: מ
+              - generic [ref=e1210]: ת
+              - generic [ref=e1211]: ע
+              - generic [ref=e1212]: ו
+              - generic [ref=e1213]: ר
+              - generic [ref=e1214]: ר
+            - generic [ref=e1215]:
+              - generic [ref=e1216]: ל
+              - generic [ref=e1217]: ח
+              - generic [ref=e1218]: י
+              - generic [ref=e1219]: י
+              - generic [ref=e1220]: ם
+              - generic [ref=e1221]: "?"
+        - generic [ref=e1229]:
+          - img [ref=e1232]
+          - generic [ref=e1238]:
+            - heading "הגדרת מטרות וצרכים - ללא עלות" [level=3] [ref=e1239]:
+              - generic [ref=e1240]: הגדרת מטרות וצרכים - ללא עלות
+            - paragraph [ref=e1241]:
+              - text: ניפגש
+              - generic [ref=e1242]: לפגישת איפיון של שעה ללא עלות או התחייבות
+              - text: בה נבין מה הצרכים והמטרות שלכם מהאתר ואיזו פונקציונליות נדרשת. נעבור על אתרים דומים ואציג רעיונות לפיצ’רים ופתרונות מיוחדים שיהפכו את האתר שלכם לייחודי מול המתחרים. בסיום הפגישה תקבלו איפיון כתוב והצעת מחיר מקיפה.
+        - generic [ref=e1246]:
+          - img [ref=e1249]
+          - generic [ref=e1261]:
+            - heading "אסטרטגיית מסרים וסיפור מותג" [level=3] [ref=e1262]
+            - paragraph [ref=e1263]: נגדיר יחד את המסרים שלכם, נעמיק בהבנת קהל היעד, נזקק את הערכים הייחודיים שלכם ונבדל אתכם מהמתחרים. לבסוף, אנסח קופי חד ואותנטי עם שנינות מדויקת, שמספר את הסיפור הייחודי של המותג שלכם ומעורר חיבור רגשי מיידי.
+        - generic [ref=e1267]:
+          - img [ref=e1270]
+          - generic [ref=e1277]:
+            - heading "עיצוב מדויק ובלתי נשכח" [level=3] [ref=e1278]:
+              - generic [ref=e1279]:
+                - text: עיצוב מדויק
+                - text: ובלתי נשכח
+            - paragraph [ref=e1280]: עיצוב טוב הוא לא רק יפה, הוא מעביר את המסר במבט ראשון. בשלב זה אצור עבורכם שפה גרפית מרשימה שמדויקת לבידול שלכם ולערכים שהגדרנו בשלב האיפיון. העיצוב שלי מבוסס סטוריטלינג ויזואלי - יצירת חוויה סיפורית שאפשר לראות ולא רק לקרוא, שתעביר את המסרים שלכם בצורה ברורה, זכירה וייחודית.
+        - generic [ref=e1284]:
+          - img [ref=e1287]
+          - generic [ref=e1290]:
+            - heading "תכנון אינטרקציות משתמש ותנועה" [level=3] [ref=e1291]
+            - paragraph [ref=e1292]: השלב שבו העיצוב מתעורר לחיים. האתר לא יישאר סטטי – הוא יגיב לפעולות המשתמשים וייצור חוויה מקיפה וזכירה. אבחר את האלמנטים שיעניקו לו תנועה ותגובתיות, כמו אנימציות בגלילה, תזוזת אלמנטים בלחיצה ועוד. נשלב גם גיימיפיקציה – אלמנטים משחקיים כמו מחשבונים, שאלונים ותוכן שמעודד מעורבות. באמצעות כלים אלו ניצור אתר שגורם למשתמשים לא רק לעבור על המלל, אלא להיות פעילים ולהרגיש חלק מהחוויה המלאה.
+        - generic [ref=e1296]:
+          - img [ref=e1299]
+          - generic [ref=e1303]:
+            - heading "פיתוח פונקציונלי" [level=3] [ref=e1304]
+            - paragraph [ref=e1305]: זה השלב שבו העיצוב הסטטי הופך לאתר חי, דינמי ומרשים. באמצעות פלטפורמות WordPress ו-Elementor, לצד תוספי פרימיום והתאמות קוד חכמות, נבנה אתר רספונסיבי ומדויק לצרכים שלכם. נפתח מערכות הזנת תוכן מותאמות וקלות לתפעול שיספקו לכם שליטה מלאה על האתר ויאפשרו לכם לעדכן תכנים עצמאית גם בעתיד.
+        - generic [ref=e1309]:
+          - img [ref=e1312]
+          - generic [ref=e1316]:
+            - heading "בדיקות איכות והדרכה" [level=3] [ref=e1317]
+            - paragraph [ref=e1318]:
+              - text: רגע לפני העלייה הרשמית לאוויר, האתר יעבור בדיקות איכות יסודיות כדי לוודא תפקוד שוטף תקין ללא דאגות. לאחר מכן תקבלו הדרכה מלאה לניהול האתר, תפעול שלו ועדכון שלו בשגרה. בנוסף, כדי להבטיח השקה חלקה של האתר, תהנו
+              - generic [ref=e1319]: מחודש אחריות
+              - text: על האתר וטיפול בבאגים ותקלות שונות לפי הצורך.
+      - generic [ref=e1320]:
+        - heading "ה א ת ר י ם ש ל כ ם ס ל ב ס !" [level=2] [ref=e1324]:
+          - generic [ref=e1325]:
+            - generic [ref=e1326]: ה
+            - generic [ref=e1327]: א
+            - generic [ref=e1328]: ת
+            - generic [ref=e1329]: ר
+            - generic [ref=e1330]: י
+            - generic [ref=e1331]: ם
+          - generic [ref=e1332]:
+            - generic [ref=e1333]: ש
+            - generic [ref=e1334]: ל
+            - generic [ref=e1335]: כ
+            - generic [ref=e1336]: ם
+          - generic [ref=e1338]:
+            - generic [ref=e1339]: ס
+            - generic [ref=e1340]: ל
+            - generic [ref=e1341]: ב
+            - generic [ref=e1342]: ס
+            - generic [ref=e1343]: "!"
+        - generic [ref=e1344]:
+          - heading "רוצים שגם לעסק שלכם יהיה אתר שאי אפשר להפסיק לדבר עליו?" [level=2] [ref=e1347]
+          - link "בואו נדבר" [ref=e1350] [cursor=pointer]:
+            - /url: https://wa.link/ep41na
+            - generic [ref=e1352]:
+              - img [ref=e1353]
+              - generic [ref=e1358]: בואו נדבר
+        - generic [ref=e1365]:
+          - generic [ref=e1368]:
+            - generic [ref=e1369]:
+              - generic [ref=e1375]:
+                - img [ref=e1377]
+                - generic [ref=e1382]: אקטיב טרייל
+              - generic [ref=e1387]: דף נחיתה ארכיטק
+            - link [ref=e1390]:
+              - /url: https://www.activetrail.co.il/blog/tips_updates/%D7%A1%D7%A7%D7%A8%D7%A0%D7%95-%D7%95%D7%92%D7%99%D7%9C%D7%A0%D7%95-%D7%A7%D7%95%D7%A8%D7%A1-%D7%94%D7%98%D7%99%D7%99%D7%A1-%D7%94%D7%90%D7%95%D7%98%D7%95%D7%9E%D7%98%D7%99-%D7%9E%D7%91%D7%99/
+              - generic [ref=e1392]:
+                - img [ref=e1393]
+                - generic [ref=e1398]: מעבר לאתר הכתבה
+          - generic [ref=e1401]:
+            - generic [ref=e1402]:
+              - generic [ref=e1408]:
+                - img [ref=e1410]
+                - generic [ref=e1415]: מעריב
+              - generic [ref=e1420]: אתר לחיות ת’חלום
+            - link [ref=e1423]:
+              - /url: https://www.maariv.co.il/news/israel/article-1127301
+              - generic [ref=e1425]:
+                - img [ref=e1426]
+                - generic [ref=e1431]: מעבר לאתר הכתבה
+          - generic [ref=e1434]:
+            - generic [ref=e1435]:
+              - generic [ref=e1441]:
+                - img [ref=e1443]
+                - generic [ref=e1448]: וואלה
+              - generic [ref=e1453]: עיצוב אפליקציית PAYDAY
+            - link [ref=e1456]:
+              - /url: https://home.walla.co.il/item/3613025
+              - generic [ref=e1458]:
+                - img [ref=e1459]
+                - generic [ref=e1464]: מעבר לאתר הכתבה
+          - generic [ref=e1467]:
+            - generic [ref=e1468]:
+              - generic [ref=e1474]:
+                - img [ref=e1476]
+                - generic [ref=e1481]: The Times
+              - generic [ref=e1486]: אתר טעם של בית
+            - link "מעבר לאתר הכתבה" [ref=e1489]:
+              - /url: https://www.timesofisrael.com/for-purim-hostage-families-share-loved-ones-favorite-cookie-recipes/
+              - generic [ref=e1491]:
+                - img [ref=e1492]
+                - generic [ref=e1497]: מעבר לאתר הכתבה
+          - generic [ref=e1500]:
+            - generic [ref=e1501]:
+              - generic [ref=e1507]:
+                - img [ref=e1509]
+                - generic [ref=e1514]: ידיעות אחרונות
+              - generic [ref=e1519]: אתר טעם של בית
+            - link "מעבר לאתר הכתבה" [ref=e1522]:
+              - /url: https://kibbutz.mynet.co.il/local_news/article/adf464srk
+              - generic [ref=e1524]:
+                - img [ref=e1525]
+                - generic [ref=e1530]: מעבר לאתר הכתבה
+          - generic [ref=e1533]:
+            - generic [ref=e1534]:
+              - generic [ref=e1540]:
+                - img [ref=e1542]
+                - generic [ref=e1547]: אקטיב טרייל
+              - generic [ref=e1552]: דף נחיתה ארכיטק
+            - link "מעבר לאתר הכתבה" [ref=e1555]:
+              - /url: https://www.activetrail.co.il/blog/tips_updates/%D7%A1%D7%A7%D7%A8%D7%A0%D7%95-%D7%95%D7%92%D7%99%D7%9C%D7%A0%D7%95-%D7%A7%D7%95%D7%A8%D7%A1-%D7%94%D7%98%D7%99%D7%99%D7%A1-%D7%94%D7%90%D7%95%D7%98%D7%95%D7%9E%D7%98%D7%99-%D7%9E%D7%91%D7%99/
+              - generic [ref=e1557]:
+                - img [ref=e1558]
+                - generic [ref=e1563]: מעבר לאתר הכתבה
+          - generic [ref=e1566]:
+            - generic [ref=e1567]:
+              - generic [ref=e1573]:
+                - img [ref=e1575]
+                - generic [ref=e1580]: מעריב
+              - generic [ref=e1585]: אתר לחיות ת’חלום
+            - link [ref=e1588]:
+              - /url: https://www.maariv.co.il/news/israel/article-1127301
+              - generic [ref=e1590]:
+                - img [ref=e1591]
+                - generic [ref=e1596]: מעבר לאתר הכתבה
+          - generic [ref=e1599]:
+            - generic [ref=e1600]:
+              - generic [ref=e1606]:
+                - img [ref=e1608]
+                - generic [ref=e1613]: וואלה
+              - generic [ref=e1618]: עיצוב אפליקציית PAYDAY
+            - link [ref=e1621]:
+              - /url: https://home.walla.co.il/item/3613025
+              - generic [ref=e1623]:
+                - img [ref=e1624]
+                - generic [ref=e1629]: מעבר לאתר הכתבה
+          - generic [ref=e1632]:
+            - generic [ref=e1633]:
+              - generic [ref=e1639]:
+                - img [ref=e1641]
+                - generic [ref=e1646]: The Times
+              - generic [ref=e1651]: אתר טעם של בית
+            - link [ref=e1654]:
+              - /url: https://www.timesofisrael.com/for-purim-hostage-families-share-loved-ones-favorite-cookie-recipes/
+              - generic [ref=e1656]:
+                - img [ref=e1657]
+                - generic [ref=e1662]: מעבר לאתר הכתבה
+          - generic [ref=e1665]:
+            - generic [ref=e1666]:
+              - generic [ref=e1672]:
+                - img [ref=e1674]
+                - generic [ref=e1679]: ידיעות אחרונות
+              - generic [ref=e1684]: אתר טעם של בית
+            - link [ref=e1687]:
+              - /url: https://kibbutz.mynet.co.il/local_news/article/adf464srk
+              - generic [ref=e1689]:
+                - img [ref=e1690]
+                - generic [ref=e1695]: מעבר לאתר הכתבה
+          - generic [ref=e1698]:
+            - generic [ref=e1699]:
+              - generic [ref=e1705]:
+                - img [ref=e1707]
+                - generic [ref=e1712]: אקטיב טרייל
+              - generic [ref=e1717]: דף נחיתה ארכיטק
+            - link [ref=e1720]:
+              - /url: https://www.activetrail.co.il/blog/tips_updates/%D7%A1%D7%A7%D7%A8%D7%A0%D7%95-%D7%95%D7%92%D7%99%D7%9C%D7%A0%D7%95-%D7%A7%D7%95%D7%A8%D7%A1-%D7%94%D7%98%D7%99%D7%99%D7%A1-%D7%94%D7%90%D7%95%D7%98%D7%95%D7%9E%D7%98%D7%99-%D7%9E%D7%91%D7%99/
+              - generic [ref=e1722]:
+                - img [ref=e1723]
+                - generic [ref=e1728]: מעבר לאתר הכתבה
+          - generic [ref=e1731]:
+            - generic [ref=e1732]:
+              - generic [ref=e1738]:
+                - img [ref=e1740]
+                - generic [ref=e1745]: מעריב
+              - generic [ref=e1750]: אתר לחיות ת’חלום
+            - link [ref=e1753]:
+              - /url: https://www.maariv.co.il/news/israel/article-1127301
+              - generic [ref=e1755]:
+                - img [ref=e1756]
+                - generic [ref=e1761]: מעבר לאתר הכתבה
+          - generic [ref=e1764]:
+            - generic [ref=e1765]:
+              - generic [ref=e1771]:
+                - img [ref=e1773]
+                - generic [ref=e1778]: וואלה
+              - generic [ref=e1783]: עיצוב אפליקציית PAYDAY
+            - link [ref=e1786]:
+              - /url: https://home.walla.co.il/item/3613025
+              - generic [ref=e1788]:
+                - img [ref=e1789]
+                - generic [ref=e1794]: מעבר לאתר הכתבה
+          - generic [ref=e1797]:
+            - generic [ref=e1798]:
+              - generic [ref=e1804]:
+                - img [ref=e1806]
+                - generic [ref=e1811]: The Times
+              - generic [ref=e1816]: אתר טעם של בית
+            - link [ref=e1819]:
+              - /url: https://www.timesofisrael.com/for-purim-hostage-families-share-loved-ones-favorite-cookie-recipes/
+              - generic [ref=e1821]:
+                - img [ref=e1822]
+                - generic [ref=e1827]: מעבר לאתר הכתבה
+      - link [ref=e1834] [cursor=pointer]:
+        - /url: "#hero"
+        - img [ref=e1835]
+  - contentinfo [ref=e1839]:
+    - generic [ref=e1841]:
+      - generic [ref=e1842]:
+        - generic [ref=e1843]:
+          - heading "השאירו פרטים בטופס לקביעת פגישת איפיון ללא עלות:" [level=2] [ref=e1846]
+          - form "טופס חדש" [ref=e1849]:
+            - generic [ref=e1850]:
+              - generic [ref=e1851]:
+                - text: 
+                - textbox "שם מלא" [ref=e1852]
+              - generic [ref=e1853]:
+                - text: 
+                - textbox "מותר להשתמש רק במספרים ותווי טלפון (#, -, *, וכו')." [ref=e1854]:
+                  - /placeholder: מספר טלפון
+              - generic [ref=e1855]:
+                - text: 
+                - textbox "אימייל" [ref=e1856]
+              - generic [ref=e1857]:
+                - text: 
+                - textbox "שם העסק" [ref=e1858]
+              - generic [ref=e1859]:
+                - text: 
+                - generic [ref=e1860] [cursor=pointer]: הודעה
+                - textbox "הודעה" [ref=e1861]:
+                  - /placeholder: "ממש אשמח להכיר קצת את העסק! אם יש לינקים לאתר קיים/סושיאל מוזמנים לצרף גם:"
+              - generic [ref=e1864]:
+                - checkbox "עם שליחת הטופס אתם מסכימים ליצירת קשר וקבלת דיוור ועדכונים בהתאם למדיניות הפרטיות" [ref=e1865]
+                - generic [ref=e1866]:
+                  - text: עם שליחת הטופס אתם מסכימים ליצירת קשר וקבלת דיוור ועדכונים בהתאם ל
+                  - link "מדיניות הפרטיות" [ref=e1867] [cursor=pointer]:
+                    - /url: https://shiruziel.com/privacy-policy/
+              - button "שלח טופס" [ref=e1869] [cursor=pointer]:
+                - generic [ref=e1870]:
+                  - img [ref=e1872]
+                  - generic [ref=e1878]: שלח טופס
+        - list [ref=e1883]:
+          - listitem [ref=e1884]:
+            - link "הצהרת נגישות" [ref=e1885] [cursor=pointer]:
+              - /url: https://shiruziel.com/%d7%94%d7%a6%d7%94%d7%a8%d7%aa-%d7%94%d7%a0%d7%92%d7%99%d7%a9%d7%95%d7%aa/
+              - generic [ref=e1886]: הצהרת נגישות
+          - listitem [ref=e1887]:
+            - link "תקנון ותנאי שימוש" [ref=e1888] [cursor=pointer]:
+              - /url: https://shiruziel.com/privacy-policy/
+              - generic [ref=e1889]: תקנון ותנאי שימוש
+      - generic [ref=e1890]:
+        - heading "ב ו א ו נ ס פ ר א ת ה ס י פ ו ר ש ל כ ם י ח ד ." [level=2] [ref=e1894]:
+          - generic [ref=e1895]:
+            - generic [ref=e1896]: ב
+            - generic [ref=e1897]: ו
+            - generic [ref=e1898]: א
+            - generic [ref=e1899]: ו
+          - generic [ref=e1900]:
+            - generic [ref=e1901]: נ
+            - generic [ref=e1902]: ס
+            - generic [ref=e1903]: פ
+            - generic [ref=e1904]: ר
+          - generic [ref=e1905]:
+            - generic [ref=e1906]: א
+            - generic [ref=e1907]: ת
+          - generic [ref=e1908]:
+            - generic [ref=e1909]:
+              - generic [ref=e1910]: ה
+              - generic [ref=e1911]: ס
+              - generic [ref=e1912]: י
+              - generic [ref=e1913]: פ
+              - generic [ref=e1914]: ו
+              - generic [ref=e1915]: ר
+            - generic [ref=e1916]:
+              - generic [ref=e1917]: ש
+              - generic [ref=e1918]: ל
+              - generic [ref=e1919]: כ
+              - generic [ref=e1920]: ם
+            - generic [ref=e1921]:
+              - generic [ref=e1922]: י
+              - generic [ref=e1923]: ח
+              - generic [ref=e1924]: ד
+              - generic [ref=e1925]: .
+        - generic [ref=e1926]:
+          - heading "צרו קשר" [level=2] [ref=e1929]
+          - list [ref=e1932]:
+            - listitem [ref=e1933]:
+              - link "054-5082381" [ref=e1934] [cursor=pointer]:
+                - /url: tel:972545082381
+                - img [ref=e1936]
+                - generic [ref=e1939]: 054-5082381
+            - listitem [ref=e1940]:
+              - link "info@shiruziel.com" [ref=e1941] [cursor=pointer]:
+                - /url: mailto:info@shiruziel.com
+                - img [ref=e1943]
+                - generic [ref=e1947]: info@shiruziel.com
+          - list [ref=e1950]:
+            - listitem [ref=e1951]:
+              - link [ref=e1952] [cursor=pointer]:
+                - /url: https://www.instagram.com/shir_uziel/
+                - img [ref=e1954]
+            - listitem [ref=e1964]:
+              - link [ref=e1965] [cursor=pointer]:
+                - /url: https://www.facebook.com/shir.uziel.9/
+                - img [ref=e1967]
+            - listitem [ref=e1969]:
+              - link [ref=e1970] [cursor=pointer]:
+                - /url: https://www.linkedin.com/in/shir-uziel-957b90219/
+                - img [ref=e1972]
+            - listitem [ref=e1974]:
+              - link [ref=e1975] [cursor=pointer]:
+                - /url: https://www.youtube.com/@shir_uziel
+                - img [ref=e1977]
+        - generic [ref=e1980]:
+          - heading "ניווט באתר" [level=2] [ref=e1983]
+          - generic [ref=e1984]:
+            - list [ref=e1987]:
+              - listitem [ref=e1988]:
+                - link "עמוד הבית" [ref=e1989] [cursor=pointer]:
+                  - /url: https://shiruziel.com
+                  - generic [ref=e1990]: עמוד הבית
+              - listitem [ref=e1991]:
+                - link "פרוייקטים נבחרים" [ref=e1992] [cursor=pointer]:
+                  - /url: https://shiruziel.com/work/
+                  - generic [ref=e1993]: פרוייקטים נבחרים
+            - list [ref=e1996]:
+              - listitem [ref=e1997]:
+                - link "תקשורת והרצאות" [ref=e1998] [cursor=pointer]:
+                  - /url: https://shiruziel.com/%d7%aa%d7%a7%d7%a9%d7%95%d7%a8%d7%aa-%d7%95%d7%94%d7%a8%d7%a6%d7%90%d7%95%d7%aa/
+                  - generic [ref=e1999]: תקשורת והרצאות
+              - listitem [ref=e2000]:
+                - link "הדרכות לבוני אתרים" [ref=e2001] [cursor=pointer]:
+                  - /url: https://school.shiruziel.com/
+                  - generic [ref=e2002]: הדרכות לבוני אתרים
+  - link "פתח צ'אט וואטסאפ" [ref=e2006] [cursor=pointer]:
+    - /url: https://wa.me/972545082381
+    - img [ref=e2007]
+  - generic [ref=e2009]: desktop

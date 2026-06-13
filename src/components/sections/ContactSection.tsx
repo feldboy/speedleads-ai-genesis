@@ -53,21 +53,22 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gray-100">
+    <section id="contact" className="py-20 relative overflow-hidden">
+
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 px-4 sm:px-0" data-aos="fade-up">מוכנים לקחת את העסק שלכם לשלב הבא?</h2>
-          <div className="w-24 h-1 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] mx-auto mb-8" />
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0" data-aos="fade-up" data-aos-delay="100">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl mb-4 px-4 sm:px-0 text-white" data-aos="fade-up">מוכנים לקחת את העסק שלכם לשלב הבא?</h2>
+          <div className="w-24 h-1 bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] mx-auto mb-8" />
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4 sm:px-0" data-aos="fade-up" data-aos-delay="100">
             מלאו את הפרטים ונחזור אליכם בהקדם לשיחת ייעוץ ללא התחייבות
           </p>
         </div>
         
         <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch px-4 lg:px-0">
           <div data-aos="fade-right" className="flex">
-            <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6 sm:p-8 w-full flex flex-col">
+            <form onSubmit={handleSubmit} className="glass-liquid rounded-2xl p-6 sm:p-8 w-full flex flex-col">
               <div className="mb-6">
-                <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">שם מלא *</label>
+                <label htmlFor="fullName" className="block text-sm font-medium text-gray-300 mb-1">שם מלא *</label>
                 <Input
                   id="fullName"
                   name="fullName"
@@ -81,7 +82,7 @@ const ContactSection = () => {
               </div>
               
               <div className="mb-6">
-                <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">שם החברה (אופציונלי)</label>
+                <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">שם החברה (אופציונלי)</label>
                 <Input
                   id="company"
                   name="company"
@@ -94,7 +95,7 @@ const ContactSection = () => {
               </div>
               
               <div className="mb-6">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">אימייל *</label>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">אימייל *</label>
                 <Input
                   id="email"
                   name="email"
@@ -108,7 +109,7 @@ const ContactSection = () => {
               </div>
               
               <div className="mb-6">
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">טלפון *</label>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">טלפון *</label>
                 <Input
                   id="phone"
                   name="phone"
@@ -122,13 +123,13 @@ const ContactSection = () => {
               </div>
               
               <div className="mb-6">
-                <label htmlFor="interest" className="block text-sm font-medium text-gray-700 mb-1">במה אתה מתעניין?</label>
+                <label htmlFor="interest" className="block text-sm font-medium text-gray-300 mb-1">במה אתה מתעניין?</label>
                 <select
                   id="interest"
                   name="interest"
                   value={formData.interest}
                   onChange={handleChange}
-                  className="w-full rounded-md border border-gray-300 px-3 py-3 min-h-[44px] text-base focus:outline-none focus:ring-2 focus:ring-tech-blue focus:border-transparent"
+                  className="w-full rounded-md glass-input px-3 py-3 min-h-[44px] text-base"
                 >
                   <option value="general">ייעוץ כללי</option>
                   <option value="website">בניית אתר</option>
@@ -140,7 +141,7 @@ const ContactSection = () => {
               </div>
               
               <div className="mb-6">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">הודעה</label>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">הודעה</label>
                 <Textarea
                   id="message"
                   name="message"
@@ -157,7 +158,7 @@ const ContactSection = () => {
               <Button
                 id="submit_contact_form_button"
                 type="submit"
-                className="w-full bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold min-h-[44px] text-base"
+                className="w-full bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] hover:brightness-110 text-white font-bold min-h-[44px] text-base shadow-glow-blue transition-shadow duration-500"
                 disabled={loading}
               >
                 {loading ? (
@@ -172,13 +173,13 @@ const ContactSection = () => {
                 ) : 'שלח פנייה'}
               </Button>
               
-              <p className="text-xs text-gray-500 mt-4 text-center">
+              <p className="text-xs text-gray-400 mt-4 text-center">
                 * שדות חובה
               </p>
             </form>
           </div>
           
-          <div className="bg-dark text-white rounded-lg shadow-lg p-6 sm:p-8 flex flex-col" data-aos="fade-left">
+          <div className="glass-liquid text-white rounded-2xl p-6 sm:p-8 flex flex-col" data-aos="fade-left">
             <h3 className="text-xl sm:text-2xl font-bold mb-6">דרכי התקשרות נוספות</h3>
             
             <div className="space-y-6 flex-grow">

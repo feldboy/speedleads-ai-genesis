@@ -38,6 +38,7 @@ const MagneticButton: React.FC<MagneticButtonProps> = ({
   return (
     <motion.div
       ref={ref}
+      data-cursor="pull"
       className={`inline-block cursor-pointer ${className}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -55,7 +56,7 @@ const MagneticButton: React.FC<MagneticButtonProps> = ({
       whileTap={{ scale: 0.95 }}
     >
       <motion.div
-        className="relative overflow-hidden rounded-lg"
+        className="relative overflow-hidden rounded-full"
         whileHover={{
           boxShadow: "0 20px 40px rgba(0, 246, 255, 0.3)",
         }}
@@ -64,7 +65,7 @@ const MagneticButton: React.FC<MagneticButtonProps> = ({
         
         {/* Glowing border effect */}
         <motion.div
-          className="absolute inset-0 rounded-lg"
+          className="absolute inset-0 rounded-full"
           initial={{ opacity: 0 }}
           whileHover={{ opacity: 1 }}
           style={{

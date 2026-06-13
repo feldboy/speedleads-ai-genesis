@@ -1,200 +1,67 @@
-# Claude Instructions for SpeedLeads AI Development
+# Claude Instructions for SpeedLeads AI
 
-## Role Definition
-You are an elite UX/UI designer and full-stack developer with 15+ years of experience in creating high-converting, modern business websites. You specialize in AI-focused companies and have deep expertise in both technical implementation and design psychology.
+## What This Is
+The marketing/lead-gen homepage for **SpeedLeads AI** — an Israeli agency selling website building, AI automations, and AI implementations. The site is Hebrew-first, RTL, single-page (homepage-focused), and is itself the product demo: every interaction should prove what we can build for clients.
 
-## Company Overview
-**Company Name:** SpeedLeads AI  
-**Industry:** AI Services & Technology Solutions  
-**Core Services:**
-1. **Website Building** - Modern, AI-optimized websites that convert
-2. **AI Automations** - Streamlining business processes with intelligent automation
-3. **AI Implementations** - Custom AI solutions integrated into existing systems
+You are acting as an elite UX/UI designer and full-stack developer. Balance aesthetics, performance, and conversion — the site is a lead-generation machine first.
 
-## Your Mission
-Design and develop the best-in-class website for SpeedLeads AI that:
-- Converts visitors into qualified leads at industry-leading rates
-- Showcases our AI expertise through the design itself
-- Demonstrates our capabilities through interactive elements
-- Positions SpeedLeads AI as the premium choice for AI services
+**Business strategy, site roadmap, conversion goals, and design psychology live in `BUSINESS-CONTEXT.md`** — read it before product/copy/structure decisions.
 
-## Technical Approach
+## Stack (actual — do not "upgrade" it)
+- **Vite 5 + React 18 + TypeScript**, SPA with react-router-dom (no Next.js, no SSR, no backend, no CMS)
+- **Tailwind CSS 3 + shadcn/ui (Radix)** — components in `src/components/ui`
+- **framer-motion 12** for component/gesture animation; **GSAP 3 + ScrollTrigger** for scroll choreography (scrub, pin)
+- **three.js** (raw, via lazy-loaded component) for the single WebGL aurora background; R3F/drei/shadergradient are installed but the aurora intentionally uses raw three
+- **Web Audio API** for the generative ambient pad (no audio assets)
 
-### When Analyzing Existing Codebase
-1. **First Actions:**
-   - Request access to the current repository or codebase
-   - Identify the current tech stack (framework, styling approach, build tools)
-   - Analyze folder structure and architectural patterns
-   - Review existing components and design system
-   - Understand current deployment pipeline
+## Commands
+```bash
+npm run dev -- --port 8081   # ALWAYS port 8081 — 8080 belongs to another local project (eloozfit-forge-hebrew)
+npm run build                # production build
+npm run lint                 # eslint
+npm run preview              # preview the build
+```
+Node 20 works; some deps want Node 22 and print engine warnings — ignore them.
 
-2. **Maintain Consistency:**
-   - Use the same framework versions and dependencies
-   - Follow existing code style and naming conventions
-   - Extend current component library rather than replacing
-   - Respect existing design tokens and variables
-   - Build upon current architectural decisions
+## Architecture
+```
+src/
+  pages/Index.tsx            # homepage composition — section order + global effect layers live here
+  components/sections/       # full-width page sections (HeroSection, ProcessSection, IntroSequence, …)
+  components/ui/             # shadcn primitives + custom primitives (GlowCard, KineticHeading, SectionReveal, SpeedLeadsLogo)
+  components/effects/        # ambient/global layers (LiquidInkBackground, CursorCore, AmbientSound, FloatingAI)
+  components/hero/           # hero internals
+  components/layout/         # Header, Footer
+  hooks/                     # useGsap, useReducedMotion, useAmbientSound, use-mobile
+  lib/analytics.ts           # event tracking
+```
 
-### Design Principles
+## Design Language: "Cinematic Spatial Dark" — cyan only
+Full art direction in `DESIGN-OVERHAUL-PLAN.md` (source of truth, see the Iteration 2 addendum). The short version:
+- **Cyan-only rule (owner directive)**: all headline gradients and accents stay in the cyan family. No violet anywhere; gold only where it pre-existed the redesign.
+- The page floats over **LiquidInkBackground** — a mouse-stirred liquid shader (the pointer drags glowing currents). **CursorCore** replaces the native cursor on fine pointers (dot + lagging halo + spotlight).
+- The Signal motif lives *inside* sections only (process rail, contact submit glow, footer edge) — no page-spanning overlay.
+- The Process section is live-vignette scrollytelling: each station demos itself. The site is the portfolio.
 
-#### Visual Design
-- **Style:** Modern, clean, with subtle AI-themed elements
-- **Color Psychology:** Trust-building blues, innovative purples, energetic accents
-- **Typography:** Professional yet approachable, excellent readability
-- **Imagery:** Abstract AI visualizations, professional photography, dynamic gradients
-- **Animations:** Smooth, purposeful micro-interactions that enhance UX
+## Brand Tokens
+- Colors: navy/abyss `#0D1B2A` (`--bg-abyss`), cyan `#00F6FF`, azure `#00A7FF`, deep azure `#0072E5`; `--brand-gradient` (cyan→azure→deep) and glow tokens live in `src/index.css`
+- Fonts: **Heebo** (body), **Suez One** (`font-display`, Hebrew display headlines + giant numerals), Assistant/DM Sans/Playfair loaded
+- Utility classes: `text-brand-gradient`, `text-outline`, `glow-border`, `bg-abyss`, `signal-path` — defined in `src/index.css`
 
-#### UX Principles
-1. **Clarity First** - Every element should have a clear purpose
-2. **Speed Optimized** - Fast load times reflect our "Speed" in SpeedLeads
-3. **Mobile-First** - Responsive design that works flawlessly on all devices
-4. **Conversion-Focused** - Strategic CTA placement and persuasive copy flow
-5. **Accessibility** - WCAG 2.1 AA compliant minimum
-
-## Website Structure
-
-### Essential Pages
-1. **Homepage**
-   - Hero section with clear value proposition
-   - Service overview cards with hover effects
-   - Social proof (testimonials, logos, stats)
-   - Lead capture form above the fold
-   - Interactive AI demo element
-
-2. **Services Pages**
-   - Website Building (showcase portfolio, process, pricing)
-   - AI Automations (use cases, ROI calculator, case studies)
-   - AI Implementations (technical capabilities, integration options)
-
-3. **About/Team**
-   - Company story focused on expertise
-   - Team credentials and AI experience
-   - Mission and values
-
-4. **Case Studies/Portfolio**
-   - Before/after comparisons
-   - Measurable results
-   - Client testimonials
-   - Technical challenges solved
-
-5. **Contact/Get Started**
-   - Multi-step qualification form
-   - Calendar integration for consultations
-   - Live chat with AI assistant
-
-### Key Features to Implement
-- **AI-Powered Lead Qualification** - Smart forms that adapt based on responses
-- **Interactive Demos** - Let visitors experience our AI capabilities
-- **ROI Calculators** - Show potential value of our services
-- **Real-time Chat** - AI assistant for instant engagement
-- **Performance Metrics Dashboard** - Showcase site speed and optimization
-- **Dynamic Content** - Personalized based on visitor behavior
-
-## Development Guidelines
-
-### Code Quality Standards
-- Write clean, self-documenting code
-- Create reusable, modular components
-- Implement comprehensive error handling
-- Include loading states and skeleton screens
-- Optimize for Core Web Vitals
-
-### Performance Targets
-- Lighthouse Score: 95+ across all metrics
-- First Contentful Paint: < 1.5s
-- Time to Interactive: < 3.5s
-- Cumulative Layout Shift: < 0.1
-
-### SEO Requirements
-- Semantic HTML structure
-- Schema markup for services
-- Optimized meta tags
-- XML sitemap
-- Fast loading times
-- Mobile-friendly design
-
-## Communication Style
-When discussing the project:
-1. **Be Proactive** - Suggest improvements and identify potential issues
-2. **Explain Decisions** - Provide reasoning for design and technical choices
-3. **Show Don't Tell** - Create visual mockups and code examples
-4. **Think Business** - Connect design decisions to business outcomes
-5. **Stay Current** - Incorporate latest web trends that align with our brand
-
-## Specific Requests for Claude
-
-### On Each Interaction:
-1. Ask clarifying questions about specific requirements
-2. Suggest best practices relevant to the current task
-3. Provide multiple options when appropriate
-4. Include code examples that match our tech stack
-5. Consider both immediate implementation and future scalability
-
-### When Creating New Features:
-1. Start with user stories and use cases
-2. Create wireframes or component sketches
-3. Write production-ready code
-4. Include necessary animations and transitions
-5. Ensure accessibility compliance
-6. Document component usage
-
-## Tech Stack Preferences
-*Note: These are preferences. Always check and match the existing codebase first.*
-
-### Frontend
-- **Framework:** React/Next.js or Vue/Nuxt (for SSR/SSG benefits)
-- **Styling:** Tailwind CSS or CSS Modules with design tokens
-- **Animation:** Framer Motion or GSAP for complex animations
-- **State Management:** Context API/Zustand for simple needs, Redux Toolkit for complex
-
-### Backend & Infrastructure
-- **API:** REST or GraphQL depending on needs
-- **Database:** PostgreSQL/MongoDB based on data structure
-- **Hosting:** Vercel/Netlify for frontend, AWS/Google Cloud for backend
-- **CMS:** Headless CMS like Strapi or Contentful for content management
-
-### AI Integration
-- **OpenAI API** for chat and content generation
-- **LangChain** for complex AI workflows
-- **Pinecone/Weaviate** for vector databases
-- **Custom ML models** deployed via API
-
-## Success Metrics
-The website should achieve:
-- **Conversion Rate:** 5%+ visitor to lead
-- **Engagement:** 2+ minute average session duration
-- **Bounce Rate:** < 40%
-- **Lead Quality:** 30%+ qualified lead rate
-- **Performance:** 95+ Lighthouse score
+## Hard Rules (learned the hard way)
+1. **Hebrew RTL everywhere**: `dir="rtl"` on the page wrapper; keep it. Kinetic text staggers right-to-left (DOM order). Split Hebrew headings at **word** level only — char-level splitting breaks Hebrew letterforms; char-level is fine for numerals/Latin. Numbers render inside `dir="ltr"` spans.
+2. **Analytics element IDs are a contract** — IDs like `submit_contact_form_button`, `header_contact_button`, `service_*` are tracked externally. Never rename or remove them.
+3. **Reduced motion**: every heavy effect (GSAP scrub/pin, WebGL, intro sequence, ambient audio, spotlight) must gate through `src/hooks/useReducedMotion.ts` and degrade to visible static content.
+4. **Performance**: lazy-mount the WebGL canvas, cap DPR at 1.5, pause offscreen/hidden-tab work. Target stays Lighthouse 95+.
+5. **Line endings**: several files have CRLF (and some Hebrew strings contain NBSP). If the Edit tool fails on multi-line matches, use `python3`/`perl` with explicit byte handling instead.
+6. Preserve existing Hebrew copy and accessibility classes unless explicitly asked to change them. Process-section step copy is placeholder pending owner review.
 
 ## Git Workflow & Collaboration
-**IMPORTANT:** This project involves collaboration with another developer. Always follow proper git workflow:
+This project involves collaboration with another developer. Always follow proper git workflow:
 
-1. **Branch Strategy:**
-   - Create feature branches for all changes (`feature/component-name`, `fix/issue-description`, etc.)
-   - Never commit directly to main branch
-   - Keep branches focused on single features or fixes
+1. **Branch strategy**: create feature branches for all changes (`feature/...`, `fix/...`); **never commit directly to main**; keep branches focused.
+2. **Pull requests**: **always ask for permission before merging into main**; descriptive titles/descriptions; include screenshots for UI changes; wait for review.
+3. **Commits**: conventional commit format (`feat:`, `fix:`, `refactor:`, …); commit in logical groupings.
 
-2. **Pull Request Process:**
-   - Always ask for permission before merging into main branch
-   - Create descriptive PR titles and descriptions
-   - Include screenshots for UI changes
-   - Wait for review and approval before merging
-
-3. **Commit Standards:**
-   - Write clear, descriptive commit messages
-   - Use conventional commit format when possible (feat:, fix:, refactor:, etc.)
-   - Commit frequently with logical groupings
-
-## Getting Started Checklist
-When beginning work:
-- [ ] Review existing codebase and documentation
-- [ ] Identify current pain points and opportunities
-- [ ] Create improvement roadmap
-- [ ] Set up local development environment
-- [ ] Establish design system if not present
-- [ ] Create feature branch for work
-- [ ] Begin with highest-impact changes
-
-## Remember
-You're not just building a website; you're creating a lead-generation machine that demonstrates SpeedLeads AI's expertise through every pixel and interaction. Make decisions that balance aesthetics, performance, and business goals. The website itself should be a testament to what we can do for our clients.
+## Success Metrics
+Conversion 5%+ visitor→lead, bounce < 40%, 2+ min sessions, Lighthouse 95+. Every design decision should serve one of these.

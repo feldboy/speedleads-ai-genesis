@@ -1,107 +1,139 @@
 import { Button } from "@/components/ui/button";
 import MagneticButton from "@/components/effects/MagneticButton";
+import SpeedLeadsLogo from "@/components/ui/SpeedLeadsLogo";
+import GlowCard from "@/components/ui/GlowCard";
 
-interface About3Props {
-  title?: string;
-  description?: string;
-  mainImage?: { src: string; alt: string };
-  secondaryImage?: { src: string; alt: string };
-}
-
-const features = [
-  {
-    n: "01",
-    title: "שירות אישי",
-    subtitle: "שותפות אמיתית",
-    body: "מנהל פרויקט ייעודי, זמינות גבוהה ותמיכה הרבה אחרי ההשקה — שותפים שלכם בכל שלב.",
-    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=300&fit=crop&auto=format&q=80",
-  },
-  {
-    n: "02",
-    title: "אסטרטגיה",
-    subtitle: "תוצאות מדידות",
-    body: "מגדירים את המוצר יחד, בונים MVP מהיר ומניעים צמיחה דרך איטרציות מבוססות נתונים.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=300&fit=crop&auto=format&q=80",
-  },
-  {
-    n: "03",
-    title: "איכות וביצועים",
-    subtitle: "מהיר, יציב, מאובטח",
-    body: "בנייה לפי הסטנדרטים הגבוהים ביותר — בדיקות אוטומטיות, אבטחה מקיפה וזמני טעינה מהירים.",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=300&fit=crop&auto=format&q=80",
-  },
-  {
-    n: "04",
-    title: "שקיפות מלאה",
-    subtitle: "אתם על ההגה",
-    body: "גישה מלאה לקוד המקור, תשתית ודוחות התקדמות. מידע מלא ותהליכי החלטה שקופים.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=300&fit=crop&auto=format&q=80",
-  },
-];
-
-export const About3 = ({
-  title = "למה SpeedLeads.AI?",
-  description = "פתרונות AI מתקדמים שחוסכים זמן, משפרים דיוק ומאפשרים לכם להתמקד במה שחשוב באמת.",
-}: About3Props = {}) => {
+export const About3 = () => {
   return (
-    <section className="py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50">
-      <div className="container mx-auto">
-        {/* Header — asymmetric */}
-        <div className="asym-grid items-end mb-20">
-          <div>
-            <div className="flex items-center gap-4 mb-6">
-              <span className="section-index text-tech-blue">03 / 04</span>
-              <span className="h-px w-12 bg-tech-blue/40" />
-              <span className="eyebrow text-gray-500">Why us</span>
-            </div>
-            <h2 className="heading-he display-lg text-dark" data-aos="fade-up">
-              {title.split('?')[0]} <br />
-              <span className="gradient-text">?</span>
-            </h2>
-          </div>
-          <p className="text-base lg:text-lg text-gray-600 leading-relaxed max-w-md lg:justify-self-end" data-aos="fade-up" data-aos-delay="100">
-            {description}
+    <section className="py-20 lg:py-32 relative overflow-hidden">
+
+      <div className="container mx-auto px-4 md:px-6">
+        {/* Header */}
+        <div className="mb-16 text-center max-w-4xl mx-auto" data-aos="fade-up">
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
+            <span className="text-white">למה </span>
+            <SpeedLeadsLogo size="xl" />
+            <span className="text-white">?</span>
+          </h1>
+          <div className="w-32 h-2 bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] mx-auto mb-8 rounded-full shadow-lg shadow-tech-blue/30" />
+          <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+            פתרונות AI מתקדמים שחוסכים זמן, משפרים דיוק ומאפשרים לכם להתמקד במה שחשוב באמת
           </p>
         </div>
 
-        {/* 4 feature tiles — asymmetric 2x2 with image headers */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-200 border border-gray-200" style={{ borderRadius: '4px', overflow: 'hidden' }}>
-          {features.map((f, i) => (
-            <div
-              key={f.n}
-              className="bg-white p-8 lg:p-10 group hover:bg-gray-50/80 transition-colors duration-500"
-              data-aos="fade-up"
-              data-aos-delay={i * 80}
-            >
-              <div className="overflow-hidden mb-8" style={{ borderRadius: '2px' }}>
+        {/* Features Section */}
+        <div className="mb-20">
+          <div className="text-center mb-12" data-aos="fade-up">
+            <h2 className="font-display text-3xl lg:text-4xl mb-4 text-white">מה מייחד אותנו</h2>
+            <p className="text-gray-400 text-lg">ארבעה עמודי התווך שלנו להצלחה שלכם</p>
+          </div>
+
+          <div className="grid gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-12 max-w-6xl mx-auto">
+            {/* Feature 1 */}
+            <GlowCard className="rounded-2xl p-8 lg:col-span-7" data-aos="fade-up" data-aos-delay="100">
+              <div className="mb-6 overflow-hidden rounded-xl h-48 relative bg-[#0D1B2A]">
                 <img
-                  src={f.image}
-                  alt={f.title}
-                  className="h-48 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=900&h=400&fit=crop&auto=format&q=80"
+                  alt="צוות SpeedLeads בפגישת עבודה ושיתוף פעולה צמוד עם לקוח"
                   loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2A] via-[#0D1B2A]/35 to-transparent" />
+                <div className="absolute inset-0 bg-[#00A7FF]/15 mix-blend-overlay" />
               </div>
-              <div className="flex items-center gap-3 mb-3">
-                <span className="section-index text-tech-blue">{f.n}</span>
-                <span className="h-px flex-1 bg-gray-200" />
-                <span className="eyebrow text-gray-400">{f.subtitle}</span>
+              <div className="text-center">
+                <h3 className="font-display mb-2 text-2xl text-white">שירות אישי</h3>
+                <h4 className="mb-4 text-lg font-semibold text-blue-400">
+                  שותפות אמיתית והתחייבות
+                </h4>
+                <p className="text-gray-300 leading-relaxed">
+                  אתם מקבלים מנהל פרויקט ייעודי, זמינות גבוהה ותמיכה הרבה אחרי ההשקה. אנחנו השותפים שלכם בכל שלב - מאסטרטגיה ראשונית ועד תחזוקה שוטפת.
+                </p>
               </div>
-              <h3 className="heading-he text-dark mb-3" style={{ fontSize: 'clamp(1.5rem, 2.5vw, 2.25rem)' }}>
-                {f.title}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">{f.body}</p>
-            </div>
-          ))}
+            </GlowCard>
+
+            {/* Feature 2 */}
+            <GlowCard className="rounded-2xl p-8 lg:col-span-5" data-aos="fade-up" data-aos-delay="150">
+              <div className="mb-6 overflow-hidden rounded-xl h-48 relative bg-[#0D1B2A]">
+                <img
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=400&fit=crop&auto=format&q=80"
+                  alt="ניתוח נתונים, מדדי הצלחה ו-ROI על מסך מחשב"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2A] via-[#0D1B2A]/35 to-transparent" />
+                <div className="absolute inset-0 bg-[#0072E5]/15 mix-blend-overlay" />
+              </div>
+              <div className="text-center">
+                <h3 className="font-display mb-2 text-2xl text-white">ניהול מוצר אסטרטגי</h3>
+                <h4 className="mb-4 text-lg font-semibold text-sky-400">
+                  אסטרטגיה ברורה, תוצאות מדידות
+                </h4>
+                <p className="text-gray-300 leading-relaxed">
+                  אנחנו מגדירים את המוצר שלכם יחד, בונים MVP מהיר ומניעים צמיחה דרך איטרציות מבוססות נתונים. עם מדדי הצלחה ברורים, תמיד תדעו מה הסטטוס וה-ROI של הפרויקט.
+                </p>
+              </div>
+            </GlowCard>
+
+            {/* Feature 3 */}
+            <GlowCard className="rounded-2xl p-8 lg:col-span-5" data-aos="fade-up" data-aos-delay="200">
+              <div className="mb-6 overflow-hidden rounded-xl h-48 relative bg-[#0D1B2A]">
+                <img
+                  src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=900&h=400&fit=crop&auto=format&q=80"
+                  alt="קוד נקי, מאובטח ומהיר על מסך מחשב"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2A] via-[#0D1B2A]/35 to-transparent" />
+                <div className="absolute inset-0 bg-[#06B6D4]/15 mix-blend-overlay" />
+              </div>
+              <div className="text-center">
+                <h3 className="font-display mb-2 text-2xl text-white">איכות וביצועים</h3>
+                <h4 className="mb-4 text-lg font-semibold text-cyan-400">
+                  יציב, מאובטח ומהיר
+                </h4>
+                <p className="text-gray-300 leading-relaxed">
+                  אנחנו בונים לפי הסטנדרטים הגבוהים ביותר עם בדיקות אוטומטיות, פרוטוקולי אבטחה מקיפים וזמני טעינה מהירים מותאמים להצלחה ב-SEO.
+                </p>
+              </div>
+            </GlowCard>
+
+            {/* Feature 4 */}
+            <GlowCard className="rounded-2xl p-8 lg:col-span-7" data-aos="fade-up" data-aos-delay="250">
+              <div className="mb-6 overflow-hidden rounded-xl h-48 relative bg-[#0D1B2A]">
+                <img
+                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&h=400&fit=crop&auto=format&q=80"
+                  alt="פגישת התקדמות שקופה עם דוחות, נתונים וגישה מלאה ללקוח"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2A] via-[#0D1B2A]/35 to-transparent" />
+                <div className="absolute inset-0 bg-[#00C2E0]/15 mix-blend-overlay" />
+              </div>
+              <div className="text-center">
+                <h3 className="font-display mb-2 text-2xl text-white">שקיפות מלאה</h3>
+                <h4 className="mb-4 text-lg font-semibold text-cyan-300">
+                  אתם תמיד על ההגה
+                </h4>
+                <p className="text-gray-300 leading-relaxed">
+                  מקבלים גישה מלאה לקוד המקור, תשתית ודוחות התקדמות. אנחנו שומרים אתכם על ההגה עם מידע מלא ותהליכי החלטה שקופים.
+                </p>
+              </div>
+            </GlowCard>
+          </div>
         </div>
 
-        {/* CTA */}
-        <div className="mt-16 text-center" data-aos="fade-up">
+        {/* CTA Button */}
+        <div className="text-center" data-aos="fade-up">
           <MagneticButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
             <Button
               size="lg"
-              className="btn-brand text-white px-10 py-4 text-sm uppercase tracking-wider"
+              className="inline-flex items-center px-10 py-4 bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] hover:brightness-110 text-white font-bold text-lg rounded-full transition-all duration-300 shadow-2xl hover:shadow-tech-blue/25 border-0"
             >
-              בואו נתחיל לעבוד יחד →
+              בואו נתחיל לעבוד יחד
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3 rtl:mr-0 rtl:ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
             </Button>
           </MagneticButton>
         </div>

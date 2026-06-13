@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -62,104 +62,8 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
-    --radius: 0.25rem;
-
-    /* Rebrand tokens */
-    --gradient-hero: linear-gradient(135deg, hsl(216 50% 11%) 0%, hsl(216 60% 6%) 100%);
-    --gradient-accent: linear-gradient(90deg, #00f6ff 0%, #00a7ff 100%);
-    --gradient-gold: linear-gradient(135deg, hsl(45 69% 52%) 0%, hsl(45 60% 38%) 100%);
-    --shadow-elegant: 0 24px 60px -24px hsl(216 50% 11% / 0.25);
-    --shadow-tech: 0 0 0 1px hsl(188 100% 50% / 0.12), 0 20px 50px -20px hsl(188 100% 50% / 0.35);
-    --hairline: hsl(216 30% 88%);
-    --hairline-dark: hsl(216 30% 22%);
+    --radius: 0.5rem;
   }
-}
-
-/* ============ Rebrand typography ============ */
-body {
-  font-family: 'DM Sans', 'Assistant', 'Heebo', sans-serif;
-  font-feature-settings: "ss01", "cv11";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* English display headings (use for SpeedLeads.AI, numbers, eyebrows) */
-.font-display {
-  font-family: 'Space Grotesk', 'Heebo', sans-serif;
-  letter-spacing: -0.02em;
-}
-
-/* Hebrew display headings — keep Heebo for legibility, tighter tracking */
-.heading-he {
-  font-family: 'Heebo', 'Assistant', sans-serif;
-  letter-spacing: -0.025em;
-  font-weight: 800;
-  line-height: 1.05;
-}
-
-/* Display sizes */
-.display-2xl { font-size: clamp(3rem, 9vw, 8rem); line-height: 0.95; font-weight: 700; letter-spacing: -0.04em; }
-.display-xl  { font-size: clamp(2.5rem, 7vw, 6rem); line-height: 1; font-weight: 700; letter-spacing: -0.035em; }
-.display-lg  { font-size: clamp(2rem, 5vw, 4.5rem); line-height: 1.02; font-weight: 700; letter-spacing: -0.03em; }
-.display-md  { font-size: clamp(1.75rem, 3.5vw, 3rem); line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; }
-
-/* Eyebrow / kicker */
-.eyebrow {
-  font-family: 'Space Grotesk', 'Heebo', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-
-/* Section index marker e.g. "01 / 04" */
-.section-index {
-  font-family: 'Space Grotesk', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  font-variant-numeric: tabular-nums;
-}
-
-/* Hairline divider */
-.hairline { height: 1px; background: hsl(var(--border)); }
-.hairline-dark { height: 1px; background: hsl(216 30% 22%); }
-
-/* Asymmetric grid helpers */
-.asym-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  gap: clamp(2rem, 4vw, 5rem);
-}
-.asym-grid-flip {
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: clamp(2rem, 4vw, 5rem);
-}
-@media (max-width: 768px) {
-  .asym-grid, .asym-grid-flip { grid-template-columns: 1fr; gap: 2rem; }
-}
-
-/* Refined brand button */
-.btn-brand {
-  background: linear-gradient(90deg, #00f6ff 0%, #00a7ff 100%);
-  color: white;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  border-radius: 2px;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  box-shadow: 0 10px 30px -10px rgba(0, 167, 255, 0.5);
-}
-.btn-brand:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 16px 40px -10px rgba(0, 246, 255, 0.6);
-}
-.btn-ghost-brand {
-  border: 1px solid currentColor;
-  background: transparent;
-  border-radius: 2px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  transition: all 0.3s ease;
 }
 
 .invert-on-dark {
@@ -168,7 +72,7 @@ body {
 }
 
 .gradient-text {
-  @apply bg-gradient-to-l from-[#00f6ff] to-[#00a7ff];
+  background-image: linear-gradient(to left, var(--headline-from, #00f6ff), var(--headline-to, #00a7ff));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -197,18 +101,164 @@ body {
   transform: scaleX(1);
 }
 
+/* Glassmorphism background orbs — placed behind glass elements */
+.glass-bg-orb-blue {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(0, 246, 255, 0.50) 0%, transparent 80%);
+  filter: blur(35px);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: orb-drift 12s ease-in-out infinite;
+}
+
+.glass-bg-orb-purple {
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(100, 60, 220, 0.45) 0%, transparent 80%);
+  filter: blur(40px);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: orb-drift 16s ease-in-out infinite reverse;
+}
+
+.glass-bg-orb-teal {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 200, 180, 0.40) 0%, transparent 80%);
+  filter: blur(40px);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: orb-drift 14s ease-in-out infinite;
+}
+
+.glass-bg-orb-pink {
+  position: absolute;
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, rgba(200, 50, 180, 0.35) 0%, transparent 80%);
+  filter: blur(45px);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: orb-drift 18s ease-in-out infinite reverse;
+}
+
+/* Page-wide mesh gradient (inspired by tiwis.fr colorful canvas) */
+.mesh-gradient-bg {
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(0, 246, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(100, 60, 220, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 80%, rgba(0, 200, 180, 0.05) 0%, transparent 50%);
+}
+
+@keyframes orb-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 15px) scale(0.95); }
+}
+
 /* Advanced Glassmorphism Effects */
 .glass-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .glass-dark {
-  background: rgba(13, 27, 42, 0.8);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(13, 27, 42, 0.85);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Liquid Glass Design System */
+.glass-liquid {
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(28px) saturate(1.8);
+  -webkit-backdrop-filter: blur(28px) saturate(1.8);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  border-right: 1px solid rgba(255, 255, 255, 0.10);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+.glass-liquid:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-top-color: rgba(255, 255, 255, 0.35);
+  border-left-color: rgba(255, 255, 255, 0.20);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(0, 246, 255, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.glass-navbar {
+  background: rgba(13, 27, 42, 0.70);
+  backdrop-filter: blur(28px) saturate(1.5);
+  -webkit-backdrop-filter: blur(28px) saturate(1.5);
+  border-bottom: 1px solid rgba(0, 246, 255, 0.12);
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(0, 246, 255, 0.4);
+  box-shadow: 0 0 0 3px rgba(0, 246, 255, 0.1);
+  outline: none;
+}
+
+.glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Section Divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 246, 255, 0.3), transparent);
+  margin: 0 auto;
+  max-width: 80%;
+}
+
+/* Reduced motion support for glass and orbs */
+@media (prefers-reduced-motion: reduce) {
+  .glass-liquid,
+  .glass-navbar,
+  .glass-input,
+  .glass-light {
+    transition: none;
+  }
+
+  .glass-bg-orb-blue,
+  .glass-bg-orb-purple,
+  .glass-bg-orb-teal,
+  .glass-bg-orb-pink {
+    animation: none;
+  }
 }
 
 /* Glow Effects */
@@ -529,287 +579,146 @@ html, body {
   animation: slideUpFadeIn 800ms cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
 }
 
-/* Horizon Hero Section Styles */
-.hero-container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  background: radial-gradient(ellipse at center, #001122 0%, #000000 100%);
+
+/* ============================================================
+   Fable 5 Kinetic Design Layer — "Cinematic Spatial Dark"
+   Tokens + utilities for The Signal (האות) design system.
+   See DESIGN-OVERHAUL-PLAN.md › "Fable 5 Elevation".
+   ============================================================ */
+
+:root {
+  /* Deep base behind glass — darker than brand navy for contrast */
+  --bg-abyss: 222 60% 5%;                /* ~#05080F */
+
+  /* Signal light stops — cyan family only (owner: "only cyan vibes") */
+  --signal-cyan: 188 100% 50%;           /* #00F6FF */
+  --signal-azure: 199 100% 50%;          /* #00A7FF */
+  --signal-deep: 210 100% 45%;           /* #0072E5 — depth stop for big headlines */
+
+  /* Headline gradient = the exact gradient of the logo's "Leads" word
+     (owner directive). The stops are panel-editable CSS vars; effectsConfig
+     keeps them in sync with the control panel. */
+  --headline-from: #00f6ff;
+  --headline-to: #00a7ff;
+  --btn-from: #00f6ff;
+  --btn-to: #00a7ff;
+  --cursor-color: #00f6ff;
+  --motion-speed: 1;
+  --brand-gradient: linear-gradient(to left, var(--headline-from), var(--headline-to));
+
+  /* Glow shadows */
+  --glow-signal: 0 0 24px rgba(0, 246, 255, 0.35), 0 0 64px rgba(0, 246, 255, 0.12);
 }
 
-.hero-scroll-container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
+/* Page atmosphere: abyss base + faint grain so dark areas never look flat */
+.bg-abyss {
+  background-color: hsl(var(--bg-abyss));
 }
 
-.hero-scroll-container::-webkit-scrollbar {
-  display: none;
-}
-
-.hero-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.side-menu {
+.grain-overlay {
   position: fixed;
-  top: 50%;
-  left: 30px;
-  transform: translateY(-50%);
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-}
-
-.menu-icon {
-  width: 30px;
-  height: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-}
-
-.menu-icon span {
-  width: 100%;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.8);
-  transition: all 0.3s ease;
-}
-
-.menu-icon:hover span {
-  background: #00f6ff;
-}
-
-.vertical-text {
-  writing-mode: vertical-lr;
-  text-orientation: mixed;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 14px;
-  font-weight: 300;
-  letter-spacing: 3px;
-  margin-top: 20px;
-}
-
-.hero-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 5;
-  width: 90%;
-  max-width: 1200px;
-}
-
-.hero-title {
-  font-size: clamp(4rem, 15vw, 12rem);
-  font-weight: 900;
-  color: white;
-  line-height: 0.8;
-  margin-bottom: 2rem;
-  letter-spacing: -0.02em;
-  font-family: 'Heebo', sans-serif;
-}
-
-.title-char {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(100px);
-}
-
-.hero-subtitle {
-  font-size: clamp(1.2rem, 3vw, 2rem);
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.4;
-  font-weight: 300;
-  letter-spacing: 0.5px;
-  max-width: 800px;
-  margin: 8rem auto 0 auto;
-}
-
-.subtitle-line {
-  opacity: 0;
-  transform: translateY(30px);
-  margin: 0.5rem 0;
-}
-
-.scroll-progress {
-  position: fixed;
-  bottom: 50px;
-  right: 50px;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 2px;
-}
-
-.scroll-text {
-  transform: rotate(90deg);
-  white-space: nowrap;
-}
-
-.progress-track {
-  width: 2px;
-  height: 80px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 1px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(to top, #00f6ff, #ffffff);
-  transition: width 0.3s ease;
-}
-
-.section-counter {
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.5);
-  letter-spacing: 1px;
-}
-
-.scroll-sections {
-  position: relative;
+  inset: 0;
+  pointer-events: none;
   z-index: 2;
-  background: transparent;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-.content-section {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0 2rem;
+/* Kinetic gradient text (animated sweep of the brand gradient) */
+.text-brand-gradient {
+  background-image: var(--brand-gradient);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: brand-gradient-pan calc(8s / var(--motion-speed, 1)) ease-in-out infinite alternate;
 }
 
-.content-section .hero-title {
-  margin-bottom: 1rem;
+@keyframes brand-gradient-pan {
+  from { background-position: 0% 50%; }
+  to   { background-position: 100% 50%; }
 }
 
-.content-section .hero-subtitle {
-  margin-top: 0;
+/* Giant outlined numerals (Stats / Process stations) */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(0, 246, 255, 0.45);
+  text-stroke: 1.5px rgba(0, 246, 255, 0.45);
 }
 
-.cosmos-style {
-  background: linear-gradient(135deg, 
-    #000000 0%, 
-    #0a0a1a 25%, 
-    #1a0a2e 50%, 
-    #16213e 75%, 
-    #0f3460 100%);
+/* Process station numerals — bolder, less transparent, neon glow */
+.process-numeral {
+  color: rgba(0, 246, 255, 0.12); /* faint fill so it reads as a solid figure, not a thin outline */
+  -webkit-text-stroke: 2.5px rgba(0, 246, 255, 0.9);
+  text-stroke: 2.5px rgba(0, 246, 255, 0.9);
+  text-shadow: 0 0 22px rgba(0, 246, 255, 0.7), 0 0 48px rgba(0, 167, 255, 0.4);
 }
 
-.cosmos-content .hero-title {
-  color: #0099ff;
-  text-shadow: 0 0 9px #0099ff;
+/* Animated conic border for GlowCard (rotating highlight on a 1px frame) */
+@property --glow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
 }
 
-.cosmos-subtitle {
-  color: rgba(255, 255, 255, 0.8);
+.glow-border {
+  position: relative;
 }
 
-/* Fallback for cosmos subtitle when gradient fails */
-.cosmos-subtitle p {
-  color: rgba(255, 255, 255, 0.8) !important;
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--glow-angle),
+    transparent 0%,
+    rgba(0, 246, 255, 0.8) 12%,
+    transparent 28%,
+    transparent 55%,
+    rgba(0, 167, 255, 0.6) 68%,
+    transparent 82%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
-/* Force text visibility in hero sections */
-.hero-title,
-.hero-title *,
-.title-char {
-  color: #0099ff !important;
-  -webkit-text-fill-color: #0099ff !important;
-  text-fill-color: #0099ff !important;
-  background-clip: unset !important;
-  -webkit-background-clip: unset !important;
-  text-shadow: 0 0 9px #0099ff !important;
+.glow-border:hover::before,
+.glow-border:focus-within::before {
+  opacity: 1;
+  animation: glow-rotate 4s linear infinite;
 }
 
-.hero-subtitle,
-.hero-subtitle *,
-.subtitle-line {
-  color: rgba(255, 255, 255, 0.8) !important;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0.8) !important;
-  text-fill-color: rgba(255, 255, 255, 0.8) !important;
+@keyframes glow-rotate {
+  to { --glow-angle: 360deg; }
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .side-menu {
-    left: 20px;
-    gap: 20px;
-  }
-  
-  .menu-icon {
-    width: 25px;
-    height: 25px;
-  }
-  
-  .vertical-text {
-    font-size: 12px;
-    letter-spacing: 2px;
-  }
-  
-  .hero-title {
-    font-size: clamp(3rem, 12vw, 8rem);
-    margin-bottom: 1rem;
-  }
-  
-  .hero-subtitle {
-    font-size: clamp(1rem, 4vw, 1.5rem);
-    padding: 0 1rem;
-  }
-  
-  .scroll-progress {
-    bottom: 30px;
-    right: 30px;
-    gap: 10px;
-  }
-  
-  .progress-track {
-    height: 60px;
-  }
-  
-  .scroll-text {
-    font-size: 10px;
-  }
-  
-  .content-section {
-    padding: 0 1rem;
-  }
+/* CursorCore replaces the native cursor (fine pointers only — the component
+   adds this class itself and removes it on unmount/fallback) */
+html.cursor-core-active,
+html.cursor-core-active * {
+  cursor: none !important;
 }
 
-@media (max-width: 480px) {
-  .side-menu {
-    left: 15px;
+/* Reduced motion: stop the kinetic layer's own animations */
+@media (prefers-reduced-motion: reduce) {
+  .text-brand-gradient {
+    animation: none;
   }
-  
-  .hero-title {
-    font-size: clamp(2.5rem, 10vw, 6rem);
+
+  .glow-border:hover::before,
+  .glow-border:focus-within::before {
+    animation: none;
   }
-  
-  .hero-subtitle {
-    font-size: clamp(0.9rem, 3.5vw, 1.3rem);
-  }
-  
-  .scroll-progress {
-    bottom: 20px;
-    right: 20px;
+
+  .grain-overlay {
+    display: none;
   }
 }

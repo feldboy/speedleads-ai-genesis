@@ -27,9 +27,10 @@ const FloatingAI = () => {
 
   return (
     <>
+      {/* Right rail, stacked directly above the WhatsApp button (owner directive) */}
       <motion.div
-        className="fixed bottom-32 left-6 z-40"
-        initial={{ opacity: 0, x: -100 }}
+        className="fixed bottom-24 right-6 z-40"
+        initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 2, duration: 0.8 }}
       >
@@ -39,7 +40,7 @@ const FloatingAI = () => {
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
           <motion.button
-            className="bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] rounded-full p-4 shadow-2xl cursor-pointer"
+            className="bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] rounded-full p-4 shadow-glow-blue cursor-pointer"
             whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(0, 246, 255, 0.3)" }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleChatbot}
@@ -83,14 +84,14 @@ const FloatingAI = () => {
         {/* Tooltip */}
         {!isChatbotOpen && (
           <motion.div
-            className="absolute bottom-full mb-4 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-3 text-sm text-gray-800 whitespace-nowrap pointer-events-none"
+            className="absolute bottom-full mb-4 right-0 bg-white rounded-lg shadow-lg p-3 text-sm text-gray-800 whitespace-nowrap pointer-events-none"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 3 }}
           >
             <div className="relative">
               בואו נדבר על הפרויקט שלכם!
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-white"></div>
+              <div className="absolute top-full right-8 transform translate-x-1/2 border-4 border-transparent border-t-white"></div>
             </div>
           </motion.div>
         )}

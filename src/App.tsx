@@ -59,28 +59,17 @@ const App = () => {
       anchorPlacement: 'top-bottom'  // When element top hits bottom of viewport
     });
 
-    // Fix viewport sync issue: Aggressive refresh strategy
-    // Hero animation changes body position which breaks AOS calculations
-    let refreshCount = 0;
-    const maxRefreshes = 10;
-    
-    const aggressiveRefresh = setInterval(() => {
-      // Check if body position is normal (not fixed)
-      const bodyPosition = window.getComputedStyle(document.body).position;
-      
-      if (bodyPosition !== 'fixed' && refreshCount < maxRefreshes) {
-        AOS.refresh();
-        refreshCount++;
-        console.log(`AOS refresh attempt ${refreshCount} - body position: ${bodyPosition}`);
-      }
-      
-      if (refreshCount >= maxRefreshes) {
-        clearInterval(aggressiveRefresh);
-      }
-    }, 1000); // Refresh every second for first 10 seconds
+    // The intro briefly sets body position:fixed, which throws off AOS offsets.
+    // Refresh once shortly after mount and once after the intro settles — no
+    // per-second polling loop (the old 1s×10 interval spiked CPU at load).
+    const t1 = window.setTimeout(() => AOS.refresh(), 600);
+    const t2 = window.setTimeout(() => AOS.refresh(), 1800);
 
     // Cleanup
-    return () => clearInterval(aggressiveRefresh);
+    return () => {
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+    };
   }, []);
 
   return (

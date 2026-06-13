@@ -216,7 +216,7 @@ const SuccessStoryCard = ({ story }: { story: SuccessStory }) => (
           href={story.project.demoLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-3 px-5 py-3 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] text-white font-bold rounded-xl hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 transition-all duration-300 backdrop-blur-md shadow-lg hover:shadow-tech-blue/30 border border-tech-blue/20"
+          className="flex items-center gap-3 px-5 py-3 bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] text-white font-bold rounded-xl hover:brightness-110 transition-all duration-300 backdrop-blur-md shadow-lg hover:shadow-tech-blue/30 border border-tech-blue/20"
         >
           <Play size={18} />
           צפה בדמו
@@ -275,13 +275,13 @@ const SuccessStoryCard = ({ story }: { story: SuccessStory }) => (
             key={i}
             className="flex items-start gap-2 text-xs text-gray-300 hover:text-white transition-colors duration-200"
           >
-            <div className="w-1.5 h-1.5 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] rounded-full flex-shrink-0 mt-1" />
+            <div className="w-1.5 h-1.5 bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] rounded-full flex-shrink-0 mt-1" />
             <span className="leading-relaxed line-clamp-2">{result}</span>
           </div>
         ))}
       </div>
       <div className="mt-auto" />
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] opacity-60" />
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] opacity-60" />
     </div>
   </div>
 );
@@ -400,7 +400,7 @@ const TestimonialsSection = () => {
   return (
     <section
       id="success-stories"
-      className="py-32 bg-gradient-to-b from-dark via-slate-900 to-gray-900 text-white overflow-hidden relative"
+      className="py-32 text-white overflow-hidden relative"
     >
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 w-72 h-72 bg-gold rounded-full blur-3xl"></div>
@@ -409,12 +409,12 @@ const TestimonialsSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-20">
           <h2
-            className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] bg-clip-text text-transparent"
+            className="font-display text-5xl md:text-7xl mb-6 text-brand-gradient"
             data-aos="fade-up"
           >
             סיפורי הצלחה מרשימים
           </h2>
-          <div className="w-32 h-2 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] mx-auto mb-8 rounded-full shadow-lg shadow-tech-blue/30" />
+          <div className="w-32 h-2 bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] mx-auto mb-8 rounded-full shadow-lg shadow-tech-blue/30" />
           <p
             className="text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light"
             data-aos="fade-up"
@@ -493,7 +493,7 @@ const TestimonialsSection = () => {
                   onClick={() => scrollTo(i)}
                   className={`h-3 rounded-full transition-all ${
                     active
-                      ? "w-10 bg-gradient-to-l from-[#00f6ff] to-[#00a7ff]"
+                      ? "w-10 bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)]"
                       : "w-3 bg-slate-600 hover:bg-slate-500"
                   }`}
                   aria-label={`Go to slide ${i + 1}`}
@@ -510,7 +510,7 @@ const TestimonialsSection = () => {
           <MagneticButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
             <Button 
               size="lg" 
-              className="bg-gradient-to-l from-[#00f6ff] to-[#00a7ff] hover:from-[#00f6ff]/80 hover:to-[#00a7ff]/80 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] hover:brightness-110 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               <Rocket className="w-5 h-5 ml-2" />
               בואו נתחיל לעבוד ביחד
