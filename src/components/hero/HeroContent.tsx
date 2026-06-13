@@ -82,7 +82,8 @@ const HeroContent: React.FC = () => {
           <AnimatePresence mode="wait">
             <motion.span
               key={ROTATING_WORDS[wordIndex]}
-              className="serif-lux gradient-text inline-block"
+              className="gradient-text inline-block font-black"
+              style={{ letterSpacing: '-0.03em' }}
               initial={reducedMotion ? false : { opacity: 0, y: 26, filter: 'blur(6px)' }}
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               exit={reducedMotion ? undefined : { opacity: 0, y: -26, filter: 'blur(6px)' }}
