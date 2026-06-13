@@ -10,11 +10,11 @@ export const About3 = () => {
       <div className="container mx-auto px-4 md:px-6">
         {/* Header */}
         <div className="mb-16 text-center max-w-4xl mx-auto" data-aos="fade-up">
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
             <span className="text-white">למה </span>
             <SpeedLeadsLogo size="xl" />
             <span className="text-white">?</span>
-          </h1>
+          </h2>
           <div className="w-32 h-2 bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] mx-auto mb-8 rounded-full shadow-lg shadow-tech-blue/30" />
           <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
             פתרונות AI מתקדמים שחוסכים זמן, משפרים דיוק ומאפשרים לכם להתמקד במה שחשוב באמת

@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import Seo from '@/components/Seo';
 import { trackPageView } from '@/lib/analytics';
 
 const AccessibilityStatement = () => {
@@ -11,6 +12,11 @@ const AccessibilityStatement = () => {
 
   return (
     <div dir="rtl" lang="he" className="min-h-screen bg-white text-dark">
+      <Seo
+        title="הצהרת נגישות | SpeedLeads.AI"
+        description="הצהרת הנגישות של SpeedLeads.AI — המחויבות שלנו להנגשת האתר לכלל המשתמשים בהתאם לתקנים."
+        path="/accessibility"
+      />
       <Header />
       <main className="container mx-auto px-4 py-10 md:py-16 max-w-4xl">
         <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">הצהרת נגישות</h1>

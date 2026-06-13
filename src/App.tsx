@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import { useState, useEffect } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -13,6 +14,7 @@ import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
 import TermsOfService from "./pages/legal/TermsOfService";
 import CookiePolicy from "./pages/legal/CookiePolicy";
 import AccessibilityStatement from "./pages/legal/AccessibilityStatement";
+import AiAgentsGuide from "./pages/guides/AiAgentsGuide";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./pages/admin/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
@@ -73,6 +75,7 @@ const App = () => {
   }, []);
 
   return (
+    <HelmetProvider>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
       <Toaster />
@@ -82,7 +85,10 @@ const App = () => {
         <Routes>
           {/* Main public routes */}
           <Route path="/" element={<Index />} />
-          
+
+          {/* Guides (SEO content) */}
+          <Route path="/guide/ai-agents" element={<AiAgentsGuide />} />
+
           {/* Legal pages */}
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />
@@ -109,6 +115,7 @@ const App = () => {
       </BrowserRouter>
     </TooltipProvider>
     </QueryClientProvider>
+    </HelmetProvider>
   );
 };
 

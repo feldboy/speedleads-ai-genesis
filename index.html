@@ -4,27 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SpeedLeads.AI - פתרונות דיגיטליים מתקדמים מבוססי AI</title>
-    <meta name="description" content="SpeedLeads.AI מספקת פתרונות מתקדמים לבניית אתרים, אוטומציות עסקיות ואינטגרציות חכמות המונעות על ידי בינה מלאכותית. הפכו רעיונות למציאות דיגיטלית." />
     <meta name="author" content="SpeedLeads.AI" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
     <meta name="theme-color" content="#0D1B2A" />
-    <link rel="canonical" href="https://www.speedleads-ai.com/" />
+    <!--
+      Route-variable SEO tags (description, robots, canonical, og:title/description/url/image,
+      twitter:title/description/image) are managed per-route by react-helmet-async
+      via src/components/Seo.tsx — they intentionally live there, NOT here, to avoid
+      duplicate/conflicting tags. Only invariant tags remain in this static head.
+    -->
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="SpeedLeads.AI - פתרונות דיגיטליים מתקדמים מבוססי AI" />
-    <meta property="og:description" content="פתרונות מתקדמים לבניית אתרים, אוטומציות עסקיות ואינטגרציות חכמות המונעות על ידי בינה מלאכותית." />
+    <!-- Open Graph (invariant fields only) -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.speedleads-ai.com/" />
     <meta property="og:site_name" content="SpeedLeads.AI" />
     <meta property="og:locale" content="he_IL" />
-    <meta property="og:image" content="https://www.speedleads-ai.com/speedleads-logo.png" />
 
-    <!-- Twitter -->
+    <!-- Twitter (invariant fields only) -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@SpeedLeadsAI" />
-    <meta name="twitter:title" content="SpeedLeads.AI - פתרונות דיגיטליים מתקדמים מבוססי AI" />
-    <meta name="twitter:description" content="פתרונות מתקדמים לבניית אתרים, אוטומציות עסקיות ואינטגרציות חכמות המונעות על ידי בינה מלאכותית." />
-    <meta name="twitter:image" content="https://www.speedleads-ai.com/speedleads-logo.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -91,10 +87,44 @@
           "name": "SpeedLeads.AI",
           "inLanguage": "he-IL",
           "publisher": { "@id": "https://www.speedleads-ai.com/#organization" }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://www.speedleads-ai.com/#faq",
+          "inLanguage": "he-IL",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "כמה זמן לוקח פרויקט ממוצע?",
+              "acceptedAnswer": { "@type": "Answer", "text": "משך הזמן משתנה בהתאם לסוג הפרויקט ומורכבותו. בדרך כלל, דף נחיתה בסיסי יכול להיות מוכן תוך 1-2 שבועות, אתר תדמית תוך 3-4 שבועות, ופרויקטים מורכבים יותר כמו חנויות אונליין או מערכות אוטומציה מותאמות אישית יכולים לקחת 6-12 שבועות. אנו מספקים לוח זמנים מפורט לכל פרויקט בתחילת העבודה." }
+            },
+            {
+              "@type": "Question",
+              "name": "האם אתם מציעים תמיכה לאחר סיום הפרויקט?",
+              "acceptedAnswer": { "@type": "Answer", "text": "בהחלט! אנו מציעים מגוון חבילות תמיכה ותחזוקה שוטפת לאחר השקת הפרויקט. החבילות כוללות עדכונים, גיבויים, אבטחה, תיקוני באגים, ואף שדרוגים קלים. אנו מאמינים שהקשר עם לקוחותינו הוא לטווח ארוך, ונשמח לתמוך בהצלחת הפרויקט גם לאחר ההשקה." }
+            },
+            {
+              "@type": "Question",
+              "name": "אילו טכנולוגיות AI אתם משלבים?",
+              "acceptedAnswer": { "@type": "Answer", "text": "אנו עובדים עם מגוון רחב של טכנולוגיות AI מתקדמות, ביניהן: צ'אטבוטים חכמים מבוססי LLM, מערכות המלצות אישיות למשתמשים, אלגוריתמי למידת מכונה לניתוח התנהגות משתמשים, מנועי חיפוש סמנטי משופרים, כלי ניתוח תוכן ויצירת תוכן אוטומטי, ואינטגרציות עם פלטפורמות AI מובילות כמו OpenAI, Google AI ואחרות. אנו בוחרים את הפתרון הטכנולוגי המתאים ביותר לצרכי הפרויקט הספציפי." }
+            },
+            {
+              "@type": "Question",
+              "name": "מהו התהליך לעבודה משותפת?",
+              "acceptedAnswer": { "@type": "Answer", "text": "התהליך שלנו מורכב מכמה שלבים מובנים: 1) פגישת אפיון ראשונית להבנת הצרכים והמטרות שלכם. 2) הצעת מחיר מפורטת הכוללת אפיון ראשוני ולוח זמנים. 3) עיצוב ואישור קונספט ויזואלי. 4) פיתוח והתקדמות בשלבים עם נקודות אישור. 5) בדיקות מקיפות ושיפורים. 6) השקה והדרכה. 7) תמיכה שוטפת והמשך שיתוף פעולה. לאורך כל התהליך, תהיו מעורבים ותקבלו עדכונים שוטפים." }
+            },
+            {
+              "@type": "Question",
+              "name": "איך אתם מבטיחים שהפרויקט יעמוד בציפיות שלנו?",
+              "acceptedAnswer": { "@type": "Answer", "text": "אנו משקיעים זמן רב בתהליך האפיון הראשוני כדי להבין לעומק את הציפיות, המטרות והצרכים שלכם. אנו עובדים בשיטת פיתוח אג'ילית (Agile) המאפשרת משוב מתמיד ואיטרציות שוטפות. במהלך הפרויקט, אנו מקיימים פגישות סטטוס קבועות ומספקים גישה למערכת ניהול הפרויקט שלנו, כך שתוכלו לעקוב אחר ההתקדמות בזמן אמת. בנוסף, כל שלב מחייב את האישור שלכם לפני שאנו ממשיכים, מה שמבטיח שהתוצאה הסופית תתאים בדיוק למה שציפיתם." }
+            }
+          ]
         }
       ]
     }
     </script>
+    <!-- NOTE: The FAQPage entities above mirror the Q&A in
+         src/components/sections/FaqSection.tsx — keep them in sync when editing FAQ copy. -->
   </head>
 
   <body>

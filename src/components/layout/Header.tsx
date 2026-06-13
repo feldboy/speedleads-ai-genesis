@@ -34,7 +34,7 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <a href="/" className="flex items-center">
-            <img src="/speedleads-logo.png" alt="SpeedLeads.AI Logo" className="h-6 sm:h-7 md:h-8 mr-3 sm:mr-5" />
+            <img src="/speedleads-logo.png" alt="SpeedLeads.AI — סוכנות AI לבניית אתרים, אוטומציות והטמעות" className="h-6 sm:h-7 md:h-8 mr-3 sm:mr-5" />
             <SpeedLeadsLogo size="sm" className="mx-[8px] sm:mx-[14px]" />
           </a>
         </div>
@@ -63,7 +63,7 @@ const Header = () => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <Button variant="ghost" size="icon" className="text-white min-h-[44px] min-w-[44px]" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <Button variant="ghost" size="icon" className="text-white min-h-[44px] min-w-[44px]" aria-label={mobileMenuOpen ? 'סגור תפריט' : 'פתח תפריט'} aria-expanded={mobileMenuOpen} onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X /> : <Menu />}
           </Button>
         </div>

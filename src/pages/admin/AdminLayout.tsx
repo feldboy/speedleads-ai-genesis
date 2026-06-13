@@ -4,6 +4,7 @@ import { Outlet, NavLink, useNavigate, Link } from 'react-router-dom';
 import { LayoutDashboard, Users, MessageCircle, Settings, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
+import Seo from '@/components/Seo';
 
 const AdminLayout = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -32,6 +33,7 @@ const AdminLayout = () => {
   
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col" dir="rtl">
+      <Seo title="ניהול | SpeedLeads.AI" description="מערכת ניהול SpeedLeads.AI." path="/admin" noindex />
       {/* Top Navigation */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-30">
         <div className="container mx-auto px-4">
