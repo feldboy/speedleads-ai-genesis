@@ -3,6 +3,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import Seo from '@/components/Seo';
 import { trackPageView } from '@/lib/analytics';
 
 const TermsOfService = () => {
@@ -12,6 +13,11 @@ const TermsOfService = () => {
 
   return (
     <div dir="rtl" lang="he" className="min-h-screen bg-white text-dark">
+      <Seo
+        title="תנאי שימוש | SpeedLeads.AI"
+        description="תנאי השימוש באתר SpeedLeads.AI — הכללים והתנאים לשימוש בשירותים ובתכנים שלנו."
+        path="/terms"
+      />
       <Header />
       <main className="container mx-auto px-4 py-10 md:py-16 max-w-4xl">
         <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">תנאי שימוש</h1>

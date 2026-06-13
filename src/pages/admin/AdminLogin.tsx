@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { useToast } from '@/components/ui/use-toast';
 import { Lock } from 'lucide-react';
+import Seo from '@/components/Seo';
 
 const AdminLogin = () => {
   const [username, setUsername] = useState('');
@@ -52,6 +53,7 @@ const AdminLogin = () => {
   
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100" dir="rtl">
+      <Seo title="התחברות מנהל | SpeedLeads.AI" description="כניסה למערכת הניהול של SpeedLeads.AI." path="/admin/login" noindex />
       <div className="w-full max-w-md p-4">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-tech-blue mb-2">SpeedLeads.AI</h1>

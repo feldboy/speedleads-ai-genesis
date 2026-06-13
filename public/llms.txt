@@ -1,0 +1,23 @@
+# SpeedLeads.AI
+
+> סוכנות AI ישראלית לבניית אתרים, אוטומציות עסקיות והטמעות בינה מלאכותית שמייצרות לידים. SpeedLeads.AI is an Israeli AI agency building websites, business automations, and AI implementations that generate leads.
+
+SpeedLeads.AI helps businesses grow by combining high-converting web design with practical artificial-intelligence automation. The site is Hebrew-first (RTL) and serves clients in Israel.
+
+## Services
+- בניית אתרים מבוססי AI — AI-powered website and landing-page development
+- אוטומציות עסקיות — business process automation (lead handling, customer service, scheduling, data entry)
+- הטמעות בינה מלאכותית — AI implementations and integrations (chatbots, LLM workflows, recommendation systems)
+- סוכני AI לעסקים — AI agents for business workflows
+
+## Pages
+- [Home](https://www.speedleads-ai.com/): Overview of services, process, testimonials, and FAQ
+- [Guide: AI agents for business](https://www.speedleads-ai.com/guide/ai-agents): What AI agents are and how they automate business workflows
+- [Privacy Policy](https://www.speedleads-ai.com/privacy)
+- [Terms of Service](https://www.speedleads-ai.com/terms)
+- [Cookie Policy](https://www.speedleads-ai.com/cookies)
+- [Accessibility Statement](https://www.speedleads-ai.com/accessibility)
+
+## Contact
+- Email: info@speedleads-ai.com
+- Area served: Israel

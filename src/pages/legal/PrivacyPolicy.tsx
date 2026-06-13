@@ -3,6 +3,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import Seo from '@/components/Seo';
 import { trackPageView } from '@/lib/analytics';
 
 const PrivacyPolicy = () => {
@@ -12,6 +13,11 @@ const PrivacyPolicy = () => {
 
   return (
     <div dir="rtl" lang="he" className="min-h-screen bg-white text-dark">
+      <Seo
+        title="מדיניות פרטיות | SpeedLeads.AI"
+        description="מדיניות הפרטיות של SpeedLeads.AI — איזה מידע אנו אוספים, כיצד אנו משתמשים בו ומה הזכויות שלך בנוגע למידע האישי שלך."
+        path="/privacy"
+      />
       <Header />
       <main className="container mx-auto px-4 py-10 md:py-16 max-w-4xl">
         <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">מדיניות פרטיות</h1>

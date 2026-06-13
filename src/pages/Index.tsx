@@ -17,6 +17,7 @@ import CursorCore from '@/components/effects/CursorCore';
 import AmbientSound from '@/components/effects/AmbientSound';
 import InteractionSfx from '@/components/effects/InteractionSfx';
 import EffectsPanel from '@/components/effects/EffectsPanel';
+import Seo from '@/components/Seo';
 import { initializeAnalytics, trackEvent } from '@/lib/analytics';
 
 const LiquidInkBackground = lazy(() => import('@/components/effects/LiquidInkBackground'));
@@ -97,6 +98,11 @@ const Index = () => {
 
   return (
     <>
+    <Seo
+      title="SpeedLeads.AI - פתרונות דיגיטליים מתקדמים מבוססי AI"
+      description="SpeedLeads.AI מספקת פתרונות מתקדמים לבניית אתרים, אוטומציות עסקיות ואינטגרציות חכמות המונעות על ידי בינה מלאכותית. הפכו רעיונות למציאות דיגיטלית."
+      path="/"
+    />
     <Suspense fallback={null}>
       <LiquidInkBackground />
     </Suspense>
