@@ -61,7 +61,7 @@ export const About3 = ({
               className="heading-he display-lg text-ivory"
             >
               {title.replace('?', '')}
-              <span className="serif-lux gradient-text">?</span>
+              <span className="gradient-text font-black">?</span>
             </motion.h2>
           </div>
           <motion.p

@@ -288,7 +288,7 @@ const TestimonialsSection = () => {
               className="heading-he display-lg text-ivory"
             >
               תוצאות. <br />
-              <span className="serif-lux gradient-text">לא הבטחות.</span>
+              <span className="gradient-text font-black">לא הבטחות.</span>
             </motion.h2>
           </div>
           <motion.p

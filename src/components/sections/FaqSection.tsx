@@ -69,7 +69,7 @@ const FaqSection = () => {
               className="heading-he display-lg text-ivory mb-8"
             >
               שאלות <br />
-              <span className="serif-lux gradient-text">נפוצות.</span>
+              <span className="gradient-text font-black">נפוצות.</span>
             </motion.h2>
             <p className="text-base text-ivory/55 leading-relaxed max-w-sm mb-8">
               לא מצאתם את מה שחיפשתם? אנחנו כאן בשבילכם — דברו איתנו ישירות.

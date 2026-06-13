@@ -25,7 +25,7 @@ const Footer = () => {
               className="heading-he display-lg text-ivory"
             >
               נדבר על <br />
-              <span className="serif-lux gradient-text">הפרויקט שלך?</span>
+              <span className="gradient-text font-black">הפרויקט שלך?</span>
             </motion.h2>
           </div>
           <div className="lg:justify-self-end">

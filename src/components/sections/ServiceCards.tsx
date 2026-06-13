@@ -97,7 +97,7 @@ function ServiceCards() {
               className="heading-he display-lg text-ivory"
             >
               שלוש דרכים <br />
-              <span className="serif-lux gradient-text">להאיץ את העסק.</span>
+              <span className="gradient-text font-black">להאיץ את העסק.</span>
             </motion.h2>
           </div>
           <motion.p

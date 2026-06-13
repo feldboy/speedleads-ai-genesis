@@ -70,7 +70,7 @@ const ContactSection = () => {
             className="heading-he display-lg text-ivory mb-6"
           >
             העסק שלך מוכן <br />
-            <span className="serif-lux gradient-text">לעבוד 24/7?</span>
+            <span className="gradient-text font-black">לעבוד 24/7?</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
