@@ -28,6 +28,8 @@ export interface FxConfig {
   heroTint: string; // hero light-streak shader tint
   // --- liquid ink background ---
   inkStir: number; // mouse-stir strength (owner: default was too strong)
+  inkStirSize: number; // swirl radius of the cursor stir, 1 = designed default
+  inkStirTrail: number; // how long the stir wake lingers, 1 = designed default
   inkFlow: number; // flow/time speed of the liquid
   inkIntensity: number; // overall "smoke" brightness
   // --- particles ---
@@ -39,16 +41,22 @@ export interface FxConfig {
   particleTrail: number; // 0 = none, 1 = long comet trails
   particleResolution: number; // trail-layer render scale (0.25..1 of canvas)
   gravityRadius: number; // px — exclusion circle around the cursor; dust rings around it
+  gravityOffsetX: number; // px — nudge the gravity ring right (+) / left (-) of the cursor
+  gravityOffsetY: number; // px — nudge the gravity ring down (+) / up (-) of the cursor
   // --- cursor ---
   cursorSpotlight: number; // spotlight glow strength
+  cursorSpotlightSize: number; // spotlight radius multiplier
   cursorHalo: number; // halo ring size multiplier
+  cursorSize: number; // core dot size multiplier
   // --- hero shader ---
   heroIntensity: number;
   heroSpeed: number;
   // --- motion ---
   motionSpeed: number; // global multiplier for ambient animation speeds
   // --- sound ---
-  volume: number; // 0..1
+  volume: number; // 0..1 — ambient pad
+  sfxVolume: number; // 0..1 — tap / hover interaction SFX
+  whooshVolume: number; // 0..1 — cursor "lightsaber" whoosh (own knob)
 }
 
 export const FX_DEFAULTS: FxConfig = {
@@ -60,24 +68,32 @@ export const FX_DEFAULTS: FxConfig = {
   particleColor: '#00d8f0',
   inkCyan: '#00d4f2',
   inkAzure: '#0073d9',
-  heroTint: '#2699ff',
-  inkStir: 0.6,
-  inkFlow: 1,
-  inkIntensity: 1,
-  particleCount: 320,
-  particleSize: 2.2,
-  particleGravity: 1,
-  particleGlow: 1,
-  particleSharpness: 1,
-  particleTrail: 0.5,
-  particleResolution: 0.6,
-  gravityRadius: 110,
-  cursorSpotlight: 1,
-  cursorHalo: 1,
-  heroIntensity: 1,
-  heroSpeed: 1,
+  heroTint: '#009dff',
+  inkStir: 0.7,
+  inkStirSize: 1,
+  inkStirTrail: 1,
+  inkFlow: 2.85,
+  inkIntensity: 1.3,
+  particleCount: 2410,
+  particleSize: 0.5,
+  particleGravity: 0.65,
+  particleGlow: 4.5,
+  particleSharpness: 2.25,
+  particleTrail: 0.7,
+  particleResolution: 0.95,
+  gravityRadius: 40,
+  gravityOffsetX: 15, // small constant nudge that centres the ring on the cursor
+  gravityOffsetY: 0,
+  cursorSpotlight: 1.7,
+  cursorSpotlightSize: 1,
+  cursorHalo: 1.05,
+  cursorSize: 1,
+  heroIntensity: 1.15,
+  heroSpeed: 0.55,
   motionSpeed: 1,
-  volume: 0.5,
+  volume: 0.03,
+  sfxVolume: 0.35,
+  whooshVolume: 0.3,
 };
 
 const STORAGE_KEY = 'speedleads-fx-v1';

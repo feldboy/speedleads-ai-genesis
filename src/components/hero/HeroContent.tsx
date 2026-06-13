@@ -88,7 +88,7 @@ const HeroContent: React.FC = () => {
           <Button
             id="hero_cta_button"
             size="lg"
-            className="bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] hover:brightness-110 text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-lg shadow-lg hover:shadow-tech-blue/25 transition-all duration-300 text-sm sm:text-base min-h-[44px]"
+            className="bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] hover:brightness-110 text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg hover:shadow-tech-blue/25 transition-all duration-300 text-sm sm:text-base min-h-[44px]"
           >
             בואו נדבר על הפרויקט שלכם
           </Button>
@@ -98,7 +98,7 @@ const HeroContent: React.FC = () => {
             id="hero_services_button"
             size="lg"
             variant="outline"
-            className="border-2 border-white/30 font-semibold text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:shadow-gold/25 transition-all duration-300 text-sm sm:text-base min-h-[44px]"
+            className="border-2 border-white/30 font-semibold text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:shadow-gold/25 transition-all duration-300 text-sm sm:text-base min-h-[44px]"
           >
             גלו את השירותים שלנו
           </Button>

@@ -31,12 +31,15 @@ export const About3 = () => {
           <div className="grid gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-12 max-w-6xl mx-auto">
             {/* Feature 1 */}
             <GlowCard className="rounded-2xl p-8 lg:col-span-7" data-aos="fade-up" data-aos-delay="100">
-              <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
-                background: 'linear-gradient(135deg, #00A7FF 0%, #00F6FF 50%, #0D1B2A 100%)'
-              }}>
-                <div className="absolute inset-0 opacity-30" style={{
-                  background: 'radial-gradient(circle at 30% 40%, rgba(0,246,255,0.4) 0%, transparent 60%), radial-gradient(circle at 70% 60%, rgba(0,167,255,0.3) 0%, transparent 50%)'
-                }} />
+              <div className="mb-6 overflow-hidden rounded-xl h-48 relative bg-[#0D1B2A]">
+                <img
+                  src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=900&h=400&fit=crop&auto=format&q=80"
+                  alt="צוות SpeedLeads בפגישת עבודה ושיתוף פעולה צמוד עם לקוח"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2A] via-[#0D1B2A]/35 to-transparent" />
+                <div className="absolute inset-0 bg-[#00A7FF]/15 mix-blend-overlay" />
               </div>
               <div className="text-center">
                 <h3 className="font-display mb-2 text-2xl text-white">שירות אישי</h3>
@@ -51,12 +54,15 @@ export const About3 = () => {
 
             {/* Feature 2 */}
             <GlowCard className="rounded-2xl p-8 lg:col-span-5" data-aos="fade-up" data-aos-delay="150">
-              <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
-                background: 'linear-gradient(135deg, #0072E5 0%, #00A7FF 50%, #0D1B2A 100%)'
-              }}>
-                <div className="absolute inset-0 opacity-30" style={{
-                  background: 'radial-gradient(circle at 60% 30%, rgba(0,114,229,0.4) 0%, transparent 60%), radial-gradient(circle at 40% 70%, rgba(0,167,255,0.3) 0%, transparent 50%)'
-                }} />
+              <div className="mb-6 overflow-hidden rounded-xl h-48 relative bg-[#0D1B2A]">
+                <img
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=400&fit=crop&auto=format&q=80"
+                  alt="ניתוח נתונים, מדדי הצלחה ו-ROI על מסך מחשב"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2A] via-[#0D1B2A]/35 to-transparent" />
+                <div className="absolute inset-0 bg-[#0072E5]/15 mix-blend-overlay" />
               </div>
               <div className="text-center">
                 <h3 className="font-display mb-2 text-2xl text-white">ניהול מוצר אסטרטגי</h3>
@@ -71,12 +77,15 @@ export const About3 = () => {
 
             {/* Feature 3 */}
             <GlowCard className="rounded-2xl p-8 lg:col-span-5" data-aos="fade-up" data-aos-delay="200">
-              <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
-                background: 'linear-gradient(135deg, #06B6D4 0%, #67E8F9 50%, #0D1B2A 100%)'
-              }}>
-                <div className="absolute inset-0 opacity-30" style={{
-                  background: 'radial-gradient(circle at 40% 50%, rgba(6,182,212,0.4) 0%, transparent 60%), radial-gradient(circle at 70% 30%, rgba(103,232,249,0.3) 0%, transparent 50%)'
-                }} />
+              <div className="mb-6 overflow-hidden rounded-xl h-48 relative bg-[#0D1B2A]">
+                <img
+                  src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=900&h=400&fit=crop&auto=format&q=80"
+                  alt="קוד נקי, מאובטח ומהיר על מסך מחשב"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2A] via-[#0D1B2A]/35 to-transparent" />
+                <div className="absolute inset-0 bg-[#06B6D4]/15 mix-blend-overlay" />
               </div>
               <div className="text-center">
                 <h3 className="font-display mb-2 text-2xl text-white">איכות וביצועים</h3>
@@ -91,12 +100,15 @@ export const About3 = () => {
 
             {/* Feature 4 */}
             <GlowCard className="rounded-2xl p-8 lg:col-span-7" data-aos="fade-up" data-aos-delay="250">
-              <div className="mb-6 overflow-hidden rounded-xl h-48 relative" style={{
-                background: 'linear-gradient(135deg, #003B73 0%, #00C2E0 50%, #0D1B2A 100%)'
-              }}>
-                <div className="absolute inset-0 opacity-30" style={{
-                  background: 'radial-gradient(circle at 50% 40%, rgba(0,194,224,0.4) 0%, transparent 60%), radial-gradient(circle at 30% 70%, rgba(0,167,255,0.3) 0%, transparent 50%)'
-                }} />
+              <div className="mb-6 overflow-hidden rounded-xl h-48 relative bg-[#0D1B2A]">
+                <img
+                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&h=400&fit=crop&auto=format&q=80"
+                  alt="פגישת התקדמות שקופה עם דוחות, נתונים וגישה מלאה ללקוח"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2A] via-[#0D1B2A]/35 to-transparent" />
+                <div className="absolute inset-0 bg-[#00C2E0]/15 mix-blend-overlay" />
               </div>
               <div className="text-center">
                 <h3 className="font-display mb-2 text-2xl text-white">שקיפות מלאה</h3>
@@ -116,7 +128,7 @@ export const About3 = () => {
           <MagneticButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
             <Button
               size="lg"
-              className="inline-flex items-center px-10 py-4 bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] hover:brightness-110 text-white font-bold text-lg rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-tech-blue/25 border-0"
+              className="inline-flex items-center px-10 py-4 bg-gradient-to-l from-[color:var(--btn-from,#00f6ff)] to-[color:var(--btn-to,#00a7ff)] hover:brightness-110 text-white font-bold text-lg rounded-full transition-all duration-300 shadow-2xl hover:shadow-tech-blue/25 border-0"
             >
               בואו נתחיל לעבוד יחד
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3 rtl:mr-0 rtl:ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">

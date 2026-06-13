@@ -149,6 +149,8 @@ const EffectsPanel = () => {
             <SliderRow label="עוצמת העשן" k="inkIntensity" min={0} max={4} />
             <SliderRow label="מהירות זרימה" k="inkFlow" min={0} max={5} />
             <SliderRow label="ערבול בעכבר" k="inkStir" min={0} max={5} />
+            <SliderRow label="גודל ערבול" k="inkStirSize" min={0.3} max={4} />
+            <SliderRow label="אורך ערבול" k="inkStirTrail" min={0.3} max={4} />
             <ColorRow label="צבע זוהר" k="inkCyan" />
             <ColorRow label="צבע עומק" k="inkAzure" />
           </Section>
@@ -162,13 +164,17 @@ const EffectsPanel = () => {
             <SliderRow label="רזולוציה" k="particleResolution" min={0.25} max={1} step={0.05} />
             <SliderRow label="כבידת עכבר" k="particleGravity" min={0} max={8} />
             <SliderRow label="רדיוס כבידה" k="gravityRadius" min={40} max={500} step={10} />
+            <SliderRow label="היסט כבידה X" k="gravityOffsetX" min={-300} max={300} step={5} />
+            <SliderRow label="היסט כבידה Y" k="gravityOffsetY" min={-300} max={300} step={5} />
             <ColorRow label="צבע" k="particleColor" />
           </Section>
 
           <Section title="עכבר">
             <ColorRow label="צבע" k="cursorColor" />
-            <SliderRow label="עוצמת זרקור" k="cursorSpotlight" min={0} max={4} />
+            <SliderRow label="גודל נקודה" k="cursorSize" min={0.3} max={4} />
             <SliderRow label="גודל טבעת" k="cursorHalo" min={0.25} max={5} />
+            <SliderRow label="עוצמת זרקור" k="cursorSpotlight" min={0} max={4} />
+            <SliderRow label="גודל זרקור" k="cursorSpotlightSize" min={0.3} max={3} />
           </Section>
 
           <Section title="הירו">
@@ -190,6 +196,8 @@ const EffectsPanel = () => {
 
           <Section title="סאונד">
             <SliderRow label="עוצמת שמע" k="volume" min={0} max={1} step={0.01} />
+            <SliderRow label="אפקטי סאונד" k="sfxVolume" min={0} max={1} step={0.01} />
+            <SliderRow label="ווש סמן" k="whooshVolume" min={0} max={1} step={0.01} />
           </Section>
         </div>
       )}

@@ -84,14 +84,14 @@ const FloatingAI = () => {
         {/* Tooltip */}
         {!isChatbotOpen && (
           <motion.div
-            className="absolute bottom-full mb-4 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-3 text-sm text-gray-800 whitespace-nowrap pointer-events-none"
+            className="absolute bottom-full mb-4 right-0 bg-white rounded-lg shadow-lg p-3 text-sm text-gray-800 whitespace-nowrap pointer-events-none"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 3 }}
           >
             <div className="relative">
               בואו נדבר על הפרויקט שלכם!
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-white"></div>
+              <div className="absolute top-full right-8 transform translate-x-1/2 border-4 border-transparent border-t-white"></div>
             </div>
           </motion.div>
         )}

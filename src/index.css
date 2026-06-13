@@ -647,6 +647,14 @@ html, body {
   text-stroke: 1.5px rgba(0, 246, 255, 0.45);
 }
 
+/* Process station numerals — bolder, less transparent, neon glow */
+.process-numeral {
+  color: rgba(0, 246, 255, 0.12); /* faint fill so it reads as a solid figure, not a thin outline */
+  -webkit-text-stroke: 2.5px rgba(0, 246, 255, 0.9);
+  text-stroke: 2.5px rgba(0, 246, 255, 0.9);
+  text-shadow: 0 0 22px rgba(0, 246, 255, 0.7), 0 0 48px rgba(0, 167, 255, 0.4);
+}
+
 /* Animated conic border for GlowCard (rotating highlight on a 1px frame) */
 @property --glow-angle {
   syntax: '<angle>';

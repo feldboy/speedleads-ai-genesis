@@ -15,6 +15,7 @@ import IntroSequence from '@/components/sections/IntroSequence';
 import ProcessSection from '@/components/sections/ProcessSection';
 import CursorCore from '@/components/effects/CursorCore';
 import AmbientSound from '@/components/effects/AmbientSound';
+import InteractionSfx from '@/components/effects/InteractionSfx';
 import EffectsPanel from '@/components/effects/EffectsPanel';
 import { initializeAnalytics, trackEvent } from '@/lib/analytics';
 
@@ -129,6 +130,7 @@ const Index = () => {
       <Footer />
       <FloatingAI />
       <AmbientSound />
+      <InteractionSfx />
       <EffectsPanel />
 
       {/* WhatsApp floating button */}

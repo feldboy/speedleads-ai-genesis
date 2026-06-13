@@ -81,7 +81,7 @@ const StationCard = ({ step, index, horizontal }: { step: Step; index: number; h
       <span
         data-numeral
         aria-hidden="true"
-        className={`font-display text-outline select-none pointer-events-none absolute z-0 leading-none ${
+        className={`font-display process-numeral select-none pointer-events-none absolute z-20 leading-none ${
           horizontal ? 'text-[10rem] xl:text-[12rem] -top-20 xl:-top-24 right-0' : 'text-7xl -top-8 right-2'
         }`}
         dir="ltr"
@@ -147,10 +147,11 @@ const ProcessSection = () => {
           const card = cards[i];
           const numeral = numerals[i];
           if (card) {
-            // focus-pull via scale/opacity only — per-frame blur() murders the GPU
+            // focus-pull via scale only — fading the whole card's opacity let the
+            // particle field bleed through the off-centre cards, so keep them solid.
             gsap.set(card, {
               scale: 1 - 0.06 * Math.min(d, 1),
-              opacity: 1 - 0.45 * Math.min(d, 1),
+              opacity: 1,
             });
           }
           // The numeral drags behind the travel direction — depth

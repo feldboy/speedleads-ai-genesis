@@ -47,25 +47,27 @@ const CursorCore = () => {
 
     const applyMode = (next: typeof mode) => {
       const halo = fx.cursorHalo;
+      const size = fx.cursorSize; // scales the core dot
       if (next === 'pull') {
         gsap.to(ring, { scale: 1.8 * halo, opacity: 1, borderColor: hexToRgba(fx.cursorColor, 0.9), duration: 0.35, ease: 'back.out(2)' });
-        gsap.to(dot, { scale: 0.5, duration: 0.35, ease: 'power2.out' });
+        gsap.to(dot, { scale: 0.5 * size, duration: 0.35, ease: 'power2.out' });
       } else if (next === 'beam') {
         gsap.to(ring, { scale: 0.5 * halo, opacity: 0.9, borderColor: hexToRgba(fx.cursorColor, 0.6), duration: 0.3, ease: 'power2.out' });
-        gsap.to(dot, { scale: 1.6, duration: 0.3, ease: 'power2.out' });
+        gsap.to(dot, { scale: 1.6 * size, duration: 0.3, ease: 'power2.out' });
       } else {
         gsap.to(ring, { scale: halo, opacity: 0.65, borderColor: hexToRgba(fx.cursorColor, 0.45), duration: 0.35, ease: 'power2.out' });
-        gsap.to(dot, { scale: 1, duration: 0.35, ease: 'power2.out' });
+        gsap.to(dot, { scale: size, duration: 0.35, ease: 'power2.out' });
       }
     };
 
-    // Panel tuning (color, halo size, spotlight strength) applies live
+    // Panel tuning (color, sizes, spotlight) applies live
     const applyTheme = () => {
       const c = fx.cursorColor;
       dot.style.background = c;
       dot.style.boxShadow = `0 0 8px ${hexToRgba(c, 0.9)}`;
       ring.style.boxShadow = `0 0 12px ${hexToRgba(c, 0.25)} inset, 0 0 12px ${hexToRgba(c, 0.15)}`;
       light.style.background = `radial-gradient(circle, ${hexToRgba(c, 0.08 * fx.cursorSpotlight)} 0%, ${hexToRgba(c, 0.04 * fx.cursorSpotlight)} 35%, transparent 70%)`;
+      gsap.set(light, { scale: fx.cursorSpotlightSize }); // spotlight radius
       applyMode(mode);
     };
     applyTheme();

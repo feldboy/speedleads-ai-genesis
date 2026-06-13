@@ -92,6 +92,7 @@ const FRAGMENT_SHADER = (octaves: number) => /* glsl */ `
   uniform float uTime;
   uniform float uScroll;
   uniform float uStir;            // mouse-stir strength, 1 = designed default
+  uniform float uStirSize;        // swirl radius multiplier, 1 = designed default
   uniform float uIntensity;       // smoke brightness relative to the abyss
   uniform vec2 uRes;
   uniform vec2 uPointer;            // smoothed head, 0-1 (y up)
@@ -142,7 +143,7 @@ const FRAGMENT_SHADER = (octaves: number) => /* glsl */ `
       tp.y += uScroll * 1.1;
       vec2 d = p - tp;
       float dist2 = dot(d, d);
-      float influence = uTrail[i].z * exp(-dist2 * 14.0);
+      float influence = uTrail[i].z * exp(-dist2 * (14.0 / uStirSize));
       // rotate around the trail point — stirring, not pushing
       stir += vec2(-d.y, d.x) * influence * 1.4 * uStir;
       wake += influence * uStir;
@@ -244,6 +245,7 @@ const LiquidInkBackground = () => {
       uTime: { value: 0 },
       uScroll: { value: 0 },
       uStir: { value: fx.inkStir },
+      uStirSize: { value: fx.inkStirSize },
       uIntensity: { value: fx.inkIntensity },
       uRes: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
       uPointer: { value: new THREE.Vector2(0.5, 0.5) },
@@ -376,12 +378,29 @@ const LiquidInkBackground = () => {
     // Tap/click detonations — an expanding ring that kicks dust outward.
     const shocks: Array<{ x: number; y: number; t: number }> = [];
 
+    // Previous-frame well centre, so captured dust can be carried rigidly with
+    // the pointer (kills the lag where the ring trails a moving cursor).
+    let lastWellX = NaN;
+    let lastWellY = NaN;
+
     const stepParticles = (dt: number, aspect: number) => {
       const count = activeCount();
       const motion = fx.motionSpeed;
-      // gravity well center in NDC (x is aspect-corrected so math is circular)
-      const px = (head.x * 2 - 1) * aspect;
-      const py = head.y * 2 - 1;
+      // Nudge the gravity well relative to the cursor (live, from EffectsPanel).
+      //   gravityOffsetX > 0 → ring RIGHT, < 0 → LEFT
+      //   gravityOffsetY > 0 → ring DOWN,  < 0 → UP   (CSS px)
+      const ndcPerPx = 2 / window.innerHeight; // 1 CSS px in NDC-y units
+      // gravity well center in NDC (x is aspect-corrected so math is circular).
+      // Track the raw pointer, not the smoothed ink head — the dust ring must
+      // sit on the cursor, and head's heavy lerp made it trail behind.
+      const px = (target.x * 2 - 1) * aspect + fx.gravityOffsetX * ndcPerPx;
+      const py = (target.y * 2 - 1) - fx.gravityOffsetY * ndcPerPx;
+      // How far the well moved since last frame (aspect space). Captured dust is
+      // advected by this so the ring rides the cursor instead of springing after it.
+      const wellDX = Number.isNaN(lastWellX) ? 0 : px - lastWellX;
+      const wellDY = Number.isNaN(lastWellY) ? 0 : py - lastWellY;
+      lastWellX = px;
+      lastWellY = py;
       const gravity = isCoarsePointer || !pointerActive ? 0 : fx.particleGravity;
       const wind = fxRuntime.windX;
       fxRuntime.windX *= 0.92; // wind impulses decay here, once per frame
@@ -406,6 +425,10 @@ const LiquidInkBackground = () => {
         // inside it, a hard outward spring — dust rings the cursor, never
         // sits under it. (Forces are computed in aspect-corrected space and
         // the x-component is mapped back, so the gather is truly circular.)
+        // homePull fades to 0 for captured dust so the home spring (whose homes
+        // average toward screen-centre) can't drag the ring off the cursor.
+        let homePull = 1;
+        let carry = 0; // 1 = rides the cursor rigidly, 0 = free
         if (gravity > 0) {
           const dx = px - x * aspect;
           const dy = py - y;
@@ -414,10 +437,14 @@ const LiquidInkBackground = () => {
             const f = (1 - d / exclusion) * 0.02 * frame;
             velocities[iv] -= ((dx / d) * f) / aspect;
             velocities[iv + 1] -= (dy / d) * f;
+            homePull = 0;
+            carry = 1;
           } else if (d < capture) {
             const f = (1 - (d - exclusion) / (capture - exclusion)) * 0.0011 * gravity * frame;
             velocities[iv] += ((dx / d) * f) / aspect;
             velocities[iv + 1] += (dy / d) * f;
+            homePull = (d - exclusion) / (capture - exclusion);
+            carry = 1 - homePull;
           }
         }
 
@@ -437,14 +464,15 @@ const LiquidInkBackground = () => {
         }
 
         // spring home + damping keeps the field stable
-        velocities[iv] += (homes[iv] - x) * 0.0008 * frame;
-        velocities[iv + 1] += (homes[iv + 1] - y) * 0.0008 * frame;
+        velocities[iv] += (homes[iv] - x) * 0.0008 * frame * homePull;
+        velocities[iv + 1] += (homes[iv + 1] - y) * 0.0008 * frame * homePull;
         velocities[iv] *= 0.94;
         velocities[iv + 1] *= 0.94;
 
-        // ambient drift + Process scrub wind (RTL stage travels +x → dust -x)
-        x += (velocities[iv] - wind * 0.02 * drift[i]) * frame;
-        y += (velocities[iv + 1] + 0.00035 * drift[i] * motion) * frame;
+        // ambient drift + Process scrub wind (RTL stage travels +x → dust -x),
+        // plus the well-carry so captured dust rides the pointer without lag
+        x += (velocities[iv] - wind * 0.02 * drift[i]) * frame + (wellDX * carry) / aspect;
+        y += (velocities[iv + 1] + 0.00035 * drift[i] * motion) * frame + wellDY * carry;
 
         // wrap; the home wraps with the particle so the spring never fights it
         if (y > 1.05) { y -= 2.1; homes[iv + 1] -= 2.1; }
@@ -458,12 +486,21 @@ const LiquidInkBackground = () => {
       particleGeometry.attributes.position.needsUpdate = true;
     };
 
-    const tick = () => {
+    // ~30fps cap: the ambient ink/dust drifts slowly, so rendering at half the
+    // refresh rate looks the same but ~halves the GPU/CPU cost. Physics uses the
+    // real delta (clock.getDelta) so motion speed is unchanged.
+    const FRAME_MS = 1000 / 30;
+    let lastRender = -Infinity;
+    const tick = (now = performance.now()) => {
       if (!running) return;
+      rafId = requestAnimationFrame(tick);
+      if (now - lastRender < FRAME_MS) return; // throttle to the cap
+      lastRender = now;
       const dt = clock.getDelta();
       elapsed += dt * fx.inkFlow * fx.motionSpeed;
       uniforms.uTime.value = elapsed;
       uniforms.uStir.value = fx.inkStir;
+      uniforms.uStirSize.value = fx.inkStirSize;
       uniforms.uIntensity.value = fx.inkIntensity;
 
       head.lerp(target, 0.14);
@@ -475,7 +512,9 @@ const LiquidInkBackground = () => {
         trailIndex = (trailIndex + 1) % TRAIL_POINTS;
         lastDrop.copy(head);
       }
-      for (const point of trail) point.z *= 0.965; // the wake fades
+      // the wake fades — higher inkStirTrail keeps the swirl lingering longer
+      const wakeDecay = 1 - 0.035 / Math.max(fx.inkStirTrail, 0.1);
+      for (const point of trail) point.z *= wakeDecay;
 
       stepParticles(dt, uniforms.uRes.value.x / uniforms.uRes.value.y);
 
@@ -497,7 +536,6 @@ const LiquidInkBackground = () => {
       renderer.autoClear = true;
 
       [rtPrev, rtCurr] = [rtCurr, rtPrev];
-      rafId = requestAnimationFrame(tick);
     };
 
     const onPointerMove = (e: PointerEvent) => {
