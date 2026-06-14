@@ -32,6 +32,8 @@ export interface FxConfig {
   inkStirTrail: number; // how long the stir wake lingers, 1 = designed default
   inkFlow: number; // flow/time speed of the liquid
   inkIntensity: number; // overall "smoke" brightness
+  inkDetail: number; // MOBILE ONLY: noise-frequency multiplier — higher = smaller smoke
+                     // cells (dissolves the value-noise lattice on narrow portrait screens)
   // --- particles ---
   particleCount: number;
   particleSize: number;
@@ -74,6 +76,7 @@ export const FX_DEFAULTS: FxConfig = {
   inkStirTrail: 1,
   inkFlow: 2.85,
   inkIntensity: 1.3,
+  inkDetail: 2.5,
   particleCount: 2410,
   particleSize: 0.5,
   particleGravity: 0.65,

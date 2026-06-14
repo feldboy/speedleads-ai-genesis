@@ -110,6 +110,15 @@ const EffectsPanel = () => {
         {open ? <X className="h-5 w-5" /> : <SlidersHorizontal className="h-5 w-5" />}
       </button>
 
+      {/* Mobile: tap the backdrop to dismiss the bottom-sheet. */}
+      {open && isMobile && (
+        <div
+          aria-hidden
+          onClick={() => setOpen(false)}
+          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
+        />
+      )}
+
       {open && (
         <div
           dir="rtl"
@@ -121,9 +130,20 @@ const EffectsPanel = () => {
               : 'fixed bottom-[192px] left-5 z-50 w-[340px] max-h-[70vh] overflow-y-auto rounded-2xl border border-white/10 bg-[#070D18]/92 backdrop-blur-xl p-5 space-y-6 shadow-2xl'
           }
         >
-          <header className="flex items-center justify-between">
+          <header className="flex items-center justify-between max-md:sticky max-md:top-0 max-md:z-10 max-md:-mx-5 max-md:-mt-5 max-md:px-5 max-md:py-3 max-md:bg-[#070D18]/95 max-md:backdrop-blur-xl">
             <h2 className="font-display text-lg text-white">לוח אפקטים</h2>
             <div className="flex items-center gap-2">
+              {isMobile && (
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  title="סגירה"
+                  aria-label="סגירת לוח האפקטים"
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 text-white/60 transition-colors hover:text-white"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
               <button
                 type="button"
                 onClick={copySettings}
@@ -147,6 +167,7 @@ const EffectsPanel = () => {
 
           <Section title="רקע נוזלי">
             <SliderRow label="עוצמת העשן" k="inkIntensity" min={0} max={4} />
+            <SliderRow label="פירוט עשן (מובייל)" k="inkDetail" min={1} max={5} step={0.1} />
             <SliderRow label="מהירות זרימה" k="inkFlow" min={0} max={5} />
             <SliderRow label="ערבול בעכבר" k="inkStir" min={0} max={5} />
             <SliderRow label="גודל ערבול" k="inkStirSize" min={0.3} max={4} />
