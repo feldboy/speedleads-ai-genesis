@@ -87,8 +87,27 @@ const EffectsPanel = () => {
   if (reducedMotion) return null;
 
   const copySettings = async () => {
+    const text = JSON.stringify(fx, null, 2);
     try {
-      await navigator.clipboard.writeText(JSON.stringify(fx, null, 2));
+      // navigator.clipboard only exists in a secure context — over the LAN dev URL
+      // (plain http on a phone) it's undefined, so fall back to a hidden textarea +
+      // execCommand('copy'), which works on insecure origins.
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.top = '0';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        ta.setSelectionRange(0, text.length); // iOS needs an explicit range
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1600);
     } catch {

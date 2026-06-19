@@ -119,8 +119,27 @@ function loadStored(): Partial<FxConfig> {
   }
 }
 
+/**
+ * Coarse-pointer (touch) devices get their own default overrides, tuned
+ * separately from desktop. A fresh mobile visitor starts from these; the owner's
+ * saved tuning (loadStored) still wins on top, and `resetFx` returns here on mobile.
+ * Desktop is unaffected (overrides are only merged on a coarse pointer).
+ */
+export const FX_MOBILE_OVERRIDES: Partial<FxConfig> = {
+  // Filled with the owner's mobile-tuned values (copy them from the effects panel).
+};
+
+const isCoarsePointer =
+  typeof window !== 'undefined' && !!window.matchMedia?.('(pointer: coarse)').matches;
+
+/** The starting defaults for THIS device (desktop defaults + mobile overrides on touch). */
+export const FX_DEVICE_DEFAULTS: FxConfig = {
+  ...FX_DEFAULTS,
+  ...(isCoarsePointer ? FX_MOBILE_OVERRIDES : {}),
+};
+
 /** Mutable live config — rAF loops read this directly each frame. */
-export const fx: FxConfig = { ...FX_DEFAULTS, ...loadStored() };
+export const fx: FxConfig = { ...FX_DEVICE_DEFAULTS, ...loadStored() };
 
 /** Runtime-only signals (never persisted, never trigger renders). */
 export const fxRuntime = {
@@ -163,7 +182,7 @@ export function setFx(patch: Partial<FxConfig>) {
 }
 
 export function resetFx() {
-  Object.assign(fx, FX_DEFAULTS);
+  Object.assign(fx, FX_DEVICE_DEFAULTS);
   applyFxCssVars();
   try {
     localStorage.removeItem(STORAGE_KEY);
