@@ -60,7 +60,10 @@ const AnimatedCode = () => {
         </div>
         <span className="text-gray-400 ml-4">AI_Development.js</span>
       </div>
-      <pre className="text-gray-300">
+      {/* Reserve the tallest snippet's height on mobile only (max-md:) so the
+          per-character typing doesn't reflow the hero / jitter the scroll.
+          Desktop (md+) is unchanged. */}
+      <pre className="text-gray-300 max-md:min-h-[9rem]">
         <code>
           {displayedCode.split('\n').map((line, i) => (
             <motion.div

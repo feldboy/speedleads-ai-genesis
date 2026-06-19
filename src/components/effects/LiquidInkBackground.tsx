@@ -86,7 +86,7 @@ const COMPOSITE_FRAGMENT = /* glsl */ `
   }
 `;
 
-const FRAGMENT_SHADER = (octaves: number) => /* glsl */ `
+const FRAGMENT_SHADER = (octaves: number, stableHash: boolean) => /* glsl */ `
   precision highp float;
 
   uniform float uTime;
@@ -95,14 +95,29 @@ const FRAGMENT_SHADER = (octaves: number) => /* glsl */ `
   uniform float uStirSize;        // swirl radius multiplier, 1 = designed default
   uniform float uIntensity;       // smoke brightness relative to the abyss
   uniform vec2 uRes;
+  uniform float uDetail;            // isotropic noise-frequency multiplier — >1 on mobile
+                                    // adds cells so the portrait lattice isn't visible; 1 on desktop
   uniform vec2 uPointer;            // smoothed head, 0-1 (y up)
+  uniform float uPixelRatio;        // gl_FragCoord is physical px but uRes is CSS px, so
+                                    // uv would run 0..DPR. Dividing by this normalises uv to
+                                    // 0..1 on touch (=DPR) so the 0..1 pointer/stir line up
+                                    // with the finger and the stir reaches like desktop. =1 on desktop.
   uniform vec3 uInkCyan;            // bright filament color
   uniform vec3 uInkAzure;           // current body color
   uniform vec3 uTrail[${TRAIL_POINTS}]; // xy: pos 0-1 (y up), z: strength 0-1
 
+  ${stableHash ? `
+  // Mobile: a sin-free hash (Dave Hoskins, hash12). The classic fract(sin(x)*43758)
+  // hash loses precision on mobile GPUs (highp sin + huge multiplier) and the noise
+  // breaks into faceted blocks/shards. This one is stable on mobile.
+  float hash(vec2 p) {
+    vec3 p3 = fract(vec3(p.xyx) * 0.1031);
+    p3 += dot(p3, p3.yzx + 33.33);
+    return fract((p3.x + p3.y) * p3.z);
+  }` : `
   float hash(vec2 p) {
     return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
-  }
+  }`}
 
   float noise(vec2 p) {
     vec2 i = floor(p);
@@ -128,8 +143,12 @@ const FRAGMENT_SHADER = (octaves: number) => /* glsl */ `
 
   void main() {
     float aspect = uRes.x / uRes.y;
-    vec2 uv = gl_FragCoord.xy / uRes;
-    vec2 p = uv * vec2(aspect, 1.0) * 1.6;
+    // vec2(aspect, 1.0) keeps noise cells square on screen at any aspect; the only
+    // issue on a narrow phone is too FEW cells (the lattice shows). uDetail adds
+    // cells isotropically on mobile. Desktop passes 1.0 → unchanged.
+    vec2 freq = vec2(aspect, 1.0) * 1.6 * uDetail;
+    vec2 uv = gl_FragCoord.xy / uRes / uPixelRatio; // normalised 0..1 (see uPixelRatio)
+    vec2 p = uv * freq;
     float t = uTime * 0.045;
 
     // Slow vertical drift with scroll so every section sits in fresh liquid
@@ -139,7 +158,7 @@ const FRAGMENT_SHADER = (octaves: number) => /* glsl */ `
     vec2 stir = vec2(0.0);
     float wake = 0.0;
     for (int i = 0; i < ${TRAIL_POINTS}; i++) {
-      vec2 tp = uTrail[i].xy * vec2(aspect, 1.0) * 1.6;
+      vec2 tp = uTrail[i].xy * freq;
       tp.y += uScroll * 1.1;
       vec2 d = p - tp;
       float dist2 = dot(d, d);
@@ -231,12 +250,13 @@ const LiquidInkBackground = () => {
       return; // fallback div below remains
     }
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+    // Phones are DPR ~3; the 1.5 cap rendered the ink at ~half-res (soft, blocky).
+    // Give touch devices a higher cap for a sharper ink. Desktop keeps 1.5.
+    const dprCap = isCoarsePointer ? 2.5 : 1.5;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, dprCap));
     renderer.setSize(window.innerWidth, window.innerHeight);
     mount.appendChild(renderer.domElement);
-
-    const isSmallScreen = window.innerWidth < 768;
-    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
@@ -248,14 +268,20 @@ const LiquidInkBackground = () => {
       uStirSize: { value: fx.inkStirSize },
       uIntensity: { value: fx.inkIntensity },
       uRes: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+      // touch uv is normalised to 0..1; fx.inkDetail (live panel knob) sets the noise
+      // density to dial out the portrait lattice. Desktop is pinned to 1.0 (unchanged).
+      uDetail: { value: isCoarsePointer ? fx.inkDetail : 1.0 },
+      // normalise touch uv to 0..1 (=DPR); desktop passes 1.0 → unchanged.
+      uPixelRatio: { value: isCoarsePointer ? renderer.getPixelRatio() : 1.0 },
       uPointer: { value: new THREE.Vector2(0.5, 0.5) },
       uInkCyan: { value: new THREE.Vector3(...hexToRgb01(fx.inkCyan)) },
       uInkAzure: { value: new THREE.Vector3(...hexToRgb01(fx.inkAzure)) },
       uTrail: { value: trail },
     };
     const material = new THREE.ShaderMaterial({
-      // fewer fbm octaves on small screens — invisible there, much cheaper
-      fragmentShader: FRAGMENT_SHADER(isSmallScreen ? 3 : 4),
+      // full fbm detail everywhere; mobile (coarse pointer) uses a precision-stable
+      // hash so the noise doesn't break into faceted blocks on mobile GPUs.
+      fragmentShader: FRAGMENT_SHADER(4, isCoarsePointer),
       vertexShader: VERTEX_SHADER,
       uniforms,
     });
@@ -343,8 +369,9 @@ const LiquidInkBackground = () => {
     const compositeScene = new THREE.Scene();
     compositeScene.add(compositeQuad);
 
+    // full particle count on mobile too — matches the desktop look (owner directive)
     const activeCount = () =>
-      Math.min(Math.round(fx.particleCount * (isSmallScreen ? 0.4 : 1)), MAX_PARTICLES);
+      Math.min(Math.round(fx.particleCount), MAX_PARTICLES);
     particleGeometry.setDrawRange(0, activeCount());
 
     const sizeTrailBuffers = () => {
@@ -369,6 +396,15 @@ const LiquidInkBackground = () => {
     const head = new THREE.Vector2(0.5, 0.5);
     const lastDrop = new THREE.Vector2(0.5, 0.5);
     let pointerActive = false;
+    // Touch (coarse pointer) interaction state. On touch the gravity well only
+    // engages while a finger is held down (drag → swirl ring); a quick tap that
+    // didn't scroll detonates on release. Mouse/fine pointers are unaffected.
+    let touchHolding = false;
+    let tapStart: { x: number; y: number; time: number; scrollY: number } | null = null;
+    // Mobile-only viewport tracking: the URL bar show/hide oscillates innerHeight
+    // mid-scroll. maxH is monotonic so the canvas settles once and never flickers.
+    let lastW = window.innerWidth;
+    let maxH = window.innerHeight;
     let trailIndex = 0;
     let rafId = 0;
     let running = true;
@@ -401,13 +437,21 @@ const LiquidInkBackground = () => {
       const wellDY = Number.isNaN(lastWellY) ? 0 : py - lastWellY;
       lastWellX = px;
       lastWellY = py;
-      const gravity = isCoarsePointer || !pointerActive ? 0 : fx.particleGravity;
+      // Fine pointer: gravity while the cursor is on the page. Touch: gravity only
+      // while a finger is held down, so the dust rings the finger during a drag.
+      // On touch the finger replaces the cursor: make the ring big and strong so
+      // the swirl is unmistakably AT the finger (the small/weak desktop well was
+      // lost against the ink glow, so the leftover drag-trail read as "the swirl").
+      const baseGravity = isCoarsePointer ? Math.max(fx.particleGravity, 2.6) : fx.particleGravity;
+      const gravityRadiusPx = isCoarsePointer ? Math.max(fx.gravityRadius, 72) : fx.gravityRadius;
+      const gravity =
+        !pointerActive || (isCoarsePointer && !touchHolding) ? 0 : baseGravity;
       const wind = fxRuntime.windX;
       fxRuntime.windX *= 0.92; // wind impulses decay here, once per frame
 
       // px → NDC-y units: 1 unit = half the viewport height
       const pxToNdc = 2 / window.innerHeight;
-      const exclusion = fx.gravityRadius * pxToNdc; // the gravity circle
+      const exclusion = gravityRadiusPx * pxToNdc; // the gravity circle
       const capture = exclusion * 3.5; // attraction reaches this far out
 
       const frame = Math.min(dt, 0.05) * 60; // normalize physics to ~60fps steps
@@ -502,8 +546,13 @@ const LiquidInkBackground = () => {
       uniforms.uStir.value = fx.inkStir;
       uniforms.uStirSize.value = fx.inkStirSize;
       uniforms.uIntensity.value = fx.inkIntensity;
+      // live "smoke detail" knob — mobile only; desktop stays pinned to 1.0
+      uniforms.uDetail.value = isCoarsePointer ? fx.inkDetail : 1.0;
 
-      head.lerp(target, 0.14);
+      // Touch tracks the finger exactly (head = target) so the ink glow/swirl sits
+      // on the finger together with the dust ring — any smoothing made the glow lag
+      // behind (it drifted down-left of the finger). Desktop keeps its 0.14 smoothing.
+      head.lerp(target, isCoarsePointer ? 1 : 0.14);
       uniforms.uPointer.value.copy(head);
 
       if (head.distanceTo(lastDrop) > 0.012) {
@@ -524,7 +573,10 @@ const LiquidInkBackground = () => {
       particleUniforms.uGlow.value = fx.particleGlow;
       particleUniforms.uSharpness.value = fx.particleSharpness;
       fadeMaterial.uniforms.tPrev.value = rtPrev.texture;
-      fadeMaterial.uniforms.uDecay.value = Math.min(fx.particleTrail, 1) * 0.94;
+      // Shorter dust trails on touch so a drag doesn't leave a ghost cluster
+      // behind the finger; the ring stays tight on the finger. Desktop unchanged.
+      fadeMaterial.uniforms.uDecay.value =
+        Math.min(fx.particleTrail, 1) * (isCoarsePointer ? 0.82 : 0.94);
       renderer.setRenderTarget(rtCurr);
       renderer.render(dustScene, camera);
       renderer.setRenderTarget(null);
@@ -538,30 +590,88 @@ const LiquidInkBackground = () => {
       [rtPrev, rtCurr] = [rtCurr, rtPrev];
     };
 
-    const onPointerMove = (e: PointerEvent) => {
-      pointerActive = true;
-      target.set(e.clientX / window.innerWidth, 1 - e.clientY / window.innerHeight);
-    };
-    // Tap empty space to detonate: shockwave through the dust + a swirl in
-    // the ink. Interactive elements keep their clicks to themselves.
-    const onPointerDown = (e: PointerEvent) => {
-      const el = e.target as Element | null;
-      if (el?.closest?.('a, button, input, textarea, select, label, [role="button"], [role="dialog"]')) return;
-      const nx = e.clientX / window.innerWidth;
-      const ny = 1 - e.clientY / window.innerHeight;
+    const isInteractive = (el: Element | null) =>
+      !!el?.closest?.('a, button, input, textarea, select, label, [role="button"], [role="dialog"]');
+    // Tap empty space to detonate: shockwave through the dust + a swirl in the ink.
+    const detonateAt = (nx: number, ny: number) => {
       shocks.push({ x: (nx * 2 - 1) * (window.innerWidth / window.innerHeight), y: ny * 2 - 1, t: 0 });
       if (shocks.length > MAX_SHOCKS) shocks.shift();
       trail[trailIndex].set(nx, ny, 1);
       trailIndex = (trailIndex + 1) % TRAIL_POINTS;
     };
+
+    // --- Mouse / fine pointer (desktop) — unchanged behaviour --------------
+    const onPointerMove = (e: PointerEvent) => {
+      if (e.pointerType === 'touch') return; // touch is handled by the touch* path
+      pointerActive = true;
+      target.set(e.clientX / window.innerWidth, 1 - e.clientY / window.innerHeight);
+    };
+    const onPointerDown = (e: PointerEvent) => {
+      if (e.pointerType === 'touch') return; // touch detonates on tap-release below
+      if (isInteractive(e.target as Element | null)) return;
+      detonateAt(e.clientX / window.innerWidth, 1 - e.clientY / window.innerHeight);
+    };
+
+    // --- Touch (coarse pointer) -------------------------------------------
+    // Driven by touch* events, NOT pointer events: once a drag becomes a scroll
+    // the browser fires pointercancel and stops pointermove, but touchmove keeps
+    // firing — so this is what keeps the gravity well glued to the finger while
+    // the page scrolls. A quick tap that didn't scroll detonates on release.
+    const onTouchStart = (e: TouchEvent) => {
+      const t = e.touches[0];
+      if (!t) return;
+      tapStart = { x: t.clientX, y: t.clientY, time: performance.now(), scrollY: window.scrollY };
+      touchHolding = true;
+      pointerActive = true;
+      target.set(t.clientX / window.innerWidth, 1 - t.clientY / window.innerHeight);
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      const t = e.touches[0];
+      if (!t) return;
+      pointerActive = true;
+      target.set(t.clientX / window.innerWidth, 1 - t.clientY / window.innerHeight);
+    };
+    const onTouchEnd = (e: TouchEvent) => {
+      touchHolding = false;
+      pointerActive = false;
+      const start = tapStart;
+      tapStart = null;
+      if (!start) return;
+      const t = e.changedTouches[0];
+      if (!t) return;
+      const moved = Math.hypot(t.clientX - start.x, t.clientY - start.y);
+      const elapsedMs = performance.now() - start.time;
+      const scrolled = Math.abs(window.scrollY - start.scrollY) > 2;
+      if (!isInteractive(t.target as Element | null) && moved < 10 && elapsedMs < 250 && !scrolled) {
+        detonateAt(t.clientX / window.innerWidth, 1 - t.clientY / window.innerHeight);
+      }
+    };
+    const onTouchCancel = () => {
+      touchHolding = false;
+      pointerActive = false;
+      tapStart = null;
+    };
     const onScroll = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
+      // On touch use the stable max height so the bar show/hide can't re-baseline.
+      const vh = isCoarsePointer ? maxH : window.innerHeight;
+      const max = document.documentElement.scrollHeight - vh;
       uniforms.uScroll.value = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
     };
     const onResize = () => {
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      uniforms.uRes.value.set(window.innerWidth, window.innerHeight);
-      sizeTrailBuffers();
+      // Always size the canvas to the true viewport so the shader's aspect and
+      // the pointer→particle mapping stay in sync (a stretched canvas put the
+      // dust swirl far from the finger). uScroll uses the stable maxH instead.
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      if (isCoarsePointer) maxH = Math.max(maxH, h);
+      renderer.setSize(w, h);
+      uniforms.uRes.value.set(w, h);
+      // Reallocating the dust ping-pong buffers wipes the trail history — that
+      // blank frame is the scroll flicker. On touch the URL bar oscillates the
+      // height every scroll, so only reallocate when the WIDTH actually changes
+      // (orientation), never on the bar's show/hide.
+      if (!isCoarsePointer || w !== lastW) sizeTrailBuffers();
+      lastW = w;
     };
     const onVisibility = () => {
       running = !document.hidden;
@@ -594,6 +704,10 @@ const LiquidInkBackground = () => {
 
     window.addEventListener('pointermove', onPointerMove, { passive: true });
     window.addEventListener('pointerdown', onPointerDown, { passive: true });
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
+    window.addEventListener('touchend', onTouchEnd, { passive: true });
+    window.addEventListener('touchcancel', onTouchCancel, { passive: true });
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onResize);
     document.addEventListener('visibilitychange', onVisibility);
@@ -606,6 +720,10 @@ const LiquidInkBackground = () => {
       unsubscribeFx();
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('pointerdown', onPointerDown);
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onTouchEnd);
+      window.removeEventListener('touchcancel', onTouchCancel);
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
       document.removeEventListener('visibilitychange', onVisibility);

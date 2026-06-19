@@ -207,10 +207,35 @@ export function useInteractionSfx() {
     };
 
     const onDown = (ev: PointerEvent) => {
+      if (ev.pointerType === 'touch') return; // touch decides tap-vs-drag on touchend
       const e = ensure(); // first gesture unlocks the context
       if (!e || !active()) return;
       const el = ev.target as Element | null;
       tap(!(el?.closest?.(TAP_GUARD))); // empty space → deep detonate; clickable → crisp tap
+    };
+
+    // Touch: only a deliberate tap (no scroll, no drag) makes the sound — a
+    // press-and-drag/scroll stays silent. Mirrors the ink detonation gating.
+    let touchTap: { x: number; y: number; time: number; scrollY: number } | null = null;
+    const onTouchStart = (ev: TouchEvent) => {
+      ensure(); // first gesture unlocks the audio context
+      const t = ev.touches[0];
+      if (!t) return;
+      touchTap = { x: t.clientX, y: t.clientY, time: performance.now(), scrollY: window.scrollY };
+    };
+    const onTouchEnd = (ev: TouchEvent) => {
+      const start = touchTap;
+      touchTap = null;
+      if (!start || !engine || !active()) return;
+      const t = ev.changedTouches[0];
+      if (!t) return;
+      const moved = Math.hypot(t.clientX - start.x, t.clientY - start.y);
+      const elapsedMs = performance.now() - start.time;
+      const scrolled = Math.abs(window.scrollY - start.scrollY) > 2;
+      if (moved < 10 && elapsedMs < 250 && !scrolled) {
+        const el = t.target as Element | null;
+        tap(!(el?.closest?.(TAP_GUARD))); // empty space → deep detonate; clickable → crisp tap
+      }
     };
 
     let lastHover: Element | null = null;
@@ -241,6 +266,8 @@ export function useInteractionSfx() {
 
     window.addEventListener('pointermove', onMove, { passive: true });
     window.addEventListener('pointerdown', onDown, { passive: true });
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchend', onTouchEnd, { passive: true });
     window.addEventListener('pointerover', onOver, { passive: true });
     window.addEventListener('keydown', onKey);
     document.addEventListener('visibilitychange', onVisibility);
@@ -250,6 +277,8 @@ export function useInteractionSfx() {
       if (rafId) cancelAnimationFrame(rafId);
       window.removeEventListener('pointermove', onMove);
       window.removeEventListener('pointerdown', onDown);
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchend', onTouchEnd);
       window.removeEventListener('pointerover', onOver);
       window.removeEventListener('keydown', onKey);
       document.removeEventListener('visibilitychange', onVisibility);

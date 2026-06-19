@@ -32,6 +32,8 @@ export interface FxConfig {
   inkStirTrail: number; // how long the stir wake lingers, 1 = designed default
   inkFlow: number; // flow/time speed of the liquid
   inkIntensity: number; // overall "smoke" brightness
+  inkDetail: number; // MOBILE ONLY: noise-frequency multiplier — higher = smaller smoke
+                     // cells (dissolves the value-noise lattice on narrow portrait screens)
   // --- particles ---
   particleCount: number;
   particleSize: number;
@@ -74,6 +76,7 @@ export const FX_DEFAULTS: FxConfig = {
   inkStirTrail: 1,
   inkFlow: 2.85,
   inkIntensity: 1.3,
+  inkDetail: 2.5,
   particleCount: 2410,
   particleSize: 0.5,
   particleGravity: 0.65,
@@ -116,8 +119,33 @@ function loadStored(): Partial<FxConfig> {
   }
 }
 
+/**
+ * Coarse-pointer (touch) devices get their own default overrides, tuned
+ * separately from desktop. A fresh mobile visitor starts from these; the owner's
+ * saved tuning (loadStored) still wins on top, and `resetFx` returns here on mobile.
+ * Desktop is unaffected (overrides are only merged on a coarse pointer).
+ */
+export const FX_MOBILE_OVERRIDES: Partial<FxConfig> = {
+  // Owner-tuned mobile defaults (only the keys that differ from FX_DEFAULTS).
+  inkStir: 0.4, // calmer pointer stir
+  inkDetail: 3.6, // finer smoke so the noise reads smooth on portrait
+  particleCount: 200, // far fewer dust particles on phones
+  particleGravity: 0.45,
+  particleTrail: 0.4, // shorter dust trails
+  particleResolution: 1, // full-res dust buffer
+};
+
+const isCoarsePointer =
+  typeof window !== 'undefined' && !!window.matchMedia?.('(pointer: coarse)').matches;
+
+/** The starting defaults for THIS device (desktop defaults + mobile overrides on touch). */
+export const FX_DEVICE_DEFAULTS: FxConfig = {
+  ...FX_DEFAULTS,
+  ...(isCoarsePointer ? FX_MOBILE_OVERRIDES : {}),
+};
+
 /** Mutable live config — rAF loops read this directly each frame. */
-export const fx: FxConfig = { ...FX_DEFAULTS, ...loadStored() };
+export const fx: FxConfig = { ...FX_DEVICE_DEFAULTS, ...loadStored() };
 
 /** Runtime-only signals (never persisted, never trigger renders). */
 export const fxRuntime = {
@@ -160,7 +188,7 @@ export function setFx(patch: Partial<FxConfig>) {
 }
 
 export function resetFx() {
-  Object.assign(fx, FX_DEFAULTS);
+  Object.assign(fx, FX_DEVICE_DEFAULTS);
   applyFxCssVars();
   try {
     localStorage.removeItem(STORAGE_KEY);
