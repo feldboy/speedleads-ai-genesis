@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import SpeedLeadsLogo from '@/components/ui/SpeedLeadsLogo';
-import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import SpeedLeadsLogo from "@/components/ui/SpeedLeadsLogo";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const TOTAL_MS = 4200;
 const SPARK_COUNT = 12;
@@ -24,22 +24,22 @@ const IntroSequence = () => {
     dismissedRef.current = true;
     setVisible(false);
     // hand the energy to the liquid ink — the intro dissolves into the page
-    window.dispatchEvent(new CustomEvent('speedleads:ink-burst'));
+    window.dispatchEvent(new CustomEvent("speedleads:ink-burst"));
   };
 
   useEffect(() => {
     if (!visible || reducedMotion) return;
 
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     const timer = window.setTimeout(dismiss, TOTAL_MS);
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' || e.key === 'Enter') dismiss();
+      if (e.key === "Escape" || e.key === "Enter") dismiss();
     };
-    window.addEventListener('keydown', onKey);
+    window.addEventListener("keydown", onKey);
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
       window.clearTimeout(timer);
-      window.removeEventListener('keydown', onKey);
+      window.removeEventListener("keydown", onKey);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible, reducedMotion]);
@@ -47,8 +47,8 @@ const IntroSequence = () => {
   if (reducedMotion || !visible) return null;
 
   // Tagline plays on the double meaning of אות: signal / letter
-  const tagline = 'כל עסק גדול מתחיל באות אחד';
-  const words = tagline.split(' ');
+  const tagline = "כל עסק גדול מתחיל באות אחת";
+  const words = tagline.split(" ");
 
   return (
     <AnimatePresence>
@@ -65,13 +65,20 @@ const IntroSequence = () => {
         <motion.div
           aria-hidden="true"
           className="absolute h-[2px] rounded-full bg-tech-blue"
-          style={{ boxShadow: '0 0 12px rgba(0,246,255,0.9), 0 0 48px rgba(0,246,255,0.4)' }}
+          style={{
+            boxShadow:
+              "0 0 12px rgba(0,246,255,0.9), 0 0 48px rgba(0,246,255,0.4)",
+          }}
           initial={{ width: 4, opacity: 0 }}
           animate={{
             width: [4, 4, 220, 220],
             opacity: [0, 1, 1, 0],
           }}
-          transition={{ duration: 1.6, times: [0, 0.25, 0.8, 1], ease: 'easeInOut' }}
+          transition={{
+            duration: 1.6,
+            times: [0, 0.25, 0.8, 1],
+            ease: "easeInOut",
+          }}
         />
 
         {/* Ignition shockwave — a ring of light racing outward */}
@@ -81,12 +88,18 @@ const IntroSequence = () => {
           style={{
             width: 120,
             height: 120,
-            border: '1.5px solid rgba(0,246,255,0.8)',
-            boxShadow: '0 0 24px rgba(0,246,255,0.5), 0 0 24px rgba(0,246,255,0.4) inset',
+            border: "1.5px solid rgba(0,246,255,0.8)",
+            boxShadow:
+              "0 0 24px rgba(0,246,255,0.5), 0 0 24px rgba(0,246,255,0.4) inset",
           }}
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: [0, 0.2, 9], opacity: [0, 1, 0] }}
-          transition={{ delay: 1.25, duration: 1.4, times: [0, 0.12, 1], ease: [0.16, 1, 0.3, 1] }}
+          transition={{
+            delay: 1.25,
+            duration: 1.4,
+            times: [0, 0.12, 1],
+            ease: [0.16, 1, 0.3, 1],
+          }}
         />
 
         {/* Sparks thrown off by the ignition */}
@@ -101,8 +114,8 @@ const IntroSequence = () => {
               style={{
                 width: 3,
                 height: 3,
-                background: '#00F6FF',
-                boxShadow: '0 0 8px rgba(0,246,255,0.9)',
+                background: "#00F6FF",
+                boxShadow: "0 0 8px rgba(0,246,255,0.9)",
               }}
               initial={{ x: 0, y: 0, opacity: 0, scale: 1 }}
               animate={{
@@ -111,34 +124,41 @@ const IntroSequence = () => {
                 opacity: [0, 1, 0],
                 scale: [1, 1, 0.3],
               }}
-              transition={{ delay: 1.3, duration: 1.1, ease: 'easeOut' }}
+              transition={{ delay: 1.3, duration: 1.1, ease: "easeOut" }}
             />
           );
         })}
 
         {/* The light ignites the logo */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.92, filter: 'blur(10px)' }}
-          animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, scale: 0.92, filter: "blur(10px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           transition={{ delay: 1.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
           <SpeedLeadsLogo size="xl" />
         </motion.div>
 
         {/* Tagline assembles word by word (RTL stagger = DOM order) */}
-        <p className="mt-6 font-display text-xl sm:text-2xl text-white/85" aria-label={tagline}>
+        <p
+          className="mt-6 font-display text-xl sm:text-2xl text-white/85"
+          aria-label={tagline}
+        >
           {words.map((word, i) => (
             <span key={i}>
               <motion.span
                 aria-hidden="true"
                 className="inline-block"
-                initial={{ opacity: 0, y: '0.5em', filter: 'blur(6px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                transition={{ delay: 2.1 + i * 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, y: "0.5em", filter: "blur(6px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{
+                  delay: 2.1 + i * 0.12,
+                  duration: 0.5,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
               >
                 {word}
               </motion.span>
-              {i < words.length - 1 && ' '}
+              {i < words.length - 1 && " "}
             </span>
           ))}
         </p>
