@@ -126,7 +126,13 @@ function loadStored(): Partial<FxConfig> {
  * Desktop is unaffected (overrides are only merged on a coarse pointer).
  */
 export const FX_MOBILE_OVERRIDES: Partial<FxConfig> = {
-  // Filled with the owner's mobile-tuned values (copy them from the effects panel).
+  // Owner-tuned mobile defaults (only the keys that differ from FX_DEFAULTS).
+  inkStir: 0.4, // calmer pointer stir
+  inkDetail: 3.6, // finer smoke so the noise reads smooth on portrait
+  particleCount: 200, // far fewer dust particles on phones
+  particleGravity: 0.45,
+  particleTrail: 0.4, // shorter dust trails
+  particleResolution: 1, // full-res dust buffer
 };
 
 const isCoarsePointer =
