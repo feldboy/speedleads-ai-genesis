@@ -6,6 +6,7 @@ import HeroSection from '@/components/sections/HeroSection';
 import WhySpeedLeadsSection from '@/components/sections/WhySpeedLeadsSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import FaqSection from '@/components/sections/FaqSection';
+import ClosingCtaSection from '@/components/sections/ClosingCtaSection';
 import ContactSection from '@/components/sections/ContactSection';
 import CookieConsent from '@/components/CookieConsent';
 import FloatingAI from '@/components/effects/FloatingAI';
@@ -130,6 +131,8 @@ const Index = () => {
         <TestimonialsSection />
 
         <FaqSection />
+
+        <ClosingCtaSection />
 
         <ContactSection />
       </main>
