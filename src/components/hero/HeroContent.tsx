@@ -1,16 +1,15 @@
-
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import TypewriterText from '@/components/effects/TypewriterText';
-import MagneticButton from '@/components/effects/MagneticButton';
-import { Button } from '@/components/ui/button';
-import { heroVariants } from './heroAnimationVariants';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import TypewriterText from "@/components/effects/TypewriterText";
+import MagneticButton from "@/components/effects/MagneticButton";
+import { Button } from "@/components/ui/button";
+import { heroVariants } from "./heroAnimationVariants";
 
 const aiTexts = [
-  "בינה מלאכותית מתקדמת",
+  "בינה מלאכותית",
   "אוטומציות חכמות",
   "פתרונות דיגיטליים",
-  "חדשנות טכנולוגית"
+  "חדשנות טכנולוגית",
 ];
 
 const HeroContent: React.FC = () => {
@@ -35,8 +34,8 @@ const HeroContent: React.FC = () => {
             textShadow: [
               "0 0 20px rgba(0,246,255,0.5)",
               "0 0 40px rgba(0,246,255,0.8)",
-              "0 0 20px rgba(0,246,255,0.5)"
-            ]
+              "0 0 20px rgba(0,246,255,0.5)",
+            ],
           }}
           transition={{ duration: 3, repeat: Infinity }}
           dir="ltr"
@@ -84,7 +83,13 @@ const HeroContent: React.FC = () => {
         custom={{ delayIdx: 2 }}
         className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse rtl:space-x-reverse px-4 sm:px-0"
       >
-        <MagneticButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+        <MagneticButton
+          onClick={() =>
+            document
+              .getElementById("contact")
+              ?.scrollIntoView({ behavior: "smooth" })
+          }
+        >
           <Button
             id="hero_cta_button"
             size="lg"
@@ -93,7 +98,13 @@ const HeroContent: React.FC = () => {
             בואו נדבר על הפרויקט שלכם
           </Button>
         </MagneticButton>
-        <MagneticButton onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>
+        <MagneticButton
+          onClick={() =>
+            document
+              .getElementById("services")
+              ?.scrollIntoView({ behavior: "smooth" })
+          }
+        >
           <Button
             id="hero_services_button"
             size="lg"
